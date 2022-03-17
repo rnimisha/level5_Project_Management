@@ -2,7 +2,7 @@
 include 'connection.php';
 
 $error=array();
-$error['clear']=false;
+$error['clear']=true;
 
 //validation
 if(isset($_POST['fullname']) && isset($_POST['useremail']))
@@ -18,7 +18,6 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']))
         }
         else{
             $error['#name_error']="";
-            $error['clear']=true;
             $fullname=mysqli_real_escape_string($connection, $_POST['fullname']);
 
         }
@@ -43,7 +42,6 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']))
             }
 
             $error['#email_error']="";
-            $error['clear']=true;
 
 
         }

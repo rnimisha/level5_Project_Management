@@ -25,11 +25,23 @@ $(document).ready(function(){
 
             },
             success: function(response){
-                console.log(response);
+                // console.log(response);
                 var resp=jQuery.parseJSON(response);
+                if(resp.clear == true) {
+                    console.log(resp);
+                    resetForm('cust-reg-form');
+                    $('#reg-sucess-msg').html('You have been sucessfully registered');
+                    inlineMsg(resp);
+                }
+                else{
+                    $('#reg-sucess-msg').html('');
+                    inlineMsg(resp);
+                }
             }
         });
 
         return false;
     });
 });
+
+
