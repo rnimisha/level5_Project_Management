@@ -1,11 +1,11 @@
 <?php
-include 'connection.php';
+include_once('connection.php');;
 
 $error=array();
 $error['clear']=true;
 
 //validation
-if(isset($_POST['fullname']) && isset($_POST['useremail']))
+if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pword']))
 {
     //name validation
     if(!empty(trim($_POST['fullname'])))
@@ -18,7 +18,7 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']))
         }
         else{
             $error['#name_error']="";
-            $fullname=mysqli_real_escape_string($connection, $_POST['fullname']);
+            $fullname= $_POST['fullname'];
 
         }
     }
@@ -33,10 +33,10 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']))
         if(filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)){
 
             //sanitize before rurnning query
-            $useremail=mysqli_real_escape_string($connection, $_POST['useremail']);
-            $checkQuery="SELECT * FROM `user` WHERE email='$useremail'";
-            $result=mysqli_query($connection,$checkQuery);
-            if(mysqli_num_rows($result)>0){
+            $useremail=$_POST['useremail'];
+            $checkQuery="SELECT * FROM `mart_user` WHERE email='$useremail'";
+            $result=oci_parse($connection,$checkQuery);
+            if(oci_num_rows($result)>0){
                 $error['#email_error']="Enter already registered";
                 $error['clear']=false;
             }
@@ -54,6 +54,31 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']))
     else{
         $error['#email_error']="Email cannot be empty";
         $error['clear']=false;
+    }
+
+    //password validation
+    if(!empty(trim($_POST['pword'])))
+    {
+        $pattern='/^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[@$!%?&_])[a-zA-Z0-9@$!%?&_]{7,}$/';
+        if(preg_match($pattern,$_POST['pword']))
+        {
+            //encrypt password before
+
+            $error['#pass_error']="";
+           
+        }
+        else
+        {
+            $error['clear']=false;
+            $error['#pass_error']="Atleast 7 alphanumeric character with atleast one upper one lower and one digit!<br/>";
+        }
+
+    }
+    else
+    {
+        $error['#pass_error']="Password cannot be empty";
+        $error['clear']=false;
+
     }
 }
 
