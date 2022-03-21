@@ -34,8 +34,11 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
 
             //sanitize before rurnning query
             $useremail=$_POST['useremail'];
-            $checkQuery="SELECT * FROM `mart_user` WHERE email='$useremail'";
+            // $checkQuery="SELECT * FROM `mart_user` WHERE email='$useremail'";
+            $checkQuery="SELECT * FROM `mart_user` WHERE email=:email";
             $result=oci_parse($connection,$checkQuery);
+
+            oci_bind_by_name($result, ":email", $useremail);
             if(oci_num_rows($result)>0){
                 $error['#email_error']="Enter already registered";
                 $error['clear']=false;
@@ -59,7 +62,7 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
     //password validation
     if(!empty(trim($_POST['pword'])))
     {
-        $pattern='/^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[@$!%?&_])[a-zA-Z0-9@$!%?&_]{7,}$/';
+        $pattern='/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{7,}$/';
         if(preg_match($pattern,$_POST['pword']))
         {
             //encrypt password before
@@ -70,7 +73,7 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         else
         {
             $error['clear']=false;
-            $error['#pass_error']="Atleast 7 alphanumeric character with atleast one upper one lower and one digit!<br/>";
+            $error['#pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit!<br/>";
         }
 
     }
@@ -79,6 +82,83 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['#pass_error']="Password cannot be empty";
         $error['clear']=false;
 
+    }
+
+    //re enter password validaion
+    if(!empty(trim($_POST['repass'])))
+    {
+        if($_POST['repass'] == $_POST['pword'])
+        {
+            $error['#repass_error']="";
+        }
+        else
+        {
+            $error['#repass_error']="Password does not match";
+            $error['clear']=false;
+        }
+    }
+    else
+    {
+        $error['#repass_error']="Re-enter password";
+        $error['clear']=false;
+    }
+
+    //contact validation 
+    if(!empty(trim($_POST['contact'])))
+    {
+        if(is_numeric(trim($_POST['contact'])))
+        {
+             if(strlen(trim($_POST['contact']))>=10)
+            {
+                $error['#contact_error']="";
+            
+            }
+            else
+            {
+                $error['#contact_error']="Contact can't be less than 10 digits";
+                $error['clear']=false;
+            }
+        }
+        else
+        {
+                $error['#contact_error']="Enter valid digits";
+                $error['clear']=false;
+        }
+
+    }
+    else{
+        $error['#contact_error']="Contact cannot be empty";
+        $error['clear']=false;
+    }
+
+    //dob validation
+    if(!empty($_POST['dob']))
+    {
+        $error['#dob_error']="";
+    }
+    else{
+        $error['#dob_error']="DOB cannot be empty";
+        $error['clear']=false;
+    }
+
+    //address validation
+    if(!empty($_POST['address']))
+    {
+        if(strlen($_POST['address']) < 4)
+        {
+            $error['#address_error']="Enter a valid address";
+            $error['clear']=false;
+
+        }
+        else{
+            $error['#address_error']="";
+
+        }
+
+    }
+    else{
+        $error['#address_error']="Address cannot be empty";
+        $error['clear']=false;
     }
 }
 

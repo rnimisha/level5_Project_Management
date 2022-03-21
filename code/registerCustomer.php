@@ -8,6 +8,7 @@
     <script src="script/preventRefresh.js"></script>
     <script src="script/function.js"></script>
     <title>User Registration</title>
+
 </head>
 <body>
     <div id="reg-sucess-msg" style="color: green"></div>
@@ -26,7 +27,7 @@
         <div id="pass_error" style="color: red"></div>
 
         <label for="repass"> Re-enter Password</label>
-        <input type="text" name="urep-pass" id="repass" /><br/>
+        <input type="password" name="urep-pass" id="repass" /><br/>
         <div id="repass_error" style="color: red"></div>
 
         <label for="contact"> Contact</label>
@@ -34,7 +35,7 @@
         <div id="contact_error" style="color: red"></div>
 
         <label for="dob"> DOB</label>
-        <input type="text" name="udob" id="dob" /><br/>
+        <input type="date" name="udob" id="dob" /><br/>
         <div id="dob_error" style="color: red"></div>
 
         <label for="address"> Address</label>
