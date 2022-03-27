@@ -13,7 +13,7 @@
 <body>
     <div id="reg-sucess-msg" style="color: green"></div>
 
-    <form action="validateCustomer.php" method="POST" id="cust-reg-form">
+    <form action="validateCustomer.php" method="POST"  id="cust-reg-form">
         <label for="fullname"> Name</label>
         <input type="text" name="uname" id="fullname" /><br/>
         <div id="name_error" style="color: red"></div>
@@ -42,7 +42,6 @@
         <input type="text" name="uaddress" id="address" /><br/>
         <div id="address_error" style="color: red"></div>
 
-        <!-- image later -->
         <input type="submit" name="registerCustomer" value="Register"/>
     </form>
 </body>
