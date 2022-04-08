@@ -15,7 +15,7 @@
 
     <form action="validateCustomer.php" method="POST"  id="cust-reg-form">
         <label for="fullname"> Name</label>
-        <input type="text" name="uname" id="fullname"  /><br/>
+        <input type="text" name="fullname" id="fullname"  /><br/>
         <div id="name_error" style="color: red"></div>
 
         <label for="useremail"> Email</label>

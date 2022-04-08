@@ -27,7 +27,7 @@ $(document).ready(function(){
             },
             
             success: function(response){
-                // console.log(response);
+                console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true) {
                     resetForm('cust-reg-form');
@@ -44,64 +44,64 @@ $(document).ready(function(){
         return false;
     });
 
-    $("#useremail").keyup(function(){
-        // alert("hello");
+    // $("#useremail").keyup(function(){
+    //     // alert("hello");
 
-        var useremail=$('#useremail').val();
+    //     var useremail=$('#useremail').val();
 
-        $.ajax({
-            type: "POST",
-            url: 'validateCustomer.php',
-            data: {
-                useremail: useremail
+    //     $.ajax({
+    //         type: "POST",
+    //         url: 'validateCustomer.php',
+    //         data: {
+    //             useremail: useremail
 
-            },
+    //         },
             
-            success: function(response){
-                // console.log(response);
-                var resp=jQuery.parseJSON(response);
-                if(resp.clear == true) {
-                    $('#reg-sucess-msg').html('');
-                    inlineMsg(resp);
-                }
-                else{
-                    $('#reg-sucess-msg').html('');
-                    inlineMsg(resp);
-                }
-            }
-        });
+    //         success: function(response){
+    //             // console.log(response);
+    //             var resp=jQuery.parseJSON(response);
+    //             if(resp.clear == true) {
+    //                 $('#reg-sucess-msg').html('');
+    //                 inlineMsg(resp);
+    //             }
+    //             else{
+    //                 $('#reg-sucess-msg').html('');
+    //                 inlineMsg(resp);
+    //             }
+    //         }
+    //     });
 
-        return false;
-    });
+    //     return false;
+    // });
 
-    $("#fullname").keyup(function(){
-        // alert("hello");
+    // $("#fullname").keyup(function(){
+    //     // alert("hello");
 
-        var fullname=$('#fullname').val();
+    //     var fullname=$('#fullname').val();
 
-        $.ajax({
-            type: "POST",
-            url: 'validateCustomer.php',
-            data: {
-                fullname: fullname,
+    //     $.ajax({
+    //         type: "POST",
+    //         url: 'validateCustomer.php',
+    //         data: {
+    //             fullname: fullname,
 
-            },
-            success: function(response){
-                // console.log(response);
-                var resp=jQuery.parseJSON(response);
-                if(resp.clear == true) {
-                    $('#reg-sucess-msg').html('');
-                    inlineMsg(resp);
-                }
-                else{
-                    $('#reg-sucess-msg').html('');
-                    inlineMsg(resp);
-                }
-            }
-        });
+    //         },
+    //         success: function(response){
+    //             // console.log(response);
+    //             var resp=jQuery.parseJSON(response);
+    //             if(resp.clear == true) {
+    //                 $('#reg-sucess-msg').html('');
+    //                 inlineMsg(resp);
+    //             }
+    //             else{
+    //                 $('#reg-sucess-msg').html('');
+    //                 inlineMsg(resp);
+    //             }
+    //         }
+    //     });
 
-        return false;
-    });
+    //     return false;
+    // });
 
 
 });
