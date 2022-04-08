@@ -4,8 +4,10 @@ include_once('connection.php');
 $error=array();
 $error['clear']=true;
 
-//validation
-if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pword']))
+
+
+// //validation
+if(isset($_POST['fullname']))
 {
     //name validation
     if(!empty(trim($_POST['fullname'])))
@@ -27,7 +29,9 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['clear']=false;
 
     }
+}
 
+if(isset($_POST['useremail'])){
     //email validation
     if(!empty(trim($_POST['useremail']))){
         if(filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)){
@@ -58,8 +62,10 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['#email_error']="Email cannot be empty";
         $error['clear']=false;
     }
+}
 
     //password validation
+if(isset($_POST['pword'])){
     if(!empty(trim($_POST['pword'])))
     {
         $pattern='/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{7,}$/';
@@ -83,8 +89,10 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['clear']=false;
 
     }
+}
 
     //re enter password validaion
+if(isset($_POST['repass'])){
     if(!empty(trim($_POST['repass'])))
     {
         if($_POST['repass'] == $_POST['pword'])
@@ -102,8 +110,10 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['#repass_error']="Re-enter password";
         $error['clear']=false;
     }
+}
 
     //contact validation 
+if(isset($_POST['contact'])){
     if(!empty(trim($_POST['contact'])))
     {
         if(is_numeric(trim($_POST['contact'])))
@@ -130,8 +140,10 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['#contact_error']="Contact cannot be empty";
         $error['clear']=false;
     }
+}
 
     //dob validation
+if(isset($_POST['dob'])){
     if(!empty($_POST['dob']))
     {
         $error['#dob_error']="";
@@ -140,8 +152,10 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['#dob_error']="DOB cannot be empty";
         $error['clear']=false;
     }
+}
 
     //address validation
+if(isset($_POST['address'])){
     if(!empty($_POST['address']))
     {
         if(strlen($_POST['address']) < 4)
@@ -161,6 +175,38 @@ if(isset($_POST['fullname']) && isset($_POST['useremail']) && isset($_POST['pwor
         $error['clear']=false;
     }
 }
+
+if(!isset($_POST['registercust']))
+{
+    $error['clear']=false;
+}
+
+
+$fullnames='Heedo';
+$email="Heedo";
+$password="123";
+$contact="2345";
+$address="addre";
+$role='r';
+$statuss="s";
+$dob='05/06/2007';
+
+$insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, CONTACT, ADDRESS, USER_ROLE, ACTIVE_STATUS, DOB) VALUES(:fullname, :email, :pass,:contact, :addr, :roles, :statuss, to_date(:dob,'DD/MM/YYYY'))";
+
+$parsedQuery=oci_parse($connection,$insertQuery);
+
+
+oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
+oci_bind_by_name($parsedQuery, ":email", $email);
+oci_bind_by_name($parsedQuery, ":pass", $password);
+oci_bind_by_name($parsedQuery, ":contact", $contact);
+oci_bind_by_name($parsedQuery, ":addr", $address);
+oci_bind_by_name($parsedQuery, ":roles", $role);
+oci_bind_by_name($parsedQuery, ":statuss", $statuss);
+oci_bind_by_name($parsedQuery, ":dob", $dob);
+
+oci_execute($parsedQuery);
+oci_free_statement($parsedQuery);
 
 //response
 echo json_encode($error);
