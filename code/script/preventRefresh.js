@@ -31,7 +31,7 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true) {
                     resetForm('cust-reg-form');
-                    $('#reg-sucess-msg').html('You have been sucessfully registered');
+                    $('#reg-sucess-msg').html('Please check your email to activate account');
                     inlineMsg(resp);
                 }
                 else{

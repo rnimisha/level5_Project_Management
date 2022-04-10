@@ -188,13 +188,13 @@
             $email=$_POST['useremail'];
             $password=md5($_POST['pword']);
             $contact=$_POST['contact'];
-            $dob=$_POST['dob'];
             $address=$_POST['address'];
-            $statuss='i';
-            $role='c';
+            $statuss='I';
+            $role='C';
             $dob=date("d-m-Y", strtotime($_POST['dob']));
+            $token=bin2hex(random_bytes(15));
 
-            $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, CONTACT, ADDRESS, USER_ROLE, ACTIVE_STATUS, DOB) VALUES(:fullname, :email, :pass,:contact, :addr, :roles, :statuss, to_date(:dob,'DD/MM/YYYY'))";
+            $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, CONTACT, ADDRESS, USER_ROLE, ACTIVE_STATUS, DOB, TOKEN) VALUES(:fullname, :email, :pass,:contact, :addr, :roles, :statuss, to_date(:dob,'DD/MM/YYYY'), :token)";
 
             $parsedQuery=oci_parse($connection,$insertQuery);
 
@@ -207,19 +207,62 @@
             oci_bind_by_name($parsedQuery, ":roles", $role);
             oci_bind_by_name($parsedQuery, ":statuss", $statuss);
             oci_bind_by_name($parsedQuery, ":dob", $dob);
+            oci_bind_by_name($parsedQuery, ":token", $token);
 
-            oci_execute($parsedQuery);
+            if(oci_execute($parsedQuery))
+            {
+                $to=$email;
+                $subject="Verify Your Account";
+                $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
+
+                // $body="Hi $name, \n Click here to activate  http://localhost/oci/activate.php?token=$token ";
+                $body="
+                <html>
+                <head>
+                    <title>Verify Your Account</title>
+                </head>
+                <body>
+                    <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
+                        <center>
+                            $image
+                            <h2> Hi $fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to activate your account with Phoenix Mart. <br><br><a href= 'http://localhost/oci/activate.php?token=$token'><button style='background-color: #4CAF50;border: none;
+                            color: white;
+                            padding: 15px 32px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 16px;
+                            border-radius: 25px;'>Activate</button></a>
+                            <br><br><br>  
+                            <hr style='border: 0.7px solid grey; width:80%;'>
+                            <span style='color:grey';>Please ignore if you did not create an account in Phoenix Mart.</span>
+                        </center>
+                    </div>
+                </body>
+                </html>";
+                // $headers="From: phoenixmart123@gmail.com";
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                if(mail($to, $subject, $body, $headers))
+                {
+                    $error['clear']=true;
+                }
+                else{
+                    $error['clear']=false;
+                }
+            }
             oci_free_statement($parsedQuery);
         }
     }
 
-    // $fullnames='2521';
-    // $email="obs";
-    // $password="123";
-    // $contact="2345";
-    // $address="addre";
-    // $role='r';
-    // $statuss="s";
+    $fullnames='2521';
+    $email="obs";
+    $password="123";
+    $contact="2345";
+    $address="addre";
+    $role='r';
+    $statuss="s";
+    $token=bin2hex(random_bytes(15));
     // $fullnames=$_POST['fullname'];
     // $email=$_POST['useremail'];
     // $password=md5($_POST['pword']);
