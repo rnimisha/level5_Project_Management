@@ -42,7 +42,7 @@
         <input type="text" name="uaddress" id="address" /><br/>
         <div id="address_error" style="color: red"></div>
 
-        <input type="submit" name="registerCustomer" value="Register"/>
+        <input type="submit" id="reg-btn" name="registerCustomer" value="Register"/>
     </form>
 </body>
 </html>
