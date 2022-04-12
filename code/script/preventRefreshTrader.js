@@ -12,6 +12,7 @@ $(document).ready(function(){
       var dob=$('#dob').val();
       var address=$('#address').val();
       var reason=$('#reason').val();
+      
 
       $.ajax({
          type: "POST",
@@ -24,7 +25,8 @@ $(document).ready(function(){
             contact: contact,
             dob: dob,
             address: address,
-            reason: reason
+            reason: reason,
+            validatetrader: 'yes'
          },
          success: function(response)
          {
@@ -43,6 +45,10 @@ $(document).ready(function(){
    });
 
    $("#trader-reg-form").submit(function(){
+
+      jQuery('#trader-reg-btn').val('Submitting..');
+      jQuery('#trader-reg-btn').attr('disabled', true);
+
       var fullname=$('#fullname').val();
       var useremail=$('#useremail').val();
       var pword=$('#pword').val();
@@ -70,10 +76,13 @@ $(document).ready(function(){
             shopname: shopname,
             register_date: register_date,
             register_no: register_no,
-            registertrader: 'yes'
+            registertrader: 'yes',
+            validatetrader: 'no'
          },
          success: function(response)
          {
+            jQuery('#trader-reg-btn').val('Register');
+            jQuery('#trader-reg-btn').attr('disabled', false);
             console.log(response);
             var resp=jQuery.parseJSON(response);
             if(resp.clear == true) {
