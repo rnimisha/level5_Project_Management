@@ -61,14 +61,14 @@
                 <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
                     <center>
                         $image
-                        <br> Hello,<br> A new registration request from trader <b>$fullnames </b>has arrived!
+                         A new registration request from trader <b>$fullnames </b>has arrived!
                         Trader details are provided below <br> 
-                        Name : $fullnames<br> 
+                        Email : $email<br> 
                         Shop Name : $shopname <br> 
                         Shop Registration date : $register_date<br> 
                         PAN : $register_no <br> 
                         Trader's Message : $reason <br> 
-                            <br> Click button  to activate trader $fullnames. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activateTrader.php?userid=$user_id'><button style='background-color: #4CAF50;border: none;
+                            <br> <b>Click button  to activate trader $fullnames.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activateTrader.php?userid=$user_id'><button style='background-color: #4CAF50;border: none;
                         color: white;
                         padding: 15px 32px;
                         text-align: center;
@@ -78,7 +78,7 @@
                         border-radius: 25px;'>Activate</button></a>
                         <br><br><br>  
                         <hr style='border: 0.7px solid grey; width:80%;'>
-                        <span style='color:grey';>Please ignore if you did not create an account in Phoenix Mart.</span>
+                        <span style='color:grey';>Thank You</span>
                     </center>
                 </div>
             </body>
@@ -88,10 +88,10 @@
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             if(mail($to, $subject, $body, $headers))
             {
-                $error['clear']=true;
+                echo "doneeee";
             }
             else{
-                $error['clear']=false;
+                echo "looooollll";
             }
         }
         else{
