@@ -14,7 +14,7 @@ $(document).ready(function(){
         var contact=$('#contact').val();
         var dob=$('#dob').val();
         var address=$('#address').val();
-
+ 
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),

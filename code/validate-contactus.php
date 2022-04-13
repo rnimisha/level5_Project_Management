@@ -32,7 +32,7 @@
         if(!empty(trim($_POST['lastname'])))
         {
             $contact_error['#lastname_error']="";
-            $lastname= $_POST['firstname'];
+            $lastname= $_POST['lastname'];
         }
         else{
             $contact_error['#lastname_error']="Last Name cannot be empty";
@@ -103,12 +103,12 @@
         }
     }
 
-    if(!isset($_POST['contactform']))
+    if(!isset($_POST['contactform']) && !isset($_POST['submitform']))
     {
         $contact_error['clear']=false;
     }
     else{
-        if($contact_error['clear']==true &&  $_POST['contactform']=='yes')
+        if($contact_error['clear']==true &&  $_POST['contactform']=='yes' && $_POST['submitform']=='yes')
         {
             $to='phoenixmart123@gmail.com';
             $subject="Customer Message";
