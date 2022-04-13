@@ -4,13 +4,13 @@ $(document).ready(function(){
    $('#trader-general-form').show();
    $("#next-shop-btn").click(function(){
 
-      var fullname=$('#fullname').val();
-      var useremail=$('#useremail').val();
-      var pword=$('#pword').val();
-      var repass=$('#repass').val();
-      var contact=$('#contact').val();
-      var dob=$('#dob').val();
-      var address=$('#address').val();
+      var t_fullname=$('#t_fullname').val();
+      var t_useremail=$('#t_useremail').val();
+      var t_pword=$('#t_pword').val();
+      var t_repass=$('#t_repass').val();
+      var t_contact=$('#t_contact').val();
+      var t_dob=$('#t_dob').val();
+      var t_address=$('#t_address').val();
       var reason=$('#reason').val();
       
 
@@ -18,13 +18,13 @@ $(document).ready(function(){
          type: "POST",
          url: 'validateTrader.php',
          data: {
-            fullname: fullname,
-            useremail: useremail,
-            pword: pword,
-            repass: repass,
-            contact: contact,
-            dob: dob,
-            address: address,
+            t_fullname: t_fullname,
+            t_useremail: t_useremail,
+            t_pword: t_pword,
+            t_repass: t_repass,
+            t_contact: t_contact,
+            t_dob: t_dob,
+            t_address: t_address,
             reason: reason,
             validatetrader: 'yes'
          },
@@ -49,13 +49,13 @@ $(document).ready(function(){
       jQuery('#trader-reg-btn').val('Submitting..');
       jQuery('#trader-reg-btn').attr('disabled', true);
 
-      var fullname=$('#fullname').val();
-      var useremail=$('#useremail').val();
-      var pword=$('#pword').val();
-      var repass=$('#repass').val();
-      var contact=$('#contact').val();
-      var dob=$('#dob').val();
-      var address=$('#address').val();
+      var t_fullname=$('#t_fullname').val();
+      var t_useremail=$('#t_useremail').val();
+      var t_pword=$('#t_pword').val();
+      var t_repass=$('#t_repass').val();
+      var t_contact=$('#t_contact').val();
+      var t_dob=$('#t_dob').val();
+      var t_address=$('#t_address').val();
       var reason=$('#reason').val();
       var shopname=$('#shopname').val();
       var register_date=$('#register_date').val();
@@ -65,13 +65,13 @@ $(document).ready(function(){
          type: "POST",
          url: 'validateTrader.php',
          data: {
-            fullname: fullname,
-            useremail: useremail,
-            pword: pword,
-            repass: repass,
-            contact: contact,
-            dob: dob,
-            address: address,
+            t_fullname: t_fullname,
+            t_useremail: t_useremail,
+            t_pword: t_pword,
+            t_repass: t_repass,
+            t_contact: t_contact,
+            t_dob: t_dob,
+            t_address: t_address,
             reason: reason,
             shopname: shopname,
             register_date: register_date,

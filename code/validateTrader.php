@@ -7,19 +7,19 @@
     if(isset($_POST['validatetrader']) && $_POST['validatetrader']=='yes')
     {
         // validation
-        if(isset($_POST['fullname']))
+        if(isset($_POST['t_fullname']))
         {
             //name validation
-            if(!empty(trim($_POST['fullname'])))
+            if(!empty(trim($_POST['t_fullname'])))
             {
-                if(strlen($_POST['fullname']) < 4)
+                if(strlen($_POST['t_fullname']) < 4)
                 {
                     $trader_error['#t_name_error']="Enter a valid name";
                     $trader_error['clear']=false;
                 }
                 else{
                     $trader_error['#t_name_error']="";
-                    $fullnames= $_POST['fullname'];
+                    $t_fullnames= $_POST['t_fullname'];
                 }
             }
             else{
@@ -29,15 +29,15 @@
         }
 
         //email validation
-        if(isset($_POST['useremail'])){
-            if(!empty(trim($_POST['useremail']))){
-                if(filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)){
+        if(isset($_POST['t_useremail'])){
+            if(!empty(trim($_POST['t_useremail']))){
+                if(filter_var($_POST['t_useremail'], FILTER_VALIDATE_EMAIL)){
 
-                    $useremail=$_POST['useremail'];
+                    $t_useremail=$_POST['t_useremail'];
                     $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM mart_user WHERE upper(email)=upper(:email)";
                     $result=oci_parse($connection,$checkQuery);
 
-                    $rows=oci_bind_by_name($result, ":email", $useremail);
+                    $rows=oci_bind_by_name($result, ":email", $t_useremail);
                     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
                     oci_execute($result);
                     oci_fetch($result);
@@ -48,7 +48,7 @@
                     }
                     else{
                         $trader_error['#t_email_error']="";
-                        $email=$_POST['useremail'];
+                        $email=$_POST['t_useremail'];
                     
                     }
                     
@@ -66,15 +66,15 @@
         }
 
         //password validation
-        if(isset($_POST['pword'])){
-            if(!empty(trim($_POST['pword'])))
+        if(isset($_POST['t_pword'])){
+            if(!empty(trim($_POST['t_pword'])))
             {
                 $pattern='/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{7,}$/';
-                if(preg_match($pattern,$_POST['pword']))
+                if(preg_match($pattern,$_POST['t_pword']))
                 {
                     //encrypt password before
                     $trader_error['#t_pass_error']="";
-                    $password=md5($_POST['pword']);
+                    $password=md5($_POST['t_pword']);
                 
                 }
                 else
@@ -92,10 +92,10 @@
         }
 
         //re enter password validaion
-        if(isset($_POST['repass'])){
-            if(!empty(trim($_POST['repass'])))
+        if(isset($_POST['t_repass'])){
+            if(!empty(trim($_POST['t_repass'])))
             {
-                if($_POST['repass'] == $_POST['pword'])
+                if($_POST['t_repass'] == $_POST['t_pword'])
                 {
                     $trader_error['#t_repass_error']="";
                 }
@@ -113,20 +113,20 @@
             }
         }
 
-        //contact validation 
-        if(isset($_POST['contact'])){
-            if(!empty(trim($_POST['contact'])))
+        //t_contact validation 
+        if(isset($_POST['t_contact'])){
+            if(!empty(trim($_POST['t_contact'])))
             {
-                if(is_numeric(trim($_POST['contact'])))
+                if(is_numeric(trim($_POST['t_contact'])))
                 {
-                    if(strlen(trim($_POST['contact']))>=10)
+                    if(strlen(trim($_POST['t_contact']))>=10)
                     {
                         $trader_error['#t_contact_error']="";
-                        $contact=$_POST['contact'];
+                        $t_contact=$_POST['t_contact'];
                     }
                     else
                     {
-                        $trader_error['#t_contact_error']="Contact can't be less than 10 digits";
+                        $trader_error['#t_contact_error']="t_contact can't be less than 10 digits";
                         $trader_error['clear']=false;
                     }
                 }
@@ -138,42 +138,42 @@
 
             }
             else{
-                $trader_error['#t_contact_error']="Contact cannot be empty";
+                $trader_error['#t_contact_error']="t_contact cannot be empty";
                 $trader_error['clear']=false;
             }
         }
 
-        //dob validation
-        if(isset($_POST['dob'])){
-            if(!empty($_POST['dob']))
+        //t_dob validation
+        if(isset($_POST['t_dob'])){
+            if(!empty($_POST['t_dob']))
             {
                 $trader_error['#t_dob_error']="";
-                $dob=date("d-m-Y", strtotime($_POST['dob']));
+                $t_dob=date("d-m-Y", strtotime($_POST['t_dob']));
                 
             }
             else{
-                $trader_error['#t_dob_error']="DOB cannot be empty";
+                $trader_error['#t_dob_error']="t_dob cannot be empty";
                 $trader_error['clear']=false;
             }
         }
 
-        //address validation
-        if(isset($_POST['address'])){
-            if(!empty($_POST['address']))
+        //t_address validation
+        if(isset($_POST['t_address'])){
+            if(!empty($_POST['t_address']))
             {
-                if(strlen($_POST['address']) < 4)
+                if(strlen($_POST['t_address']) < 4)
                 {
-                    $trader_error['#t_address_error']="Enter a valid address";
+                    $trader_error['#t_address_error']="Enter a valid t_address";
                     $trader_error['clear']=false;
                 }
                 else{
                     $trader_error['#t_address_error']="";
-                    $address=$_POST['address'];
+                    $t_address=$_POST['t_address'];
                 }
 
             }
             else{
-                $trader_error['#t_address_error']="Address cannot be empty";
+                $trader_error['#t_address_error']="t_address cannot be empty";
                 $trader_error['clear']=false;
             }
         }
@@ -260,12 +260,12 @@
 
         if($trader_error['clear']==true)
         {
-            $fullnames= $_POST['fullname'];
-            $email=$_POST['useremail'];
-            $password=md5($_POST['pword']);
-            $contact=$_POST['contact'];
-            $address=$_POST['address'];
-            $dob=date("d-m-Y", strtotime($_POST['dob']));
+            $t_fullnames= $_POST['t_fullname'];
+            $email=$_POST['t_useremail'];
+            $password=md5($_POST['t_pword']);
+            $t_contact=$_POST['t_contact'];
+            $t_address=$_POST['t_address'];
+            $t_dob=date("d-m-Y", strtotime($_POST['t_dob']));
             $shopname=$_POST['shopname'];
             $register_date=date("d-m-Y", strtotime($_POST['register_date']));
             $register_no=$_POST['register_no'];
@@ -275,18 +275,18 @@
             $token=bin2hex(random_bytes(15));
 
             //inserting trader details
-            $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, CONTACT, ADDRESS, USER_ROLE, ACTIVE_STATUS, DOB, TOKEN) VALUES(:fullname, :email, :pass,:contact, :addr, :roles, :statuss, to_date(:dob,'DD/MM/YYYY'), :token)";
+            $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, t_contact, t_address, USER_ROLE, ACTIVE_STATUS, t_dob, TOKEN) VALUES(:t_fullname, :email, :pass,:t_contact, :addr, :roles, :statuss, to_date(:t_dob,'DD/MM/YYYY'), :token)";
 
             $parsedQuery=oci_parse($connection,$insertQuery);
 
-            oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
+            oci_bind_by_name($parsedQuery, ":t_fullname", $t_fullnames);
             oci_bind_by_name($parsedQuery, ":email", $email);
             oci_bind_by_name($parsedQuery, ":pass", $password);
-            oci_bind_by_name($parsedQuery, ":contact", $contact);
-            oci_bind_by_name($parsedQuery, ":addr", $address);
+            oci_bind_by_name($parsedQuery, ":t_contact", $t_contact);
+            oci_bind_by_name($parsedQuery, ":addr", $t_address);
             oci_bind_by_name($parsedQuery, ":roles", $role);
             oci_bind_by_name($parsedQuery, ":statuss", $statuss);
-            oci_bind_by_name($parsedQuery, ":dob", $dob);
+            oci_bind_by_name($parsedQuery, ":t_dob", $t_dob);
             oci_bind_by_name($parsedQuery, ":token", $token);
 
             oci_execute($parsedQuery);
@@ -328,7 +328,7 @@
                     <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
                         <center>
                             $image
-                            <h2> Hi $fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to verify your email address.You will be shortly notified if your request gets accepted. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?token=$token&reason=$reason&role=t'><button style='background-color: #4CAF50;border: none;
+                            <h2> Hi $t_fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to verify your email t_address.You will be shortly notified if your request gets accepted. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?token=$token&reason=$reason&role=t'><button style='background-color: #4CAF50;border: none;
                             color: white;
                             padding: 15px 32px;
                             text-align: center;

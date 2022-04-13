@@ -14,32 +14,32 @@
     <form action="validateTrader.php" method="POST"  id="trader-reg-form">
     <div id="reg-trader-sucess-msg" style="color: green"></div>
         <div id="trader-general-form">
-            <label for="fullname"> Name</label>
-            <input type="text" name="fullname" id="fullname"  /><br/>
+            <label for="t_fullname"> Name</label>
+            <input type="text" name="t_fullname" id="t_fullname"  /><br/>
             <div id="t_name_error" style="color: red"></div>
 
-            <label for="useremail"> Email</label>
-            <input type="text" name="uemail" id="useremail" /><br/>
+            <label for="t_useremail"> Email</label>
+            <input type="text" name="uemail" id="t_useremail" /><br/>
             <div id="t_email_error" style="color: red"></div>
 
-            <label for="pword"> Password</label>
-            <input type="password" name="upass" id="pword" /><br/>
+            <label for="t_pword"> Password</label>
+            <input type="password" name="upass" id="t_pword" /><br/>
             <div id="t_pass_error" style="color: red"></div>
 
-            <label for="repass"> Re-enter Password</label>
-            <input type="password" name="urep-pass" id="repass" /><br/>
+            <label for="t_repass"> Re-enter Password</label>
+            <input type="password" name="urep-pass" id="t_repass" /><br/>
             <div id="t_repass_error" style="color: red"></div>
 
-            <label for="contact"> Contact</label>
-            <input type="text" name="ucontact" id="contact" /><br/>
+            <label for="t_contact"> Contact</label>
+            <input type="text" name="ucontact" id="t_contact" /><br/>
             <div id="t_contact_error" style="color: red"></div>
 
-            <label for="dob"> DOB</label>
-            <input type="date" name="udob" id="dob" /><br/>
+            <label for="t_dob"> DOB</label>
+            <input type="date" name="udob" id="t_dob" /><br/>
             <div id="t_dob_error" style="color: red"></div>
 
-            <label for="address"> Address</label>
-            <input type="text" name="uaddress" id="address" /><br/>
+            <label for="t_address"> Address</label>
+            <input type="text" name="uaddress" id="t_address" /><br/>
             <div id="t_address_error" style="color: red"></div>
 
             <label for="reason"> What you want to sell?</label>
