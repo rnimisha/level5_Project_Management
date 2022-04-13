@@ -42,7 +42,7 @@
                     oci_execute($result);
                     oci_fetch($result);
                     if($number_of_rows>0){
-                        $trader_error['#t_email_error']="Enter already registered";
+                        $trader_error['#t_email_error']="Email already registered";
                         $trader_error['clear']=false;
                         oci_free_statement($result); 
                     }
@@ -121,12 +121,28 @@
                 {
                     if(strlen(trim($_POST['t_contact']))>=10)
                     {
-                        $trader_error['#t_contact_error']="";
-                        $t_contact=$_POST['t_contact'];
+                        $t_usercontact=$_POST['t_contact'];
+                        $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM mart_user WHERE upper(contact)=upper(:contact)";
+                        $result=oci_parse($connection,$checkQuery);
+    
+                        $rows=oci_bind_by_name($result, ":contact", $t_usercontact);
+                        oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                        oci_execute($result);
+                        oci_fetch($result);
+                        if($number_of_rows>0){
+                            $trader_error['#t_contact_error']="Contact already registered";
+                            $trader_error['clear']=false;
+                            oci_free_statement($result); 
+                        }
+                        else{
+                            $trader_error['#t_contact_error']="";
+                            $t_contact=$_POST['t_contact'];
+                        
+                        }
                     }
                     else
                     {
-                        $trader_error['#t_contact_error']="t_contact can't be less than 10 digits";
+                        $trader_error['#t_contact_error']="contact can't be less than 10 digits";
                         $trader_error['clear']=false;
                     }
                 }
@@ -138,7 +154,7 @@
 
             }
             else{
-                $trader_error['#t_contact_error']="t_contact cannot be empty";
+                $trader_error['#t_contact_error']="contact cannot be empty";
                 $trader_error['clear']=false;
             }
         }
@@ -152,7 +168,7 @@
                 
             }
             else{
-                $trader_error['#t_dob_error']="t_dob cannot be empty";
+                $trader_error['#t_dob_error']="dob cannot be empty";
                 $trader_error['clear']=false;
             }
         }
@@ -163,7 +179,7 @@
             {
                 if(strlen($_POST['t_address']) < 4)
                 {
-                    $trader_error['#t_address_error']="Enter a valid t_address";
+                    $trader_error['#t_address_error']="Enter a valid address";
                     $trader_error['clear']=false;
                 }
                 else{
@@ -173,7 +189,7 @@
 
             }
             else{
-                $trader_error['#t_address_error']="t_address cannot be empty";
+                $trader_error['#t_address_error']="address cannot be empty";
                 $trader_error['clear']=false;
             }
         }
@@ -200,7 +216,7 @@
         }
     }
 
-    if(isset($_POST['registertrader']))
+    if(isset($_POST['registershop']) && $_POST['registershop']='yes')
     {
         //shop name validation
         if(isset($_POST['shopname']))
@@ -213,8 +229,23 @@
                     $trader_error['clear']=false;
                 }
                 else{
-                    $trader_error['#shopname_error']="";
-                    $shopname= $_POST['shopname'];
+                        $t_shop=$_POST['shopname'];
+                        $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(shop_name)=upper(:shopname)";
+                        $result=oci_parse($connection,$checkQuery);
+    
+                        $rows=oci_bind_by_name($result, ":shopname", $t_shop);
+                        oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                        oci_execute($result);
+                        oci_fetch($result);
+                        if($number_of_rows>0){
+                            $trader_error['#shopname_error']="Name already registered";
+                            $trader_error['clear']=false;
+                            oci_free_statement($result); 
+                        }
+                        else{
+                            $trader_error['#shopname_error']="";
+                            $shopname= $_POST['shopname'];
+                        }
                 }
             }
             else{
@@ -243,8 +274,24 @@
             {
                 if(strlen(trim($_POST['register_no']))==12)
                 {
-                    $trader_error['#register_no_error']="";
+                    $t_pan=$_POST['register_no'];
+                    $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(REGISTATION_ID)=upper(:t_pan)";
+                    $result=oci_parse($connection,$checkQuery);
+
+                    $rows=oci_bind_by_name($result, ":t_pan", $t_pan);
+                    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                    oci_execute($result);
+                    oci_fetch($result);
+                    if($number_of_rows>0){
+                        $trader_error['#register_no_error']="PAN already registered";
+                        $trader_error['clear']=false;
+                        oci_free_statement($result); 
+                    }
+                    else{
+                        $trader_error['#register_no_error']="";
                     $register_no=$_POST['register_no'];
+                    }
+                    
                 }
                 else
                 {
@@ -258,106 +305,108 @@
             }
         }
 
-        if($trader_error['clear']==true)
-        {
-            $t_fullnames= $_POST['t_fullname'];
-            $email=$_POST['t_useremail'];
-            $password=md5($_POST['t_pword']);
-            $t_contact=$_POST['t_contact'];
-            $t_address=$_POST['t_address'];
-            $t_dob=date("d-m-Y", strtotime($_POST['t_dob']));
-            $shopname=$_POST['shopname'];
-            $register_date=date("d-m-Y", strtotime($_POST['register_date']));
-            $register_no=$_POST['register_no'];
-            $reason=$_POST['reason'];
-            $statuss='I';
-            $role='T';
-            $token=bin2hex(random_bytes(15));
-
-            //inserting trader details
-            $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, t_contact, t_address, USER_ROLE, ACTIVE_STATUS, t_dob, TOKEN) VALUES(:t_fullname, :email, :pass,:t_contact, :addr, :roles, :statuss, to_date(:t_dob,'DD/MM/YYYY'), :token)";
-
-            $parsedQuery=oci_parse($connection,$insertQuery);
-
-            oci_bind_by_name($parsedQuery, ":t_fullname", $t_fullnames);
-            oci_bind_by_name($parsedQuery, ":email", $email);
-            oci_bind_by_name($parsedQuery, ":pass", $password);
-            oci_bind_by_name($parsedQuery, ":t_contact", $t_contact);
-            oci_bind_by_name($parsedQuery, ":addr", $t_address);
-            oci_bind_by_name($parsedQuery, ":roles", $role);
-            oci_bind_by_name($parsedQuery, ":statuss", $statuss);
-            oci_bind_by_name($parsedQuery, ":t_dob", $t_dob);
-            oci_bind_by_name($parsedQuery, ":token", $token);
-
-            oci_execute($parsedQuery);
-            oci_free_statement($parsedQuery);
-
-            //extract user id of the trader
-            $getUser= "SELECT * from mart_user where upper(email)=upper('$email')";
-            $parsedGetUser = oci_parse($connection, $getUser);
-            oci_execute($parsedGetUser);
-            while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
-                $user_id= $row['USER_ID'];
-            }
-            oci_free_statement($parsedGetUser);
-
-            //inserting shop details
-            $shopQuery="INSERT INTO shop(SHOP_NAME, REGISTATION_ID, RESGISTERED_DATE, ACTIVE_STATUS, USER_ID) VALUES(:shopname, :register_no, to_date(:register_date,'DD/MM/YYYY'), :active_status, :user_idd)";
-
-            $parsedShopQuery=oci_parse($connection,$shopQuery);
-
-            oci_bind_by_name($parsedShopQuery, ":shopname", $shopname);
-            oci_bind_by_name($parsedShopQuery, ":register_date", $register_date);
-            oci_bind_by_name($parsedShopQuery, ":register_no", $register_no);
-            oci_bind_by_name($parsedShopQuery, ":active_status", $statuss);
-            oci_bind_by_name($parsedShopQuery, ":user_idd", $user_id);
-
-            // oci_execute($parsedShopQuery);
-            if(oci_execute($parsedShopQuery))
+        if(isset($_POST['insertdetail'])){
+            if($trader_error['clear']==true && $_POST['insertdetail']=='yes')
             {
-                $to=$email;
-                $subject="Verify Your Account";
-                $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
+                $t_fullnames= $_POST['t_fullname'];
+                $email=$_POST['t_useremail'];
+                $password=md5($_POST['t_pword']);
+                $t_contact=$_POST['t_contact'];
+                $t_address=$_POST['t_address'];
+                $t_dob=date("d-m-Y", strtotime($_POST['t_dob']));
+                $shopname=$_POST['shopname'];
+                $register_date=date("d-m-Y", strtotime($_POST['register_date']));
+                $register_no=$_POST['register_no'];
+                $reason=$_POST['reason'];
+                $statuss='I';
+                $role='T';
+                $token=bin2hex(random_bytes(15));
 
-                $body="
-                <html>
-                <head>
-                    <title>Verify Your Account</title>
-                </head>
-                <body>
-                    <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
-                        <center>
-                            $image
-                            <h2> Hi $t_fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to verify your email t_address.You will be shortly notified if your request gets accepted. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?token=$token&reason=$reason&role=t'><button style='background-color: #4CAF50;border: none;
-                            color: white;
-                            padding: 15px 32px;
-                            text-align: center;
-                            text-decoration: none;
-                            display: inline-block;
-                            font-size: 16px;
-                            border-radius: 25px;'>Activate</button></a>
-                            <br><br><br>  
-                            <hr style='border: 0.7px solid grey; width:80%;'>
-                            <span style='color:grey';>Please ignore if you did not create an account in Phoenix Mart.</span>
-                        </center>
-                    </div>
-                </body>
-                </html>";
-                // $headers="From: phoenixmart123@gmail.com";
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                if(mail($to, $subject, $body, $headers))
+                //inserting trader details
+                $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, contact, address, USER_ROLE, ACTIVE_STATUS, dob, TOKEN) VALUES(:t_fullname, :email, :pass,:t_contact, :addr, :roles, :statuss, to_date(:t_dob,'DD/MM/YYYY'), :token)";
+
+                $parsedQuery=oci_parse($connection,$insertQuery);
+
+                oci_bind_by_name($parsedQuery, ":t_fullname", $t_fullnames);
+                oci_bind_by_name($parsedQuery, ":email", $email);
+                oci_bind_by_name($parsedQuery, ":pass", $password);
+                oci_bind_by_name($parsedQuery, ":t_contact", $t_contact);
+                oci_bind_by_name($parsedQuery, ":addr", $t_address);
+                oci_bind_by_name($parsedQuery, ":roles", $role);
+                oci_bind_by_name($parsedQuery, ":statuss", $statuss);
+                oci_bind_by_name($parsedQuery, ":t_dob", $t_dob);
+                oci_bind_by_name($parsedQuery, ":token", $token);
+
+                oci_execute($parsedQuery);
+                oci_free_statement($parsedQuery);
+
+                //extract user id of the trader
+                $getUser= "SELECT * from mart_user where upper(email)=upper('$email')";
+                $parsedGetUser = oci_parse($connection, $getUser);
+                oci_execute($parsedGetUser);
+                while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
+                    $user_id= $row['USER_ID'];
+                }
+                oci_free_statement($parsedGetUser);
+
+                //inserting shop details
+                $shopQuery="INSERT INTO shop(SHOP_NAME, REGISTATION_ID, RESGISTERED_DATE, ACTIVE_STATUS, USER_ID) VALUES(:shopname, :register_no, to_date(:register_date,'DD/MM/YYYY'), :active_status, :user_idd)";
+
+                $parsedShopQuery=oci_parse($connection,$shopQuery);
+
+                oci_bind_by_name($parsedShopQuery, ":shopname", $shopname);
+                oci_bind_by_name($parsedShopQuery, ":register_date", $register_date);
+                oci_bind_by_name($parsedShopQuery, ":register_no", $register_no);
+                oci_bind_by_name($parsedShopQuery, ":active_status", $statuss);
+                oci_bind_by_name($parsedShopQuery, ":user_idd", $user_id);
+
+                // oci_execute($parsedShopQuery);
+                if(oci_execute($parsedShopQuery))
                 {
-                    $trader_error['clear']=true;
+                    $to=$email;
+                    $subject="Verify Your Account";
+                    $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
+
+                    $body="
+                    <html>
+                    <head>
+                        <title>Verify Your Account</title>
+                    </head>
+                    <body>
+                        <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
+                            <center>
+                                $image 
+                                <h2> Hi $t_fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to verify your email address.You will be shortly notified if your request gets accepted. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?token=$token&reason=$reason&role=t'><button style='background-color: #4CAF50;border: none;
+                                color: white;
+                                padding: 15px 32px;
+                                text-align: center;
+                                text-decoration: none;
+                                display: inline-block;
+                                font-size: 16px;
+                                border-radius: 25px;'>Activate</button></a>
+                                <br><br><br>  
+                                <hr style='border: 0.7px solid grey; width:80%;'>
+                                <span style='color:grey';>Please ignore if you did not create an account in Phoenix Mart.</span>
+                            </center>
+                        </div>
+                    </body>
+                    </html>";
+                    // $headers="From: phoenixmart123@gmail.com";
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    if(mail($to, $subject, $body, $headers))
+                    {
+                        $trader_error['clear']=true;
+                    }
+                    else{
+                        $trader_error['clear']=false;
+                    }
                 }
-                else{
-                    $trader_error['clear']=false;
-                }
+                oci_free_statement($parsedShopQuery);
+
+                
+
             }
-            oci_free_statement($parsedShopQuery);
-
-            
-
         }
     }
     

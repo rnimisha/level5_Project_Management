@@ -60,7 +60,7 @@
             <body>
                 <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
                     <center>
-                        $image
+                        $image <br/>
                          A new registration request from trader <b>$fullnames </b>has arrived!
                         Trader details are provided below <br> 
                         Email : $email<br> 

@@ -120,8 +120,24 @@
             {
                 if(strlen(trim($_POST['contact']))>=10)
                 {
-                    $error['#contact_error']="";
-                    $contact=$_POST['contact'];
+                        $usercontact=$_POST['contact'];
+                        $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM mart_user WHERE upper(contact)=upper(:contact)";
+                        $result=oci_parse($connection,$checkQuery);
+    
+                        $rows=oci_bind_by_name($result, ":contact", $usercontact);
+                        oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                        oci_execute($result);
+                        oci_fetch($result);
+                        if($number_of_rows>0){
+                            $error['#contact_error']="Contact already registered";
+                            $error['clear']=false;
+                            oci_free_statement($result); 
+                        }
+                        else{
+                            $error['#contact_error']="";
+                            $contact=$_POST['contact'];
+                        
+                        }
                 }
                 else
                 {

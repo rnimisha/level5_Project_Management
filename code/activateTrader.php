@@ -37,7 +37,7 @@
                     <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
                         <center>
                             $image
-                            <h2> Congratulations $fullnames!</h2>  <br> You have been successfully registered as member of Phoenix Mart. You can start selling your product through us now.<br>  
+                            <h2> Congratulations $fullnames!</h2>  <br> You have been successfully registered as member of Phoenix Mart. <br/> You can start selling your product through us now.<br>  
                             <hr style='border: 0.7px solid grey; width:80%;'>
                             <span style='color:grey';>Thank you</span>
                         </center>
