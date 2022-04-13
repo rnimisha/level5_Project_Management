@@ -17,7 +17,7 @@
             }
             else{
                 $contact_error['#firstname_error']="";
-                $firstnames= $_POST['firstname'];
+                $firstname= $_POST['firstname'];
             }
         }
         else{
@@ -32,7 +32,7 @@
         if(!empty(trim($_POST['lastname'])))
         {
             $contact_error['#lastname_error']="";
-            $firstnames= $_POST['firstname'];
+            $lastname= $_POST['firstname'];
         }
         else{
             $contact_error['#lastname_error']="Last Name cannot be empty";
@@ -103,6 +103,47 @@
         }
     }
 
+    if(!isset($_POST['contactform']))
+    {
+        $contact_error['clear']=false;
+    }
+    else{
+        if($contact_error['clear']==true &&  $_POST['contactform']=='yes')
+        {
+            $to='phoenixmart123@gmail.com';
+            $subject="Customer Message";
+            $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
+
+            $body="
+            <html>
+            <head>
+                <title>Customer query</title>
+            </head>
+            <body>
+                <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
+                    <center>
+                        $image<br> 
+                         Hello! <br> A message from $firstname has arrived.  <br><b> Message </b> : $message. <br>
+                         Contact : $contact <br>
+                         You can get back to them through $email 
+                        <br><br>
+                        <hr style='border: 0.7px solid grey; width:80%;'>
+                        <span style='color:grey';>Thank you.</span>
+                    </center>
+                </div>
+            </body>
+            </html>";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            if(mail($to, $subject, $body, $headers))
+            {
+                $contact_error['clear']=true;
+            }
+            else{
+                $contact_error['clear']=false;
+            }
+        }
+    }
     echo json_encode($contact_error);
 
 ?>
