@@ -40,6 +40,7 @@
         }
     }
 
+    //contact validation
     if(isset($_POST['contact'])){
         if(!empty(trim($_POST['contact'])))
         {
@@ -47,25 +48,25 @@
             {
                 if(strlen(trim($_POST['contact']))>=10)
                 {
-                    $error['#contact_error']="";
+                    $contact_error['#contact_error']="";
                     $contact=$_POST['contact'];
                 }
                 else
                 {
-                    $error['#contact_error']="Contact can't be less than 10 digits";
-                    $error['clear']=false;
+                    $contact_error['#contact_error']="Contact can't be less than 10 digits";
+                    $contact_error['clear']=false;
                 }
             }
             else
             {
-                    $error['#contact_error']="Enter valid digits";
-                    $error['clear']=false;
+                $contact_error['#contact_error']="Enter valid digits";
+                $contact_error['clear']=false;
             }
 
         }
         else{
-            $error['#contact_error']="Contact cannot be empty";
-            $error['clear']=false;
+            $contact_error['#contact_error']="Contact cannot be empty";
+            $contact_error['clear']=false;
         }
     }
 
@@ -73,8 +74,6 @@
     if(isset($_POST['useremail'])){
         if(!empty(trim($_POST['useremail']))){
             if(filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)){
-
-                $useremail=$_POST['useremail'];
                 $contact_error['#contact_email_error']="";
                 $email=$_POST['useremail'];   
             }
@@ -84,10 +83,26 @@
             }
         }
         else{
-            $contact_error['#email_error']="Email cannot be empty";
+            $contact_error['#contact_email_error']="Email cannot be empty";
             $contact_error['clear']=false;
         }
     }
 
-    
+    //message validation
+    if(isset($_POST['message']))
+    {
+        if(!empty(trim($_POST['message'])))
+        {
+            $contact_error['#message_error']="";
+            $message=$_POST['message']; 
+        }
+        else
+        {
+            $contact_error['#message_error']="Fill your message";
+            $contact_error['clear']=false;
+        }
+    }
+
+    echo json_encode($contact_error);
+
 ?>

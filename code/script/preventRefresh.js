@@ -32,7 +32,7 @@ $(document).ready(function(){
             
             success: function(response){
                 //success ajax reposnse
-                console.log(response);
+                // console.log(response);
                 jQuery('#reg-btn').val('Register');
                 jQuery('#reg-btn').attr('disabled', false);
                 var resp=jQuery.parseJSON(response);
@@ -256,8 +256,6 @@ $(document).ready(function(){
 
         return false;
     });
-
-
 
 });
 

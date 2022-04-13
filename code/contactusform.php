@@ -11,26 +11,27 @@
 
 </head>
 <body>
-    <form action="contactus.php" method="POST"  id="contact-us-form">
+    <div id="contact-sucess-msg" style="color: green"></div>
+    <form action="validate-contactus.php" method="POST"  id="contact-us-form">
         <label for="firstname"> First Name</label>
         <input type="text" name="firstname" id="firstname"  />
-        <span id="firstname_error" style="color: red"></span>
+        <span id="firstname_error" style="color: red"></span><br/>
 
         <label for="lastname"> Last Name</label>
-        <input type="text" name="lastname" id="lastname"  /><br/>
-        <span id="lastname_error" style="color: red"></span>
+        <input type="text" name="lastname" id="lastname"  />
+        <span id="lastname_error" style="color: red"></span><br/>
 
         <label for="useremail"> Email</label>
         <input type="text" name="uemail" id="useremail" />
-        <span id="contact_email_error" style="color: red"></span>
+        <span id="contact_email_error" style="color: red"></span><br/>
 
         <label for="contact"> Contact</label>
-        <input type="text" name="ucontact" id="contact" /><br/>
-        <span id="contact_error" style="color: red"></span>
+        <input type="text" name="ucontact" id="contact" />
+        <span id="contact_error" style="color: red"></span><br/>
 
         <label for="message"> Message</label>
-        <textarea name="message" id="message" ></textarea><br/>
-        <span id="message_error" style="color: red"></span>
+        <textarea name="message" id="message" ></textarea>
+        <span id="message_error" style="color: red"></span><br/>
 
         <input type="submit" id="contact-btn" name="contactus" value="Send"/>
     </form>
