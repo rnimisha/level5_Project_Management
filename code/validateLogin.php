@@ -11,7 +11,7 @@
 
                 $l_useremail=$_POST['l_useremail'];
                 // // $checkQuery="SELECT * FROM `mart_user` WHERE email='$l_useremail'";
-                $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM mart_user WHERE upper(email)=upper(:email)";
+                $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM mart_user WHERE upper(email)=upper(:email) AND upper(ACTIVE_STATUS)='A'";
                 $result=oci_parse($connection,$checkQuery);
 
                 oci_bind_by_name($result, ":email", $l_useremail);
@@ -37,7 +37,7 @@
 
         }
         else{
-            $l_error['l_#email_error']="Email cannot be empty";
+            $l_error['#l_email_error']="Email cannot be empty";
             $l_error['clear']=false;
         }
 
@@ -46,7 +46,7 @@
             if(!empty(trim($_POST['l_pword'])))
             {
                 $encrypted=md5($_POST['l_pword']);
-                $checkQuery2="SELECT COUNT(*) AS NUMBER_OF_ROWS  FROM mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass) AND upper(USER_ROLE)<>'A'";
+                $checkQuery2="SELECT COUNT(*) AS NUMBER_OF_ROWS  FROM mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass) AND upper(USER_ROLE)<>'A' AND upper(ACTIVE_STATUS)='A'";
                 $result2=oci_parse($connection,$checkQuery2);
 
                 oci_bind_by_name($result2, ":email", $l_useremail);
@@ -57,7 +57,7 @@
                 if($number_of_rows2<=0){
                     $l_error['#l_pass_error']="Password does not match";
                     $l_error['clear']=false;
-                    oci_free_statement($result); 
+                    oci_free_statement($result2); 
                 }
                 else{
                     $getUserRole= "SELECT * from mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass) AND upper(USER_ROLE)<>'A'";
@@ -90,21 +90,26 @@
         }
     }
 
-    if($l_error['clear']==true)
+   
+    if($l_error['clear']==true && isset($_POST['loginuser']))
     {
         $_SESSION['phoenix_user']=$email;
         if(strtoupper($user_role)=='C')
         {
-            header("Location: index.php");
+            $l_error['role']='C';
         }
         elseif (strtoupper($user_role)=='T')
         {
-            header("Location: trader-index.php");
+            $l_error['role']='T';
         }
-        else
-        {
-            // //response
-            echo json_encode($l_error);
-        }
+        echo json_encode($l_error);
     }
+    else
+    {
+        // //response
+        echo json_encode($l_error);
+    }
+
+    // echo json_encode($l_error);
+
 ?>

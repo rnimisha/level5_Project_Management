@@ -271,50 +271,5 @@
         }
     }
 
-    // $fullnames='2521';
-    // $email="obs";
-    // $password="123";
-    // $contact="2345";
-    // $address="addre";
-    // $role='r';
-    // $statuss="s";
-    // $token=bin2hex(random_bytes(15));
-    // $fullnames=$_POST['fullname'];
-    // $email=$_POST['useremail'];
-    // $password=md5($_POST['pword']);
-    // $contact=$_POST['contact'];
-    // $address=$_POST['address'];
-    // $role='C';
-    // $statuss="I";
-    // $dob=date("d-m-Y", strtotime($_POST['dob']));
-
-    // $fullname= $_POST['fullname'];
-    // $email=$_POST['useremail'];
-    // $password=md5($_POST['pword']);
-    // $contact=$_POST['contact'];
-    // $dob=$_POST['dob'];
-    // $address=$_POST['address'];
-    // $statuss='i';
-    // $role='c';
-    // $dob='04/04/2022';
-
-    // $insertQuery="INSERT INTO mart_user(NAME, EMAIL, PASSWORD, CONTACT, ADDRESS, USER_ROLE, ACTIVE_STATUS, DOB) VALUES(:fullname, :email, :pass,:contact, :addr, :roles, :statuss, to_date(:dob,'DD/MM/YYYY'))";
-
-    // $parsedQuery=oci_parse($connection,$insertQuery);
-
-
-    // oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
-    // oci_bind_by_name($parsedQuery, ":email", $email);
-    // oci_bind_by_name($parsedQuery, ":pass", $password);
-    // oci_bind_by_name($parsedQuery, ":contact", $contact);
-    // oci_bind_by_name($parsedQuery, ":addr", $address);
-    // oci_bind_by_name($parsedQuery, ":roles", $role);
-    // oci_bind_by_name($parsedQuery, ":statuss", $statuss);
-    // oci_bind_by_name($parsedQuery, ":dob", $dob);
-
-    // oci_execute($parsedQuery);
-    // oci_free_statement($parsedQuery);
-
-    // //response
     echo json_encode($error);
 ?>

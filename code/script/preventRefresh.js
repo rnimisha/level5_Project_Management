@@ -256,6 +256,48 @@ $(document).ready(function(){
 
         return false;
     });
+
+    $("#login-form").submit(function(){
+
+        //change button while submitting
+        jQuery('#login-btn').val('Submitting..');
+        jQuery('#login-btn').attr('disabled', true);
+        //data to be passed
+        var l_useremail=$('#l_useremail').val();
+        var l_pword=$('#l_pword').val();
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                l_useremail: l_useremail,
+                l_pword: l_pword,
+                loginuser: 'yes'
+            },
+            success: function(response){
+                console.log(response);
+                jQuery('#login-btn').val('Login');
+                jQuery('#login-btn').attr('disabled', false);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true) {
+                    inlineMsg(resp);
+                    if(resp.role == 'C')
+                    {
+                        window.location.href = 'cust-index.php';
+                    }
+                    else if(resp.role == 'T')
+                    {
+                        window.location.href = 'trader-index.php';
+                    }
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
 });
 
 

@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script/preventRefresh.js"></script>
     <script src="script/function.js"></script>
-    <title>User Registration</title>
+    <title>User Login</title>
 
 </head>
 <body>
