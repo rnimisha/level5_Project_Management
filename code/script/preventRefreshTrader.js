@@ -1,4 +1,4 @@
-//trader form stop refresh
+//trader form stop refresh with ajax call
 $(document).ready(function(){
    $('#trader-shop-form').hide();
    $('#trader-general-form').show();

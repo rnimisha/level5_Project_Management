@@ -7,9 +7,10 @@
 // $connection=mysqli_connect($hostname,$username,$password,$database);
 
 $connection= oci_connect('rnimisha20@tbc.edu.np', 'SummerRain!221', '//localhost/xe');
- if (!$connection) {
+if (!$connection) {
     $m = oci_error();
     echo $m['message'], "\n";
-    exit; }
-
+    exit;
+}
+if(!isset($_SESSION)){session_start();}
 ?>
