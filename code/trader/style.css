@@ -20,15 +20,17 @@ body{
     height: 40px;
     border-radius: 50px;
 }
-
-#nav-toggle{
+#header .bx{
+    background-color: #ffffff;
+    border-radius: 10px;
     font-size: 2rem;
     padding-left: 0;
     margin-left: -10px;
+    color: #7c7c7d;
 }
 
 /* navigation */
-#nav-side{
+.nav-side{
     width: 100%;
     padding: 0;
     margin: 0;
