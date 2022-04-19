@@ -97,6 +97,46 @@ $(document).ready(function(){
         {
             $('#password-form').addClass('d-none');
         }
+        //hide picture form
+        if(!$('#picture-form').hasClass('d-none'))
+        {
+            $('#picture-form').addClass('d-none');
+        }
+    });
+
+    $('#picture').click(function(){
+        if( $('#pass-change').hasClass("active-list"))
+        {
+            //remove active line
+            $('#pass-change').removeClass('active-list');
+        }
+        if( $('#personal').hasClass("active-list"))
+        {
+            //remove active line
+            $('#personal').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#picture').hasClass('active-list'))
+        {
+            $('#picture').addClass('active-list');
+        }
+
+        //display picture form
+        if($('#picture-form').hasClass('d-none'))
+        {
+            $('#picture-form').removeClass('d-none');
+        }
+        //hide password form
+        if(!$('#password-form').hasClass('d-none'))
+        {
+            $('#password-form').addClass('d-none');
+        }
+        //hide picture form
+        if(!$('#personal-form').hasClass('d-none'))
+        {
+            $('#personal-form').addClass('d-none');
+        }
 
     });
 });
