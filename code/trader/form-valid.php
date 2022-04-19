@@ -138,12 +138,12 @@
             }
         }
 
-        //t_dob validation
+        //dob validation
         if(isset($_POST['dob'])){
-            if(!empty($_POST['t_dob']))
+            if(!empty($_POST['dob']))
             {
                 $edit_trader_error['#error-trad-dob']="";
-                $t_dob=date("d-m-Y", strtotime($_POST['t_dob']));
+                $t_dob=date("d-m-Y", strtotime($_POST['dob']));
                 
             }
             else{
@@ -173,7 +173,25 @@
             }
         }
 
+        //updating to database
+        if($edit_trader_error['clear']==true)
+        {
+            $updateQuery="UPDATE MART_USER SET NAME=:fullname, EMAIL=:email, CONTACT=:contact, ADDRESS=:addr, DOB=to_date(:dob,'DD/MM/YYYY') WHERE USER_ID=:trader_id";
+            $parsedQuery=oci_parse($connection, $updateQuery);
+
+            oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
+            oci_bind_by_name($parsedQuery, ":email", $email);
+            oci_bind_by_name($parsedQuery, ":contact", $contact);
+            oci_bind_by_name($parsedQuery, ":addr", $address);
+            oci_bind_by_name($parsedQuery, ":dob", $t_dob);
+            oci_bind_by_name($parsedQuery, "trader_id", $trader_id);
+
+            $edit_trader_error['query']=$updateQuery;
+            oci_execute($parsedQuery);
+            oci_free_statement($parsedQuery);
+        }
+
         // $edit_trader_error['id']=$trader_id;
-       echo json_encode($edit_trader_error);
+        echo json_encode($edit_trader_error);
     }
 ?>

@@ -110,7 +110,7 @@
                       </form>
                       <form class=" w-75 mx-auto py-4" id="personal-form" action="form-valid.php" method="POST">
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="trad-id"/>
+                            <input type="hidden" class="form-control" value="1" id="trad-id"/>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
@@ -142,7 +142,7 @@
                           </div>
                         </div>
                         <div class="row justify-content-end pr-1">
-                          <button type="submit" class="btn ">Save Changes</button>
+                          <button type="submit" class="btn" id="personal-button">Save Changes</button>
                         </div>  
                       </form>
                       <form class=" w-75 mx-auto py-4 d-none" id="password-form">
