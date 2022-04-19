@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('#personal-form').submit(function(){
 
         //button value change
-        jQuery('#personal-button').val('Saving...');
+        jQuery('#personal-button').text('Saving...');
         jQuery('#personal-button').attr('disabled', true);
 
         var fullname=$('#trad-fullname').val();
@@ -31,13 +31,15 @@ $(document).ready(function(){
                 // alert('success inside form');
                 var resp=jQuery.parseJSON(response);
                 console.log(resp);
+                jQuery('#personal-button').text('Save Changes');
+                jQuery('#personal-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    jQuery('#personal-button').val('Save Changes');
-                    jQuery('#personal-button').attr('disabled', false);
                     // resetForm('personal-form');
+                    $('#profile-sucess-msg').addClass('was-validated');
                     $('#profile-sucess-msg').html('Changes has been saved successfully.');
                     inlineMsg(resp);
+                    
                 }
                 else{
                     // alert('success inside form');

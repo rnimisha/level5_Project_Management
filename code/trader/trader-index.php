@@ -103,7 +103,7 @@
                     <div class="col-lg-10 col-md-9">
                       <div id="profile-sucess-msg">
                       </div>
-                      <form class=" w-75 mx-auto py-4 d-none" id="picture-form" action="form-valid.php" method="POST">
+                      <form class="w-75 mx-auto py-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST">
                         <div class="row justify-content-end mx-auto pr-1">
                           <button type="submit" class="btn ">Save Changes</button>
                         </div>  

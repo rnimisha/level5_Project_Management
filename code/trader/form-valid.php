@@ -17,15 +17,18 @@
                 {
                     $edit_trader_error['#error-trad-fullname']="Enter a valid name";
                     $edit_trader_error['clear']=false;
+                    $edit_trader_error['#trad-fullname']='is-invalid';
                 }
                 else{
                     $edit_trader_error['#error-trad-fullname']="";
                     $fullnames= $_POST['fullname'];
+                    $edit_trader_error['#trad-fullname']='valid';
                 }
             }
             else{
                 $edit_trader_error['#error-trad-fullname']="Name cannot be empty";
                 $edit_trader_error['clear']=false;
+                $edit_trader_error['#trad-fullname']='is-invalid';
             }
         }
 
@@ -54,27 +57,32 @@
                         {
                             $edit_trader_error['#error-trad-email']="";
                             $email=$_POST['traderemail'];
+                            $edit_trader_error['#trad-email']='valid';
                         }
                         else{
                             $edit_trader_error['#error-trad-email']="Email already registered";
                             $edit_trader_error['clear']=false;
+                            $edit_trader_error['#trad-email']='is-invalid';
                         }
                         oci_free_statement($parsedGetEmail); 
                     }
                     else{
                         $edit_trader_error['#error-trad-email']="";
                         $email=$_POST['traderemail'];
+                        $edit_trader_error['#trad-email']='valid';
                     }
                 }
                 else{
                     $edit_trader_error['#error-trad-email']="Enter a valid email";
                     $edit_trader_error['clear']=false;
+                    $edit_trader_error['#trad-email']='is-invalid';
                 }
 
             }
             else{
                 $edit_trader_error['#error-trad-email']="Email cannot be empty";
                 $edit_trader_error['clear']=false;
+                $edit_trader_error['#trad-email']='is-invalid';
             }
         }
 
@@ -106,16 +114,19 @@
                             {
                                 $edit_trader_error['#error-trad-contact']="";
                                 $contact=$_POST['contact'];
+                                $edit_trader_error['#trad-contact']='valid';
                             }
                             else{
                                 $edit_trader_error['#error-trad-contact']="Contact already registered";
                                 $edit_trader_error['clear']=false;
+                                $edit_trader_error['#trad-contact']='is-invalid';
                             }
                             oci_free_statement($parsedGetContact); 
                         }
                         else{
                             $edit_trader_error['#error-trad-contact']="";
                             $contact=$_POST['contact'];
+                            $edit_trader_error['#trad-contact']='valid';
                         
                         }
                     }
@@ -123,18 +134,21 @@
                     {
                         $edit_trader_error['#error-trad-contact']="contact can't be less than 10 digits";
                         $edit_trader_error['clear']=false;
+                        $edit_trader_error['#trad-contact']='is-invalid';
                     }
                 }
                 else
                 {
                         $edit_trader_error['#error-trad-contact']="Enter valid digits";
                         $edit_trader_error['clear']=false;
+                        $edit_trader_error['#trad-contact']='is-invalid';
                 }
 
             }
             else{
                 $edit_trader_error['#error-trad-contact']="contact cannot be empty";
                 $edit_trader_error['clear']=false;
+                $edit_trader_error['#trad-contact']='is-invalid';
             }
         }
 
@@ -144,11 +158,13 @@
             {
                 $edit_trader_error['#error-trad-dob']="";
                 $t_dob=date("d-m-Y", strtotime($_POST['dob']));
+                $edit_trader_error['#trad-dob']='valid';
                 
             }
             else{
                 $edit_trader_error['#error-trad-dob']="dob cannot be empty";
                 $edit_trader_error['clear']=false;
+                $edit_trader_error['#trad-dob']='is-invalid';
             }
         }
 
@@ -160,16 +176,19 @@
                 {
                     $edit_trader_error['#error-trad-address']="Enter a valid address";
                     $edit_trader_error['clear']=false;
+                    $edit_trader_error['#trad-address']='is-invalid';
                 }
                 else{
                     $edit_trader_error['#error-trad-address']="";
                     $address=$_POST['address'];
+                    $edit_trader_error['#trad-address']='valid';
                 }
 
             }
             else{
                 $edit_trader_error['#error-trad-address']="address cannot be empty";
                 $edit_trader_error['clear']=false;
+                $edit_trader_error['#trad-address']='is-invalid';
             }
         }
 
