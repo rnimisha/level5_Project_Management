@@ -30,19 +30,60 @@ $(document).ready(function(){
                 console.log(response);
                 // alert('success inside form');
                 var resp=jQuery.parseJSON(response);
-                console.log(resp);
+                // console.log(resp);
                 jQuery('#personal-button').text('Save Changes');
                 jQuery('#personal-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
                     // resetForm('personal-form');
-                    $('#profile-sucess-msg').addClass('was-validated');
-                    $('#profile-sucess-msg').html('Changes has been saved successfully.');
-                    inlineMsg(resp);
-                    
+                    $('#personal-form').addClass('was-validated');
+                    success_update_form();
                 }
                 else{
                     // alert('success inside form');
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
+
+
+    $('#password-form').submit(function(){
+
+        //button value change
+        jQuery('#pass-button').text('Saving...');
+        jQuery('#pass-button').attr('disabled', true);
+
+        var old_pass=$('#trad-old-pass').val();
+        var new_pass=$('#trad-new-pass').val();
+        var re_pass=$('#trad-re-pass').val();
+        var trader_id=$('#trader-id').val();
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                old_pass:old_pass,
+                new_pass:new_pass,
+                re_pass:re_pass,
+                trader_id:trader_id,
+                form_name: 'pass-form'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                console.log(resp);
+                jQuery('#pass-button').text('Save Changes');
+                jQuery('#pass-button').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    resetForm('password-form');
+                    $('#picture-form').addClass('was-validated');
+                    success_update_form();
+                }
+                else{
                     inlineMsg(resp);
                 }
             }

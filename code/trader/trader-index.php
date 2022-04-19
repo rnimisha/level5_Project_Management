@@ -83,12 +83,14 @@
                   <span class="pb-1" id="page-link">Personal</span>
               </div>
               <div class="row">
-                <div class="col-12 form-container w-100">
-                  <div class="row border-bottom d-flex justify-content-around align-items-center pt-1 mt-1">
+                <div class="col-12 form-container w-100 py-3">
+                  <div class="row border-bottom d-flex justify-content-around align-items-center mt-1">
                     <div class="col-4 h5">
+                      <i class="fa-solid fa-address-card"></i>
                       About Me
                     </div>
                     <div class="col-4 h5 active-form">
+                      <i class="fa-solid fa-gear"></i>
                       Settings
                     </div>
                   </div>
@@ -100,65 +102,71 @@
                         <li class="list-group-item" id="pass-change">Password</li>
                       </ul>
                     </div>
-                    <div class="col-lg-10 col-md-9">
-                      <div id="profile-sucess-msg">
+                    <div class="col-lg-10 col-md-9 d">
+                      <div class="alert alert-success d-none mt-4 mb-n2 w-75 mx-auto" id="profile-sucess-msg">
                       </div>
-                      <form class="w-75 mx-auto py-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST">
+                      <form class="w-75 mx-auto pb-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST">
                         <div class="row justify-content-end mx-auto pr-1">
                           <button type="submit" class="btn ">Save Changes</button>
                         </div>  
                       </form>
                       <form class=" w-75 mx-auto py-4" id="personal-form" action="form-valid.php" method="POST">
                         <div class="form-group">
-                            <input type="hidden" class="form-control" value="1" id="trad-id"/>
+                            <input type="hidden" class="form-control" id="trad-id"/>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="trad-fullname">Full Name</label>
+                            <label for="trad-fullname" class="text-muted">Full Name</label>
                             <input type="text" class="form-control" id="trad-fullname"/>
-                            <div id="error-trad-fullname"></div>
+                            <div class="invalid-feedback" id="error-trad-fullname"></div>
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="trad-dob">DOB</label>
+                            <label for="trad-dob" class="text-muted">Date Of Birth</label>
                             <input type="date" class="form-control" id="trad-dob"/>
-                            <div id="error-trad-dob"></div>
+                            <div class="invalid-feedback" id="error-trad-dob"></div>
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="trad-email">Email</label>
+                          <label for="trad-email" class="text-muted">Email</label>
                             <input type="text" class="form-control" id="trad-email"/>
-                            <div id="error-trad-email"></div>
+                            <div class="invalid-feedback" id="error-trad-email"></div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="trad-contact">Contact</label>
+                            <label for="trad-contact" class="text-muted">Contact</label>
                             <input type="text" class="form-control" id="trad-contact"/>
-                            <div id="error-trad-contact"></div>
+                            <div class="invalid-feedback" id="error-trad-contact"></div>
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="trad-dob">Address</label>
+                            <label for="trad-dob" class="text-muted">Address</label>
                             <input type="text" class="form-control" id="trad-address"/>
-                            <div id="error-trad-address"></div>
+                            <div class="invalid-feedback" id="error-trad-address"></div>
                           </div>
                         </div>
                         <div class="row justify-content-end pr-1">
                           <button type="submit" class="btn" id="personal-button">Save Changes</button>
                         </div>  
                       </form>
-                      <form class=" w-75 mx-auto py-4 d-none" id="password-form">
+                      <form class=" w-75 mx-auto py-4 d-none" novalidate id="password-form" action="form-valid.php" method="POST">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" value="4" id="trader-id"/>
+                        </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>
+                            <div class="invalid-feedback" id="error-trad-old-pass"></div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <input type="password" class="form-control" id="trad-new-pass" placeholder="New Password"/>
+                            <div class="invalid-feedback" id="error-trad-new-pass"></div>
                           </div>
                           <div class="form-group col-md-6">
                             <input type="password" class="form-control" id="trad-re-pass" placeholder="Confirm New Password"/>
+                            <div class="invalid-feedback" id="error-trad-re-pass"></div>
                           </div>
                         </div>
                         <div class="row justify-content-end mx-auto pr-1">
-                          <button type="submit" class="btn ">Save Changes</button>
+                          <button type="submit" class="btn" id="pass-button">Save Changes</button>
                         </div>  
                       </form>
                     </div>

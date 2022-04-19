@@ -30,5 +30,15 @@ function inlineMsg(resp){
             }
         }
     }
+}
 
+function success_update_form()
+{
+    $('#profile-sucess-msg').html('<strong>Success!</strong>Changes has been saved.');
+    if($('#profile-sucess-msg').hasClass('d-none'))
+    {
+        $('#profile-sucess-msg').removeClass('d-none')
+        $('#profile-sucess-msg').addClass('d-block')
+    }
+    inlineMsg(resp);
 }

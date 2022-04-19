@@ -15,7 +15,7 @@
             {
                 if(strlen($_POST['fullname']) < 4)
                 {
-                    $edit_trader_error['#error-trad-fullname']="Enter a valid name";
+                    $edit_trader_error['#error-trad-fullname']="Please enter a valid name.";
                     $edit_trader_error['clear']=false;
                     $edit_trader_error['#trad-fullname']='is-invalid';
                 }
@@ -26,7 +26,7 @@
                 }
             }
             else{
-                $edit_trader_error['#error-trad-fullname']="Name cannot be empty";
+                $edit_trader_error['#error-trad-fullname']="Name is required.";
                 $edit_trader_error['clear']=false;
                 $edit_trader_error['#trad-fullname']='is-invalid';
             }
@@ -60,7 +60,7 @@
                             $edit_trader_error['#trad-email']='valid';
                         }
                         else{
-                            $edit_trader_error['#error-trad-email']="Email already registered";
+                            $edit_trader_error['#error-trad-email']="Email already registered.";
                             $edit_trader_error['clear']=false;
                             $edit_trader_error['#trad-email']='is-invalid';
                         }
@@ -73,14 +73,14 @@
                     }
                 }
                 else{
-                    $edit_trader_error['#error-trad-email']="Enter a valid email";
+                    $edit_trader_error['#error-trad-email']="Please enter a valid email.";
                     $edit_trader_error['clear']=false;
                     $edit_trader_error['#trad-email']='is-invalid';
                 }
 
             }
             else{
-                $edit_trader_error['#error-trad-email']="Email cannot be empty";
+                $edit_trader_error['#error-trad-email']="Email is required.";
                 $edit_trader_error['clear']=false;
                 $edit_trader_error['#trad-email']='is-invalid';
             }
@@ -117,7 +117,7 @@
                                 $edit_trader_error['#trad-contact']='valid';
                             }
                             else{
-                                $edit_trader_error['#error-trad-contact']="Contact already registered";
+                                $edit_trader_error['#error-trad-contact']="Contact already registered.";
                                 $edit_trader_error['clear']=false;
                                 $edit_trader_error['#trad-contact']='is-invalid';
                             }
@@ -132,21 +132,21 @@
                     }
                     else
                     {
-                        $edit_trader_error['#error-trad-contact']="contact can't be less than 10 digits";
+                        $edit_trader_error['#error-trad-contact']="Contact can't be less than 10 digits.";
                         $edit_trader_error['clear']=false;
                         $edit_trader_error['#trad-contact']='is-invalid';
                     }
                 }
                 else
                 {
-                        $edit_trader_error['#error-trad-contact']="Enter valid digits";
+                        $edit_trader_error['#error-trad-contact']="Please enter valid digits.";
                         $edit_trader_error['clear']=false;
                         $edit_trader_error['#trad-contact']='is-invalid';
                 }
 
             }
             else{
-                $edit_trader_error['#error-trad-contact']="contact cannot be empty";
+                $edit_trader_error['#error-trad-contact']="Contact is required.";
                 $edit_trader_error['clear']=false;
                 $edit_trader_error['#trad-contact']='is-invalid';
             }
@@ -162,7 +162,7 @@
                 
             }
             else{
-                $edit_trader_error['#error-trad-dob']="dob cannot be empty";
+                $edit_trader_error['#error-trad-dob']="DOB is required.";
                 $edit_trader_error['clear']=false;
                 $edit_trader_error['#trad-dob']='is-invalid';
             }
@@ -174,7 +174,7 @@
             {
                 if(strlen($_POST['address']) < 4)
                 {
-                    $edit_trader_error['#error-trad-address']="Enter a valid address";
+                    $edit_trader_error['#error-trad-address']="Please enter a valid address.";
                     $edit_trader_error['clear']=false;
                     $edit_trader_error['#trad-address']='is-invalid';
                 }
@@ -186,7 +186,7 @@
 
             }
             else{
-                $edit_trader_error['#error-trad-address']="address cannot be empty";
+                $edit_trader_error['#error-trad-address']="Address is required.";
                 $edit_trader_error['clear']=false;
                 $edit_trader_error['#trad-address']='is-invalid';
             }
@@ -212,5 +212,52 @@
 
         // $edit_trader_error['id']=$trader_id;
         echo json_encode($edit_trader_error);
+    }
+
+    //validate password update
+    $edit_pass_error=array();
+    $edit_pass_error['clear']=true;
+
+    if(isset($_POST['form_name']) && $_POST['form_name']=='pass-form' && isset($_POST['trader_id']))
+    {
+        $trader_id=$_POST['trader_id'];
+        if(isset($_POST['old_pass']))
+        {
+            if(!empty(trim($_POST['old_pass'])))
+            {
+                $pass=trim(md5($_POST['old_pass']));
+                $getPass= "SELECT * from mart_user where USER_ID=$trader_id";
+                $parsedGetPass = oci_parse($connection, $getPass);
+                oci_execute($parsedGetPass);
+                while (($row = oci_fetch_assoc( $parsedGetPass)) != false) {
+                    $actual_pass= trim($row['PASSWORD']);
+                }
+                if($actual_pass == $pass)
+                {
+                    $edit_pass_error['#error-trad-old-pass']="";
+                    $edit_pass_error['#trad-old-pass']='valid';
+                }
+                else{
+                    $edit_pass_error['#error-trad-old-pass']="Password incorrect.";
+                    $edit_pass_error['clear']=false;
+                    $edit_pass_error['#trad-old-pass']='is-invalid';
+                }
+                $edit_pass_error['actual']=$actual_pass;
+                $edit_pass_error['actual2']=$pass;
+            }
+            else{
+                $edit_pass_error['#error-trad-old-pass']="Old password is required.";
+                $edit_pass_error['clear']=false;
+                $edit_pass_error['#trad-old-pass']='is-invalid';
+            }
+        }
+        if(isset($_POST['new_pass']))
+        {
+            if(!empty(trim($_POST['new_pass'])))
+            {
+                $new_pass=trim($_POST['new_pass']);
+            }
+        }
+        echo json_encode($edit_pass_error);
     }
 ?>
