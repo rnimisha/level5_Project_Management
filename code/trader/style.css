@@ -59,7 +59,7 @@ body{
 
 
 #nav1 .list-group-item.active {
-    background-color: #dbdbdb;
+    background-color: #e8e8e8;
     border-color: #ffffff;
     position: relative;
 }
@@ -71,7 +71,7 @@ body{
     right: 0;
     bottom: 100%;
     border-bottom-right-radius: 20px;
-    box-shadow: 0 25px 0 #dbdbdb;  
+    box-shadow: 0 25px 0 #e8e8e8;  
     
 }
 
@@ -83,7 +83,7 @@ body{
     right: 0;
     top: 100%;
     border-top-right-radius: 15px;
-    box-shadow: 0 -20px 0 #dbdbdb; 
+    box-shadow: 0 -20px 0 #e8e8e8; 
 }
 
 
@@ -132,7 +132,7 @@ body{
     min-height: 90vh;
 }
 .main-container{
-    background-color: #dbdbdb;
+    background-color: #e8e8e8;
     border-radius: 20px 0px 0px 0px;
 }
 

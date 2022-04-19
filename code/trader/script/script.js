@@ -102,6 +102,8 @@ $(document).ready(function(){
         {
             $('#picture-form').addClass('d-none');
         }
+
+        $('#page-link').text("Personal");
     });
 
     $('#picture').click(function(){
@@ -132,11 +134,50 @@ $(document).ready(function(){
         {
             $('#password-form').addClass('d-none');
         }
+        //hide personal form
+        if(!$('#personal-form').hasClass('d-none'))
+        {
+            $('#personal-form').addClass('d-none');
+        }
+
+        $('#page-link').text("Picture");
+
+    });
+
+    $('#pass-change').click(function(){
+        if( $('#picture').hasClass("active-list"))
+        {
+            //remove active line
+            $('#picture').removeClass('active-list');
+        }
+        if( $('#personal').hasClass("active-list"))
+        {
+            //remove active line
+            $('#personal').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#pass-change').hasClass('active-list'))
+        {
+            $('#pass-change').addClass('active-list');
+        }
+
+        //display password form
+        if($('#password-form').hasClass('d-none'))
+        {
+            $('#password-form').removeClass('d-none');
+        }
+        //hide password form
+        if(!$('#picture-form').hasClass('d-none'))
+        {
+            $('#picture-form').addClass('d-none');
+        }
         //hide picture form
         if(!$('#personal-form').hasClass('d-none'))
         {
             $('#personal-form').addClass('d-none');
         }
 
+        $('#page-link').text("Password");
     });
 });

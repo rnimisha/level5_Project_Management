@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <script src="script/script.js"></script>
+    <script src="script/form-valid.js"></script>
     <title>Trader</title>
   </head> 
   <body>
@@ -78,7 +79,7 @@
                   <i class='bx bx-chevron-right align-self-center'></i>
                   <span class="pb-1">Setting</span>
                   <i class='bx bx-chevron-right align-self-center'></i>
-                  <span class="pb-1">Personal</span>
+                  <span class="pb-1" id="page-link">Personal</span>
               </div>
               <div class="row">
                 <div class="col-12 form-container w-100">
@@ -99,34 +100,39 @@
                       </ul>
                     </div>
                     <div class="col-lg-10 col-md-9">
-                      <form class=" w-75 mx-auto py-4 d-none" id="picture-form">
+                      <form class=" w-75 mx-auto py-4 d-none" id="picture-form" action="form-valid.php" method="POST">
                         <div class="row justify-content-end mx-auto pr-1">
                           <button type="submit" class="btn ">Save Changes</button>
                         </div>  
                       </form>
-                      <form class=" w-75 mx-auto py-4" id="personal-form">
+                      <form class=" w-75 mx-auto py-4" id="personal-form" action="form-valid.php" method="POST">
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="trad-fullname">Full Name</label>
                             <input type="text" class="form-control" id="trad-fullname"/>
+                            <div class="invalid-feedback" id="error-trad-fullname"></div>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="trad-dob">DOB</label>
                             <input type="date" class="form-control" id="trad-dob"/>
+                            <div class="invalid-feedback" id="error-trad-dob"></div>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="trad-email">Email</label>
                             <input type="text" class="form-control" id="trad-email"/>
+                            <div class="invalid-feedback" id="error-trad-email"></div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="trad-contact">Contact</label>
                             <input type="text" class="form-control" id="trad-contact"/>
+                            <div class="invalid-feedback" id="error-trad-contact"></div>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="trad-dob">Address</label>
                             <input type="text" class="form-control" id="trad-address"/>
+                            <div class="invalid-feedback" id="error-trad-address"></div>
                           </div>
                         </div>
                         <div class="row justify-content-end pr-1">

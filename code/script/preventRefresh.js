@@ -1,7 +1,7 @@
 // for customer regsitration form
 $(document).ready(function(){
     $("#cust-reg-form").submit(function(){
-        // alert("hello");
+        // alert("hello"); 
 
         //change button while submitting
         jQuery('#reg-btn').val('Submitting..');
