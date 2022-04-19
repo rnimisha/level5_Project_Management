@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap');
 
 body{
     background-color: #ffffff;
-    font-family: 'Fredoka', sans-serif;
-
+    font-family: Helvetica, Sans-Serif;
 }
  
 /* header */
@@ -102,6 +100,14 @@ body{
 }
 
 .fa-solid{
+    margin-right: 10px;
+}
+
+#profile-picture{
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    margin-bottom: 30px;
     margin-right: 10px;
 }
 
