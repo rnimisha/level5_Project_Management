@@ -43,7 +43,7 @@ body{
 }
 
 /* override */
-.list-group-flush .list-group-item {
+#nav1 .list-group-flush .list-group-item {
     border-radius: 30px 0px 0px 30px;
     color: #000000;
     font-weight: bold;
@@ -58,12 +58,12 @@ body{
 }
 
 
-.list-group-item.active {
+#nav1 .list-group-item.active {
     background-color: #dbdbdb;
     border-color: #ffffff;
     position: relative;
 }
-.list-group-item.active::before{
+#nav1 .list-group-item.active::before{
     position: absolute;
     content: '';
     height: 50px;
@@ -75,7 +75,7 @@ body{
     
 }
 
-.list-group-item.active::after{
+#nav1 .list-group-item.active::after{
     position: absolute;
     content: '';
     height: 50px;
@@ -87,11 +87,11 @@ body{
 }
 
 
-.list-group-item:hover{
-    background-color: #ebd380;  
+#nav1 .list-group-item:hover{
+    background-color: #789680;  
     z-index: 99999;
 }
-.list-group-item:hover::before{
+#nav1 .list-group-item:hover::before{
     position: absolute;
     content: '';
     height: 50px;
@@ -100,10 +100,10 @@ body{
     right: 0;
     bottom: 100%;
     border-bottom-right-radius: 20px;
-    box-shadow: 0 25px 0 #ebd380;  
+    box-shadow: 0 25px 0 #789680;  
 
 }
-.list-group-item:hover::after{
+#nav1 .list-group-item:hover::after{
     position: absolute;
     content: '';
     height: 50px;
@@ -112,7 +112,7 @@ body{
     right: 0;
     top: 100%;
     border-top-right-radius: 20px;
-    box-shadow: 0 -25px 0 #ebd380;  
+    box-shadow: 0 -25px 0 #789680;  
 }
 
 .nav-list .fa-solid{
@@ -145,12 +145,19 @@ body{
 .form-container .h5{
     margin-bottom: 0;
     text-align: center;
+    font-weight: bold;
 }
 form .btn{
-    background-color: #ebd380;
+    padding: 10px;
+    background-color: #789680;
 }
 
 .active-form{
     margin-top: 1px;
-    border-bottom: 2px solid #ebd380;
+    border-bottom: 2px solid #789680;
+}
+
+.active-list{
+    color: #789680;
+    font-weight: bold;
 }
