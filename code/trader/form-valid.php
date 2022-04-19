@@ -4,8 +4,9 @@
     $edit_trader_error=array();
     $edit_trader_error['clear']=true;
 
-    if(isset($_POST['form_name']) && $_POST['form_name']=='personal-form')
+    if(isset($_POST['form_name']) && $_POST['form_name']=='personal-form' && isset($_POST['trader_id']))
     {
+        $trader_id=$_POST['trader_id'];
         // validation
         if(isset($_POST['fullname']))
         {
@@ -41,17 +42,29 @@
                     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
                     oci_execute($result);
                     oci_fetch($result);
+                    // oci_free_statement($result); 
                     if($number_of_rows>0){
-                        $edit_trader_error['#error-trad-email']="Email already registered";
-                        $edit_trader_error['clear']=false;
-                        oci_free_statement($result); 
+                        $getEmail= "SELECT * from mart_user where upper(USER_ID)=upper($trader_id)";
+                        $parsedGetEmail = oci_parse($connection, $getEmail);
+                        oci_execute($parsedGetEmail);
+                        while (($row = oci_fetch_assoc($parsedGetEmail)) != false) {
+                            $email= $row['EMAIL'];
+                        }
+                        if($email == strtoupper($traderemail))
+                        {
+                            $edit_trader_error['#error-trad-email']="";
+                            $email=$_POST['traderemail'];
+                        }
+                        else{
+                            $edit_trader_error['#error-trad-email']="Email already registered";
+                            $edit_trader_error['clear']=false;
+                        }
+                        oci_free_statement($parsedGetEmail); 
                     }
                     else{
                         $edit_trader_error['#error-trad-email']="";
                         $email=$_POST['traderemail'];
-                    
                     }
-                    
                 }
                 else{
                     $edit_trader_error['#error-trad-email']="Enter a valid email";
@@ -146,6 +159,7 @@
             }
         }
 
+        // $edit_trader_error['id']=$trader_id;
        echo json_encode($edit_trader_error);
     }
 ?>

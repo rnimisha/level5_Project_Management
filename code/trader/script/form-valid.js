@@ -7,6 +7,7 @@ $(document).ready(function(){
         var contact=$('#trad-contact').val();
         var dob=$('#trad-dob').val();
         var address=$('#address').val();
+        var trader_id=$('#trad-id').val();
 
         $.ajax({
             type: $(this).attr('method'),
@@ -17,15 +18,28 @@ $(document).ready(function(){
                 contact: contact,
                 dob: dob,
                 address: address,
+                trader_id:trader_id,
                 form_name: 'personal-form'
             },
             success: function(response){
                 console.log(response);
                 // alert('success inside form');
-
+                var resp=jQuery.parseJSON(response);
+                console.log(resp);
+                if(resp.clear == true)
+                {
+                    resetForm('personal-form');
+                    $('#profile-sucess-msg').html('Changes has been saved successfully.');
+                    inlineMsg(resp);
+                }
+                else{
+                    // alert('success inside form');
+                    inlineMsg(resp);
+                }
             }
         });
         //prevent page reload
-        // return false;
+        return false;
     });
+    
 });
