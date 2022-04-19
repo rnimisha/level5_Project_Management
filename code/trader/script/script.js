@@ -68,4 +68,35 @@ $(document).ready(function(){
         //change back image size
         $('#profile-picture').css({'width' : '75px' , 'height' : '75px'});
     });
+
+    //change setting form
+    $('#personal').click(function(){
+        if( $('#pass-change').hasClass("active-list"))
+        {
+            //remove active line
+            $('#pass-change').removeClass('active-list');
+        }
+        if( $('#picture').hasClass("active-list"))
+        {
+            //remove active line
+            $('#picture').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#personal').hasClass('active-list'))
+        {
+            $('#personal').addClass('active-list');
+        }
+        //display personal form
+        if($('#personal-form').hasClass('d-none'))
+        {
+            $('#personal-form').removeClass('d-none');
+        }
+        //hide password form
+        if(!$('#password-form').hasClass('d-none'))
+        {
+            $('#password-form').addClass('d-none');
+        }
+
+    });
 });

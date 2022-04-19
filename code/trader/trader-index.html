@@ -93,14 +93,19 @@
                   <div class="row w-100">
                     <div class="col-lg-2 col-md-3 border-right">
                       <ul class="list-group list-group-flush my-1">
-                        <li class="list-group-item">Picture</li>
-                        <li class="list-group-item active-list">Personal</li>
-                        <li class="list-group-item">Password</li>
+                        <li class="list-group-item" id="picture">Picture</li>
+                        <li class="list-group-item active-list" id="personal">Personal</li>
+                        <li class="list-group-item" id="pass-change">Password</li>
                       </ul>
                     </div>
                     <div class="col-lg-10 col-md-9">
+                      <form class=" w-75 mx-auto py-4 d-none" id="picture-form">
+                        <div class="row justify-content-end mx-auto pr-1">
+                          <button type="submit" class="btn ">Save Changes</button>
+                        </div>  
+                      </form>
                       <form class=" w-75 mx-auto py-4" id="personal-form">
-                        <div class="form-row  mx-auto">
+                        <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="trad-fullname">Full Name</label>
                             <input type="text" class="form-control" id="trad-fullname"/>
@@ -114,7 +119,7 @@
                           <label for="trad-email">Email</label>
                             <input type="text" class="form-control" id="trad-email"/>
                         </div>
-                        <div class="form-row mx-auto">
+                        <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="trad-contact">Contact</label>
                             <input type="text" class="form-control" id="trad-contact"/>
@@ -124,11 +129,11 @@
                             <input type="text" class="form-control" id="trad-address"/>
                           </div>
                         </div>
-                        <div class="row justify-content-end mx-auto pr-1">
+                        <div class="row justify-content-end pr-1">
                           <button type="submit" class="btn ">Save Changes</button>
                         </div>  
                       </form>
-                      <!-- <form class=" w-75 mx-auto py-4" id="password-form">
+                      <form class=" w-75 mx-auto py-4 d-none" id="password-form">
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>
                         </div>
@@ -143,7 +148,7 @@
                         <div class="row justify-content-end mx-auto pr-1">
                           <button type="submit" class="btn ">Save Changes</button>
                         </div>  
-                      </form> -->
+                      </form>
                     </div>
                   </div>
                 </div>

@@ -150,6 +150,7 @@ body{
 form .btn{
     padding: 10px;
     background-color: #789680;
+    margin-right: 10px;
 }
 
 .active-form{
@@ -157,6 +158,9 @@ form .btn{
     border-bottom: 2px solid #789680;
 }
 
+#picture, #personal, #pass-change{
+    cursor: pointer;
+}
 .active-list{
     color: #789680;
     font-weight: bold;
