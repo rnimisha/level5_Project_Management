@@ -6,7 +6,7 @@ $(document).ready(function(){
         var traderemail=$('#trad-email').val();
         var contact=$('#trad-contact').val();
         var dob=$('#trad-dob').val();
-        var address=$('#address').val();
+        var address=$('#trad-address').val();
         var trader_id=$('#trad-id').val();
 
         $.ajax({

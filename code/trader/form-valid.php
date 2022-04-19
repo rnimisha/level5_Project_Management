@@ -42,7 +42,7 @@
                     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
                     oci_execute($result);
                     oci_fetch($result);
-                    // oci_free_statement($result); 
+                    oci_free_statement($result); 
                     if($number_of_rows>0){
                         $getEmail= "SELECT * from mart_user where upper(USER_ID)=upper($trader_id)";
                         $parsedGetEmail = oci_parse($connection, $getEmail);
@@ -50,7 +50,7 @@
                         while (($row = oci_fetch_assoc($parsedGetEmail)) != false) {
                             $email= $row['EMAIL'];
                         }
-                        if($email == strtoupper($traderemail))
+                        if(strtoupper($email) == strtoupper($traderemail))
                         {
                             $edit_trader_error['#error-trad-email']="";
                             $email=$_POST['traderemail'];
@@ -94,10 +94,24 @@
                         oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
                         oci_execute($result);
                         oci_fetch($result);
+                        oci_free_statement($result); 
                         if($number_of_rows>0){
-                            $edit_trader_error['#error-trad-contact']="Contact already registered";
-                            $edit_trader_error['clear']=false;
-                            oci_free_statement($result); 
+                            $getContact= "SELECT * from mart_user where USER_ID=$trader_id";
+                            $parsedGetContact = oci_parse($connection, $getContact);
+                            oci_execute($parsedGetContact);
+                            while (($row = oci_fetch_assoc( $parsedGetContact)) != false) {
+                                $contact= $row['CONTACT'];
+                            }
+                            if($contact == $t_usercontact)
+                            {
+                                $edit_trader_error['#error-trad-contact']="";
+                                $contact=$_POST['contact'];
+                            }
+                            else{
+                                $edit_trader_error['#error-trad-contact']="Contact already registered";
+                                $edit_trader_error['clear']=false;
+                            }
+                            oci_free_statement($parsedGetContact); 
                         }
                         else{
                             $edit_trader_error['#error-trad-contact']="";
