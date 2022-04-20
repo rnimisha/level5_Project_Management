@@ -83,9 +83,7 @@ $(document).ready(function(){
                 form_name: 'pass-form'
             },
             success: function(response){
-                console.log(response);
                 var resp=jQuery.parseJSON(response);
-                console.log(resp);
                 jQuery('#pass-button').text('Save Changes');
                 jQuery('#pass-button').attr('disabled', false);
                 if(resp.clear == true)
@@ -98,6 +96,45 @@ $(document).ready(function(){
                 }
                 else{
                     inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#picture-form').submit(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+
+        //button value change
+        jQuery('#profile-button').text('Changing...');
+        jQuery('#profile-button').attr('disabled', true);
+
+        //for file
+        var formData= new FormData(this);
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false, //not obj nor string
+            success: function(response){
+                var resp=response;
+                jQuery('#profile-button').text('Change Profile');
+                jQuery('#profile-button').attr('disabled', false);
+                if(resp.clear == true){
+                    $('#personal-sucess-msg').hide();
+                    $('#profile-sucess-msg').show();
+                    $('#pass-sucess-msg').hide();
+                    $('#error-trad-pic').html("");
+                }
+                else{
+                    $('#pass-sucess-msg').hide();
+                    $('#error-trad-pic').html('<div class="alert alert-danger mt-4 mb-2 w-75 mx-auto"><strong>Error! </strong>'+response.error+'.</div>');
                 }
             }
         });

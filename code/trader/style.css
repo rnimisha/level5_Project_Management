@@ -165,3 +165,18 @@ form .btn{
     color: #789680;
     font-weight: bold;
 }
+ 
+/* image profile picture */
+#changing-profile
+{
+    /* width: 150px;
+    height: 150px; */
+    border-radius: 30px;
+    margin-bottom: 35px;
+    border:3px solid #789680;
+    margin: 0;
+}
+
+.prof-delete .btn{
+    background-color: #dea4a4;
+}

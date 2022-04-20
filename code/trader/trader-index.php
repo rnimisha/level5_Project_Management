@@ -111,17 +111,28 @@
                     <!-- profile picture change -->
                     <div class="col-lg-10 col-md-9 d">
                       <form class="w-75 mx-auto py-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST" enctype="multipart/form-data">
-                        <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="profile-sucess-msg">
+                        <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="profile-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
                         </div>
-                        <div id="error-trad-pic">
+                        <div id="error-trad-pic" class="w-100">
                         </div>
-                        <div class="form-group">
-                          <!-- <label for="trad-pic" class="text-muted"></label> -->
-                          <input type="file" class="form-control" id="trad-pic" name="trad-pic"/>
+                        <div class="row d-flex justify-content-center align-items-center w-100">
+                          <div class=" col-lg-8 w-100 mb-3">
+                            <img src="image/profile.jpg" class="w-75 ml-auto" alt="profile" id="changing-profile"/>
+                          </div>
+                          <div class="col-lg-4 w-100">
+                            <div class="row form-group prof-delete ">
+                              <label for="del-trad-pic" class="btn w-100"><i class="fa-solid fa-trash-can"></i><span>&nbsp; Delete Profile</span></label>
+                              <input type="file" id="del-trad-pic" name="del-trad-pic" hidden/>
+                            </div>
+                            <div class="row form-group prof-upload ">
+                              <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span>&nbsp; Change Profile</span></label>
+                              <input type="file" id="trad-pic" name="trad-pic" hidden/>
+                            </div>
+                          </div>
                         </div>
                         <div class="row justify-content-end mx-auto pr-1">
-                          <button type="submit" class="btn" name="profile-button" id="profile-button">Save Changes</button>
+                          <button type="submit" class="btn" name="profile-button" id="profile-button " hidden>Save Changes</button>
                         </div>  
                       </form>
                       <!-- personal information change -->
@@ -196,9 +207,13 @@
                 </div>
               </div>
             </div>
-
         </div>
     </div>
   </body>
+<script>
 
+  $('#trad-pic').change(function(){
+    $('#picture-form').submit();
+  });
+</script>
 </html>
