@@ -160,6 +160,7 @@ form .btn{
 
 #picture, #personal, #pass-change, #about-me-div, #setting-div{
     cursor: pointer;
+
 }
 .active-list{
     color: #789680;
@@ -208,3 +209,16 @@ form .btn{
     font-size: 1.3rem;
 }
 
+.transition-effect{
+    animation-duration: 2s;
+    animation-name: fadeInAnimation;
+  }
+  
+  @keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

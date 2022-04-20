@@ -92,6 +92,7 @@ $(document).ready(function(){
         }
 
         //show settings
+        $('#settings').addClass('transition-effect')
         if($('#settings').hasClass('d-none'))
         {
             $('#settings').removeClass('d-none');
@@ -128,6 +129,7 @@ $(document).ready(function(){
         }
 
         //show about-me
+        $('#about-me').addClass('transition-effect');
         if($('#about-me').hasClass('d-none'))
         {
             $('#about-me').removeClass('d-none');
@@ -152,6 +154,7 @@ $(document).ready(function(){
         }
 
         //add active line
+        $('#personal-form').addClass('transition-effect')
         if(!$('#personal').hasClass('active-list'))
         {
             $('#personal').addClass('active-list');
@@ -194,6 +197,7 @@ $(document).ready(function(){
         }
 
         //display picture form
+        $('#picture-form').addClass('transition-effect')
         if($('#picture-form').hasClass('d-none'))
         {
             $('#picture-form').removeClass('d-none');
@@ -232,6 +236,7 @@ $(document).ready(function(){
         }
 
         //display password form
+        $('#password-form').addClass('transition-effect')
         if($('#password-form').hasClass('d-none'))
         {
             $('#password-form').removeClass('d-none');
