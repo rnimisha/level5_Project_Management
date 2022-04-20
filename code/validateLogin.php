@@ -93,7 +93,7 @@
    
     if($l_error['clear']==true && isset($_POST['loginuser']))
     {
-        $_SESSION['phoenix_user']=$email;
+        $_SESSION['phoenix_user']=$user_id;
         if(strtoupper($user_role)=='C')
         {
             $l_error['role']='C';

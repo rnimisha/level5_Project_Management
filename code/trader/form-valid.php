@@ -342,6 +342,17 @@
                 if(move_uploaded_file($_FILES['trad-pic']['tmp_name'], $destination))
                 {
                     $edit_pic_error['error']="";
+                    $trader_id=$_POST['trader-id-profile'];
+
+                    $updateQuery="UPDATE MART_USER SET PROFILE_PIC=:pp WHERE USER_ID=:trader_id";
+                    $parsedQuery=oci_parse($connection, $updateQuery);
+        
+                    oci_bind_by_name($parsedQuery, ":pp", $new_name);
+                    oci_bind_by_name($parsedQuery, "trader_id", $trader_id);
+        
+                    oci_execute($parsedQuery);
+                    oci_free_statement($parsedQuery);
+                    
                 }
             }
             else{

@@ -103,6 +103,13 @@ $(document).ready(function(){
         return false;
     });
 
+    //submit form on change
+    $('#trad-pic').change(function(){
+        if (confirm('Do you want to upload the image?')) {
+            $('#picture-form').submit();
+        } 
+    });
+
     $('#picture-form').submit(function(){
         $('#personal-sucess-msg').hide();
         $('#profile-sucess-msg').hide();
@@ -140,5 +147,12 @@ $(document).ready(function(){
         });
         //prevent page reload
         return false;
+    });
+
+    //submit form on change
+    $('#del-trad-pic').click(function(){
+        if (confirm('Do you want to delete your avtar?')) {
+            $('#profile-del-button').submit();
+        } 
     });
 });

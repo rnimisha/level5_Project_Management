@@ -108,6 +108,7 @@
                         <li class="list-group-item" id="pass-change">Password</li>
                       </ul>
                     </div>
+                    
                     <!-- profile picture change -->
                     <div class="col-lg-10 col-md-9 d">
                       <form class="w-75 mx-auto py-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST" enctype="multipart/form-data">
@@ -120,6 +121,7 @@
                           <div class=" col-lg-8 w-100 mb-3">
                             <img src="image/profile.jpg" class="w-75 ml-auto" alt="profile" id="changing-profile"/>
                           </div>
+                          <input type="hidden" id="trader-id-profile" name="trader-id-profile"/>
                           <div class="col-lg-4 w-100">
                             <div class="row form-group prof-delete ">
                               <label for="del-trad-pic" class="btn w-100"><i class="fa-solid fa-trash-can"></i><span>&nbsp; Delete Profile</span></label>
@@ -131,6 +133,11 @@
                             </div>
                           </div>
                         </div>
+                        <!-- submit delete -->
+                        <div class="row justify-content-end mx-auto pr-1">
+                          <button type="submit" class="btn" name="profile-del-button" id="profile-del-button " hidden>Save Changes</button>
+                        </div> 
+                        <!-- submit upload  -->
                         <div class="row justify-content-end mx-auto pr-1">
                           <button type="submit" class="btn" name="profile-button" id="profile-button " hidden>Save Changes</button>
                         </div>  
@@ -210,10 +217,4 @@
         </div>
     </div>
   </body>
-<script>
-
-  $('#trad-pic').change(function(){
-    $('#picture-form').submit();
-  });
-</script>
 </html>
