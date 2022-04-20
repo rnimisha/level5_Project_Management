@@ -320,4 +320,39 @@
         }
         echo json_encode($edit_pass_error);
     }
+
+    //validate profile picture
+    $edit_pic_error=array();
+    $edit_pic_error['clear']=true;
+    if(isset($_FILES['trad-pic']['name']))
+    {
+        if(!empty($_FILES['trad-pic']['name']))
+        {
+            $filename=$_FILES['trad-pic']['name'];
+            //extract extension only
+            $extension=pathinfo($filename, PATHINFO_EXTENSION);
+
+            $valid=array("jpg", "jpeg", "png", "gif");
+            if(in_array($extension, $valid))
+            {
+                // avoid same name
+                $new_name= rand().".".$extension;
+                $destination="../image/profile/".$new_name;
+
+                if(move_uploaded_file($_FILES['trad-pic']['tmp_name'], $destination))
+                {
+                    $edit_pic_error['error']="";
+                }
+            }
+            else{
+                 $edit_pic_error['error']='Invalid file';
+                 $edit_pic_error['clear']=false;
+            }
+        }  
+        else{
+            $edit_pic_error['error']='Upload image first';
+            $edit_pic_error['clear']=false;
+        }
+        echo json_encode($edit_pic_error);
+    }
 ?>

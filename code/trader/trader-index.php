@@ -110,12 +110,18 @@
                     </div>
                     <!-- profile picture change -->
                     <div class="col-lg-10 col-md-9 d">
-                      <form class="w-75 mx-auto pb-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST">
+                      <form class="w-75 mx-auto py-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST" enctype="multipart/form-data">
                         <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="profile-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
                         </div>
+                        <div id="error-trad-pic">
+                        </div>
+                        <div class="form-group">
+                          <!-- <label for="trad-pic" class="text-muted"></label> -->
+                          <input type="file" class="form-control" id="trad-pic" name="trad-pic"/>
+                        </div>
                         <div class="row justify-content-end mx-auto pr-1">
-                          <button type="submit" class="btn ">Save Changes</button>
+                          <button type="submit" class="btn" name="profile-button" id="profile-button">Save Changes</button>
                         </div>  
                       </form>
                       <!-- personal information change -->
