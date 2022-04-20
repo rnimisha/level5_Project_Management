@@ -106,11 +106,11 @@ $(document).ready(function(){
     //submit form on change
     $('#trad-pic').change(function(){
         if (confirm('Do you want to upload the image?')) {
-            $('#picture-form').submit();
+            $('#picture-form-up').submit();
         } 
     });
 
-    $('#picture-form').submit(function(){
+    $('#picture-form-up').submit(function(){
         $('#personal-sucess-msg').hide();
         $('#profile-sucess-msg').hide();
         $('#pass-sucess-msg').hide();
@@ -152,10 +152,50 @@ $(document).ready(function(){
         return false;
     });
 
-    //submit form on change
-    $('#del-trad-pic').click(function(){
-        if (confirm('Do you want to delete your avtar?')) {
-            $('#profile-del-button').submit();
+
+    $('#picture-form-del').submit(function(){
+        if (confirm('Do you want to delete the image?')) 
+        {
+            $('#personal-sucess-msg').hide();
+            $('#profile-sucess-msg').hide();
+            $('#pass-sucess-msg').hide();
+
+            //button value change
+            jQuery('#profile-del-button').text('Deleting...');
+            jQuery('#profile-del-button').attr('disabled', true);
+
+            var trader_id=$('#trader-id-profile').val();
+            // alert(1);
+            $.ajax({
+                
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: {
+                    trader_id: trader_id,
+                    edit_type: 'delete_pic'
+                },
+                success: function(response){
+                    var resp=jQuery.parseJSON(response);
+                    jQuery('#profile-del-button').text('Delete Profile');
+                    jQuery('#profile-del-button').attr('disabled', false);
+                    if(resp.clear == true){
+                        console.log(response);
+                        $('#personal-sucess-msg').hide();
+                        $('#profile-sucess-msg').show();
+                        $('#pass-sucess-msg').hide();
+                        $('#error-trad-pic').html("");
+                        //change image 
+                        var img_name=resp.pic_name;
+                        changeTraderPic(img_name);
+                    }
+                    else{
+                        // alert(response);
+                        $('#pass-sucess-msg').hide();
+                    }
+                }
+            });
+            //prevent page reload
+            return false;
         } 
     });
 });

@@ -204,7 +204,7 @@
             oci_bind_by_name($parsedQuery, ":contact", $contact);
             oci_bind_by_name($parsedQuery, ":addr", $address);
             oci_bind_by_name($parsedQuery, ":dob", $t_dob);
-            oci_bind_by_name($parsedQuery, "trader_id", $trader_id);
+            oci_bind_by_name($parsedQuery, ":trader_id", $trader_id);
 
             // $edit_trader_error['query']=$updateQuery;
             oci_execute($parsedQuery);
@@ -313,7 +313,7 @@
             $parsedQuery=oci_parse($connection, $updateQuery);
 
             oci_bind_by_name($parsedQuery, ":pass", $encrypted);
-            oci_bind_by_name($parsedQuery, "trader_id", $trader_id);
+            oci_bind_by_name($parsedQuery, ":trader_id", $trader_id);
 
             oci_execute($parsedQuery);
             oci_free_statement($parsedQuery);
@@ -342,7 +342,7 @@
                 if(move_uploaded_file($_FILES['trad-pic']['tmp_name'], $destination))
                 {
                     $edit_pic_error['error']="";
-                    $trader_id=$_POST['trader-id-profile'];
+                    $trader_id=$_POST['trader-id-profile2'];
                     $edit_pic_error['pic_name']='..\\image\\profile\\'.$new_name;
 
                     $updateQuery="UPDATE MART_USER SET PROFILE_PIC=:pp WHERE USER_ID=:trader_id";
@@ -353,7 +353,6 @@
         
                     oci_execute($parsedQuery);
                     oci_free_statement($parsedQuery);
-                    
                 }
             }
             else{
@@ -367,4 +366,34 @@
         }
         echo json_encode($edit_pic_error);
     }
+
+    //validate delete picture
+    if(isset($_POST['edit_type']) && ($_POST['edit_type'])=='delete_pic' )
+    {
+        $del_pic_error=array();
+        $del_pic_error['clear']=false;
+        $new_name='';
+
+        
+        if(isset($_POST['trader_id']) && !empty(($_POST['trader_id'])))
+        {
+            $trader_id=$_POST['trader_id'];
+            
+            $updateQuery="UPDATE MART_USER SET PROFILE_PIC=:pp WHERE USER_ID=:trader_id";
+            $parsedQuery=oci_parse($connection, $updateQuery);
+
+            oci_bind_by_name($parsedQuery, ":pp", $new_name);
+            oci_bind_by_name($parsedQuery, ":trader_id", $trader_id);
+
+           if( oci_execute($parsedQuery))
+           {
+            $del_pic_error['clear']=true;
+            $del_pic_error['pic_name']='..\\image\\profile\\default_profile.jpg';
+           }
+            oci_free_statement($parsedQuery);
+        }
+        echo json_encode($del_pic_error);
+    }
+ 
+    
 ?>

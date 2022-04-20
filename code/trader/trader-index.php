@@ -1,3 +1,8 @@
+<?php
+  include_once('../connection.php');
+  //for test
+  $current_user_id=1;
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -108,41 +113,42 @@
                         <li class="list-group-item" id="pass-change">Password</li>
                       </ul>
                     </div>
-                    
+
                     <!-- profile picture change -->
-                    <div class="col-lg-10 col-md-9 d">
-                      <form class="w-75 mx-auto py-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST" enctype="multipart/form-data">
+                      <div id="picture-form"  class="col-lg-10 col-md-9 py-4 w-75 d-none">
                         <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="profile-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div id="error-trad-pic" class="w-100">
                         </div>
-                        <div class="row d-flex justify-content-center align-items-center w-100">
+                        <div class="row d-flex justify-content-center align-items-center w-100 ">
                           <!-- display pic -->
-                          <div class=" col-lg-8 w-100 mb-3">
-                            <img src="image/profile.jpg" class="w-75 ml-auto" alt="profile" id="changing-profile"/>
+                          <div class=" col-lg-8 w-100 mb-3 d-flex justify-content-center align-items-center">
+                            <img src="image/profile.jpg" alt="profile" id="changing-profile"/>
                           </div>
-                          <input type="hidden" id="trader-id-profile" name="trader-id-profile"/>
                           <div class="col-lg-4 w-100">
-                            <div class="row form-group prof-delete ">
-                              <label for="del-trad-pic" class="btn w-100"><i class="fa-solid fa-trash-can"></i><span>&nbsp; Delete Profile</span></label>
-                              <input type="file" id="del-trad-pic" name="del-trad-pic" hidden/>
-                            </div>
-                            <div class="row form-group prof-upload ">
-                              <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span>&nbsp; Change Profile</span></label>
-                              <input type="file" id="trad-pic" name="trad-pic" hidden/>
-                            </div>
+                            <form id="picture-form-del" action="form-valid.php" method="POST">
+                              <input type="hidden" id="trader-id-profile" value="1"/>
+                              <!-- submit delete -->
+                              <div class="row form-group prof-delete ">
+                                <button type="submit" class="btn w-100" id="profile-del-button"><i class="fa-solid fa-trash-can"></i><span>&nbsp; Delete Profile</span></button>
+                              </div> 
+                            </form>
+                            <form id="picture-form-up" action="form-valid.php" method="POST">
+                              <input type="hidden" id="trader-id-profile2" name="trader-id-profile2" value="1"/>
+                              <div class="row form-group prof-upload ">
+                                <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span>&nbsp; Change Profile</span></label>
+                                <input type="file" id="trad-pic" name="trad-pic" hidden/>
+                              </div>
+                              <!-- submit upload  -->
+                              <div class="row justify-content-end mx-auto pr-1">
+                              <button type="submit" class="btn" name="profile-button" id="profile-button " hidden>Save Changes</button>
+                              </div>  
+                            </form>
                           </div>
                         </div>
-                        <!-- submit delete -->
-                        <div class="row justify-content-end mx-auto pr-1">
-                          <button type="submit" class="btn" name="profile-del-button" id="profile-del-button " hidden>Save Changes</button>
-                        </div> 
-                        <!-- submit upload  -->
-                        <div class="row justify-content-end mx-auto pr-1">
-                          <button type="submit" class="btn" name="profile-button" id="profile-button " hidden>Save Changes</button>
-                        </div>  
-                      </form>
+                      </div>
+                        
                       <!-- personal information change -->
                       <form class=" w-75 mx-auto py-4" id="personal-form" action="form-valid.php" method="POST">
                         <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="personal-sucess-msg">
@@ -190,7 +196,7 @@
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div class="form-group">
-                            <input type="hidden" value="4" class="form-control" id="trader-id"/>
+                            <input type="hidden" class="form-control" id="trader-id"/>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>
