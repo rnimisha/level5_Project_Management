@@ -118,6 +118,7 @@
                         <div id="error-trad-pic" class="w-100">
                         </div>
                         <div class="row d-flex justify-content-center align-items-center w-100">
+                          <!-- display pic -->
                           <div class=" col-lg-8 w-100 mb-3">
                             <img src="image/profile.jpg" class="w-75 ml-auto" alt="profile" id="changing-profile"/>
                           </div>

@@ -138,6 +138,9 @@ $(document).ready(function(){
                     $('#profile-sucess-msg').show();
                     $('#pass-sucess-msg').hide();
                     $('#error-trad-pic').html("");
+                    //change image 
+                    var img_name=resp.pic_name;
+                    changeTraderPic(img_name);
                 }
                 else{
                     $('#pass-sucess-msg').hide();

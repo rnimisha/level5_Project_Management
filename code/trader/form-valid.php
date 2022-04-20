@@ -343,6 +343,7 @@
                 {
                     $edit_pic_error['error']="";
                     $trader_id=$_POST['trader-id-profile'];
+                    $edit_pic_error['pic_name']='..\\image\\profile\\'.$new_name;
 
                     $updateQuery="UPDATE MART_USER SET PROFILE_PIC=:pp WHERE USER_ID=:trader_id";
                     $parsedQuery=oci_parse($connection, $updateQuery);

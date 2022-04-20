@@ -51,3 +51,10 @@ function removeStyle(resp)
         }
     }
 }
+
+function changeTraderPic(img_name)
+{
+    $("#changing-profile").attr("src",img_name);
+    $("#profile-picture").attr("src",img_name);
+    $("#profile-header").attr("src",img_name);
+}
