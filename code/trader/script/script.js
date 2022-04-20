@@ -93,6 +93,27 @@ $(document).ready(function(){
             $('#about-me').addClass('d-none');
         }
 
+        //hide password form
+        if(!$('#password-form').hasClass('d-none'))
+        {
+            $('#password-form').addClass('d-none');
+        }
+        //hide personal form
+        if(!$('#personal-form').hasClass('d-none'))
+        {
+            $('#personal-form').addClass('d-none');
+        }
+        if( $('#pass-change').hasClass("active-list"))
+        {
+            //remove active line
+            $('#pass-change').removeClass('active-list');
+        }
+        if( $('#personal').hasClass("active-list"))
+        {
+            //remove active line
+            $('#personal').removeClass('active-list');
+        }
+
         //show settings
         $('#settings').addClass('transition-effect')
         if($('#settings').hasClass('d-none'))
@@ -111,6 +132,8 @@ $(document).ready(function(){
         {
             $('#picture-form').removeClass('d-none');
         }
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
     });
 
     //change to about me
@@ -130,6 +153,12 @@ $(document).ready(function(){
             $('#settings').addClass('d-none');
         }
 
+        //hide picture form
+        if(!$('#picture-form').hasClass('d-none'))
+        {
+            $('#picture-form').addClass('d-none');
+        }
+
         //show about-me
         $('#about-me').addClass('transition-effect');
         if($('#about-me').hasClass('d-none'))
@@ -140,6 +169,8 @@ $(document).ready(function(){
         {
             $('#about-me').addClass('d-flex');
         }
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">About Me</a></li><li class="breadcrumb-item" aria-current="page"></li>');
     });
 
     //change setting form
@@ -177,7 +208,7 @@ $(document).ready(function(){
             $('#picture-form').addClass('d-none');
         }
 
-        $('#page-link').text("Personal");
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Personal</li>');
     });
 
     $('#picture').click(function(){
@@ -215,7 +246,7 @@ $(document).ready(function(){
             $('#personal-form').addClass('d-none');
         }
 
-        $('#page-link').text("Picture");
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
 
     });
 
@@ -243,17 +274,17 @@ $(document).ready(function(){
         {
             $('#password-form').removeClass('d-none');
         }
-        //hide password form
+        //hide pic form
         if(!$('#picture-form').hasClass('d-none'))
         {
             $('#picture-form').addClass('d-none');
         }
-        //hide picture form
+        //hide personal form
         if(!$('#personal-form').hasClass('d-none'))
         {
             $('#personal-form').addClass('d-none');
         }
 
-        $('#page-link').text("Password");
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Password</li>');
     });
 });
