@@ -58,3 +58,5 @@ function changeTraderPic(img_name)
     $("#profile-picture").attr("src",img_name);
     $("#profile-header").attr("src",img_name);
 }
+
+

@@ -170,7 +170,7 @@ form .btn{
 #changing-profile
 {
     max-width: 60%;
-    max-height: 60%;
+    max-height: 120px;
     border-radius: 30px;
     margin-bottom: 35px;
     border:3px solid #789680;

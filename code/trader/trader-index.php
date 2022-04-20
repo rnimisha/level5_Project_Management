@@ -1,6 +1,24 @@
 <?php
   include_once('../connection.php');
-  //for test
+  if(isset($_SESSION['phoenix_user']) & !empty($_SESSION['phoenix_user']))
+  {
+    $current_trader_id=$_SESSION['phoenix_user'];
+    $getUser= "SELECT * from mart_user where user_id=$current_trader_id";
+    $parsedGetUser = oci_parse($connection, $getUser);
+    oci_execute($parsedGetUser);
+    while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
+        $email= $row['EMAIL'];
+        $fullnames=$row['NAME'];
+        $contact=$row['CONTACT'];
+        $address=$row['ADDRESS'];
+        $profile_pic=$row['PROFILE_PIC'];
+        $dob=date('d-m-Y', strtotime($row['DOB']));
+    }
+    oci_free_statement($parsedGetUser);
+  }
+  // else{
+  //   //redirect later
+  // }
   
 ?>
 <!doctype html>
@@ -32,11 +50,11 @@
             <div class="col-lg-2 col-md-4 ml-auto d-none d-md-flex justify-content-center align-items-center">
               <div class="row ">
                 <div class="col-3 pt-1">
-                  <span><img src="image/profile.jpg" alt="profile" id="profile-header" /></span>
+                  <span><img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="profile-header" /></span>
                 </div>
                 <div class="col-9">
                   <div class="h6 mt-1">Trader</div>
-                  <div class="mt-n2"><small class="text-muted">kjennie@gmail.com</small></div>
+                  <div class="mt-n2"><small class="text-muted"><?php  echo (isset($email)) ? $email : null;?></small></div>
                 </div>
               </div>
             </div>
@@ -47,7 +65,7 @@
             <div class="col-lg-2 col-md-3 d-none d-md-flex justify-content-center align-items-center nav-side" id="nav1">
               <div class="list-group list-group-flush my-3 nav-list">
                 <div class="d-flex justify-content-center">
-                  <img src="image/profile.jpg"  alt="profile"  id="profile-picture"/>
+                  <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>"  alt="profile"  id="profile-picture"/>
                 </div>
                 <!-- <a href="#" class="list-group-item text-decoration-none active" >
                   <i class='bx bxs-dashboard'></i></i>
@@ -119,18 +137,18 @@
                         <div class="row d-flex justify-content-center align-items-center w-100 ">
                           <!-- display pic -->
                           <div class=" col-lg-8 w-100 mb-3 d-flex justify-content-center align-items-center">
-                            <img src="image/profile.jpg" alt="profile" id="changing-profile"/>
+                            <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="changing-profile"/>
                           </div>
                           <div class="col-lg-4 w-100">
                             <form id="picture-form-del" action="form-valid.php" method="POST">
-                              <input type="hidden" id="trader-id-profile" value="1"/>
+                              <input type="hidden" id="trader-id-profile" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
                               <!-- submit delete -->
                               <div class="row form-group prof-delete ">
                                 <button type="submit" class="btn w-100" id="profile-del-button"><i class="fa-solid fa-trash-can"></i><span>&nbsp; Delete Profile</span></button>
                               </div> 
                             </form>
                             <form id="picture-form-up" action="form-valid.php" method="POST">
-                              <input type="hidden" id="trader-id-profile2" name="trader-id-profile2" value="1"/>
+                              <input type="hidden" id="trader-id-profile2" name="trader-id-profile2" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
                               <div class="row form-group prof-upload ">
                                 <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span>&nbsp; Change Profile</span></label>
                                 <input type="file" id="trad-pic" name="trad-pic" hidden/>
@@ -150,12 +168,12 @@
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="trad-id"/>
+                            <input type="hidden" class="form-control" id="trad-id" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="trad-fullname" class="text-muted">Full Name</label>
-                            <input type="text" class="form-control" id="trad-fullname"/>
+                            <input type="text" class="form-control" id="trad-fullname" value="<?php  echo (isset($fullnames)) ? $fullnames : null;?>"/>
                             <div class="invalid-feedback" id="error-trad-fullname"></div>
                           </div>
                           <div class="form-group col-md-6">
@@ -166,18 +184,18 @@
                         </div>
                         <div class="form-group">
                           <label for="trad-email" class="text-muted">Email</label>
-                            <input type="text" class="form-control" id="trad-email"/>
+                            <input type="text" class="form-control" id="trad-email" value="<?php  echo (isset($email)) ? $email : null;?>"/>
                             <div class="invalid-feedback" id="error-trad-email"></div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="trad-contact" class="text-muted">Contact</label>
-                            <input type="text" class="form-control" id="trad-contact"/>
+                            <input type="text" class="form-control" id="trad-contact" value="<?php  echo (isset($contact)) ? $contact : null;?>"/>
                             <div class="invalid-feedback" id="error-trad-contact"></div>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="trad-dob" class="text-muted">Address</label>
-                            <input type="text" class="form-control" id="trad-address"/>
+                            <input type="text" class="form-control" id="trad-address" value="<?php  echo (isset($address)) ? $address : null;?>"/>
                             <div class="invalid-feedback" id="error-trad-address"></div>
                           </div>
                         </div>
@@ -191,7 +209,7 @@
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="trader-id"/>
+                            <input type="hidden" class="form-control" id="trader-id" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>
