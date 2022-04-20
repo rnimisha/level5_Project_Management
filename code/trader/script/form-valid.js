@@ -5,7 +5,9 @@ $(document).ready(function(){
     $('#pass-sucess-msg').hide();
 
     $('#personal-form').submit(function(){
-
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
         //button value change
         jQuery('#personal-button').text('Saving...');
         jQuery('#personal-button').attr('disabled', true);
@@ -40,14 +42,12 @@ $(document).ready(function(){
                 {
                     // resetForm('personal-form');
                     $('#personal-form').addClass('was-validated');
-                    removeStyle(resp);
                     $('#personal-sucess-msg').show();
                     $('#profile-sucess-msg').hide();
                     $('#pass-sucess-msg').hide();
+                    removeStyle(resp);
                 }
                 else{
-                    jQuery('#pass-button').text('Save Changes');
-                    jQuery('#pass-button').attr('disabled', false);
                     // alert('success inside form');
                     inlineMsg(resp);
                 }
@@ -59,6 +59,9 @@ $(document).ready(function(){
 
 
     $('#password-form').submit(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
 
         //button value change
         jQuery('#pass-button').text('Saving...');
@@ -88,15 +91,12 @@ $(document).ready(function(){
                 if(resp.clear == true)
                 {
                     resetForm('password-form');
-                    $('#picture-form').addClass('was-validated');
                     $('#personal-sucess-msg').hide();
                     $('#profile-sucess-msg').hide();
                     $('#pass-sucess-msg').show();
                     removeStyle(resp);
                 }
                 else{
-                    jQuery('#pass-button').text('Save Changes');
-                    jQuery('#pass-button').attr('disabled', false);
                     inlineMsg(resp);
                 }
             }
@@ -104,5 +104,4 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
-    
 });

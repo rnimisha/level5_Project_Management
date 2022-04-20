@@ -230,6 +230,7 @@
                 $pass=trim(md5($_POST['old_pass']));
                 $getPass= "SELECT * from mart_user where USER_ID=$trader_id";
                 $parsedGetPass = oci_parse($connection, $getPass);
+                // $edit_pass_error['query']=$getPass;
                 oci_execute($parsedGetPass);
                 while (($row = oci_fetch_assoc( $parsedGetPass)) != false) {
                     $actual_pass= trim($row['PASSWORD']);
@@ -244,8 +245,6 @@
                     $edit_pass_error['clear']=false;
                     $edit_pass_error['#trad-old-pass']='is-invalid';
                 }
-                $edit_pass_error['actual']=$actual_pass;
-                $edit_pass_error['actual2']=$pass;
             }
             else{
                 $edit_pass_error['#error-trad-old-pass']="Old password is required.";

@@ -177,6 +177,7 @@ $(document).ready(function(){
         {
             $('#personal-form').addClass('d-none');
         }
+
         $('#page-link').text("Password");
     });
 });

@@ -165,7 +165,7 @@
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" value="4" id="trader-id"/>
+                            <input type="hidden" value="4" class="form-control" id="trader-id"/>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>
