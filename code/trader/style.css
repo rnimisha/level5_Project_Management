@@ -10,8 +10,8 @@ body{
 }
 
 #logo-header img{
-    width: 130px;
-    height:80px;
+    width: 170px;
+    height:100px;
     padding-bottom: 5px;
 } 
 
@@ -170,7 +170,7 @@ form .btn{
 #changing-profile
 {
     max-width: 60%;
-    max-height: 120px;
+    max-height: 230px;
     border-radius: 30px;
     margin-bottom: 35px;
     border:3px solid #789680;
@@ -179,4 +179,15 @@ form .btn{
 
 .prof-delete .btn{
     background-color: #dea4a4;
+}
+
+#detail-container{
+    min-height: 60vh;
+}
+.breadcrumb{
+    background-color: #e8e8e8;
+    margin-bottom: -5px;
+}
+.breadcrumb-item a{
+    color: #000000;
 }

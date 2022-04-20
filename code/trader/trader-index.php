@@ -98,14 +98,16 @@
               <!-- breadcrumb -->
               <div class="col-11 mx-auto mt-4">
                 <div class="row w-100 h6 pl-1 d-flex align-items-center">
-                  <span class="h5 mt-1" ><b>My Profile</b></span>
-                  <i class='bx bx-chevron-right align-self-center'></i>
-                  <span class="pb-1">Setting</span>
-                  <i class='bx bx-chevron-right align-self-center'></i>
-                  <span class="pb-1" id="page-link">Personal</span>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#" ><b>My Profile</b></a></li>
+                      <li class="breadcrumb-item"><a href="#">Setting</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Personal</li>
+                    </ol>
+                  </nav>
               </div>
               <!-- profile-->
-              <div class="row">
+              <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
                   <div class="row border-bottom d-flex justify-content-around align-items-center mt-1">
                     <div class="col-4 h5">
@@ -119,7 +121,7 @@
                   </div>
                   <!-- profile setting category -->
                   <div class="row w-100">
-                    <div class="col-lg-2 col-md-3 border-right">
+                    <div class="col-lg-2 col-md-3 border-right h-75">
                       <ul class="list-group list-group-flush my-1">
                         <li class="list-group-item" id="picture">Picture</li>
                         <li class="list-group-item active-list" id="personal">Personal</li>

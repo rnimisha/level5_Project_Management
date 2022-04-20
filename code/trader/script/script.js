@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    $(function() {
-        $( "#trad-dob").datepicker('show');
-    });
-
-
     $("#left-toggle").click(function(){
         var navigation = $("#nav1");
         var container = $(".main-container");
