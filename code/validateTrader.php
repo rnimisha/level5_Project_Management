@@ -69,7 +69,7 @@
         if(isset($_POST['t_pword'])){
             if(!empty(trim($_POST['t_pword'])))
             {
-                $pattern='/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{7,}$/';
+                $pattern='/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&_])[a-zA-Z0-9@$!%*?&_]{7,}$/';
                 if(preg_match($pattern,$_POST['t_pword']))
                 {
                     //encrypt password before
@@ -80,7 +80,7 @@
                 else
                 {
                     $trader_error['clear']=false;
-                    $trader_error['#t_pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit!<br/>";
+                    $trader_error['#t_pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit and speecial char!<br/>";
                 }
 
             }

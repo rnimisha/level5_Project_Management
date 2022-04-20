@@ -205,7 +205,7 @@
             oci_bind_by_name($parsedQuery, ":dob", $t_dob);
             oci_bind_by_name($parsedQuery, "trader_id", $trader_id);
 
-            $edit_trader_error['query']=$updateQuery;
+            // $edit_trader_error['query']=$updateQuery;
             oci_execute($parsedQuery);
             oci_free_statement($parsedQuery);
         }
@@ -220,6 +220,7 @@
 
     if(isset($_POST['form_name']) && $_POST['form_name']=='pass-form' && isset($_POST['trader_id']))
     {
+        //check old password
         $trader_id=$_POST['trader_id'];
         if(isset($_POST['old_pass']))
         {
@@ -251,12 +252,71 @@
                 $edit_pass_error['#trad-old-pass']='is-invalid';
             }
         }
+        //check new password
         if(isset($_POST['new_pass']))
         {
             if(!empty(trim($_POST['new_pass'])))
             {
                 $new_pass=trim($_POST['new_pass']);
+                $pattern='/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&_])[a-zA-Z0-9@$!%*?&_]{7,}$/';
+                if(preg_match($pattern,$new_pass))
+                {
+                    $edit_pass_error['#error-trad-new-pass']="";
+                    $encrypted=md5($new_pass);
+                    $edit_pass_error['#trad-new-pass']='valid';
+                }
+                else
+                {
+                    $edit_pass_error['#error-trad-new-pass']="Atleast 7 alphanumeric character consiting: <br/> Upper character </br> Lower character </br> Digit </br> Special char!";
+                    $edit_pass_error['clear']=false;
+                    $edit_pass_error['#trad-new-pass']='is-invalid';
+                }
             }
+            else{
+                $edit_pass_error['#error-trad-new-pass']="Password is required.";
+                $edit_pass_error['clear']=false;
+                $edit_pass_error['#trad-new-pass']='is-invalid';
+            }
+        }
+        //confirm password check
+        if(isset($_POST['re_pass']))
+        {
+            if(!empty(trim($_POST['re_pass'])))
+            {
+                $re_pass=trim($_POST['re_pass']);
+                if(isset( $_POST['new_pass']) )
+                {
+                    if( $_POST['re_pass'] == $_POST['new_pass'])
+                    {
+                        $edit_pass_error['#error-trad-re-pass']="";
+                        $edit_pass_error['#trad-re-pass']='valid';
+                    }
+                    else
+                    {
+                        $edit_pass_error['#error-trad-re-pass']="Password does not match.";
+                        $edit_pass_error['clear']=false;
+                        $edit_pass_error['#trad-re-pass']='is-invalid';
+                    }
+                }
+            }
+            else{
+                $edit_pass_error['#error-trad-re-pass']="Confirm your password.";
+                $edit_pass_error['clear']=false;
+                $edit_pass_error['#trad-re-pass']='is-invalid';
+            }
+        }
+
+        //updating password to database
+        if($edit_pass_error['clear']==true)
+        {
+            $updateQuery="UPDATE MART_USER SET PASSWORD=:pass WHERE USER_ID=:trader_id";
+            $parsedQuery=oci_parse($connection, $updateQuery);
+
+            oci_bind_by_name($parsedQuery, ":pass", $encrypted);
+            oci_bind_by_name($parsedQuery, "trader_id", $trader_id);
+
+            oci_execute($parsedQuery);
+            oci_free_statement($parsedQuery);
         }
         echo json_encode($edit_pass_error);
     }

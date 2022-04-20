@@ -40,5 +40,4 @@ function success_update_form()
         $('#profile-sucess-msg').removeClass('d-none')
         $('#profile-sucess-msg').addClass('d-block')
     }
-    inlineMsg(resp);
 }

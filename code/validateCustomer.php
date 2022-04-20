@@ -68,7 +68,7 @@
     if(isset($_POST['pword'])){
         if(!empty(trim($_POST['pword'])))
         {
-            $pattern='/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{7,}$/';
+            $pattern='/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&_])[a-zA-Z0-9@$!%*?&_]{7,}$/';
             if(preg_match($pattern,$_POST['pword']))
             {
                 //encrypt password before
@@ -79,7 +79,7 @@
             else
             {
                 $error['clear']=false;
-                $error['#pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit!<br/>";
+                $error['#pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit and one special char!";
             }
 
         }

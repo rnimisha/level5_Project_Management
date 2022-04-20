@@ -38,6 +38,7 @@ $(document).ready(function(){
                     // resetForm('personal-form');
                     $('#personal-form').addClass('was-validated');
                     success_update_form();
+                    inlineMsg(resp);
                 }
                 else{
                     // alert('success inside form');
@@ -82,6 +83,7 @@ $(document).ready(function(){
                     resetForm('password-form');
                     $('#picture-form').addClass('was-validated');
                     success_update_form();
+                    inlineMsg(resp);
                 }
                 else{
                     inlineMsg(resp);
