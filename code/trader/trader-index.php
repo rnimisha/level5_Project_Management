@@ -12,7 +12,7 @@
         $contact=$row['CONTACT'];
         $address=$row['ADDRESS'];
         $profile_pic=$row['PROFILE_PIC'];
-        $dob=date('d-m-Y', strtotime($row['DOB']));
+        $dob=date('d-F-Y', strtotime($row['DOB']));
     }
     oci_free_statement($parsedGetUser);
   }
@@ -100,7 +100,7 @@
                 <div class="row w-100 h6 pl-1 d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#" ><b>My Profile</b></a></li>
+                      <li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li>
                       <li class="breadcrumb-item"><a href="#">Setting</a></li>
                       <li class="breadcrumb-item active" aria-current="page">Personal</li>
                     </ol>
@@ -119,8 +119,42 @@
                       Settings
                     </div>
                   </div>
+
+                  <!-- about me -->
+                  <div class="row w-100 p-4 d-flex justify-content-center align-items-center" id="about-me">
+                    <div class="col-lg-5">
+                      <div class="col w-100 mb-3 d-flex justify-content-center align-items-center">
+                        <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="about-profile"/>
+                      </div>
+                    </div>
+                    <div class="col-lg-7">
+                      <ul class="list-group list-group-flush my-1 text-uppercase">
+                        <li class="list-group-item">
+                          <span>
+                            <i class="fa-solid fa-user-tag"></i> &nbsp;&nbsp;<?php  echo (isset($fullnames)) ? $fullnames : null;?>
+                          </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span >
+                            <i class="fa-solid fa-envelope-open-text"> &nbsp;&nbsp;</i> <?php  echo (isset($email)) ? $email : null;?>
+                          </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span>
+                            <i class="fa-solid fa-cake-candles"></i> &nbsp; &nbsp; <?php  echo (isset($dob)) ? $dob : null;?>
+                          </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span>
+                             <i class="fa-solid fa-location-dot"></i> &nbsp;  &nbsp; <?php  echo (isset($address)) ? $address : null;?>
+                          </span>
+                        </li>
+                        <li class="list-group-item"><span><i class="fa-solid fa-phone"></i> &nbsp; &nbsp; <?php  echo (isset($contact)) ? $contact : null;?></span></li>
+                      </ul>
+                    </div>
+                  </div>
                   <!-- profile setting category -->
-                  <div class="row w-100">
+                  <div class="row w-100 d-none" id="settings">
                     <div class="col-lg-2 col-md-3 border-right h-75">
                       <ul class="list-group list-group-flush my-1">
                         <li class="list-group-item" id="picture">Picture</li>
@@ -165,7 +199,7 @@
                       </div>
                         
                       <!-- personal information change -->
-                      <form class=" w-75 mx-auto py-4" id="personal-form" action="form-valid.php" method="POST">
+                      <form class=" w-75 mx-auto py-4 d-none" id="personal-form" action="form-valid.php" method="POST">
                         <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="personal-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
                         </div>
