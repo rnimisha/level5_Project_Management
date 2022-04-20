@@ -1,9 +1,7 @@
 <?php
     include_once('connection.php');
-
     $l_error=array();
     $l_error['clear']=true;
-    
     //email validation
     if(isset($_POST['l_useremail'])){
         if(!empty(trim($_POST['l_useremail']))){
@@ -109,7 +107,4 @@
         // //response
         echo json_encode($l_error);
     }
-
-    // echo json_encode($l_error);
-
 ?>

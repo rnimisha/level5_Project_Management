@@ -1,7 +1,7 @@
 <?php
   include_once('../connection.php');
   //for test
-  $current_user_id=1;
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,12 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <script src="script/script.js"></script>
-    <script src="../script/function.js"></script>
-    <script src="script/form-valid.js"></script>
     <title>Trader</title>
   </head> 
   <body>
@@ -74,7 +69,7 @@
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none" >
+                <a href="../logout.php" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <span class="hide-text">Sign out</span>
                 </a>
@@ -224,4 +219,9 @@
         </div>
     </div>
   </body>
+  <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script/script.js"></script>
+  <script src="../script/function.js"></script>
+  <script src="script/form-valid.js"></script>
 </html>

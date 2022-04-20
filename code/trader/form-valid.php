@@ -394,6 +394,4 @@
         }
         echo json_encode($del_pic_error);
     }
- 
-    
 ?>

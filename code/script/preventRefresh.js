@@ -287,7 +287,7 @@ $(document).ready(function(){
                     }
                     else if(resp.role == 'T')
                     {
-                        window.location.href = 'trader-index.php';
+                        $(location).attr('href','trader/trader-index.php');
                     }
                 }
                 else{
