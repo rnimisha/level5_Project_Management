@@ -4,6 +4,8 @@ $(document).ready(function(){
         var navigation = $("#nav1");
         var container = $(".main-container");
 
+        navigation.addClass('ease-out');
+        container.addClass('ease-out');
         // change navigation
         if (navigation.hasClass("col-lg-2")){
             if(navigation.hasClass("col-md-3")){
