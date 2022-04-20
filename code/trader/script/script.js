@@ -110,6 +110,34 @@ $(document).ready(function(){
         }
     });
 
+    //change to about me
+    $("#about-me-div").click(function(){
+        if(!$("#about-me-div").hasClass('active-form')){
+
+            $("#about-me-div").addClass('active-form');
+        }
+        if($('#setting-div').hasClass('active-form'))
+        {
+            $('#setting-div').removeClass('active-form');
+        }
+        
+        //hide settings
+        if(!$('#settings').hasClass('d-none'))
+        {
+            $('#settings').addClass('d-none');
+        }
+
+        //show about-me
+        if($('#about-me').hasClass('d-none'))
+        {
+            $('#about-me').removeClass('d-none');
+        }
+        if(!$('#about-me').hasClass('d-flex'))
+        {
+            $('#about-me').addClass('d-flex');
+        }
+    });
+
     //change setting form
     $('#personal').click(function(){
         if( $('#pass-change').hasClass("active-list"))
