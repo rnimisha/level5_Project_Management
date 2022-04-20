@@ -15,6 +15,7 @@
   </head> 
   <body>
     <div class="container-fluid ">
+      <!-- header logo and name -->
         <div class="row" id="header">
             <div class="col-lg-2 col-md-3 d-flex justify-content-center align-items-center" id="logo-header">
               <div class=" col-sm-1 d-md-none mr-auto px-3">
@@ -39,9 +40,10 @@
                 </div>
               </div>
             </div>
-
         </div>
+        <!-- main body with nav and main container -->
         <div class="row" id="main-body">
+          <!-- navigation -->
             <div class="col-lg-2 col-md-3 d-none d-md-flex justify-content-center align-items-center nav-side" id="nav1">
               <div class="list-group list-group-flush my-3 nav-list">
                 <div class="d-flex justify-content-center">
@@ -73,7 +75,9 @@
                 </a>
               </div>
             </div>
+            <!-- main trader interface -->
             <div class="col-lg-10 col-md-9 main-container">
+              <!-- breadcrumb -->
               <div class="col-11 mx-auto mt-4">
                 <div class="row w-100 h6 pl-1 d-flex align-items-center">
                   <span class="h5 mt-1" ><b>My Profile</b></span>
@@ -82,6 +86,7 @@
                   <i class='bx bx-chevron-right align-self-center'></i>
                   <span class="pb-1" id="page-link">Personal</span>
               </div>
+              <!-- profile-->
               <div class="row">
                 <div class="col-12 form-container w-100 py-3">
                   <div class="row border-bottom d-flex justify-content-around align-items-center mt-1">
@@ -94,6 +99,7 @@
                       Settings
                     </div>
                   </div>
+                  <!-- profile setting category -->
                   <div class="row w-100">
                     <div class="col-lg-2 col-md-3 border-right">
                       <ul class="list-group list-group-flush my-1">
@@ -102,17 +108,23 @@
                         <li class="list-group-item" id="pass-change">Password</li>
                       </ul>
                     </div>
+                    <!-- profile picture change -->
                     <div class="col-lg-10 col-md-9 d">
-                      <div class="alert alert-success d-none mt-4 mb-n2 w-75 mx-auto" id="profile-sucess-msg">
-                      </div>
                       <form class="w-75 mx-auto pb-4 d-none needs-validation"  novalidate id="picture-form" action="form-valid.php" method="POST">
+                        <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="profile-sucess-msg">
+                          <strong>Success!</strong>Changes has been saved.
+                        </div>
                         <div class="row justify-content-end mx-auto pr-1">
                           <button type="submit" class="btn ">Save Changes</button>
                         </div>  
                       </form>
+                      <!-- personal information change -->
                       <form class=" w-75 mx-auto py-4" id="personal-form" action="form-valid.php" method="POST">
+                        <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="personal-sucess-msg">
+                          <strong>Success!</strong>Changes has been saved.
+                        </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="trad-id"/>
+                            <input type="hidden" class="form-control" value="4" id="trad-id"/>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
@@ -147,9 +159,13 @@
                           <button type="submit" class="btn" id="personal-button">Save Changes</button>
                         </div>  
                       </form>
+                      <!-- password updation  -->
                       <form class=" w-75 mx-auto py-4 d-none" novalidate id="password-form" action="form-valid.php" method="POST">
+                        <div class="alert alert-success mt-4 mb-n1 w-100 mx-auto" id="pass-sucess-msg">
+                          <strong>Success!</strong>Changes has been saved.
+                        </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" value="4" id="trader-id"/>
+                            <input type="hidden" class="form-control" id="trader-id"/>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>

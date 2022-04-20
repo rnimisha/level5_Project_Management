@@ -1,5 +1,8 @@
 $(document).ready(function(){
     // alert('trader form');
+    $('#personal-sucess-msg').hide();
+    $('#profile-sucess-msg').hide();
+    $('#pass-sucess-msg').hide();
 
     $('#personal-form').submit(function(){
 
@@ -37,10 +40,14 @@ $(document).ready(function(){
                 {
                     // resetForm('personal-form');
                     $('#personal-form').addClass('was-validated');
-                    success_update_form();
                     inlineMsg(resp);
+                    $('#personal-sucess-msg').show();
+                    $('#profile-sucess-msg').hide();
+                    $('#pass-sucess-msg').hide();
                 }
                 else{
+                    jQuery('#pass-button').text('Save Changes');
+                    jQuery('#pass-button').attr('disabled', false);
                     // alert('success inside form');
                     inlineMsg(resp);
                 }
@@ -82,10 +89,14 @@ $(document).ready(function(){
                 {
                     resetForm('password-form');
                     $('#picture-form').addClass('was-validated');
-                    success_update_form();
+                    $('#personal-sucess-msg').hide();
+                    $('#profile-sucess-msg').hide();
+                    $('#pass-sucess-msg').show();
                     inlineMsg(resp);
                 }
                 else{
+                    jQuery('#pass-button').text('Save Changes');
+                    jQuery('#pass-button').attr('disabled', false);
                     inlineMsg(resp);
                 }
             }

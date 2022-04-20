@@ -47,7 +47,8 @@
                     oci_fetch($result);
                     oci_free_statement($result); 
                     if($number_of_rows>0){
-                        $getEmail= "SELECT * from mart_user where upper(USER_ID)=upper($trader_id)";
+                        $getEmail= "SELECT * from mart_user where USER_ID=$trader_id";
+                        $edit_trader_error['q']=$getEmail;
                         $parsedGetEmail = oci_parse($connection, $getEmail);
                         oci_execute($parsedGetEmail);
                         while (($row = oci_fetch_assoc($parsedGetEmail)) != false) {
