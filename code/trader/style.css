@@ -229,3 +229,24 @@ form .btn{
     transition: 0.25s;
     transform: translateY(0);
 }
+
+/* table */
+#detail-container table{
+    text-align: left;
+    overflow-x:auto;
+    font-size: 14px;
+}
+.table td, .table th {
+    padding: 1rem;
+    border-top: 0.5px solid #dee2e6;
+}
+.badge{
+    margin-top: 7px;
+    line-height: 0.4;
+    height: 12px;
+}
+.badge-success {
+    color: #304b37;
+    background-color: #b1c7b7;
+    
+}

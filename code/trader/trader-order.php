@@ -51,19 +51,19 @@
                   <i class="fa-solid fa-user"></i>
                   <span class="hide-text">Profile</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none active" >
+                <a href="trader-order.php" class="list-group-item text-decoration-none active" >
                   <i class="fa-solid fa-cart-shopping"></i>
                   <span class="hide-text">Order</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none" >
+                <a href="trader-product.php" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-basket-shopping"></i>
                   <span class="hide-text">Product</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none" >
+                <a href="trader-shop.php" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none confirm-logout"  >
+                <a href="../logout.php" class="list-group-item text-decoration-none confirm-logout"  >
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <span class="hide-text">Sign out</span>
                 </a>
@@ -84,35 +84,63 @@
               </div>
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Order</th>
-                        <th>Customer</th>
-                        <th>Date</th>
-                        <th>Satus</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                      $getUser= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS, EMAIL FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE p.shop_id IN(SELECT SHOP_ID FROM SHOP WHERE USER_ID=5) ORDER BY ORDER_DATE";
-                      // echo $getUser;
-                      $parsedGetUser = oci_parse($connection, $getUser);
-                      oci_execute($parsedGetUser);
-                      while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
-                      ?>
+                  <div class=".table-responsive">
+                    <table class="table">
+                      <thead class="bg-light">
                         <tr>
-                          <td>one</td>
-                          <td>two</td>
-                          <td>test</td>
-                          <td>test</td>
+                          <th>Order</th>
+                          <th>Customer</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Quantity</th>
+                          <th>Action</th>
                         </tr>
-                    <?php
-                      }
-                      oci_free_statement($parsedGetUser);
-                    ?>
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                      <?php
+                        $getUser= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS, NAME FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE p.shop_id IN(SELECT SHOP_ID FROM SHOP WHERE USER_ID=5) ORDER BY ORDER_DATE";
+                        // echo $getUser;
+                        $parsedGetUser = oci_parse($connection, $getUser);
+                        oci_execute($parsedGetUser);
+                        while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
+                        ?>
+                          <tr>
+                            <?php
+                              $getQuantity= "SELECT COUNT(*) AS QUANTITY FROM ORDER_ITEM WHERE ORDER_ID=".$row['ORDER_ID'];
+                              $parse=oci_parse($connection, $getQuantity);
+                              oci_define_by_name($parse, 'QUANTITY', $QUANTITY);
+                              oci_execute($parse);
+                              oci_fetch($parse);
+                            ?>
+                            <td><?php echo $row['ORDER_ID'] ?></td>
+                            <td><?php echo $row['NAME'] ?></td>
+                            <td><?php echo $row['ORDER_DATE'] ?></td>
+                            <?php
+                             if(strtoupper( $row['ORDER_STATUS']) == 'COMPLETED')
+                             {
+                               ?>
+                               <td class="badge badge-pill badge-success"><?php echo $row['ORDER_STATUS'] ?></td>
+                               <?php
+                             }
+                            ?>
+                            <td><?php echo $QUANTITY ?></td>
+                            <td>
+                              <span>
+                                <i class="fa-regular fa-eye"></i> &nbsp;
+                                <i class="fa-regular fa-pen-to-square"></i>
+                              </span>
+                            </td>
+                            <?php
+                              oci_free_statement($parse);
+                            ?>
+                          </tr>
+                      <?php
+                        }
+                        oci_free_statement($parsedGetUser);
+                      ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
