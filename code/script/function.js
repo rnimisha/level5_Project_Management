@@ -62,11 +62,11 @@ function changeTraderPic(img_name)
 
 
 //confirm before signing out
-$(document).ready(function(){
-    $('.confirm-logout').click(function(){
-        if (confirm('Do you want to sign out?')) 
-        {
-            $('#picture-form-up').submit();
-        } 
-    });
-});
+// $(document).ready(function(){
+//     $('.confirm-logout').click(function(){
+//         if (confirm('Do you want to sign out?')) 
+//         {
+//         
+//         } 
+//     });
+// });

@@ -63,7 +63,7 @@
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none confirm-logout"  >
+                <a href="../logout.php" class="list-group-item text-decoration-none confirm-logout"  >
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <span class="hide-text">Sign out</span>
                 </a>
@@ -75,7 +75,7 @@
               <div class="col-11 mx-auto mt-4">
                 <div class="row w-100 h6 pl-1 d-flex align-items-center">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb" id="trad-breadcrumb">
+                    <ol class="breadcrumb h4" id="trad-breadcrumb">
                       <li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li>
                       <li class="breadcrumb-item active"><a href="#">About Me</a></li>
                       <li class="breadcrumb-item" aria-current="page"></li>

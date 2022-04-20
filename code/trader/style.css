@@ -183,7 +183,7 @@ form .btn{
 }
 
 #detail-container{
-    min-height: 70vh;
+    min-height: 65vh;
 }
 
 #about-profile{
@@ -199,6 +199,7 @@ form .btn{
     background-color: #e8e8e8;
     margin-bottom: -5px;
 }
+
 .breadcrumb-item a{
     color: #000000;
 }
