@@ -101,8 +101,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li>
-                      <li class="breadcrumb-item"><a href="#">Setting</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Personal</li>
+                      <li class="breadcrumb-item active"><a href="#">About Me</a></li>
+                      <li class="breadcrumb-item" aria-current="page"></li>
                     </ol>
                   </nav>
               </div>
@@ -110,11 +110,11 @@
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
                   <div class="row border-bottom d-flex justify-content-around align-items-center mt-1">
-                    <div class="col-4 h5">
+                    <div class="col-4 h5 active-form" id="about-me-div">
                       <i class="fa-solid fa-address-card"></i>
                       About Me
                     </div>
-                    <div class="col-4 h5 active-form">
+                    <div class="col-4 h5" id="setting-div">
                       <i class="fa-solid fa-gear"></i>
                       Settings
                     </div>
@@ -158,7 +158,7 @@
                     <div class="col-lg-2 col-md-3 border-right h-75">
                       <ul class="list-group list-group-flush my-1">
                         <li class="list-group-item" id="picture">Picture</li>
-                        <li class="list-group-item active-list" id="personal">Personal</li>
+                        <li class="list-group-item" id="personal">Personal</li>
                         <li class="list-group-item" id="pass-change">Password</li>
                       </ul>
                     </div>

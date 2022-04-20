@@ -70,6 +70,46 @@ $(document).ready(function(){
         $('#profile-picture').css({'width' : '75px' , 'height' : '75px'});
     });
 
+    //change to setting
+    $("#setting-div").click(function(){
+        if(!$("#setting-div").hasClass('active-form')){
+
+            $("#setting-div").addClass('active-form');
+        }
+        if($('#about-me-div').hasClass('active-form'))
+        {
+            $('#about-me-div').removeClass('active-form');
+        }
+        
+        //hide about me 
+        if($('#about-me').hasClass('d-flex'))
+        {
+            $('#about-me').removeClass('d-flex');
+        }
+        if(!$('#about-me').hasClass('d-none'))
+        {
+            $('#about-me').addClass('d-none');
+        }
+
+        //show settings
+        if($('#settings').hasClass('d-none'))
+        {
+            $('#settings').removeClass('d-none');
+        }
+
+        //add active line to picture form
+        if(!$('#picture').hasClass('active-list'))
+        {
+            $('#picture').addClass('active-list');
+        }
+
+        //display picture form
+        if($('#picture-form').hasClass('d-none'))
+        {
+            $('#picture-form').removeClass('d-none');
+        }
+    });
+
     //change setting form
     $('#personal').click(function(){
         if( $('#pass-change').hasClass("active-list"))

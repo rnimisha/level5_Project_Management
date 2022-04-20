@@ -158,7 +158,7 @@ form .btn{
     border-bottom: 2px solid #789680;
 }
 
-#picture, #personal, #pass-change{
+#picture, #personal, #pass-change, #about-me-div, #setting-div{
     cursor: pointer;
 }
 .active-list{
@@ -207,3 +207,4 @@ form .btn{
     color: #789680;
     font-size: 1.3rem;
 }
+
