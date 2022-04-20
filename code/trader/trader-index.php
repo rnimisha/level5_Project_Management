@@ -124,7 +124,7 @@
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" value="4" id="trad-id"/>
+                            <input type="hidden" class="form-control" id="trad-id"/>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
@@ -165,7 +165,7 @@
                           <strong>Success!</strong>Changes has been saved.
                         </div>
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="trader-id"/>
+                            <input type="hidden" class="form-control" value="4" id="trader-id"/>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="trad-old-pass" placeholder="Old Password"/>

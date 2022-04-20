@@ -40,7 +40,7 @@ $(document).ready(function(){
                 {
                     // resetForm('personal-form');
                     $('#personal-form').addClass('was-validated');
-                    inlineMsg(resp);
+                    removeStyle(resp);
                     $('#personal-sucess-msg').show();
                     $('#profile-sucess-msg').hide();
                     $('#pass-sucess-msg').hide();
@@ -92,7 +92,7 @@ $(document).ready(function(){
                     $('#personal-sucess-msg').hide();
                     $('#profile-sucess-msg').hide();
                     $('#pass-sucess-msg').show();
-                    inlineMsg(resp);
+                    removeStyle(resp);
                 }
                 else{
                     jQuery('#pass-button').text('Save Changes');

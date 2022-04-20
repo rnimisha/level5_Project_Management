@@ -8,6 +8,8 @@ function resetForm(formID){
 function inlineMsg(resp){
     for(const key in resp){
         $(key).html(resp[key]);
+
+        //change style
         if(resp[key] == 'is-invalid')
         {
             if(!$(key).hasClass('is-invalid'))
@@ -27,6 +29,24 @@ function inlineMsg(resp){
             if(!$(key).hasClass('is-valid'))
             {
                 $(key).addClass('is-valid');
+            }
+        }
+    }
+}
+
+function removeStyle(resp)
+{
+    for(const key in resp){
+        $(key).html(resp[key]);
+        if(resp[key] == 'valid')
+        {
+            if($(key).hasClass('is-valid')) 
+            {
+                $(key).removeClass('is-valid');
+            }
+            if($(key).hasClass('is-invalid')) 
+            {
+                $(key).removeClass('is-invalid');
             }
         }
     }
