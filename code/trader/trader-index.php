@@ -87,7 +87,7 @@
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
-                <a href="../logout.php" class="list-group-item text-decoration-none" >
+                <a href="#" class="list-group-item text-decoration-none confirm-logout"  >
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <span class="hide-text">Sign out</span>
                 </a>
