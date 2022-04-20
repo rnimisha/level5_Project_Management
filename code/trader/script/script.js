@@ -288,3 +288,7 @@ $(document).ready(function(){
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Password</li>');
     });
 });
+
+
+
+

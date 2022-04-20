@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <title>Welcome Trader</title>
+    <title>Trader Order</title>
   </head> 
   <body>
     <div class="container-fluid ">
@@ -47,11 +47,11 @@
                   <i class='bx bxs-dashboard'></i></i>
                   Dashboard
                 </a> -->
-                <a href="trader-index.php" class="list-group-item text-decoration-none active " >
+                <a href="#" class="list-group-item text-decoration-none active " >
                   <i class="fa-solid fa-user"></i>
                   <span class="hide-text">Profile</span>
                 </a>
-                <a href="trader-order.php" class="list-group-item text-decoration-none" >
+                <a href="#" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-cart-shopping"></i>
                   <span class="hide-text">Order</span>
                 </a>
