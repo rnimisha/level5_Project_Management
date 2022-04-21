@@ -99,7 +99,7 @@
                       </thead>
                       <tbody>
                       <?php
-                        $getUser= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS, NAME FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE p.shop_id IN(SELECT SHOP_ID FROM SHOP WHERE USER_ID=5) ORDER BY ORDER_DATE";
+                        $getUser= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS, NAME FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE p.shop_id IN(SELECT SHOP_ID FROM SHOP WHERE USER_ID=5) ORDER BY ORDER_DATE DESC";
                         // echo $getUser;
                         $parsedGetUser = oci_parse($connection, $getUser);
                         oci_execute($parsedGetUser);
@@ -145,8 +145,7 @@
                             <td><?php echo $QUANTITY ?></td>
                             <td>
                               <span>
-                                    <i class="fa-regular fa-eye view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i> </a>&nbsp;
-                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <i class="fa-regular fa-eye view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
                               </span>
                             </td>
                             <?php
@@ -161,7 +160,6 @@
                     </table>
                   </div>
                   <div class="col-12 d-none" id="order-detail-table">
-                    <?php include 'view-order.php' ?>
                   </div>
                 </div>
               </div>

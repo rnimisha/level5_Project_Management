@@ -289,16 +289,16 @@ $(document).ready(function(){
     });
 
     $('.view-order-detail').click(function(){
+        
         var order_id=$(this).attr('value');
-
         $.ajax({
             type: 'POST',
             url: 'view-order.php',
             data: {
-                order_id:order_id,
-                view_order:'yes'
+               order_id: order_id
             },
             success: function(response){
+                // alert(response);
                 if(!$('#order-table').hasClass('d-none'))
                 {
                     $('#order-table').addClass('d-none');
@@ -307,11 +307,11 @@ $(document).ready(function(){
                 {
                     $('#order-detail-table').removeClass('d-none');
                 }
+                $('#order-detail-table').html(response);
             }
-
         });
-        return false;
     });
+
 });
 
 

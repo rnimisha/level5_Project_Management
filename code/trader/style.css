@@ -266,3 +266,14 @@ form .btn{
     color: #353ea4;
     background-color: #96afd1;
 }
+
+.mygreen{
+    background-color: #b1c7b7;
+}
+
+.zui-table-rounded thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+.zui-table-rounded thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
