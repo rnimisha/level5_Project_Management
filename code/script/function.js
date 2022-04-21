@@ -70,3 +70,4 @@ function changeTraderPic(img_name)
 //         } 
 //     });
 // });
+

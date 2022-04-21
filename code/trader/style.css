@@ -240,6 +240,13 @@ form .btn{
     padding: 1rem;
     border-top: 0.5px solid #dee2e6;
 }
+.table td{
+    text-transform: lowercase;
+}
+.table td::first-letter{
+    text-transform: uppercase;
+}
+
 .badge{
     margin-top: 7px;
     line-height: 0.4;

@@ -82,17 +82,19 @@
                   </nav>
               </div>
               <div class="row" id="detail-container">
-                <div class="col-12 form-container w-100 py-3">
-                  <div class=".table-responsive">
-                    <table class="table">
+                <div class="col-12 form-container  w-100 py-3">
+                  <div class="col-12">
+                  </div>
+                  <div class="col-12 table-responsive">
+                    <table class="table table-hover">
                       <thead class="bg-light">
                         <tr>
-                          <th>Order</th>
-                          <th>Customer</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                          <th>Quantity</th>
-                          <th>Action</th>
+                          <th>ORDER</th>
+                          <th>CUSTOMER</th>
+                          <th>ORDER DATE</th>
+                          <th>STATUS</th>
+                          <th>QUANTITY</th>
+                          <th>ACTION</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -111,20 +113,20 @@
                               oci_execute($parse);
                               oci_fetch($parse);
                             ?>
-                            <td><?php echo $row['ORDER_ID'] ?></td>
+                            <td><?php echo '#'.$row['ORDER_ID'] ?></td>
                             <td><?php echo $row['NAME'] ?></td>
                             <td><?php echo $row['ORDER_DATE'] ?></td>
                             <?php
                               if(strtoupper( $row['ORDER_STATUS']) == 'COMPLETED')
                               {
                                 ?>
-                                <td class="badge badge-pill badge-completed"><?php echo $row['ORDER_STATUS'] ?></td>
+                                <td class="badge badge-pill badge-completed"><?php echo $row['ORDER_STATUS']; ?></td>
                                 <?php
                               }
                               else if(strtoupper($row['ORDER_STATUS']) == 'PENDING')
                               {
                                 ?>
-                                <td class="badge badge-pill badge-pending"><?php echo $row['ORDER_STATUS']; ?></td>
+                                <td class="badge badge-pill badge-pending"><span>&nbsp;&nbsp;&nbsp;</span><?php echo $row['ORDER_STATUS']; ?><span>&nbsp;&nbsp; </span></td>
                                 <?php
                               }
                               else if(strtoupper($row['ORDER_STATUS']) == 'PROCESSING')
@@ -133,12 +135,18 @@
                                 <td class="badge badge-pill badge-processing"><?php echo $row['ORDER_STATUS']; ?></td>
                                 <?php
                               }
+                              else
+                              {
+                                ?>
+                                <td><?php echo $row['ORDER_STATUS']; ?></td>
+                                <?php
+                              }
                             ?>
                             <td><?php echo $QUANTITY ?></td>
                             <td>
                               <span>
-                                <i class="fa-regular fa-eye"></i> &nbsp;
-                                <i class="fa-regular fa-pen-to-square"></i>
+                                    <i class="fa-regular fa-eye view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i> </a>&nbsp;
+                                    <i class="fa-regular fa-pen-to-square"></i>
                               </span>
                             </td>
                             <?php
