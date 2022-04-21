@@ -19,6 +19,7 @@
   // else{
   //   //redirect later
   // }
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <title>Trader Order</title>
+    <title>Product</title>
   </head> 
   <body>
     <div class="container-fluid ">
@@ -115,24 +116,12 @@
                             <td><?php echo $row['NAME'] ?></td>
                             <td><?php echo $row['ORDER_DATE'] ?></td>
                             <?php
-                              if(strtoupper( $row['ORDER_STATUS']) == 'COMPLETED')
-                              {
-                                ?>
-                                <td class="badge badge-pill badge-completed"><?php echo $row['ORDER_STATUS'] ?></td>
-                                <?php
-                              }
-                              else if(strtoupper($row['ORDER_STATUS']) == 'PENDING')
-                              {
-                                ?>
-                                <td class="badge badge-pill badge-pending"><?php echo $row['ORDER_STATUS']; ?></td>
-                                <?php
-                              }
-                              else if(strtoupper($row['ORDER_STATUS']) == 'PROCESSING')
-                              {
-                                ?>
-                                <td class="badge badge-pill badge-processing"><?php echo $row['ORDER_STATUS']; ?></td>
-                                <?php
-                              }
+                             if(strtoupper( $row['ORDER_STATUS']) == 'COMPLETED')
+                             {
+                               ?>
+                               <td class="badge badge-pill badge-success"><?php echo $row['ORDER_STATUS'] ?></td>
+                               <?php
+                             }
                             ?>
                             <td><?php echo $QUANTITY ?></td>
                             <td>

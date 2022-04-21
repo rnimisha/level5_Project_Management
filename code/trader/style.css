@@ -245,8 +245,17 @@ form .btn{
     line-height: 0.4;
     height: 12px;
 }
-.badge-success {
+.badge-completed {
     color: #304b37;
     background-color: #b1c7b7;
     
+}
+.badge-pending{
+    color: #5e561b;
+    background-color: #fcf2bc;
+}
+
+.badge-processing{
+    color: #353ea4;
+    background-color: #96afd1;
 }
