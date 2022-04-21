@@ -1,24 +1,5 @@
 <?php
   include_once('../connection.php');
-  if(isset($_SESSION['phoenix_user']) & !empty($_SESSION['phoenix_user']))
-  {
-    $current_trader_id=$_SESSION['phoenix_user'];
-    $getUser= "SELECT * from mart_user where user_id=$current_trader_id";
-    $parsedGetUser = oci_parse($connection, $getUser);
-    oci_execute($parsedGetUser);
-    while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
-        $email= $row['EMAIL'];
-        $fullnames=$row['NAME'];
-        $contact=$row['CONTACT'];
-        $address=$row['ADDRESS'];
-        $profile_pic=$row['PROFILE_PIC'];
-        $dob=date('d-F-Y', strtotime($row['DOB']));
-    }
-    oci_free_statement($parsedGetUser);
-  }
-  // else{
-  //   //redirect later
-  // }
 ?>
 <!doctype html>
 <html lang="en">
@@ -72,12 +53,13 @@
             <div class="col-lg-10 col-md-9 main-container">
               <!-- breadcrumb -->
               <div class="col-11 mx-auto mt-4">
-                <div class="row w-100 h6 pl-1 d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb h4" id="trad-breadcrumb">
-                      <li class="breadcrumb-item"><a href="trader-index.php" ><b>Order</b></a></li>
-                      <!-- <li class="breadcrumb-item active"><a href="#">About Me</a></li>
-                      <li class="breadcrumb-item" aria-current="page"></li> -->
+                <div class="row h6 d-flex align-items-center">
+                  <nav class="col-12 w-100 px-0 mb-3">
+                    <ol class="breadcrumb" id="trad-breadcrumb">
+                    <li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li>
+                      <li class="breadcrumb-item active"><a href="trader-order.php" ><b>Order</b></a></li>
+                      <!-- <li class="breadcrumb-item active d-none" id="ord-detail-crumb">Details</li> -->
+                      <!-- <li class="breadcrumb-item" aria-current="page"></li> -->
                     </ol>
                   </nav>
               </div>
@@ -85,9 +67,9 @@
                 <div class="col-12 form-container  w-100 py-3">
                   <div class="col-12">
                   </div>
-                  <div class="col-12 table-responsive" id="order-table">
+                  <div class="col-12 table-responsive mt-3" id="order-table">
                     <table class="table table-hover">
-                      <thead class="bg-light">
+                      <thead class="mygreen">
                         <tr>
                           <th>ORDER</th>
                           <th>CUSTOMER</th>

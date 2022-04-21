@@ -2,19 +2,6 @@
   include_once('../connection.php');
   if(isset($_SESSION['phoenix_user']) & !empty($_SESSION['phoenix_user']))
   {
-    $current_trader_id=$_SESSION['phoenix_user'];
-    $getUser= "SELECT * from mart_user where user_id=$current_trader_id";
-    $parsedGetUser = oci_parse($connection, $getUser);
-    oci_execute($parsedGetUser);
-    while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
-        $email= $row['EMAIL'];
-        $fullnames=$row['NAME'];
-        $contact=$row['CONTACT'];
-        $address=$row['ADDRESS'];
-        $profile_pic=$row['PROFILE_PIC'];
-        $dob=date('d-F-Y', strtotime($row['DOB']));
-    }
-    oci_free_statement($parsedGetUser);
   }
   // else{
   //   //redirect later
@@ -55,11 +42,11 @@
                   <i class="fa-solid fa-cart-shopping"></i>
                   <span class="hide-text">Order</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none" >
+                <a href="trader-product.php" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-basket-shopping"></i>
                   <span class="hide-text">Product</span>
                 </a>
-                <a href="#" class="list-group-item text-decoration-none" >
+                <a href="trader-shop.php" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
@@ -73,9 +60,10 @@
             <div class="col-lg-10 col-md-9 main-container">
               <!-- breadcrumb -->
               <div class="col-11 mx-auto mt-4">
-                <div class="row w-100 h6 pl-1 d-flex align-items-center">
-                <nav aria-label="breadcrumb">
+                <div class="row h6 d-flex align-items-center">
+                  <nav class="col-12 w-100 px-0 mb-3">
                     <ol class="breadcrumb h4" id="trad-breadcrumb">
+                      <li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li>
                       <li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li>
                       <li class="breadcrumb-item active"><a href="#">About Me</a></li>
                       <li class="breadcrumb-item" aria-current="page"></li>

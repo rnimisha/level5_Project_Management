@@ -34,18 +34,19 @@ echo '<div class="row">
           </div>
       </div>
       <div class="row">
-          <div class="col-lg-9 col-md-8">
+          <div class="col-lg-9 col-md-8 ">
             <br><br>
             Customer : '.$name.'<br>
             Order Date : '.$od_date.'<br>
           </div>
-          <div class="col-lg-3 col-md-4 ml-auto">
+          <div class="col-lg-3 col-md-4 float-right">
             <br><br>
             Status : '.$status.'<br>
             Slot : '.$slot_day.' '.$time_range.'<br>
           </div>
       </div>
-      <div class="row table-responsive">
+      <div class="card mt-3">
+      <div class="row table-responsive w-100  mx-auto">
         <table class="table">
           <thead class="bg-light">
             <tr class="mygreen">
@@ -68,7 +69,7 @@ echo '<div class="row">
             echo'
           </tbody>
         </table>
-      </div>';
+        </div></div>';
 
 ?>
 

@@ -133,7 +133,7 @@ $(document).ready(function(){
             $('#picture-form').removeClass('d-none');
         }
 
-        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
     });
 
     //change to about me
@@ -170,7 +170,7 @@ $(document).ready(function(){
             $('#about-me').addClass('d-flex');
         }
 
-        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">About Me</a></li><li class="breadcrumb-item" aria-current="page"></li>');
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">About Me</a></li><li class="breadcrumb-item" aria-current="page"></li>');
     });
 
     //change setting form
@@ -208,7 +208,7 @@ $(document).ready(function(){
             $('#picture-form').addClass('d-none');
         }
 
-        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Personal</li>');
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Personal</li>');
     });
 
     $('#picture').click(function(){
@@ -246,7 +246,7 @@ $(document).ready(function(){
             $('#personal-form').addClass('d-none');
         }
 
-        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item "><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
 
     });
 
@@ -285,7 +285,7 @@ $(document).ready(function(){
             $('#personal-form').addClass('d-none');
         }
 
-        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item active"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Password</li>');
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Password</li>');
     });
 
     $('.view-order-detail').click(function(){
@@ -308,6 +308,9 @@ $(document).ready(function(){
                     $('#order-detail-table').removeClass('d-none');
                 }
                 $('#order-detail-table').html(response);
+
+                $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-order.php" ><b>Order</b></a></li><li class="breadcrumb-item active"><a href="#">Details</a></li>');
+
             }
         });
     });

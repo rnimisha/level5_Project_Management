@@ -1,3 +1,26 @@
+<?php
+  include_once('../connection.php');
+  if(isset($_SESSION['phoenix_user']) & !empty($_SESSION['phoenix_user']))
+  {
+    $current_trader_id=$_SESSION['phoenix_user'];
+    $getUser= "SELECT * from mart_user where user_id=$current_trader_id";
+    $parsedGetUser = oci_parse($connection, $getUser);
+    oci_execute($parsedGetUser);
+    while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
+        $email= $row['EMAIL'];
+        $fullnames=$row['NAME'];
+        $contact=$row['CONTACT'];
+        $address=$row['ADDRESS'];
+        $profile_pic=$row['PROFILE_PIC'];
+        $dob=date('d-F-Y', strtotime($row['DOB']));
+    }
+    oci_free_statement($parsedGetUser);
+  }
+  // else{
+  //   //redirect later
+  // }
+?>
+
 <div class="row" id="header">
     <div class="col-lg-2 col-md-3 d-flex justify-content-center align-items-center" id="logo-header">
         <div class=" col-sm-1 d-md-none mr-auto px-3">

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <title>My Product</title>
+    <title>My shop</title>
   </head> 
   <body>
     <div class="container-fluid ">
@@ -35,11 +35,11 @@
                   <i class="fa-solid fa-cart-shopping"></i>
                   <span class="hide-text">Order</span>
                 </a>
-                <a href="trader-product.php" class="list-group-item text-decoration-none active" >
+                <a href="trader-product.php" class="list-group-item text-decoration-none" >
                   <i class="fa-solid fa-basket-shopping"></i>
                   <span class="hide-text">Product</span>
                 </a>
-                <a href="trader-shop.php" class="list-group-item text-decoration-none" >
+                <a href="trader-shop.php" class="list-group-item text-decoration-none active" >
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
@@ -57,7 +57,7 @@
                   <nav class="col-12 w-100 px-0 mb-3">
                     <ol class="breadcrumb h4" id="trad-breadcrumb">
                       <li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li>
-                      <li class="breadcrumb-item active"><a href="trader-product.php" ><b>Product</b></a></li>
+                      <li class="breadcrumb-item active"><a href="trader-shop.php" ><b>Shop</b></a></li>
                     </ol>
                   </nav>
               </div>
