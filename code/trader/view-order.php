@@ -9,25 +9,27 @@
     <title>Welcome Trader</title>
   </head> 
   <body>
-<div class="modal fade" id="order-detail-modal" tabindex="-1" role="dialog" >
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Order Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+    <?php
+      if(isset($_POST['order_id']) && !empty($_POST['order_id']) && isset($_POST['view_order'])){
+        $getUser= "SELECT ORDER_DATE, NAME, EMAIL FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE";
+        // echo $getUser;
+        $parsedGetUser = oci_parse($connection, $getUser);
+        oci_execute($parsedGetUser);
+        while (($row = oci_fetch_assoc($parsedGetUser)) != false) {
+        }
+
+      }
+      
+
+    ?>
+    <p> heloooooo</p>
+  <ul class="list-group list-group-flush my-1 text-uppercase">
+        <li class="list-group-item">
+          <span>
+           &nbsp;&nbsp;<?php  echo 'hello';?>
+          </span>
+        </li>
+  </ul>
 </body>
   <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -85,7 +85,7 @@
                 <div class="col-12 form-container  w-100 py-3">
                   <div class="col-12">
                   </div>
-                  <div class="col-12 table-responsive">
+                  <div class="col-12 table-responsive" id="order-table">
                     <table class="table table-hover">
                       <thead class="bg-light">
                         <tr>
@@ -159,6 +159,9 @@
                       ?>
                       </tbody>
                     </table>
+                  </div>
+                  <div class="col-12 d-none" id="order-detail-table">
+                    <?php include 'view-order.php' ?>
                   </div>
                 </div>
               </div>

@@ -289,7 +289,28 @@ $(document).ready(function(){
     });
 
     $('.view-order-detail').click(function(){
-        alert($(this).attr('value'));
+        var order_id=$(this).attr('value');
+
+        $.ajax({
+            type: 'POST',
+            url: 'view-order.php',
+            data: {
+                order_id:order_id,
+                view_order:'yes'
+            },
+            success: function(response){
+                if(!$('#order-table').hasClass('d-none'))
+                {
+                    $('#order-table').addClass('d-none');
+                }
+                if($('#order-detail-table').hasClass('d-none'))
+                {
+                    $('#order-detail-table').removeClass('d-none');
+                }
+            }
+
+        });
+        return false;
     });
 });
 
