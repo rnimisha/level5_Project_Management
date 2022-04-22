@@ -326,7 +326,6 @@ $(document).ready(function(){
                product_modal:'yes'
             },
             success: function(response){
-                console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true)
                 {

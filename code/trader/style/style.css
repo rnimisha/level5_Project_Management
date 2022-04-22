@@ -303,6 +303,14 @@ thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-c
     height: 45px;;
 }
 
+.modal-content {
+    border-radius: 2rem;
+}
+
+.modal-header{
+    border-radius:2rem 2rem 0 0 ;
+}
+
 @media (min-width: 576px)
 {
     .modal-dialog {

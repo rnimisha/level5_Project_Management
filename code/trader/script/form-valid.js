@@ -57,7 +57,7 @@ $(document).ready(function(){
         return false;
     });
 
-
+    //post password form data
     $('#password-form').submit(function(){
         $('#personal-sucess-msg').hide();
         $('#profile-sucess-msg').hide();
@@ -110,6 +110,7 @@ $(document).ready(function(){
         } 
     });
 
+    //post 
     $('#picture-form-up').submit(function(){
         $('#personal-sucess-msg').hide();
         $('#profile-sucess-msg').hide();
@@ -197,6 +198,59 @@ $(document).ready(function(){
             //prevent page reload
             return false;
         } 
+    });
+
+    // post details to edit product details
+    $('#edit-product-form').submit(function(){
+        //button value change
+        jQuery('#edit-prod-button').text('Saving...');
+        jQuery('#edit-prod-button').attr('disabled', true);
+
+        var product_id=$('#product_id').val();
+        var name=$('#product-name').val();
+        var stock=$('#product-stock').val();
+        var price=$('#product-price').val();
+        var unit=$('#product-unit').val();
+        var min=$('#product-min').val();
+        var max=$('#product-max').val();
+        var descp=$('#product-desdp').val();
+        var allergy=$('#product-allergy').val();
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                product_id:product_id,
+                name:name,
+                stock,stock,
+                price:price,
+                unit:unit,
+                min:min,
+                max:max,
+                descp:descp,
+                allergy:allergy,
+                form_name: 'edit-product-form'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+               
+                jQuery('#edit-prod-button').text('Save Changes');
+                jQuery('#edit-prod-button').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    // resetForm('personal-form');
+                    $('#edit-product-form').addClass('was-validated');
+                    removeStyle(resp);
+                }
+                else{
+                    // alert('success inside form');
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
     });
 });
 
