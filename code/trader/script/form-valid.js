@@ -213,7 +213,7 @@ $(document).ready(function(){
         var unit=$('#product-unit').val();
         var min=$('#product-min').val();
         var max=$('#product-max').val();
-        var descp=$('#product-desdp').val();
+        var descp=$('#product-descp').val();
         var allergy=$('#product-allergy').val();
 
         $.ajax({

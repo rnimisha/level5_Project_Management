@@ -9,6 +9,7 @@
         $product_id=$_POST['product_id'];
         if(isset($_POST['name']))
         {
+            //validate product
             if(!empty(trim($_POST['name'])))
             {
                 $name=$_POST['name'];
@@ -47,9 +48,147 @@
             else
             {
                 $edit_prod_error['clear']=false;
-                $edit_prod_error['#error-product-name']="Product name cannot be empty";
+                $edit_prod_error['#error-product-name']="Product name is required";
                 $edit_prod_error['#product-name']='is-invalid';
             }
+        }
+
+        if(isset($_POST['stock']))
+        {
+            if(!empty(trim($_POST['stock'])))
+            {
+                $stock=trim($_POST['stock']);
+                if (filter_var($stock, FILTER_VALIDATE_INT))
+                {
+                    $edit_prod_error['#error-product-stock']="";
+                    $edit_prod_error['#product-stock']='valid';
+                }
+                else{
+                    $edit_prod_error['clear']=false;
+                    $edit_prod_error['#error-product-stock']="Enter valid integer.";
+                    $edit_prod_error['#product-stock']='is-invalid';
+                }
+            }
+            else{
+                $edit_prod_error['clear']=false;
+                $edit_prod_error['#error-product-stock']="Stock is required.";
+                $edit_prod_error['#product-stock']='is-invalid';
+            }
+        }
+
+        //check price
+        if(isset($_POST['price']))
+        {
+            if(!empty(trim($_POST['price'])))
+            {
+                $price=trim($_POST['price']);
+                if($price<=0)
+                {
+                    $edit_prod_error['clear']=false;
+                    $edit_prod_error['#error-product-price']="Price can't be less than zero.";
+                    $edit_prod_error['#product-price']='is-invalid';
+
+                    if (filter_var($price, FILTER_VALIDATE_FLOAT))
+                    {
+                        $edit_prod_error['#error-product-price']="";
+                        $edit_prod_error['#product-price']='valid';
+                    }
+                    else{
+                        $edit_prod_error['clear']=false;
+                        $edit_prod_error['#error-product-price']="Enter valid number.";
+                        $edit_prod_error['#product-price']='is-invalid';
+                    }
+                }
+            }
+            else{
+                $edit_prod_error['clear']=false;
+                $edit_prod_error['#error-product-price']="Price is required.";
+                $edit_prod_error['#product-price']='is-invalid';
+            }
+        }
+
+        //check unit
+        if(isset($_POST['unit']))
+        {
+            if(!empty(trim($_POST['unit'])))
+            {
+                $unit=$_POST['unit'];
+                $edit_prod_error['#error-product-unit']="";
+                $edit_prod_error['#product-unit']='valid';
+            }
+            else{
+                $edit_prod_error['clear']=false;
+                $edit_prod_error['#error-product-unit']="Unit field is required.";
+                $edit_prod_error['#product-unit']='is-invalid';
+            }
+        }
+
+        if(isset($_POST['min']))
+        {
+            if(!empty(trim($_POST['min'])))
+            {
+                $min=trim($_POST['min']);
+                if (filter_var($min, FILTER_VALIDATE_INT))
+                {
+                    $edit_prod_error['#error-product-min']="";
+                    $edit_prod_error['#product-min']='valid';
+                }
+                else{
+                    $edit_prod_error['clear']=false;
+                    $edit_prod_error['#error-product-min']="Enter valid integer.";
+                    $edit_prod_error['#product-min']='is-invalid';
+                }
+            }
+            else{
+                $edit_prod_error['clear']=false;
+                $edit_prod_error['#error-product-min']="Minimum order is required.";
+                $edit_prod_error['#product-min']='is-invalid';
+            }
+
+            if(isset($_POST['max']))
+            {
+                if(!empty(trim($_POST['max'])))
+                {
+                    $max=trim($_POST['max']);
+                    if (filter_var($max, FILTER_VALIDATE_INT))
+                    {
+                        if(isset($_POST['min']))
+                        {
+                            if($_POST['min']>$max)
+                            {
+                                $edit_prod_error['clear']=false;
+                                $edit_prod_error['#error-product-max']="Maximum order can't be less than minimum order.";
+                                $edit_prod_error['#product-max']='is-invalid';
+                            }
+                        }
+                        $edit_prod_error['#error-product-max']="";
+                        $edit_prod_error['#product-max']='valid';
+                    }
+                    else{
+                        $edit_prod_error['clear']=false;
+                        $edit_prod_error['#error-product-max']="Enter valid integer.";
+                        $edit_prod_error['#product-max']='is-invalid';
+                    }
+                }
+                else{
+                    $edit_prod_error['clear']=false;
+                    $edit_prod_error['#error-product-max']="Maximum order is required.";
+                    $edit_prod_error['#product-max']='is-invalid';
+                }
+            }
+
+            $allergy=$descp='';
+            if(isset($_POST['descp']) || isset($_POST['allergy']))
+            {
+                $descp=$_POST['descp'];
+                $allergy=$_POST['allergy'];
+            }
+        }
+
+        //if all validations pass
+        if( $edit_prod_error['clear'])
+        {
+
         }
 
         echo json_encode($edit_prod_error);
