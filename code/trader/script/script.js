@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $("#left-toggle").click(function(){
         var navigation = $("#nav1");
         var container = $(".main-container");
@@ -230,7 +229,7 @@ $(document).ready(function(){
         }
 
         //display picture form
-        $('#picture-form').addClass('transition-effect')
+        $('#picture-form').addClass('transition-effect');
         if($('#picture-form').hasClass('d-none'))
         {
             $('#picture-form').removeClass('d-none');
@@ -269,7 +268,7 @@ $(document).ready(function(){
         }
 
         //display password form
-        $('#password-form').addClass('transition-effect')
+        $('#password-form').addClass('transition-effect');
         if($('#password-form').hasClass('d-none'))
         {
             $('#password-form').removeClass('d-none');
@@ -298,6 +297,7 @@ $(document).ready(function(){
                order_id: order_id
             },
             success: function(response){
+                $('#order-detail-table').addClass('transition-effect');
                 // alert(response);
                 if(!$('#order-table').hasClass('d-none'))
                 {
@@ -316,7 +316,7 @@ $(document).ready(function(){
     });
 
 });
-
+$('body').addClass('transition-effect');
 
 
 

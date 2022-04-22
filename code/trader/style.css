@@ -168,15 +168,16 @@ form .btn{
 }
  
 /* image profile picture */
-#changing-profile
+#changing-profile, #about-profile
 {
-    max-width: 60%;
-    max-height: 230px;
+    width: 100%;
+    height: 250px;
     border-radius: 30px;
     margin-bottom: 35px;
-    border:3px solid #789680;
-    margin: 0;
+    margin-top: 30px;
+    /* margin: 0; */
 }
+
 
 .prof-delete .btn{
     background-color: #dea4a4;
@@ -184,14 +185,6 @@ form .btn{
 
 #detail-container{
     min-height: 65vh;
-}
-
-#about-profile{
-    max-width: 70%;
-    max-height: 270px;
-    border-radius: 30px;
-    margin-bottom: 35px;
-    margin-top: 30px;
 }
 
 /* breadcrumb */
@@ -223,6 +216,7 @@ form .btn{
         opacity: 1;
     }
 }
+
 
 .ease-out {
     transition-timing-function: ease-out;

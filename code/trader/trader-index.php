@@ -88,7 +88,9 @@
                   <div class="row w-100 p-4 d-flex justify-content-center align-items-center" id="about-me">
                     <div class="col-lg-5">
                       <div class="col w-100 mb-3 d-flex justify-content-center align-items-center">
-                        <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="about-profile"/>
+                        <div class="row w-75 mx-auto">
+                          <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="about-profile"/>
+                        </div>
                       </div>
                     </div>
                     <div class="col-lg-7">
@@ -137,7 +139,9 @@
                         <div class="row d-flex justify-content-center align-items-center w-100 ">
                           <!-- display pic -->
                           <div class=" col-lg-8 w-100 mb-3 d-flex justify-content-center align-items-center">
-                            <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="changing-profile"/>
+                            <div class="row w-50">
+                              <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="changing-profile"/>
+                            </div>
                           </div>
                           <div class="col-lg-4 w-100">
                             <form id="picture-form-del" action="form-valid.php" method="POST">
