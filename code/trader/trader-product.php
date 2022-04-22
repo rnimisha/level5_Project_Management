@@ -64,7 +64,43 @@
               <!-- profile-->
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
-                  
+                <div class="col-12 table-responsive mt-3" id="order-table">
+                    <table class="table table-hover">
+                      <thead class="mygreen">
+                        <tr>
+                          <th>NAME</th>
+                          <th>STOCK QUANTITY</th>
+                          <th>PRICE</th>
+                          <th>STATUS</th>
+                          <th>QUANTITY</th>
+                          <th>ACTION</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php
+                        $getProduct= "SELECT PRODUCT_ID, PRODUCT_NAME, DESCRIPTION AS DESCRIP,STOCK_QUANTITY,PRICE, PRICING_UNIT, MIN_ORDER, MAX_ORDER, ALLERGY_INFO FROM PRODUCT P JOIN SHOP S ON S.SHOP_ID=P.SHOP_ID WHERE S.USER_ID=$current_trader_id ORDER BY PRODUCT_NAME";
+                        // echo $getProduct;
+                        $parsedgetProduct = oci_parse($connection, $getProduct);
+                        oci_execute($parsedgetProduct);
+                        while (($row = oci_fetch_assoc($parsedgetProduct)) != false) {
+                        ?>
+                          <tr>
+                            <td><?php echo $row['PRODUCT_NAME']; ?></td>
+                            <td><?php echo $row['DESCRIP']->load(); ?></td>
+                            <td>
+                              <span>
+                                    <i class="fa-regular fa-eye view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                    &nbsp;<i class="fa-solid fa-pen-to-square" value="<?php echo $row['ORDER_ID'];?>"></i>
+                              </span>
+                            </td>
+                          </tr>
+                      <?php
+                        }
+                        oci_free_statement($parsedgetProduct);
+                      ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
