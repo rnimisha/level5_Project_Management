@@ -316,12 +316,37 @@ $(document).ready(function(){
     });
 
     $('.edit-product').click(function(){
-
         var product_id=$(this).attr('value');
         // alert(product_id);
-        $('#product-modal').click();
-        $(".edit-product-form #product_id").val( product_id );
-        
+        $.ajax({
+            type: 'POST',
+            url: 'get-details.php',
+            data: {
+               product_id: product_id,
+               product_modal:'yes'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    $('#product-modal').click();
+                    $(".edit-product-form #product_id").val( product_id );
+                    $(".edit-product-form #product-name").val( resp.name );
+                    $(".edit-product-form #product-stock").val( resp.quantity );
+                    $(".edit-product-form #product-price").val( resp.price);
+                    $(".edit-product-form #product-unit").val( resp.unit);
+                    $(".edit-product-form #product-min").val( resp.min);
+                    $(".edit-product-form #product-max").val( resp.max);
+                    $(".edit-product-form #product-descp").val( resp.descp);
+                    $(".edit-product-form #product-allergy").val( resp.allergy);
+                }
+                else{
+                    alert('unable to edit the product');
+
+                }
+            }
+        });
     });
 
 });

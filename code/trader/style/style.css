@@ -306,6 +306,6 @@ thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-c
 @media (min-width: 576px)
 {
     .modal-dialog {
-        max-width: 75%;
+        max-width: 70%;
     }
 }

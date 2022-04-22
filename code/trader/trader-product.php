@@ -143,12 +143,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Edit Product</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body edit-product-form">
+          <!-- edit product form -->
           <form class=" w-75 mx-auto py-4" id="personal-form" action="edit-product.php" method="GET">
             <div class="form-group d-none">
                 <input type="hidden" class="form-control" id="product_id" value=""/>
@@ -156,40 +157,53 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="product-name" class="text-muted">Product Name</label>
-                <input type="text" class="form-control" id="product-name" value="<?php  echo (isset($fullnames)) ? $fullnames : null;?>"/>
-                <div class="invalid-feedback" id="error-trad-fullname"></div>
+                <input type="text" class="form-control" id="product-name" value=""/>
+                <div class="invalid-feedback" id="error-product-name"></div>
               </div>
               <div class="form-group col-md-6">
-                <label for="trad-dob" class="text-muted">Date Of Birth</label>
-                <input type="date" class="form-control" id="trad-dob"/>
-                <div class="invalid-feedback" id="error-trad-dob"></div>
+                <label for="product-stock" class="text-muted">Stock Quantity</label>
+                <input type="text" class="form-control" id="product-stock"/>
+                <div class="invalid-feedback" id="error-product-stock"></div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="trad-email" class="text-muted">Email</label>
-                <input type="text" class="form-control" id="trad-email" value="<?php  echo (isset($email)) ? $email : null;?>"/>
-                <div class="invalid-feedback" id="error-trad-email"></div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="trad-contact" class="text-muted">Contact</label>
-                <input type="text" class="form-control" id="trad-contact" value="<?php  echo (isset($contact)) ? $contact : null;?>"/>
-                <div class="invalid-feedback" id="error-trad-contact"></div>
+              <label for="product-price" class="text-muted">Price</label>
+                <input type="text" class="form-control" id="product-price" value=""/>
+                <div class="invalid-feedback" id="error-product-price"></div>
               </div>
               <div class="form-group col-md-6">
-                <label for="trad-dob" class="text-muted">Address</label>
-                <input type="text" class="form-control" id="trad-address" value="<?php  echo (isset($address)) ? $address : null;?>"/>
-                <div class="invalid-feedback" id="error-trad-address"></div>
+              <label for="product-unit" class="text-muted">Pricing Unit</label>
+                <input type="text" class="form-control" id="product-price" value=""/>
+                <div class="invalid-feedback" id="error-product-price"></div>
               </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="product-min" class="text-muted">Minimum Order</label>
+                <input type="text" class="form-control" id="product-min" value=""/>
+                <div class="invalid-feedback" id="error-product-min"></div>
+              </div>
+              <div class="form-group col-md-6">
+              <label for="product-max" class="text-muted">Minimum Order</label>
+                <input type="text" class="form-control" id="product-max" value=""/>
+                <div class="invalid-feedback" id="error-product-max"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="product-descp" class="text-muted">Description</label>
+                <textarea class="form-control" id="product-descp" value=""></textarea>
+                <div class="invalid-feedback" id="error-product-descp"></div>
+            </div>
+            <div class="form-group">
+              <label for="product-allergy" class="text-muted">Allergy Information</label>
+                <textarea class="form-control" id="product-allergy" value=""></textarea>
+                <div class="invalid-feedback" id="error-product-allergy"></div>
             </div>
             <div class="row justify-content-end pr-1">
               <button type="submit" class="btn" id="personal-button">Save Changes</button>
             </div>  
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
