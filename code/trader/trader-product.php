@@ -66,13 +66,16 @@
                 <div class="col-12 form-container w-100 py-3">
                 <div class="col-12 table-responsive mt-3" id="order-table">
                     <table class="table table-hover">
-                      <thead class="mygreen">
+                      <thead class="mygreen text-center">
                         <tr>
+                          <th> </th>
                           <th>NAME</th>
-                          <th>STOCK QUANTITY</th>
+                          <th>IMAGE</th>
+                          <th>DESCRIPTION</th>
+                          <th>STOCK</th>
                           <th>PRICE</th>
-                          <th>STATUS</th>
-                          <th>QUANTITY</th>
+                          <th>MIN</th>
+                          <th>MAX</th>
                           <th>ACTION</th>
                         </tr>
                       </thead>
@@ -85,12 +88,36 @@
                         while (($row = oci_fetch_assoc($parsedgetProduct)) != false) {
                         ?>
                           <tr>
+                            <td><i class="fa-solid fa-magnifying-glass" value="<?php echo $row['ORDER_ID'];?>"></i></td>
                             <td><?php echo $row['PRODUCT_NAME']; ?></td>
+                            <?php
+                             $getImg ="SELECT IMAGE_DETAIL FROM PRODUCT_IMAGE WHERE PRODUCT_ID=".$row['PRODUCT_ID']." AND ROWNUM<=1";
+                            //  echo $getImg;
+                             $parsedgetImg = oci_parse($connection, $getImg);
+                             $img='../image/product/productplaceholder.png';
+                             if(oci_execute($parsedgetImg))
+                             {
+                                while (oci_fetch($parsedgetImg)) {
+                                  if(!empty(trim(oci_result($parsedgetImg, 'IMAGE_DETAIL'))))
+                                  {
+                                    $temp=oci_result($parsedgetImg, 'IMAGE_DETAIL');
+                                    $img='../image/product/'.$temp;
+                                  }
+                                  break;
+                                }
+                              }
+                              oci_free_statement($parsedgetImg);
+                            ?>
+                            <td><img class="prod-view-img" src="<?php echo $img;?>" alt="product-img"/></td>
                             <td><?php echo $row['DESCRIP']->load(); ?></td>
+                            <td><?php echo $row['STOCK_QUANTITY']; ?></td>
+                            <td><span>&#163;</span><?php echo $row['PRICE'].'/'. $row['PRICING_UNIT'];?></td>
+                            <td><?php echo $row['MIN_ORDER']; ?></td>
+                            <td><?php echo $row['MAX_ORDER']; ?></td>
                             <td>
                               <span>
-                                    <i class="fa-regular fa-eye view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
-                                    &nbsp;<i class="fa-solid fa-pen-to-square" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                <i class="fa-solid fa-pen-to-square" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                <i class="fa-solid fa-trash-can" value="<?php echo $row['ORDER_ID'];?>"></i>
                               </span>
                             </td>
                           </tr>

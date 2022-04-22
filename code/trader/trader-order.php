@@ -71,12 +71,13 @@
                     <table class="table table-hover">
                       <thead class="mygreen">
                         <tr>
+                          <th> </th>
                           <th>ORDER</th>
                           <th>CUSTOMER</th>
                           <th>ORDER DATE</th>
                           <th>STATUS</th>
                           <th>QUANTITY</th>
-                          <th>ACTION</th>
+                          <!-- <th>ACTION</th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -95,6 +96,11 @@
                               oci_execute($parse);
                               oci_fetch($parse);
                             ?>
+                            <td>
+                              <span>
+                                    <i class="fa-solid fa-magnifying-glass view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
+                              </span>
+                            </td>
                             <td><?php echo '#'.$row['ORDER_ID'] ?></td>
                             <td><?php echo $row['NAME'] ?></td>
                             <td><?php echo $row['ORDER_DATE'] ?></td>
@@ -125,11 +131,11 @@
                               }
                             ?>
                             <td><?php echo $QUANTITY ?></td>
-                            <td>
+                            <!-- <td>
                               <span>
-                                    <i class="fa-regular fa-eye view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                    <i class="fa-solid fa-magnifying-glass view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
                               </span>
-                            </td>
+                            </td> -->
                             <?php
                               oci_free_statement($parse);
                             ?>
