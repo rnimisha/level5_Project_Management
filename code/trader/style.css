@@ -175,7 +175,6 @@ form .btn{
     border-radius: 30px;
     margin-bottom: 35px;
     margin-top: 30px;
-    /* margin: 0; */
 }
 
 
@@ -190,12 +189,28 @@ form .btn{
 /* breadcrumb */
 .breadcrumb{
     background-color: #e8e8e8;
-    margin-bottom: -5px;
+    margin-bottom: -4px;
+    letter-spacing: 0px;
+    padding: 19px;
+    color: #aaaaaa;
+    letter-spacing: 1.2px;
+    border-radius: 30px;
+    background-color: #ffffff;
+    width: 100%;
+    font-size: 15px;
 }
 
 .breadcrumb-item a{
     color: #000000;
 }
+.breadcrumb>li+li:before {
+    content: "";
+}
+
+.breadcrumb > .active a{
+    color: #789680;
+}
+
 
 /* about me */
 #about-me .fa-solid{
@@ -282,20 +297,3 @@ thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-c
     border-top-color: #ffffff;
 }
 
-.breadcrumb>li+li:before {
-    content: "";
-}
-
-.breadcrumb {
-    padding: 19px;
-    font-size: 15px;
-    color: #aaaaaa;
-    letter-spacing: 2px;
-    border-radius: 30px;
-    background-color: #ffffff;
-    width: 100%;
-}
-
-.breadcrumb > .active a{
-    color: #789680;
-}

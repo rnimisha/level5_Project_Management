@@ -76,11 +76,11 @@
                   <div class="row border-bottom d-flex justify-content-around align-items-center mt-1">
                     <div class="col-4 h5 active-form" id="about-me-div">
                       <i class="fa-solid fa-address-card"></i>
-                      About Me
+                      <span class="d-none d-sm-inline">About Me</span>
                     </div>
                     <div class="col-4 h5" id="setting-div">
                       <i class="fa-solid fa-gear"></i>
-                      Settings
+                      <span class="d-none d-sm-inline">Settings</span>
                     </div>
                   </div>
 
@@ -130,7 +130,7 @@
                     </div>
 
                     <!-- profile picture change -->
-                      <div id="picture-form"  class="col-lg-10 col-md-9 py-4 w-75 d-none">
+                      <div id="picture-form"  class="col-lg-10 col-md-9 py-4  d-none">
                         <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="profile-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
                         </div>
@@ -143,25 +143,27 @@
                               <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="changing-profile"/>
                             </div>
                           </div>
-                          <div class="col-lg-4 w-100">
-                            <form id="picture-form-del" action="form-valid.php" method="POST">
-                              <input type="hidden" id="trader-id-profile" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
-                              <!-- submit delete -->
-                              <div class="row form-group prof-delete ">
-                                <button type="submit" class="btn w-100" id="profile-del-button"><i class="fa-solid fa-trash-can"></i><span>&nbsp; Delete Profile</span></button>
-                              </div> 
-                            </form>
-                            <form id="picture-form-up" action="form-valid.php" method="POST">
-                              <input type="hidden" id="trader-id-profile2" name="trader-id-profile2" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
-                              <div class="row form-group prof-upload ">
-                                <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span>&nbsp; Change Profile</span></label>
-                                <input type="file" id="trad-pic" name="trad-pic" hidden/>
-                              </div>
-                              <!-- submit upload  -->
-                              <div class="row justify-content-end mx-auto pr-1">
-                              <button type="submit" class="btn" name="profile-button" id="profile-button " hidden>Save Changes</button>
-                              </div>  
-                            </form>
+                          <div class="col-4 w-100">
+                            <div class="row justify-content-center">
+                              <form class="col-md-12" id="picture-form-del" action="form-valid.php" method="POST">
+                                <input type="hidden" id="trader-id-profile" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
+                                <!-- submit delete -->
+                                <div class="row form-group prof-delete ">
+                                  <button type="submit" class="btn w-100" id="profile-del-button"><i class="fa-solid fa-trash-can"></i><span class="d-none d-sm-inline">&nbsp; Delete Image</span></button>
+                                </div> 
+                              </form>
+                              <form class="col-12" id="picture-form-up" action="form-valid.php" method="POST">
+                                <input type="hidden" id="trader-id-profile2" name="trader-id-profile2" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
+                                <div class="row form-group prof-upload ">
+                                  <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span class="d-none d-sm-inline">&nbsp; Change Image</span></label>
+                                  <input type="file" id="trad-pic" name="trad-pic" hidden/>
+                                </div>
+                                <!-- submit upload  -->
+                                <div class="row justify-content-end mx-auto pr-1">
+                                <button type="submit" class="btn" name="profile-button" id="profile-button" hidden>Save Changes</button>
+                                </div>  
+                              </form>
+                            </div>
                           </div>
                         </div>
                       </div>
