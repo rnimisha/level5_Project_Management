@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="style/style.css"/>
     <title>My Product</title>
   </head> 
   <body>
@@ -116,7 +116,7 @@
                             <td><?php echo $row['MAX_ORDER']; ?></td>
                             <td>
                               <span>
-                                <i class="fa-solid fa-pen-to-square" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                <i class="fa-solid fa-pen-to-square edit-product" value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 <i class="fa-solid fa-trash-can" value="<?php echo $row['ORDER_ID'];?>"></i>
                               </span>
                             </td>
@@ -133,9 +133,72 @@
             </div>
         </div>
     </div>
+ <!-- modal for editing product -->
+  <div class="d-none">
+    <button type="hidden" id="product-modal" data-toggle="modal" data-target="#editProductForm">
+    </button>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="editProductForm" tabindex="-1" role="dialog" aria-labelledby="editProductFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body edit-product-form">
+          <form class=" w-75 mx-auto py-4" id="personal-form" action="edit-product.php" method="GET">
+            <div class="form-group d-none">
+                <input type="hidden" class="form-control" id="product_id" value=""/>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="product-name" class="text-muted">Product Name</label>
+                <input type="text" class="form-control" id="product-name" value="<?php  echo (isset($fullnames)) ? $fullnames : null;?>"/>
+                <div class="invalid-feedback" id="error-trad-fullname"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="trad-dob" class="text-muted">Date Of Birth</label>
+                <input type="date" class="form-control" id="trad-dob"/>
+                <div class="invalid-feedback" id="error-trad-dob"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trad-email" class="text-muted">Email</label>
+                <input type="text" class="form-control" id="trad-email" value="<?php  echo (isset($email)) ? $email : null;?>"/>
+                <div class="invalid-feedback" id="error-trad-email"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="trad-contact" class="text-muted">Contact</label>
+                <input type="text" class="form-control" id="trad-contact" value="<?php  echo (isset($contact)) ? $contact : null;?>"/>
+                <div class="invalid-feedback" id="error-trad-contact"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="trad-dob" class="text-muted">Address</label>
+                <input type="text" class="form-control" id="trad-address" value="<?php  echo (isset($address)) ? $address : null;?>"/>
+                <div class="invalid-feedback" id="error-trad-address"></div>
+              </div>
+            </div>
+            <div class="row justify-content-end pr-1">
+              <button type="submit" class="btn" id="personal-button">Save Changes</button>
+            </div>  
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </body>
   <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="script/script.js"></script>
   <script src="../script/function.js"></script>
   <script src="script/form-valid.js"></script>

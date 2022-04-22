@@ -315,8 +315,15 @@ $(document).ready(function(){
         });
     });
 
+    $('.edit-product').click(function(){
+
+        var product_id=$(this).attr('value');
+        // alert(product_id);
+        $('#product-modal').click();
+        $(".edit-product-form #product_id").val( product_id );
+        
+    });
+
 });
 $('body').addClass('transition-effect');
-
-
 
