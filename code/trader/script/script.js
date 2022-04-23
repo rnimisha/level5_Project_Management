@@ -422,7 +422,20 @@ $(document).ready(function(){
 
     });
 
-    $('#add-discount').click(function(){
+    $('.add-discount').click(function(){
+        $('#add-discount-form').addClass('transition-effect');
+        if(!$('#product-detail-table').hasClass('d-none'))
+        {
+            $('#product-detail-table').addClass('d-none');
+        }
+        if($('#add-discount-form').hasClass('d-none'))
+        {
+            $('#add-discount-form').removeClass('d-none');
+        }
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Add Discount</a></li>');
+
+        var product_id=$(this).attr('value');
+        $("#dis-id").val( product_id );
 
     });
 

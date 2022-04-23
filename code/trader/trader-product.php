@@ -133,7 +133,7 @@
                                 else{
                                   $discount='0';
                                   ?>
-                                  <td><button class="btn" id="add-discount" value="<?php echo $row['PRODUCT_ID'];?>">Add</button></td>
+                                  <td><button class="btn add-discount" value="<?php echo $row['PRODUCT_ID'];?>">Add</button></td>
                                   <?php
                                 }
                                }
@@ -158,7 +158,42 @@
                   <div class="col-12 d-none" id="product-detail-table">
                   </div>
                 </div>
-
+                <!-- add discount container -->
+              <div class="col-12 form-container w-100 py-3 d-none" id="add-discount-form">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center border-bottom">
+                      <div class="h4 font-weight-bold"> Add Discount</div>
+                    </div>
+                    <div class="col-12">
+                      <!-- add product form -->
+                      <form class="w-75 mx-auto py-4" id="add-discount-form" action="add-discount.php" method="POST">
+                        <input type="hidden" class="form-control" id="dis-id" value=""/>
+                        <div class="form-group">
+                          <label for="dis-name" class="text-muted">Discount Name</label>
+                          <input type="text" class="form-control" id="dis-name"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="dis-rate" class="text-muted">Discount Rate</label>
+                          <input type="number" class="form-control" id="dis-rate"/>
+                          <div class="invalid-feedback" id="error-dis-rate"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="dis-start" class="text-muted">Start Date</label>
+                          <input type="date" class="form-control" id="dis-start"/>
+                          <div class="invalid-feedback" id="error-dis-start"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="dis-end" class="text-muted">End Date</label>
+                          <input type="date" class="form-control" id="dis-end"/>
+                          <div class="invalid-feedback" id="error-dis-end"></div>
+                        </div>
+                        <div class="row justify-content-end pr-1">
+                          <button type="submit" class="btn" id="add-discount-btn">Add Discount</button>
+                        </div>  
+                      </form>
+                    </div>
+                  </div>
+                </div>
                 <!-- add product container -->
                 <div class="col-12 form-container w-100 py-3 d-none" id="product-detail-form">
                   <div class="row">
@@ -260,42 +295,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- add product container -->
-              <div class="col-12 form-container w-100 py-3" id="add-discount-form">
-                  <div class="row">
-                    <div class="col-12 d-flex justify-content-center border-bottom">
-                      <div class="h4 font-weight-bold"> Add Discount</div>
-                    </div>
-                    <div class="col-12">
-                      <!-- add product form -->
-                      <form class="w-75 mx-auto py-4" id="add-discount-form" action="add-discount.php" method="POST">
-                        <input type="number" class="form-control" id="dis-id" value=""/>
-                        <div class="form-group">
-                          <label for="dis-name" class="text-muted">Discount Name</label>
-                          <input type="text" class="form-control" id="dis-name"/>
-                        </div>
-                        <div class="form-group">
-                          <label for="dis-rate" class="text-muted">Discount Rate</label>
-                          <input type="number" class="form-control" id="dis-rate"/>
-                          <div class="invalid-feedback" id="error-dis-rate"></div>
-                        </div>
-                        <div class="form-group">
-                          <label for="dis-start" class="text-muted">Start Date</label>
-                          <input type="date" class="form-control" id="dis-start"/>
-                          <div class="invalid-feedback" id="error-dis-start"></div>
-                        </div>
-                        <div class="form-group">
-                          <label for="dis-end" class="text-muted">End Date</label>
-                          <input type="date" class="form-control" id="dis-end"/>
-                          <div class="invalid-feedback" id="error-dis-end"></div>
-                        </div>
-                        <div class="row justify-content-end pr-1">
-                          <button type="submit" class="btn" id="add-discount-btn">Add Discount</button>
-                        </div>  
-                      </form>
-                    </div>
-                  </div>
               </div>
             </div>
         </div>
