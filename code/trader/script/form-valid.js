@@ -269,14 +269,14 @@ $(document).ready(function(){
 });
 
 
-function clearFormValidation()
-{
-    if($('.form-control').hasClass('is-invalid'))
-    {
-        $('.form-control').removeClass('is-invalid');
-    }
-    if($('.form-control').hasClass('valid'))
-    {
-        $('.form-control').removeClass('valid');
-    }
-}
+// function clearFormValidation()
+// {
+//     if($('.form-control').hasClass('is-invalid'))
+//     {
+//         $('.form-control').removeClass('is-invalid');
+//     }
+//     if($('.form-control').hasClass('valid'))
+//     {
+//         $('.form-control').removeClass('valid');
+//     }
+// }

@@ -353,16 +353,16 @@ $(document).ready(function(){
         });
     });
 
+    //data to php to delete product 
     $('.delete-product').click(function(){
-        alert("helo");
         var product_id=$(this).attr('value');
         if (confirm('Do you want to delete the product?')) 
         {
             $.ajax({
-                
                 url: 'deleteProduct.php?prodID='+product_id,
                 success: function(response){
                     alert(response);
+                    location.reload();
                 }
             });
             //prevent page reload

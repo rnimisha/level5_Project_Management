@@ -81,7 +81,7 @@
                       </thead>
                       <tbody>
                       <?php
-                        $getProduct= "SELECT PRODUCT_ID, PRODUCT_NAME, DESCRIPTION AS DESCRIP,STOCK_QUANTITY,PRICE, PRICING_UNIT, MIN_ORDER, MAX_ORDER, ALLERGY_INFO FROM PRODUCT P JOIN SHOP S ON S.SHOP_ID=P.SHOP_ID WHERE S.USER_ID=$current_trader_id ORDER BY PRODUCT_NAME";
+                        $getProduct= "SELECT PRODUCT_ID, PRODUCT_NAME, DESCRIPTION AS DESCRIP,STOCK_QUANTITY,PRICE, PRICING_UNIT, MIN_ORDER, MAX_ORDER, ALLERGY_INFO FROM PRODUCT P JOIN SHOP S ON S.SHOP_ID=P.SHOP_ID WHERE S.USER_ID=$current_trader_id AND DISABLED='F' ORDER BY PRODUCT_NAME";
                         // echo $getProduct;
                         $parsedgetProduct = oci_parse($connection, $getProduct);
                         oci_execute($parsedgetProduct);
