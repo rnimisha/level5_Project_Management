@@ -348,3 +348,12 @@ td .fa-solid:hover{
     width:100%;
     height: 250px;
 }
+
+.add-product .btn{
+    background-color: #ECB390;
+}
+
+.add-product .btn:hover{
+    background-color: #789680;
+    box-shadow: 0px 0px 5px rgb(144, 139, 139);
+}

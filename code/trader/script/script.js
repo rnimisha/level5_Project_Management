@@ -386,6 +386,10 @@ $(document).ready(function(){
             success: function(response){
                 $('#product-detail-table').addClass('transition-effect');
                 // alert('s');
+                if(!$('#add-prod-row').hasClass('d-none'))
+                {
+                    $('#add-prod-row').addClass('d-none');
+                }
                 if(!$('#product-table').hasClass('d-none'))
                 {
                     $('#product-table').addClass('d-none');
