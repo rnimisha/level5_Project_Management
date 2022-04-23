@@ -136,6 +136,86 @@
                   <div class="col-12 d-none" id="product-detail-table">
                   </div>
                 </div>
+
+                <!-- add product containet -->
+                <div class="col-12 form-container w-100 py-3">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center border-bottom">
+                      <div class="h4 font-weight-bold"> Add Product</div>
+                    </div>
+                    <div class="col-12">
+                      <!-- add product form -->
+                      <form class="w-75 mx-auto py-4" id="add-product-form" action="add-product.php" method="POST">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="add-product-name" class="text-muted">Product Name</label>
+                            <input type="text" class="form-control" id="add-product-name"/>
+                            <div class="invalid-feedback" id="error-add-product-name"></div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="add-product-stock" class="text-muted">Stock Quantity</label>
+                            <input type="number" class="form-control" id="add-product-stock"/>
+                            <div class="invalid-feedback" id="error-add-product-stock"></div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="add-product-category" class="text-muted">Category</label>
+                            <select class="custom-select form-control" id="add-product-category">
+                              <option value="null" selected disabled> Select Category</option>
+                              <?php
+                              $query="SELECT * FROM PRODUCT_CATEGORY";
+                              $parsed = oci_parse($connection, $query);
+                              oci_execute($parsed);
+                              while (($row = oci_fetch_assoc($parsed)) != false) {
+                              ?>
+                                <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
+                              <?php
+                              }
+                              ?>
+                            </select>
+                            <div class="invalid-feedback" id="error-add-product-category"></div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                          <label for="add-product-price" class="text-muted">Price</label>
+                            <input type="number" step="0.1" class="form-control" id="add-product-price"/>
+                            <div class="invalid-feedback" id="error-add-product-price"></div>
+                          </div>
+                          <div class="form-group col-md-6">
+                          <label for="add-product-unit" class="text-muted">Pricing Unit</label>
+                            <input type="text" class="form-control" id="add-product-unit"/>
+                            <div class="invalid-feedback" id="error-add-product-unit"></div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="add-product-min" class="text-muted">Minimum Order</label>
+                            <input type="number" class="form-control" id="add-product-min"/>
+                            <div class="invalid-feedback" id="error-add-product-min"></div>
+                          </div>
+                          <div class="form-group col-md-6">
+                          <label for="add-product-max" class="text-muted">Minimum Order</label>
+                            <input type="number" class="form-control" id="add-product-max"/>
+                            <div class="invalid-feedback" id="error=add-product-max"></div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="add-product-descp" class="text-muted">Description</label>
+                            <textarea class="form-control" id="add-product-descp"></textarea>
+                            <div class="invalid-feedback" id="error-add-product-descp"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="add-product-allergy" class="text-muted">Allergy Information</label>
+                            <textarea class="form-control" id="add-product-allergy" value=""></textarea>
+                            <div class="invalid-feedback" id="error-add-product-allergy"></div>
+                        </div>
+                        <div class="row justify-content-end pr-1">
+                          <button type="submit" class="btn" id="add-prod-button">Add Product</button>
+                        </div>  
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
         </div>
