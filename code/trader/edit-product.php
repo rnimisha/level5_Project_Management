@@ -177,12 +177,24 @@
             $descp=$_POST['descp'];
             $allergy=$_POST['allergy'];
         }
+        if(isset($_POST['cat_id']))
+        {
+            if(!empty($_POST['cat_id']))
+            {
+                $cat_id=trim($_POST['cat_id']);
+            }
+            else
+            {
+                $edit_prod_error['clear']=false;
+            }
+        }
 
+        
 
         //if all validations pass
         if( $edit_prod_error['clear'])
         {
-            $query="UPDATE PRODUCT SET PRODUCT_NAME='$name', STOCK_QUANTITY=$stock, PRICE=$price, PRICING_UNIT='$unit', MIN_ORDER=$min, MAX_ORDER=$max, DESCRIPTION='$descp', ALLERGY_INFO='$allergy' WHERE PRODUCT_ID=$product_id";
+            $query="UPDATE PRODUCT SET PRODUCT_NAME='$name', STOCK_QUANTITY=$stock, PRICE=$price, PRICING_UNIT='$unit', MIN_ORDER=$min, MAX_ORDER=$max, DESCRIPTION='$descp', ALLERGY_INFO='$allergy', CATEGORY_ID=$cat_id WHERE PRODUCT_ID=$product_id";
             $parsed=oci_parse($connection, $query);
             if(oci_execute($parsed))
             {
@@ -191,7 +203,7 @@
             else{
                 $edit_prod_error['clear']=false;
             }
-            oci_free_statement($query);
+            oci_free_statement($parsed);
 
         }
 

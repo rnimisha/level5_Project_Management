@@ -215,7 +215,7 @@ $(document).ready(function(){
         var max=$('#product-max').val();
         var descp=$('#product-descp').val();
         var allergy=$('#product-allergy').val();
-
+        var cat_id=$('#product-category').val();
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
@@ -229,6 +229,7 @@ $(document).ready(function(){
                 max:max,
                 descp:descp,
                 allergy:allergy,
+                cat_id:cat_id,
                 form_name: 'edit-product-form'
             },
             success: function(response){

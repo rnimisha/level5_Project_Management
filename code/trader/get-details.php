@@ -25,6 +25,14 @@ if(isset($_POST['product_modal']) && ($_POST['product_modal'])=='yes')
             $product_detail['descp']=$row['DESCRIPTION']->load();
             $product_detail['allergy']=$row['ALLERGY_INFO'];
         }
+        oci_free_statement($parsed);
+
+        $query2="SELECT * FROM PRODUCT_CATEGORY WHERE CATEGORY_ID=".$product_detail['category'];
+        $parsed2 = oci_parse($connection, $query2);
+        oci_execute($parsed2);
+        while (($row = oci_fetch_assoc($parsed2)) != false) {
+            $product_detail['category-name']=$row['CATEGORY_NAME'];
+        }
     }
     echo json_encode($product_detail);
 }

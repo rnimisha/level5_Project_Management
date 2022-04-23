@@ -168,11 +168,17 @@
             </div>
             <div class="form-group">
                 <label for="product-category" class="text-muted">Category</label>
-                <select class="custom-select form-control"  id="product-category">
-                  <option selected>Product Category</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="custom-select form-control" id="product-category">
+                  <?php
+                  $query="SELECT * FROM PRODUCT_CATEGORY";
+                  $parsed = oci_parse($connection, $query);
+                  oci_execute($parsed);
+                  while (($row = oci_fetch_assoc($parsed)) != false) {
+                  ?>
+                    <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
+                  <?php
+                  }
+                  ?>
                 </select>
                 <div class="invalid-feedback" id="error-product-category"></div>
             </div>

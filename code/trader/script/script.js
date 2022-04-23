@@ -339,6 +339,8 @@ $(document).ready(function(){
                     $(".edit-product-form #product-max").val( resp.max);
                     $(".edit-product-form #product-descp").val( resp.descp);
                     $(".edit-product-form #product-allergy").val( resp.allergy);
+                    $('#product-category option[value="' + resp.category +'"]').prop('selected',true);
+                    
                 }
                 else{
                     alert('unable to edit the product');
