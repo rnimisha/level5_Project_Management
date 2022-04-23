@@ -189,8 +189,6 @@
             }
         }
 
-        
-
         //if all validations pass
         if( $edit_prod_error['clear'])
         {

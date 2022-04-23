@@ -198,6 +198,10 @@ $(document).ready(function(){
             //prevent page reload
             return false;
         } 
+        else
+        {
+            return false;
+        }
     });
 
     // post details to edit product details
@@ -216,6 +220,7 @@ $(document).ready(function(){
         var descp=$('#product-descp').val();
         var allergy=$('#product-allergy').val();
         var cat_id=$('#product-category').val();
+
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),

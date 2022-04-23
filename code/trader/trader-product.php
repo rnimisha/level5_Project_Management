@@ -117,7 +117,7 @@
                             <td>
                               <span>
                                 <i class="fa-solid fa-pen-to-square edit-product" value="<?php echo $row['PRODUCT_ID'];?>"></i>
-                                <i class="fa-solid fa-trash-can" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                &nbsp;<i class="fa-solid fa-trash-can delete-product" value="<?php echo $row['PRODUCT_ID'];?>"></i>
                               </span>
                             </td>
                           </tr>

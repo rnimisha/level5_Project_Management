@@ -249,6 +249,7 @@ $(document).ready(function(){
 
     });
 
+    //change div for pass word change
     $('#pass-change').click(function(){
         if( $('#picture').hasClass("active-list"))
         {
@@ -287,6 +288,7 @@ $(document).ready(function(){
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Password</li>');
     });
 
+    //view details of clicked product in new div
     $('.view-order-detail').click(function(){
         
         var order_id=$(this).attr('value');
@@ -315,6 +317,7 @@ $(document).ready(function(){
         });
     });
 
+    //populate product detail edit form with values of current product
     $('.edit-product').click(function(){
         var product_id=$(this).attr('value');
         // alert(product_id);
@@ -350,6 +353,29 @@ $(document).ready(function(){
         });
     });
 
+    $('.delete-product').click(function(){
+        alert("helo");
+        var product_id=$(this).attr('value');
+        if (confirm('Do you want to delete the product?')) 
+        {
+            $.ajax({
+                
+                url: 'deleteProduct.php?prodID='+product_id,
+                success: function(response){
+                    alert(response);
+                }
+            });
+            //prevent page reload
+            return false;
+        }
+        else{
+            return false;
+        }
+    });
+
 });
+
+
+
 $('body').addClass('transition-effect');
 
