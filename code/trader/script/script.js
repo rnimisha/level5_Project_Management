@@ -422,6 +422,11 @@ $(document).ready(function(){
 
     });
 
+    $('#add-discount').click(function(){
+
+    });
+
+
 });
 
 

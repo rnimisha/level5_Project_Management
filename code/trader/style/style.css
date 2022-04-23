@@ -149,7 +149,7 @@ body{
 }
 form .btn{
     padding: 10px;
-    background-color: #789680;
+    background-color: #b1c7b7;
     margin-right: 10px;
 }
 .btn:hover{
@@ -349,11 +349,16 @@ td .fa-solid:hover{
     height: 250px;
 }
 
-.add-product .btn{
+.add-product .btn, #add-discount{
     background-color: #ECB390;
 }
 
-.add-product .btn:hover{
+.add-product .btn:hover, #add-discount:hover{
     background-color: #789680;
     box-shadow: 0px 0px 5px rgb(144, 139, 139);
+}
+
+#add-discount{
+    font-size: 11px;
+    background-color: #b1c7b7;
 }

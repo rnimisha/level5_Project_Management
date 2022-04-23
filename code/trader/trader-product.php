@@ -79,6 +79,7 @@
                           <th>DESCRIPTION</th>
                           <th>STOCK</th>
                           <th>PRICE</th>
+                          <th>DISCOUNT</th>
                           <th>MIN</th>
                           <th>MAX</th>
                           <th>ACTION</th>
@@ -117,6 +118,27 @@
                             <td><?php echo $row['DESCRIP']->load(); ?></td>
                             <td><?php echo $row['STOCK_QUANTITY']; ?></td>
                             <td><span>&#163;</span><?php echo $row['PRICE'].'/'. $row['PRICING_UNIT'];?></td>
+                            <?php
+                               $query="SELECT * FROM ACTIVE_PRODUCT WHERE PRODUCT_ID=".$row['PRODUCT_ID'];
+                               $parsed=oci_parse($connection, $query);
+                               oci_execute($parsed);
+                               while (oci_fetch($parsed)) {
+                                if(!empty(trim(oci_result($parsed, 'DISCOUNT_RATE'))))
+                                {
+                                  $discount=oci_result($parsed, 'DISCOUNT_RATE');
+                                  ?>
+                                  <td><?php echo $discount.'%';?></td>
+                                  <?php
+                                }
+                                else{
+                                  $discount='0';
+                                  ?>
+                                  <td><button class="btn" id="add-discount" value="<?php echo $row['PRODUCT_ID'];?>">Add</button></td>
+                                  <?php
+                                }
+                               }
+                               oci_free_statement($parsed);
+                            ?>
                             <td><?php echo $row['MIN_ORDER']; ?></td>
                             <td><?php echo $row['MAX_ORDER']; ?></td>
                             <td>
@@ -137,7 +159,7 @@
                   </div>
                 </div>
 
-                <!-- add product containet -->
+                <!-- add product container -->
                 <div class="col-12 form-container w-100 py-3 d-none" id="product-detail-form">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center border-bottom">
@@ -168,21 +190,33 @@
                             <div class="invalid-feedback" id="error-add-product-stock"></div>
                           </div>
                         </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="add-product-name" class="text-muted">Product Name</label>
+                            <input type="text" class="form-control" id="add-product-name"/>
+                            <div class="invalid-feedback" id="error-add-product-name"></div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="add-product-stock" class="text-muted">Stock Quantity</label>
+                            <input type="number" class="form-control" id="add-product-stock"/>
+                            <div class="invalid-feedback" id="error-add-product-stock"></div>
+                          </div>
+                        </div>
                         <div class="form-group">
-                            <label for="add-product-category" class="text-muted">Category</label>
-                            <select class="custom-select form-control" id="add-product-category">
-                              <?php
-                              $query="SELECT * FROM PRODUCT_CATEGORY";
-                              $parsed = oci_parse($connection, $query);
-                              oci_execute($parsed);
-                              while (($row = oci_fetch_assoc($parsed)) != false) {
-                              ?>
-                                <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
-                              <?php
-                              }
-                              oci_free_statement($parsed);
-                              ?>
-                            </select>
+                          <label for="add-product-category" class="text-muted">Category</label>
+                          <select class="custom-select form-control" id="add-product-category">
+                            <?php
+                            $query="SELECT * FROM PRODUCT_CATEGORY";
+                            $parsed = oci_parse($connection, $query);
+                            oci_execute($parsed);
+                            while (($row = oci_fetch_assoc($parsed)) != false) {
+                            ?>
+                              <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
+                            <?php
+                            }
+                            oci_free_statement($parsed);
+                            ?>
+                          </select>
                             <!-- <div class="invalid-feedback" id="error-add-product-category"></div> -->
                         </div>
                         <div class="form-row">
@@ -216,7 +250,7 @@
                         </div>
                         <div class="form-group">
                           <label for="add-product-allergy" class="text-muted">Allergy Information</label>
-                            <textarea class="form-control" id="add-product-allergy" value=""></textarea>
+                            <textarea class="form-control" id="add-product-allergy"></textarea>
                             <div class="invalid-feedback" id="error-add-product-allergy"></div>
                         </div>
                         <div class="row justify-content-end pr-1">
@@ -226,6 +260,42 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <!-- add product container -->
+              <div class="col-12 form-container w-100 py-3" id="add-discount-form">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center border-bottom">
+                      <div class="h4 font-weight-bold"> Add Discount</div>
+                    </div>
+                    <div class="col-12">
+                      <!-- add product form -->
+                      <form class="w-75 mx-auto py-4" id="add-discount-form" action="add-discount.php" method="POST">
+                        <input type="number" class="form-control" id="dis-id" value=""/>
+                        <div class="form-group">
+                          <label for="dis-name" class="text-muted">Discount Name</label>
+                          <input type="text" class="form-control" id="dis-name"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="dis-rate" class="text-muted">Discount Rate</label>
+                          <input type="number" class="form-control" id="dis-rate"/>
+                          <div class="invalid-feedback" id="error-dis-rate"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="dis-start" class="text-muted">Start Date</label>
+                          <input type="date" class="form-control" id="dis-start"/>
+                          <div class="invalid-feedback" id="error-dis-start"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="dis-end" class="text-muted">End Date</label>
+                          <input type="date" class="form-control" id="dis-end"/>
+                          <div class="invalid-feedback" id="error-dis-end"></div>
+                        </div>
+                        <div class="row justify-content-end pr-1">
+                          <button type="submit" class="btn" id="add-discount-btn">Add Discount</button>
+                        </div>  
+                      </form>
+                    </div>
+                  </div>
               </div>
             </div>
         </div>
