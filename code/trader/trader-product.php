@@ -63,10 +63,10 @@
               </div>
               <!-- product detail table-->
               <div class="row" id="detail-container">
-                <div class="col-12 form-container w-100 py-3">
+                <div class="col-12 form-container w-100 py-3" id="product-detail-table">
                 <div class="row" id="add-prod-row">
                   <div class="col-2 offset-10 add-product">
-                    <button class="btn">Add Product</button>
+                    <button class="btn" id="add-prod-btn">Add Product</button>
                   </div>
                 </div>
                   <div class="col-12 table-responsive mt-3" id="product-table">
@@ -138,7 +138,7 @@
                 </div>
 
                 <!-- add product containet -->
-                <div class="col-12 form-container w-100 py-3">
+                <div class="col-12 form-container w-100 py-3 d-none" id="product-detail-form">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center border-bottom">
                       <div class="h4 font-weight-bold"> Add Product</div>

@@ -406,6 +406,22 @@ $(document).ready(function(){
         });
     });
 
+    $('#add-prod-btn').click(function(){
+        // alert(1);
+        $('#product-detail-form').addClass('transition-effect');
+        if(!$('#product-detail-table').hasClass('d-none'))
+        {
+            $('#product-detail-table').addClass('d-none');
+        }
+        if($('#product-detail-form').hasClass('d-none'))
+        {
+            $('#product-detail-form').removeClass('d-none');
+        }
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Add Product</a></li>');
+
+    });
+
 });
 
 
