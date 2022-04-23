@@ -64,7 +64,7 @@
               <!-- profile-->
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
-                <div class="col-12 table-responsive mt-3" id="order-table">
+                <div class="col-12 table-responsive mt-3" id="product-table">
                     <table class="table table-hover">
                       <thead class="mygreen text-center">
                         <tr>
@@ -88,7 +88,7 @@
                         while (($row = oci_fetch_assoc($parsedgetProduct)) != false) {
                         ?>
                           <tr>
-                            <td><i class="fa-solid fa-magnifying-glass" value="<?php echo $row['ORDER_ID'];?>"></i></td>
+                            <td><i class="fa-solid fa-magnifying-glass view-product-detail" value="<?php echo $row['PRODUCT_ID'];?>"></i></td>
                             <td><?php echo $row['PRODUCT_NAME']; ?></td>
                             <?php
                              $getImg ="SELECT IMAGE_DETAIL FROM PRODUCT_IMAGE WHERE PRODUCT_ID=".$row['PRODUCT_ID']." AND ROWNUM<=1";
@@ -127,6 +127,8 @@
                       ?>
                       </tbody>
                     </table>
+                  </div>
+                  <div class="col-12 d-none" id="product-detail-table">
                   </div>
                 </div>
               </div>

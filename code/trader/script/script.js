@@ -288,7 +288,7 @@ $(document).ready(function(){
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Password</li>');
     });
 
-    //view details of clicked product in new div
+    //view orderdetails of clicked order in new div
     $('.view-order-detail').click(function(){
         
         var order_id=$(this).attr('value');
@@ -371,6 +371,35 @@ $(document).ready(function(){
         else{
             return false;
         }
+    });
+
+    //view details of clicked product in new div
+    $('.view-product-detail').click(function(){
+        
+        var product_id=$(this).attr('value');
+        $.ajax({
+            type: 'POST',
+            url: 'view-product.php',
+            data: {
+               product_id: product_id
+            },
+            success: function(response){
+                $('#product-detail-table').addClass('transition-effect');
+                // alert('s');
+                if(!$('#product-table').hasClass('d-none'))
+                {
+                    $('#product-table').addClass('d-none');
+                }
+                if($('#product-detail-table').hasClass('d-none'))
+                {
+                    $('#product-detail-table').removeClass('d-none');
+                }
+                $('#product-detail-table').html(response);
+
+                $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Details</a></li>');
+
+            }
+        });
     });
 
 });

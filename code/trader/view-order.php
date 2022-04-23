@@ -30,7 +30,7 @@ if(isset($_POST['order_id']))
 
 echo '<div class="row">
           <div class="col-12 d-flex justify-content-center border-bottom ">
-            <div class="h4">Order #'.$od_id.'</div>
+            <div class="h4 font-weight-bold">Order #'.$od_id.'</div>
           </div>
       </div>
       <div class="row">
