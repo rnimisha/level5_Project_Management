@@ -266,6 +266,59 @@ $(document).ready(function(){
         clearFormValidation();
     });
 
+    $('#add-prod-button').submit(function(){
+        jQuery('#add-prod-button').text('Adding...');
+        jQuery('#add-prod-button').attr('disabled', true);
+
+        var name=$('#add-product-name').val();
+        var stock=$('#add-product-stock').val();
+        var price=$('#add-product-price').val();
+        var unit=$('#add-product-unit').val();
+        var min=$('#add-product-min').val();
+        var max=$('#add-product-max').val();
+        var descp=$('#add-product-descp').val();
+        var allergy=$('#add-product-allergy').val();
+        var cat_id=$('#add-product-category').val();
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                name:name,
+                stock,stock,
+                price:price,
+                unit:unit,
+                min:min,
+                max:max,
+                descp:descp,
+                allergy:allergy,
+                cat_id:cat_id,
+                form_name: 'add-product-form'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+               
+                jQuery('#add-prod-button').text('Add Product');
+                jQuery('#add-prod-button').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    resetForm('add-product-form');
+                    removeStyle(resp);
+                    // clearFormValidation();
+                }
+                else{
+                    // alert('not success inside form');
+                    inlineMsg(resp);
+                }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+
+    });
+
 });
 
 
