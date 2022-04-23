@@ -266,7 +266,8 @@ $(document).ready(function(){
         clearFormValidation();
     });
 
-    $('#add-prod-button').submit(function(){
+    //details to add product
+    $('#add-product-form').submit(function(){
         jQuery('#add-prod-button').text('Adding...');
         jQuery('#add-prod-button').attr('disabled', true);
 
@@ -279,7 +280,8 @@ $(document).ready(function(){
         var descp=$('#add-product-descp').val();
         var allergy=$('#add-product-allergy').val();
         var cat_id=$('#add-product-category').val();
-
+        var shop_id=$('#add-product-shop').val();
+        // alert(shop_id);
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
@@ -293,9 +295,11 @@ $(document).ready(function(){
                 descp:descp,
                 allergy:allergy,
                 cat_id:cat_id,
+                shop_id:shop_id,
                 form_name: 'add-product-form'
             },
             success: function(response){
+                
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
                
@@ -304,7 +308,6 @@ $(document).ready(function(){
                 if(resp.clear == true)
                 {
                     resetForm('add-product-form');
-                    removeStyle(resp);
                     // clearFormValidation();
                 }
                 else{
@@ -316,7 +319,6 @@ $(document).ready(function(){
         });
         //prevent page reload
         return false;
-
     });
 
 });

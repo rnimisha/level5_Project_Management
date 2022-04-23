@@ -361,7 +361,7 @@ $(document).ready(function(){
             $.ajax({
                 url: 'deleteProduct.php?prodID='+product_id,
                 success: function(response){
-                    alert(response);
+                    // alert(response);
                     location.reload();
                 }
             });

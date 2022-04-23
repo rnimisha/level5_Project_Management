@@ -146,6 +146,16 @@
                     <div class="col-12">
                       <!-- add product form -->
                       <form class="w-75 mx-auto py-4" id="add-product-form" action="add-product.php" method="POST">
+                        <?php
+                          $getShopId="SELECT * FROM SHOP WHERE USER_ID=".$_SESSION['phoenix_user'];
+                          $parsedShop=oci_parse($connection, $getShopId);
+                          oci_execute($parsedShop);
+                          while(($row = oci_fetch_assoc($parsedShop)) != false) {
+                              $shop_id=$row['SHOP_ID'];
+                          }
+                          oci_free_statement($parsedShop);
+                        ?>
+                        <input type="hidden" class="form-control" id="add-product-shop" value="<?php echo $shop_id;?>"/> 
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="add-product-name" class="text-muted">Product Name</label>
@@ -161,7 +171,6 @@
                         <div class="form-group">
                             <label for="add-product-category" class="text-muted">Category</label>
                             <select class="custom-select form-control" id="add-product-category">
-                              <option value="null" selected disabled> Select Category</option>
                               <?php
                               $query="SELECT * FROM PRODUCT_CATEGORY";
                               $parsed = oci_parse($connection, $query);
@@ -171,9 +180,10 @@
                                 <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
                               <?php
                               }
+                              oci_free_statement($parsed);
                               ?>
                             </select>
-                            <div class="invalid-feedback" id="error-add-product-category"></div>
+                            <!-- <div class="invalid-feedback" id="error-add-product-category"></div> -->
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
@@ -194,7 +204,7 @@
                             <div class="invalid-feedback" id="error-add-product-min"></div>
                           </div>
                           <div class="form-group col-md-6">
-                          <label for="add-product-max" class="text-muted">Minimum Order</label>
+                          <label for="add-product-max" class="text-muted">Maximum Order</label>
                             <input type="number" class="form-control" id="add-product-max"/>
                             <div class="invalid-feedback" id="error=add-product-max"></div>
                           </div>
@@ -288,7 +298,7 @@
                 <div class="invalid-feedback" id="error-product-min"></div>
               </div>
               <div class="form-group col-md-6">
-              <label for="product-max" class="text-muted">Minimum Order</label>
+              <label for="product-max" class="text-muted">Maximum Order</label>
                 <input type="number" class="form-control" id="product-max" value=""/>
                 <div class="invalid-feedback" id="error-product-max"></div>
               </div>
