@@ -259,10 +259,10 @@ form .btn{
     padding: 1rem;
     border-top: 0.5px solid #dee2e6;
 }
-.table td{
+.table td, .detail-prod li{
     text-transform: lowercase;
 }
-.table td::first-letter{
+.table td::first-letter, .detail-prod li::first-letter{
     text-transform: uppercase;
 }
 

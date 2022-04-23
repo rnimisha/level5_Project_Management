@@ -37,61 +37,49 @@ if(isset($_POST['product_id']))
 }
 
 echo '<div class="row">
-          <div class="col-12 d-flex justify-content-center border-bottom ">
+          <div class="col-12 d-flex justify-content-center border-bottom">
             <div class="h4 font-weight-bold"> Product Detail</div>
           </div>
     </div>
-    <div class="row">
-    <ul class="list-group list-group-flush my-1 col-md-6 pl-4">
-        <li class="list-group-item ">
-            <span class="font-green"> Product Name : </span> '.$name.'
-        </li>
-        <li class="list-group-item">
-            <span>
-            Category : '.$category.'
-            </span>
-        </li>
-        <li class="list-group-item">
-            <span>
-            Price : &#163;'.$price.'/'.$unit.'
-            </span>
-        </li>
-        <li class="list-group-item ">
-            <span>
-            Stock : '.$quantity.'
-            </span>
-        </li>
-        <li class="list-group-item">
-            <span>
-            Minimum Order : '.$min.'
-            </span>
-        </li>
-        <li class="list-group-item">
-            <span>
-            Maximum Order : '.$max.'
-            </span>
-        </li>
-        <li class="list-group-item">
-            <span>
-            Discount : '.$discount.'%
-            </span>
-        </li>
-    </ul>
+    <div class="row detail-prod">
     <div class="row justify-content-center align-item-center mx-auto">
         <img src="../image/product/'.$img[0].'" alt="product-image" class="prod-detail-img"/>
     </div>
+    <ul class="list-group list-group-flush my-1 col-md-6 pl-4">
+        <li class="list-group-item ">
+            <span class="font-green font-weight-bold"> Product Name : </span> '.$name.'
+        </li>
+        <li class="list-group-item">
+        <span class="font-green font-weight-bold"> Category : </span> '.$category.'
+        </li>
+        <li class="list-group-item">
+        <span class="font-green font-weight-bold"> Price : </span> '.$price.'/'.$unit.'
+        </li>
+        <li class="list-group-item ">
+        <span class="font-green font-weight-bold"> Quantity : </span> '.$quantity.'
+        </li>
+        <li class="list-group-item">
+        <span class="font-green font-weight-bold"> Minimum Order : </span> '.$min.'
+        </li>
+        <li class="list-group-item">
+        <span class="font-green font-weight-bold">Maximum Order : </span> '.$max.'
+        </li>
+        <li class="list-group-item">
+        <span class="font-green font-weight-bold"> Discount : </span> '.$discount.'%
+        </li>
+    </ul>
     </div>
     <div class="row">
         <ul class="list-group list-group-flush my-1 col-12 pl-4">
         <li class="list-group-item">
                 <span>
-                <p class="text-center">Description</p> '.$descp.'
+                <p class="text-center font-green font-weight-bold">Description</p> '.$descp.'
                 </span>
             </li>';
             if(!empty($allergy)){
             echo'<li class="list-group-item">
                 <span>
-                <p class="text-center">Allergy Information</p>'.$allergy.'
+                <p class="text-center font-green font-weight-bold">Allergy Information</p>'.$allergy.'
                 </span>
             </li>';
             }
