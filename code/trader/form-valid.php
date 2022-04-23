@@ -1,6 +1,5 @@
 <?php
     include_once('../connection.php');
-
     $edit_trader_error=array();
     $edit_trader_error['clear']=true;
 
@@ -373,8 +372,6 @@
         $del_pic_error=array();
         $del_pic_error['clear']=false;
         $new_name='';
-
-        
         if(isset($_POST['trader_id']) && !empty(($_POST['trader_id'])))
         {
             $trader_id=$_POST['trader_id'];

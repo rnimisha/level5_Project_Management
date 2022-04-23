@@ -144,7 +144,7 @@
       <div class="modal-content">
         <div class="modal-header mygreen">
           <h5 class="modal-title ">Edit Product</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -162,14 +162,24 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="product-stock" class="text-muted">Stock Quantity</label>
-                <input type="text" class="form-control" id="product-stock"/>
+                <input type="number" class="form-control" id="product-stock"/>
                 <div class="invalid-feedback" id="error-product-stock"></div>
               </div>
+            </div>
+            <div class="form-group">
+                <label for="product-category" class="text-muted">Category</label>
+                <select class="custom-select form-control"  id="product-category">
+                  <option selected>Product Category</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="invalid-feedback" id="error-product-category"></div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
               <label for="product-price" class="text-muted">Price</label>
-                <input type="text" class="form-control" id="product-price" value=""/>
+                <input type="number" step="0.1" class="form-control" id="product-price" value=""/>
                 <div class="invalid-feedback" id="error-product-price"></div>
               </div>
               <div class="form-group col-md-6">
@@ -181,12 +191,12 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="product-min" class="text-muted">Minimum Order</label>
-                <input type="text" class="form-control" id="product-min" value=""/>
+                <input type="number" class="form-control" id="product-min" value=""/>
                 <div class="invalid-feedback" id="error-product-min"></div>
               </div>
               <div class="form-group col-md-6">
               <label for="product-max" class="text-muted">Minimum Order</label>
-                <input type="text" class="form-control" id="product-max" value=""/>
+                <input type="number" class="form-control" id="product-max" value=""/>
                 <div class="invalid-feedback" id="error-product-max"></div>
               </div>
             </div>

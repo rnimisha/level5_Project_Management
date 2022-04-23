@@ -240,17 +240,37 @@ $(document).ready(function(){
                 if(resp.clear == true)
                 {
                     // resetForm('personal-form');
-                    $('#edit-product-form').addClass('was-validated');
+                    // $('#edit-product-form').addClass('was-validated');
+                    $('#close-modal').click();
                     removeStyle(resp);
+                    location.reload();
                 }
                 else{
-                    // alert('success inside form');
+                    // alert('not success inside form');
                     inlineMsg(resp);
                 }
             }
+            
         });
         //prevent page reload
         return false;
     });
+
+    $('#close-modal').click(function(){
+        clearFormValidation();
+    });
+
 });
 
+
+function clearFormValidation()
+{
+    if($('.form-control').hasClass('is-invalid'))
+    {
+        $('.form-control').removeClass('is-invalid');
+    }
+    if($('.form-control').hasClass('valid'))
+    {
+        $('.form-control').removeClass('valid');
+    }
+}

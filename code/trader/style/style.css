@@ -152,6 +152,16 @@ form .btn{
     background-color: #789680;
     margin-right: 10px;
 }
+.btn:hover{
+    background-color: #ECB390;
+    transition: background-color 0.7s linear;
+    box-shadow: 0px 0px 5px rgb(144, 139, 139);
+    color:#ffffff;
+}
+
+form .btn{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
 .active-form{
     margin-top: 1px;
@@ -311,9 +321,21 @@ thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-c
     border-radius:2rem 2rem 0 0 ;
 }
 
+
 @media (min-width: 576px)
 {
     .modal-dialog {
         max-width: 70%;
     }
+}
+
+td .fa-solid{
+    color: #ECB390;
+    cursor: pointer;
+}
+
+
+td .fa-solid:hover{
+    color: #789680;
+    text-shadow: 0px 0px 5px rgb(144, 139, 139);
 }

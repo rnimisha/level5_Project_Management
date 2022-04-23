@@ -87,17 +87,11 @@
                     $edit_prod_error['clear']=false;
                     $edit_prod_error['#error-product-price']="Price can't be less than zero.";
                     $edit_prod_error['#product-price']='is-invalid';
-
-                    if (filter_var($price, FILTER_VALIDATE_FLOAT))
-                    {
-                        $edit_prod_error['#error-product-price']="";
-                        $edit_prod_error['#product-price']='valid';
-                    }
-                    else{
-                        $edit_prod_error['clear']=false;
-                        $edit_prod_error['#error-product-price']="Enter valid number.";
-                        $edit_prod_error['#product-price']='is-invalid';
-                    }
+                }
+                else
+                {
+                    $edit_prod_error['#error-product-price']="";
+                    $edit_prod_error['#product-price']='valid';
                 }
             }
             else{
@@ -144,59 +138,64 @@
                 $edit_prod_error['#error-product-min']="Minimum order is required.";
                 $edit_prod_error['#product-min']='is-invalid';
             }
-
-            if(isset($_POST['max']))
+        }
+        if(isset($_POST['max']))
+        {
+            if(!empty(trim($_POST['max'])))
             {
-                if(!empty(trim($_POST['max'])))
+                $max=trim($_POST['max']);
+                if (filter_var($max, FILTER_VALIDATE_INT))
                 {
-                    $max=trim($_POST['max']);
-                    if (filter_var($max, FILTER_VALIDATE_INT))
+                    if(isset($_POST['min']))
                     {
-                        if(isset($_POST['min']))
+                        if($_POST['min']>$max)
                         {
-                            if($_POST['min']>$max)
-                            {
-                                $edit_prod_error['clear']=false;
-                                $edit_prod_error['#error-product-max']="Maximum order can't be less than minimum order.";
-                                $edit_prod_error['#product-max']='is-invalid';
-                            }
+                            $edit_prod_error['clear']=false;
+                            $edit_prod_error['#error-product-max']="Maximum order can't be less than minimum order.";
+                            $edit_prod_error['#product-max']='is-invalid';
                         }
-                        $edit_prod_error['#error-product-max']="";
-                        $edit_prod_error['#product-max']='valid';
                     }
-                    else{
-                        $edit_prod_error['clear']=false;
-                        $edit_prod_error['#error-product-max']="Enter valid integer.";
-                        $edit_prod_error['#product-max']='is-invalid';
-                    }
+                    $edit_prod_error['#error-product-max']="";
+                    $edit_prod_error['#product-max']='valid';
                 }
                 else{
                     $edit_prod_error['clear']=false;
-                    $edit_prod_error['#error-product-max']="Maximum order is required.";
+                    $edit_prod_error['#error-product-max']="Enter valid integer.";
                     $edit_prod_error['#product-max']='is-invalid';
                 }
             }
-
-            $allergy=$descp='';
-            if(isset($_POST['descp']) || isset($_POST['allergy']))
-            {
-                $descp=$_POST['descp'];
-                $allergy=$_POST['allergy'];
+            else{
+                $edit_prod_error['clear']=false;
+                $edit_prod_error['#error-product-max']="Maximum order is required.";
+                $edit_prod_error['#product-max']='is-invalid';
             }
         }
+
+        $allergy=$descp='';
+        if(isset($_POST['descp']) || isset($_POST['allergy']))
+        {
+            $descp=$_POST['descp'];
+            $allergy=$_POST['allergy'];
+        }
+
 
         //if all validations pass
         if( $edit_prod_error['clear'])
         {
+            $query="UPDATE PRODUCT SET PRODUCT_NAME='$name', STOCK_QUANTITY=$stock, PRICE=$price, PRICING_UNIT='$unit', MIN_ORDER=$min, MAX_ORDER=$max, DESCRIPTION='$descp', ALLERGY_INFO='$allergy' WHERE PRODUCT_ID=$product_id";
+            $parsed=oci_parse($connection, $query);
+            if(oci_execute($parsed))
+            {
+                $edit_prod_error['clear']=true;
+            }
+            else{
+                $edit_prod_error['clear']=false;
+            }
+            oci_free_statement($query);
 
         }
 
         echo json_encode($edit_prod_error);
     }
-    else{
-        $edit_prod_error['clear']=false;
-        echo json_encode($edit_prod_error);
-    }
-
     
 ?>

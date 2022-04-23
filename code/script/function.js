@@ -60,6 +60,17 @@ function changeTraderPic(img_name)
     $("#about-profile").attr("src",img_name);
 }
 
+function clearFormValidation()
+{
+    if($('.form-control').hasClass('is-invalid'))
+    {
+        $('.form-control').removeClass('is-invalid');
+    }
+    if($('.form-control').hasClass('is-valid'))
+    {
+        $('.form-control').removeClass('is-valid');
+    }
+}
 
 //confirm before signing out
 // $(document).ready(function(){
