@@ -7,6 +7,10 @@ body{
 /* header */
 #header{
     min-height: 10vh;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 3; 
 }
 
 #logo-header img{
@@ -57,7 +61,15 @@ body{
 
 }
 
-
+#nav1{
+    max-height: 90vh;
+    position: sticky;
+    top: 10vh;
+    z-index: 2; 
+}
+.main-container{
+    padding-bottom: 30px;
+}
 #nav1 .list-group-item.active {
     background-color: #e8e8e8;
     border-color: #ffffff;
@@ -362,3 +374,4 @@ td .fa-solid:hover{
     font-size: 11px;
     background-color: #b1c7b7;
 }
+

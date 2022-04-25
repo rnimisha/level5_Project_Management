@@ -1,5 +1,9 @@
 <?php
   include_once('../connection.php');
+  if(!isset($_SESSION['phoenix_user']) & empty($_SESSION['phoenix_user']))
+  {
+    header('Location: ../loginform.php');
+  }
 ?>
 <!doctype html>
 <html lang="en">
