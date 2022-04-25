@@ -1,0 +1,114 @@
+.featured_product {
+    background: #D8EBE5;
+    border-radius: 20px;
+    margin-top: 3rem;
+    padding-bottom: 5rem;
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+ 
+ }
+ 
+ 
+ .p-heading {
+    margin: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+ }
+ 
+ .p-heading h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 3.5rem;
+    color: #323543;
+ 
+ }
+ 
+ .p-heading h3 font {
+    color: #D8EBE5;
+ }
+ 
+ .product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0px;
+    width: 100%;
+ }
+ 
+ .p-box {
+    width: 250px;
+    height: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 4px;
+    position: relative;
+    margin: 10px 30px;
+ }
+ 
+ .p-box img {
+    height: 156px;
+    width: 186px;
+ }
+ 
+ .p-box p {
+    color: #4d4d4d70;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.5;
+ }
+ 
+ .price {
+    color: #2c2c2c;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    ;
+ }
+ 
+ .buy-btn {
+    position: absolute;
+    width: 140px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    left: 50%;
+    bottom: -20px;
+    transform: translateX(-50%);
+    border-radius: 15% 15% 15% 15% / 50% 50% 50% 50%;
+    
+    color: #FFFFFF;
+    display: none;
+    animation: fade 0.2s;
+ }
+
+ .buy-btn:hover{
+    background-color: red;
+ }
+
+
+ 
+ .p-box:hover .buy-btn {
+    display: flex;
+    background-color: red;
+ }
+
+ .p-box{
+    background-color: whitesmoke;
+ }
+ 
+ .p-box:hover {
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
+ }
+ 
+ .p-box:hover .price {
+    color: green;
+    transition: all ease 0.2s;
+ }
