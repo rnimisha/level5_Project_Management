@@ -1,0 +1,86 @@
+.card1{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.692);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #D8EBE5;
+ 
+  }
+ 
+  .card2{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.692);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #D8EBE5;
+ 
+  }
+ 
+  .card3{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.692);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #D8EBE5;
+ 
+  }
+ 
+  .card4{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.692);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #D8EBE5;
+ 
+  }
+ 
+  .card1:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+  }
+ 
+  .card2:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+  }
+ 
+  .card3:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+  }
+ 
+  .card4:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+  }
+ 
+  .card_info h4{
+     color: black;
+  }
+ 
+  .card_info p{
+    color: black;
+ }
+ 
+ .card_info{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ 
+ a{
+    text-decoration: none;
+    color: black;
+ }
+ 
+ a:hover{
+    color: rgba(5, 0, 0);
+    background-color: rgba(238, 212, 217);
+    
+ }
+ 
+ 
+ a.button{
+    background-color: white;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+ }
