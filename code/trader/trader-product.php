@@ -169,12 +169,13 @@
                       <div class="h4 font-weight-bold"> Add Discount</div>
                     </div>
                     <div class="col-12">
-                      <!-- add product form -->
+                      <!-- add discount form -->
                       <form class="w-75 mx-auto py-4" id="add-discount-form" action="add-discount.php" method="POST">
-                        <input type="hidden" class="form-control" id="dis-id" value=""/>
+                        <input type="hidden" class="form-control" id="prod-id" value=""/>
                         <div class="form-group">
                           <label for="dis-name" class="text-muted">Discount Name</label>
                           <input type="text" class="form-control" id="dis-name"/>
+                          <div class="invalid-feedback" id="error-dis-name"></div>
                         </div>
                         <div class="form-group">
                           <label for="dis-rate" class="text-muted">Discount Rate</label>

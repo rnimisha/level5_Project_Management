@@ -445,4 +445,3 @@ $(document).ready(function(){
 
 
 $('body').addClass('transition-effect');
-
