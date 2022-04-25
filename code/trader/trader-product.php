@@ -179,7 +179,7 @@
                         </div>
                         <div class="form-group">
                           <label for="dis-rate" class="text-muted">Discount Rate</label>
-                          <input type="number" class="form-control" id="dis-rate"/>
+                          <input type="number" step="0.1" class="form-control" id="dis-rate"/>
                           <div class="invalid-feedback" id="error-dis-rate"></div>
                         </div>
                         <div class="form-group">
