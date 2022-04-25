@@ -68,6 +68,58 @@
               <!-- profile-->
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
+                <div class="row" id="add-shop-row">
+                    <div class="col-2 offset-lg-10 add-shop">
+                      <button class="btn ml-lg-n2" id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
+                    </div>
+                  </div>
+                  <div class="col-12 table-responsive mt-3" id="shop-table">
+                    <table class="table table-hover">
+                      <thead class="mygreen">
+                        <tr>
+                          <th> </th>
+                          <th>NAME</th>
+                          <th>LOGO</th>
+                          <th>REGISTRATION ID</th>
+                          <th>REGISTERED DATE</th>
+                          <th>ACTION</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php
+                        $getShop= "SELECT * FROM SHOP WHERE USER_ID=$current_trader_id";
+                        $parsedgetShop = oci_parse($connection, $getShop);
+                        oci_execute($parsedgetShop);
+                        while (($row = oci_fetch_assoc($parsedgetShop)) != false) {
+                        ?>
+                          <tr>
+                            <td><i class="fa-solid fa-magnifying-glass view-product-detail" value="<?php echo $row['SHOP_ID'];?>"></i></td>
+                            <td><?php echo $row['SHOP_NAME']; ?></td>
+                            <?php
+                             $img='../image/product/productplaceholder.png';
+                            if(!empty(trim($row['SHOPLOGO'])))
+                            {
+                              $temp=$row['SHOPLOGO'];
+                              $img='../image/shop/'.$temp;
+                            }
+                            ?>
+                            <td><img class="prod-view-img" src="<?php echo $img;?>" alt="shoplogo"/></td>
+                            <td><?php echo '#'.$row['REGISTATION_ID']; ?></td>
+                            <td><?php echo $row['RESGISTERED_DATE']; ?></td>
+                            <td>
+                              <span>
+                                <i class="fa-solid fa-pen-to-square edit-product" value="<?php echo $row['SHOP_ID'];?>"></i>
+                                &nbsp;<i class="fa-solid fa-trash-can delete-product" value="<?php echo $row['SHOP_ID'];?>"></i>
+                              </span>
+                            </td>
+                          </tr>
+                      <?php
+                        }
+                        oci_free_statement($parsedgetShop);
+                      ?>
+                      </tbody>
+                    </table>
+                  </div>
                   
                 </div>
               </div>

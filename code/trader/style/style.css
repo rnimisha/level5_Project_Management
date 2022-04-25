@@ -362,7 +362,7 @@ td .fa-solid:hover{
     height: 250px;
 }
 
-.add-product .btn, .add-discount{
+.add-product .btn, .add-discount, .add-shop .btn{
     background-color: #dfb7a7;
 }
 

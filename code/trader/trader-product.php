@@ -68,11 +68,11 @@
               <!-- product detail table-->
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3" id="product-detail-table">
-                <div class="row" id="add-prod-row">
-                  <div class="col-2 offset-lg-10 add-product">
-                    <button class="btn" id="add-prod-btn">Add Product</button>
+                  <div class="row" id="add-prod-row">
+                    <div class="col-2 offset-lg-10 add-product">
+                      <button class="btn ml-lg-n4" id="add-prod-btn"><i class="fa-solid fa-plus"></i>Add Product</button>
+                    </div>
                   </div>
-                </div>
                   <div class="col-12 table-responsive mt-3" id="product-table">
                     <table class="table table-hover">
                       <thead class="mygreen text-center">
