@@ -435,7 +435,7 @@ $(document).ready(function(){
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Add Discount</a></li>');
 
         var product_id=$(this).attr('value');
-        $("#dis-id").val( product_id );
+        $("#prod-id").val( product_id );
 
     });
 

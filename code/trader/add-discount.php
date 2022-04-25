@@ -69,9 +69,11 @@
             if(!empty($_POST['dis_end']))
             {
                 $end=date("d-m-Y", strtotime($_POST['dis_end']));
+                // $add_dis_error['e']=$end;
                 if(isset($_POST['dis_start']))
                 {
                     $start=date("d-m-Y", strtotime($_POST['dis_start']));
+                    // $add_dis_error['s']=$start;
                     if($end >= $start)
                     {
                         $add_dis_error['#error-dis-end']="";
@@ -80,11 +82,10 @@
                     else
                     {
                         $add_dis_error['clear']=false;
-                        $add_dis_error['#error-dis-end']="End date can't be before start date is required";
+                        $add_dis_error['#error-dis-end']="End date can't be before start date.";
                         $add_dis_error['#dis-end']='is-invalid';
                     }
                 }
-
             }
             else{
                 $add_dis_error['clear']=false;
@@ -92,6 +93,21 @@
                 $add_dis_error['#dis-end']='is-invalid';
             }
             
+        }
+        if($add_dis_error['clear'])
+        {
+            $query="INSERT INTO DISCOUNT(DISCOUNT_NAME, DISCOUNT_RATE, START_DATE, EXPIRY_DATE, PRODUCT_ID) VALUES(:names, :rate, to_date(:starts,'DD/MM/YYYY'), to_date(:ends,'DD/MM/YYYY'), :prod_id)";
+            // $query="INSERT INTO DISCOUNT(DISCOUNT_NAME, DISCOUNT_RATE, START_DATE, EXPIRY_DATE, PRODUCT_ID) VALUES('$name', $rate, $start, $end, $prod_id)";
+            // $add_dis_error['c']=$query;
+            $parsed=oci_parse($connection,$query);
+
+            oci_bind_by_name($parsed, ":names", $name);
+            oci_bind_by_name($parsed, ":rate", $rate);
+            oci_bind_by_name($parsed, ":starts", $start);
+            oci_bind_by_name($parsed, ":ends", $end);
+            oci_bind_by_name($parsed, ":prod_id", $prod_id);
+
+            oci_execute($parsed);
         }
         echo json_encode($add_dis_error);
     }

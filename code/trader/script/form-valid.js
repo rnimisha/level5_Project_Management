@@ -350,7 +350,7 @@ $(document).ready(function(){
                 if(resp.clear == true)
                 {
                     resetForm('discount-form');
-                    // clearFormValidation();
+                    clearFormValidation();
                 }
                 else{
                     inlineMsg(resp);
