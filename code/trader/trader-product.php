@@ -69,7 +69,7 @@
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3" id="product-detail-table">
                 <div class="row" id="add-prod-row">
-                  <div class="col-2 offset-10 add-product">
+                  <div class="col-2 offset-lg-10 add-product">
                     <button class="btn" id="add-prod-btn">Add Product</button>
                   </div>
                 </div>
@@ -82,8 +82,8 @@
                           <th>IMAGE</th>
                           <th>DESCRIPTION</th>
                           <th>STOCK</th>
-                          <th>PRICE</th>
-                          <th>DISCOUNT</th>
+                          <th>PRICE(<span>&#163;</span>)</th>
+                          <th>DISCOUNT(%)</th>
                           <th>MIN</th>
                           <th>MAX</th>
                           <th>ACTION</th>
@@ -121,7 +121,7 @@
                             <td><img class="prod-view-img" src="<?php echo $img;?>" alt="product-img"/></td>
                             <td><?php echo $row['DESCRIP']->load(); ?></td>
                             <td><?php echo $row['STOCK_QUANTITY']; ?></td>
-                            <td><span>&#163;</span><?php echo $row['PRICE'].'/'. $row['PRICING_UNIT'];?></td>
+                            <td><?php echo $row['PRICE'].'/'. $row['PRICING_UNIT'];?></td>
                             <?php
                                $query="SELECT * FROM ACTIVE_PRODUCT WHERE PRODUCT_ID=".$row['PRODUCT_ID'];
                                $parsed=oci_parse($connection, $query);
@@ -131,7 +131,7 @@
                                 {
                                   $discount=oci_result($parsed, 'DISCOUNT_RATE');
                                   ?>
-                                  <td><?php echo $discount.'%';?></td>
+                                  <td class="td-discount"><?php echo $discount;?><span> &nbsp;<i class="hover-edit d-none fa-solid fa-pen-to-square"></span></i></td>
                                   <?php
                                 }
                                 else{
@@ -169,6 +169,9 @@
                       <div class="h4 font-weight-bold"> Add Discount</div>
                     </div>
                     <div class="col-12">
+                      <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="discount-sucess-msg">
+                        <strong>Success! </strong>Discount has been added.
+                      </div>
                       <!-- add discount form -->
                       <form class="w-75 mx-auto py-4" id="discount-form" action="add-discount.php" method="POST">
                         <input type="hidden" class="form-control" id="prod-id" value=""/>
@@ -203,7 +206,7 @@
                 <div class="col-12 form-container w-100 py-3 d-none" id="product-detail-form">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center border-bottom">
-                      <div class="h4 font-weight-bold"> Add Product</div>
+                      <div class="h4 font-weight-bold">Add Product</div>
                     </div>
                     <div class="col-12">
                       <!-- add product form -->

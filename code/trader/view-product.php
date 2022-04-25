@@ -53,7 +53,7 @@ echo '<div class="row">
         <span class="font-green font-weight-bold"> Category : </span> '.$category.'
         </li>
         <li class="list-group-item">
-        <span class="font-green font-weight-bold"> Price : </span> '.$price.'/'.$unit.'
+        <span class="font-green font-weight-bold"> Price : </span> <span>&#163;</span>'.$price.'/'.$unit.'
         </li>
         <li class="list-group-item ">
         <span class="font-green font-weight-bold"> Quantity : </span> '.$quantity.'

@@ -92,7 +92,6 @@
                 $add_dis_error['#error-dis-end']="Start date is required";
                 $add_dis_error['#dis-end']='is-invalid';
             }
-            
         }
         if($add_dis_error['clear'])
         {

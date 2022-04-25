@@ -14,7 +14,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="style/style.css"/>
     <title>Welcome Trader</title>
-  </head> 
+  </head>  
   <body>
     <div class="container-fluid ">
       <!-- header logo and name -->

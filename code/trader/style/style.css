@@ -165,7 +165,7 @@ form .btn{
     margin-right: 10px;
 }
 .btn:hover{
-    background-color: #ECB390;
+    background-color: #dfb7a7;
     transition: background-color 0.7s linear;
     box-shadow: 0px 0px 5px rgb(144, 139, 139);
     color:#ffffff;
@@ -299,7 +299,8 @@ form .btn{
 }
 
 .mygreen{
-    background-color: #b1c7b7;
+    background-color: #bacebc;
+    /* background-color: #b1c7b7; */
 }
 
 .card{
@@ -315,7 +316,7 @@ thead th:last-child {
     border-top-color: #ffffff;
 }
 
-thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-child(5){
+thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-child(5), thead th:nth-child(6), thead th:nth-child(7), thead th:nth-child(8), thead th:nth-child(9){
     border-top-color: #ffffff;
 }
 
@@ -342,7 +343,7 @@ thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-c
 }
 
 td .fa-solid{
-    color: #ECB390;
+    color: #dfb7a7;
     cursor: pointer;
 }
 
@@ -362,7 +363,7 @@ td .fa-solid:hover{
 }
 
 .add-product .btn, .add-discount{
-    background-color: #ECB390;
+    background-color: #dfb7a7;
 }
 
 .add-product .btn:hover, .add-discount:hover{
@@ -370,8 +371,11 @@ td .fa-solid:hover{
     box-shadow: 0px 0px 5px rgb(144, 139, 139);
 }
 
-.add-discount{
+/* .add-discount{
     font-size: 11px;
     background-color: #b1c7b7;
 }
 
+.hover-edit{
+    opacity: 0;
+} */

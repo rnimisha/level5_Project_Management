@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    // alert('trader form');
+    //hide success mesages
     $('#personal-sucess-msg').hide();
     $('#profile-sucess-msg').hide();
     $('#pass-sucess-msg').hide();
+    $('#discount-sucess-msg').hide();
 
     $('#personal-form').submit(function(){
         $('#personal-sucess-msg').hide();
@@ -180,7 +181,7 @@ $(document).ready(function(){
                     jQuery('#profile-del-button').text('Delete Profile');
                     jQuery('#profile-del-button').attr('disabled', false);
                     if(resp.clear == true){
-                        console.log(response);
+                        // console.log(response);
                         $('#personal-sucess-msg').hide();
                         $('#profile-sucess-msg').show();
                         $('#pass-sucess-msg').hide();
@@ -238,7 +239,6 @@ $(document).ready(function(){
                 form_name: 'edit-product-form'
             },
             success: function(response){
-                console.log(response);
                 var resp=jQuery.parseJSON(response);
                
                 jQuery('#edit-prod-button').text('Save Changes');
@@ -299,8 +299,7 @@ $(document).ready(function(){
                 form_name: 'add-product-form'
             },
             success: function(response){
-                
-                console.log(response);
+    
                 var resp=jQuery.parseJSON(response);
                
                 jQuery('#add-prod-button').text('Add Product');
@@ -342,13 +341,13 @@ $(document).ready(function(){
                 form_name: 'discount-form'
             },
             success: function(response){
-                console.log(response);
                 var resp=jQuery.parseJSON(response);
                
                 jQuery('#add-discount-btn').text('Add Discount');
                 jQuery('#add-discount-btn').attr('disabled', false);
                 if(resp.clear == true)
                 {
+                    $('#discount-sucess-msg').show();
                     resetForm('discount-form');
                     clearFormValidation();
                 }

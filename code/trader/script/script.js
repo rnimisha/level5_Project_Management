@@ -439,6 +439,15 @@ $(document).ready(function(){
 
     });
 
+    //change opacity on hover
+    // $(".td-discount").mouseenter(function(){
+    //     $('.hover-edit').css('opacity', '1');
+    // });
+
+    // $(".td-discount").mouseleave(function(){
+    //     $('.hover-edit').css('opacity', '0');
+    // });
+
 
 });
 
