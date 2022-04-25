@@ -321,7 +321,7 @@ $(document).ready(function(){
         return false;
     });
     //details to add product
-    $('#add-discount-form').submit(function(){
+    $('#discount-form').submit(function(){
         jQuery('#add-discount-btn').text('Adding...');
         jQuery('#add-discount-btn').attr('disabled', true);
 
@@ -339,7 +339,7 @@ $(document).ready(function(){
                 dis_start:dis_start,
                 dis_rate:dis_rate,
                 dis_end:dis_end,
-                form_name: 'add-discount-form'
+                form_name: 'discount-form'
             },
             success: function(response){
                 console.log(response);
@@ -349,7 +349,7 @@ $(document).ready(function(){
                 jQuery('#add-discount-btn').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    resetForm('add-discount-form');
+                    resetForm('discount-form');
                     // clearFormValidation();
                 }
                 else{

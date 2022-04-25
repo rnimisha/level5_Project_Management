@@ -4,7 +4,7 @@
     $add_dis_error=array();
     $add_dis_error['clear']=true;
 
-    if(isset($_POST['form_name']) && $_POST['form_name']=='add-discount-form' && isset($_POST['prod_id'])){
+    if(isset($_POST['form_name']) && $_POST['form_name']=='discount-form' && isset($_POST['prod_id'])){
         $prod_id=$_POST['prod_id'];
 
         // validate discount name
@@ -93,5 +93,6 @@
             }
             
         }
+        echo json_encode($add_dis_error);
     }
 ?>

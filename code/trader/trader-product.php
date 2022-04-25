@@ -170,7 +170,7 @@
                     </div>
                     <div class="col-12">
                       <!-- add discount form -->
-                      <form class="w-75 mx-auto py-4" id="add-discount-form" action="add-discount.php" method="POST">
+                      <form class="w-75 mx-auto py-4" id="discount-form" action="add-discount.php" method="POST">
                         <input type="hidden" class="form-control" id="prod-id" value=""/>
                         <div class="form-group">
                           <label for="dis-name" class="text-muted">Discount Name</label>
