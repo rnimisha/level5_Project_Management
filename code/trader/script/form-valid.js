@@ -370,7 +370,7 @@ $(document).ready(function(){
 
         var trader_id=$('#trader-id').val();
         var shop_name=$('#shop-name').val();
-        var shop_id=$('#reg-id').val();
+        var reg_id=$('#reg-id').val();
         var shop_date=$('#reg-date').val();
         var shop_logo=$('#shoplogo').val();
         $.ajax({
@@ -379,7 +379,7 @@ $(document).ready(function(){
             data: {
                 trader_id:trader_id,
                 shop_name:shop_name,
-                shop_id:shop_id,
+                reg_id:reg_id,
                 shop_date:shop_date,
                 shop_logo:shop_logo,
                 form_name: 'add-shop-form'

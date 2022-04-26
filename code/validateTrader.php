@@ -292,30 +292,41 @@
         if(isset($_POST['register_no'])){
             if(!empty(trim($_POST['register_no'])))
             {
-                if(strlen(trim($_POST['register_no']))==12)
+                if(strlen(trim($_POST['register_no']))==8)
                 {
                     $t_pan=$_POST['register_no'];
-                    $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(REGISTATION_ID)=upper(:t_pan)";
-                    $result=oci_parse($connection,$checkQuery);
 
-                    $rows=oci_bind_by_name($result, ":t_pan", $t_pan);
-                    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
-                    oci_execute($result);
-                    oci_fetch($result);
-                    if($number_of_rows>0){
-                        $trader_error['#register_no_error']="PAN already registered";
-                        $trader_error['clear']=false;
-                        oci_free_statement($result); 
+                    if(checkRegistrationNumValid($t_pan, $connection))
+                    {
+                        $trader_error['#register_no_error']="";
+                        $register_no=$_POST['register_no'];
                     }
                     else{
-                        $trader_error['#register_no_error']="";
-                    $register_no=$_POST['register_no'];
+                        $trader_error['#register_no_error']="PAN already registered";
+                        $trader_error['clear']=false;
                     }
+
+                    // $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(REGISTATION_ID)=upper(:t_pan)";
+                    // $result=oci_parse($connection,$checkQuery);
+
+                    // $rows=oci_bind_by_name($result, ":t_pan", $t_pan);
+                    // oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                    // oci_execute($result);
+                    // oci_fetch($result);
+                    // if($number_of_rows>0){
+                    //     $trader_error['#register_no_error']="PAN already registered";
+                    //     $trader_error['clear']=false;
+                    //     oci_free_statement($result); 
+                    // }
+                    // else{
+                    //     $trader_error['#register_no_error']="";
+                    // $register_no=$_POST['register_no'];
+                    // }
                     
                 }
                 else
                 {
-                    $trader_error['#register_no_error']="Registration number needs to be 12 characters";
+                    $trader_error['#register_no_error']="Registration number needs to be 8 characters";
                     $trader_error['clear']=false;
                 }
             }

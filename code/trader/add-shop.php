@@ -60,7 +60,6 @@
                     $add_shop_error['#reg-date']='valid'; 
 
                 }
-                
             }
             else{
                 $add_shop_error['clear']=false;
@@ -68,6 +67,39 @@
                 $add_shop_error['#reg-date']='is-invalid';
             }
         }
+
+        //validate registration number for shop additon
+        if(isset($_POST['reg_id']))
+        {
+            if(!empty(trim($_POST['reg_id'])))
+            {
+                if(strlen(trim($_POST['reg_id']))==8)
+                {
+                    $reg_id=$_POST['reg_id'];
+                    if(checkRegistrationNumValid($reg_id, $connection))
+                    {
+                        $add_shop_error['#error-reg-id']="";
+                        $add_shop_error['#reg-id']='valid';
+                    }
+                    else{
+                        $add_shop_error['clear']=false;
+                        $add_shop_error['#error-reg-id']="Registration ID already registered.";
+                        $add_shop_error['#reg-id']='is-invalid';
+                    }
+                }
+                else{
+                    $add_shop_error['clear']=false;
+                    $add_shop_error['#error-reg-id']="Registration ID needs to be 8 characters";
+                    $add_shop_error['#reg-id']='is-invalid';
+                }
+            }
+            else{
+                $add_shop_error['clear']=false;
+                $add_shop_error['#error-reg-id']="Registration ID is required";
+                $add_shop_error['#reg-id']='is-invalid';
+            }
+        }
+
         echo json_encode($add_shop_error);
     }
 ?>

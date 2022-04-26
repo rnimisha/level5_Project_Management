@@ -22,4 +22,23 @@ function checkShopNameValid($shop_name, $connection)
     }
 }
 
+//check if shop registration number already exists
+function checkRegistrationNumValid($reg_id, $connection)
+{
+    $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(REGISTATION_ID)=upper(:reg_id)";
+    $result=oci_parse($connection,$checkQuery);
+
+    oci_bind_by_name($result, ":reg_id", $reg_id);
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    if($number_of_rows>0){
+        return false;
+    }
+    else{
+        return true;
+    }
+                    
+}
+
 ?>
