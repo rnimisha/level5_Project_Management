@@ -24,7 +24,8 @@
 <div class="row" id="header">
     <div class="col-lg-2 col-md-3 d-flex justify-content-center align-items-center" id="logo-header">
         <div class=" col-sm-1 d-md-none mr-auto px-3">
-        <i class='bx bx-menu-alt-left'></i>
+            <i class='bx bx-menu-alt-left' id="small-toggle"></i>
+            <i class='fa-solid fa-xmark d-none' id="close-toggle"></i>
         </div>
         <div class="col-sm-11 col-md-12 d-flex justify-content-center align-items-center">
             <img src="image/logo.png"  alt="logo" />

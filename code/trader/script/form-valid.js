@@ -5,9 +5,13 @@ $(document).ready(function(){
     $('#pass-sucess-msg').hide();
     $('#discount-sucess-msg').hide();
     $('#product-edit-sucess-msg').hide();
+    $('#product-img-sucess-msg').hide();
     $('#shop-edit-sucess-msg').hide();
     $('#shop-logo-sucess-msg').hide();
+    $('#add-shop-sucess-msg').hide();
 
+
+    // ------------trader profile setting---------------
     $('#personal-form').submit(function(){
         $('#personal-sucess-msg').hide();
         $('#profile-sucess-msg').hide();
@@ -44,11 +48,12 @@ $(document).ready(function(){
                 jQuery('#personal-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    // resetForm('personal-form');
-                    $('#personal-form').addClass('was-validated');
-                    $('#personal-sucess-msg').show();
+                    // // resetForm('personal-form');
+                    // $('#personal-form').addClass('was-validated');
+                    $('#personal-sucess-msg').show().delay(5000).fadeOut();
                     $('#profile-sucess-msg').hide();
                     $('#pass-sucess-msg').hide();
+                    clearFormValidation();
                     removeStyle(resp);
                 }
                 else{
@@ -95,7 +100,7 @@ $(document).ready(function(){
                     resetForm('password-form');
                     $('#personal-sucess-msg').hide();
                     $('#profile-sucess-msg').hide();
-                    $('#pass-sucess-msg').show();
+                    $('#pass-sucess-msg').show().delay(5000).fadeOut();
                     removeStyle(resp);
                 }
                 else{
@@ -140,7 +145,7 @@ $(document).ready(function(){
                 jQuery('#profile-button').attr('disabled', false);
                 if(resp.clear == true){
                     $('#personal-sucess-msg').hide();
-                    $('#profile-sucess-msg').show();
+                    $('#profile-sucess-msg').show().delay(5000).fadeOut();
                     $('#pass-sucess-msg').hide();
                     $('#error-trad-pic').html("");
                     //change image 
@@ -158,6 +163,7 @@ $(document).ready(function(){
     });
 
 
+    // delete profile picture for trader
     $('#picture-form-del').submit(function(){
         if (confirm('Do you want to delete the image?')) 
         {
@@ -186,7 +192,7 @@ $(document).ready(function(){
                     if(resp.clear == true){
                         // console.log(response);
                         $('#personal-sucess-msg').hide();
-                        $('#profile-sucess-msg').show();
+                        $('#profile-sucess-msg').show().delay(5000).fadeOut();
                         $('#pass-sucess-msg').hide();
                         $('#error-trad-pic').html("");
                         //change image 
@@ -208,6 +214,7 @@ $(document).ready(function(){
         }
     });
 
+    //--------------Trader Product crud----------------
     // post details to edit product details
     $('#edit-product-form').submit(function(){
         //button value change
@@ -266,9 +273,6 @@ $(document).ready(function(){
         return false;
     });
 
-    $('#close-modal').click(function(){
-        clearFormValidation();
-    });
 
     //details to add product
     $('#add-product-form').submit(function(){
@@ -326,8 +330,43 @@ $(document).ready(function(){
         return false;
     });
 
+    //post new picture for product
+    $('#new-prod-pic-form').submit(function(){
 
-    //details to add product
+        //button value change
+        jQuery('#add-prod-pic').text('Uploading..');
+        jQuery('#add-prod-pic').attr('disabled', true);
+
+        //for file
+        var formData= new FormData(this);
+        formData.append("form_name", "new-prod-pic-form");
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false, //not obj nor string
+            success: function(response){
+                var resp=response;
+                console.log(response);
+                jQuery('#add-prod-pic').text('Upload Image');
+                jQuery('#add-prod-pic').attr('disabled', false);
+                $('#product-img-sucess-msg').show().delay(5000).fadeOut();;
+                if(resp.clear == true){
+                    clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
+
+    //details to add product discount
     $('#discount-form').submit(function(){
         jQuery('#add-discount-btn').text('Adding...');
         jQuery('#add-discount-btn').attr('disabled', true);
@@ -355,7 +394,7 @@ $(document).ready(function(){
                 jQuery('#add-discount-btn').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    $('#discount-sucess-msg').show().delay(5000).fadeOut();;
+                    $('#discount-sucess-msg').show().delay(5000).fadeOut();
                     resetForm('discount-form');
                     clearFormValidation();
                 }
@@ -392,6 +431,7 @@ $(document).ready(function(){
                 jQuery('#add-shop-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
+                    $('#add-shop-sucess-msg').show().delay(5000).fadeOut();
                     resetForm('add-shop-form');
                     clearFormValidation();
                 }
@@ -408,47 +448,14 @@ $(document).ready(function(){
 
 
 
-    //submit form on change
-    $('#trad-pic').change(function(){
-        if (confirm('Do you want to upload the image?')) {
-            $('#picture-form-up').submit();
-        } 
-    });
+    // //submit form on change
+    // $('#trad-pic').change(function(){
+    //     if (confirm('Do you want to upload the image?')) {
+    //         $('#picture-form-up').submit();
+    //     } 
+    // });
 
-    //post new picture for product
-    $('#new-prod-pic-form').submit(function(){
-
-        //button value change
-        jQuery('#add-prod-pic').text('Uploading..');
-        jQuery('#add-prod-pic').attr('disabled', true);
-
-        //for file
-        var formData= new FormData(this);
-        formData.append("form_name", "new-prod-pic-form");
-
-        $.ajax({
-            type: $(this).attr('method'),
-            url: $(this).attr('action'),
-            data: formData,
-            dataType: "JSON",
-            contentType: false, //multipart/formdata
-            processData: false, //not obj nor string
-            success: function(response){
-                var resp=response;
-                console.log(response);
-                jQuery('#add-prod-pic').text('Upload Image');
-                jQuery('#add-prod-pic').attr('disabled', false);
-                if(resp.clear == true){
-                    clearFormValidation();
-                }
-                else{
-                    inlineMsg(resp);
-                }
-            }
-        });
-        //prevent page reload
-        return false;
-    });
+    
 
     // post for editing shop name
     $('#discount-form').submit(function(){
@@ -492,6 +499,7 @@ $(document).ready(function(){
         return false;
     });
 
+    //-----------edit shop--------
     // post for editing shop name
     $('#edit-shop-form').submit(function(){
         jQuery('#edit-shop-button').text('Saving...');
@@ -523,8 +531,7 @@ $(document).ready(function(){
                 else{
                     inlineMsg(resp);
                 }
-            }
-            
+            }  
         });
         //prevent page reload
         return false;
@@ -568,20 +575,3 @@ $(document).ready(function(){
     });
 
 });
-
-
-
-
-
-
-// function clearFormValidation()
-// {
-//     if($('.form-control').hasClass('is-invalid'))
-//     {
-//         $('.form-control').removeClass('is-invalid');
-//     }
-//     if($('.form-control').hasClass('valid'))
-//     {
-//         $('.form-control').removeClass('valid');
-//     }
-// }

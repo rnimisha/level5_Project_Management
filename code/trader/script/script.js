@@ -71,6 +71,19 @@ $(document).ready(function(){
         $('#profile-picture').css({'width' : '75px' , 'height' : '75px'});
     });
 
+    $("#small-toggle").click(function(){
+        $("#nav1").removeClass("d-none");
+        $("#close-toggle").removeClass("d-none");
+        $("#small-toggle").addClass("d-none");
+        $("#nav1").css("background-color","white");
+    });
+
+    $("#close-toggle").click(function(){
+        $("#nav1").addClass("d-none");
+        $("#close-toggle").addClass("d-none");
+        $("#small-toggle").removeClass("d-none");
+    });
+
     //change to setting
     $("#setting-div").click(function(){
         if(!$("#setting-div").hasClass('active-form')){

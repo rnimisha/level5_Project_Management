@@ -177,10 +177,16 @@ form .btn{
 
 .active-form{
     margin-top: 1px;
-    border-bottom: 2px solid #bacebc;
+    color: #789680;
+}
+#about-me-div:hover, #setting-div:hover{
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    color: #dfb7a7;
 }
 
-#picture, #personal, #pass-change, #about-me-div, #setting-div, #product-photo, #product-general{
+#picture, #personal, #pass-change, #about-me-div, #setting-div, #product-photo, #product-general, .hover-cat{
     cursor: pointer;
 
 }
@@ -188,18 +194,24 @@ form .btn{
     color: #789680;
     font-weight: bold;
 }
+
+.hover-cat:hover{
+    color: #dfb7a7;
+}
  
 /* image profile picture */
 #changing-profile, #about-profile
 {
     width: 100%;
-    max-height: 250px;
+    max-height: 300px;
     border-radius: 30px;
     margin-bottom: 35px;
     margin-top: 30px;
 }
 
-
+.fa-trash-can, .fa-pen-to-square, .fa-magnifying-glass {
+    font-size: 1.1rem;
+}
 .prof-delete .btn{
     background-color: #dea4a4;
 }

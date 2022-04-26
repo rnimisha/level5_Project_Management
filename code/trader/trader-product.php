@@ -320,8 +320,8 @@
               <div class="row w-100" id="settings">
                 <div class="col-lg-2 col-md-3 border-right h-75">
                   <ul class="list-group list-group-flush my-1">
-                  <li class="list-group-item" id="product-general">General</li>
-                    <li class="list-group-item" id="product-photo">Photo</li>
+                  <li class="list-group-item hover-cat" id="product-general">General</li>
+                    <li class="list-group-item hover-cat" id="product-photo">Photo</li>
                   </ul>
                 </div>
 

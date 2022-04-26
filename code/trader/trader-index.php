@@ -120,9 +120,9 @@
                   <div class="row w-100 d-none" id="settings">
                     <div class="col-lg-2 col-md-3 border-right h-75">
                       <ul class="list-group list-group-flush my-1">
-                        <li class="list-group-item" id="picture">Avatar</li>
-                        <li class="list-group-item" id="personal">Personal</li>
-                        <li class="list-group-item" id="pass-change">Password</li>
+                        <li class="list-group-item hover-cat" id="picture">Avatar</li>
+                        <li class="list-group-item hover-cat" id="personal">Personal</li>
+                        <li class="list-group-item hover-cat" id="pass-change">Password</li>
                       </ul>
                     </div>
 

@@ -141,6 +141,9 @@
                 <div class="col-12">
                   <!-- add shop form -->
                   <form class="w-75 mx-auto py-4" id="add-shop-form" action="add-shop.php" method="POST">
+                  <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="add-shop-sucess-msg">
+                    <strong>Success! </strong>Changes has been saved.
+                  </div>
                     <input type="hidden" name="trader-id" id="trader-id" value="<?php echo $current_trader_id;?>" />
                     <div class="form-group">
                       <label for="shop-name" class="text-muted">Shop Name</label>
@@ -182,8 +185,8 @@
               <div class="row w-100" id="settings">
                 <div class="col-lg-2 col-md-3 border-right h-75">
                   <ul class="list-group list-group-flush my-1">
-                  <li class="list-group-item" id="shop-general">General</li>
-                    <li class="list-group-item" id="shop-photo">Photo</li>
+                  <li class="list-group-item hover-cat" id="shop-general">Shop Name</li>
+                    <li class="list-group-item hover-cat" id="shop-photo">Logo</li>
                   </ul>
                 </div>
 
