@@ -602,10 +602,10 @@ $(document).ready(function(){
     //change to shop name edit form
     $('#shop-general').click(function(){
 
-        if( $('#shop-logo').hasClass("active-list"))
+        if( $('#shop-photo').hasClass("active-list"))
         {
             //remove active line
-            $('#shop-logo').removeClass('active-list');
+            $('#shop-photo').removeClass('active-list');
         }
 
         //add active line

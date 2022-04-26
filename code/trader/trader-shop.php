@@ -188,7 +188,7 @@
                 </div>
 
                 <!-- edit product form -->
-                <form class=" w-75 mx-auto py-4" id="edit-shop-form" action="add-shop.php" method="POST">
+                <form class=" w-75 mx-auto py-4" id="edit-shop-form" action="edit-shop.php" method="POST">
                   <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="shop-edit-sucess-msg">
                       <strong>Success! </strong>Changes has been saved.
                   </div>
@@ -201,7 +201,7 @@
                     <div class="invalid-feedback" id="error-new-shop-name"></div>
                   </div>
                   <div class="form-group">
-                    <label for="check-pass" class="text-muted">Enter Password</label>
+                    <label for="check-pass" class="text-muted">Enter Your Password</label>
                     <input type="password" class="form-control" id="check-pass"/>
                     <div class="invalid-feedback" id="error-check-pass"></div>
                   </div>

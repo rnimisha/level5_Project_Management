@@ -5,7 +5,8 @@ $(document).ready(function(){
     $('#pass-sucess-msg').hide();
     $('#discount-sucess-msg').hide();
     $('#product-edit-sucess-msg').hide();
-    $('#product-img-sucess-msg').hide();
+    $('#shop-edit-sucess-msg').hide();
+    $('#shop-logo-sucess-msg').hide();
 
     $('#personal-form').submit(function(){
         $('#personal-sucess-msg').hide();
@@ -449,9 +450,87 @@ $(document).ready(function(){
         return false;
     });
 
+    // post for editing shop name
+    $('#discount-form').submit(function(){
+        jQuery('#add-discount-btn').text('Adding...');
+        jQuery('#add-discount-btn').attr('disabled', true);
+
+        var prod_id=$('#prod-id').val();
+        var dis_name=$('#dis-name').val();
+        var dis_rate=$('#dis-rate').val();
+        var dis_start=$('#dis-start').val();
+        var dis_end=$('#dis-end').val();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                prod_id:prod_id,
+                dis_name:dis_name,
+                dis_start:dis_start,
+                dis_rate:dis_rate,
+                dis_end:dis_end,
+                form_name: 'discount-form'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+               
+                jQuery('#add-discount-btn').text('Add Discount');
+                jQuery('#add-discount-btn').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    $('#discount-sucess-msg').show();
+                    resetForm('discount-form');
+                    clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    // post for editing shop name
+    $('#edit-shop-form').submit(function(){
+        jQuery('#edit-shop-button').text('Saving...');
+        jQuery('#edit-shop-button').attr('disabled', true);
+
+        var shop_id=$('#edit_shop_id').val();
+        var new_name=$('#new-shop-name').val();
+        var check_pass=$('#check-pass').val();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                shop_id:shop_id,
+                new_name:new_name,
+                check_pass:check_pass,
+                form_name: 'edit-shop-form'
+            },
+            success: function(response){
+                 var resp=jQuery.parseJSON(response);
+                console.log(response);
+                jQuery('#edit-shop-button').text('Save Changes');
+                jQuery('#edit-shop-button').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    $('#shop-edit-sucess-msg').show();
+                    resetForm('edit-shop-form');
+                    // clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
 });
-
-
 
 
 
