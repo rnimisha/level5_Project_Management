@@ -319,6 +319,8 @@ $(document).ready(function(){
 
     //populate product detail edit form with values of current product
     $('.edit-product').click(function(){
+       
+
         var product_id=$(this).attr('value');
         // alert(product_id);
         $.ajax({
@@ -332,18 +334,42 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true)
                 {
-                    $('#product-modal').click();
-                    $(".edit-product-form #product_id").val( product_id );
-                    $(".edit-product-form #product-name").val( resp.name );
-                    $(".edit-product-form #product-stock").val( resp.quantity );
-                    $(".edit-product-form #product-price").val( resp.price);
-                    $(".edit-product-form #product-unit").val( resp.unit);
-                    $(".edit-product-form #product-min").val( resp.min);
-                    $(".edit-product-form #product-max").val( resp.max);
-                    $(".edit-product-form #product-descp").val( resp.descp);
-                    $(".edit-product-form #product-allergy").val( resp.allergy);
+                    // alert(response);
+                    $("#product_id").val( product_id );
+                    $("#product-name").val( resp.name );
+                    $("#product-stock").val( resp.quantity );
+                    $("#product-price").val( resp.price);
+                    $("#product-unit").val( resp.unit);
+                    $("#product-min").val( resp.min);
+                    $("#product-max").val( resp.max);
+                    $("#product-descp").val( resp.descp);
+                    $("#product-allergy").val( resp.allergy);
                     $('#product-category option[value="' + resp.category +'"]').prop('selected',true);
                     
+                    if( $('#product-photo').hasClass("active-list"))
+                    {
+                        //remove active line
+                        $('#product-photo').removeClass('active-list');
+                    }
+
+                    //add active line
+                    if(!$('#product-general').hasClass('active-list'))
+                    {
+                        $('#product-general').addClass('active-list');
+                    }
+
+                    if($('#product-edit-form').hasClass('d-none'))
+                    {
+                        $('#product-edit-form').removeClass('d-none');
+                    }
+                    
+                    if(!$('#product-detail-table').hasClass('d-none'))
+                    {
+                        $('#product-detail-table').addClass('d-none');
+                    }  
+
+
+                    $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Edit General</a></li>');
                 }
                 else{
                     alert('unable to edit the product');
@@ -351,6 +377,62 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+
+
+    $('#product-general').click(function(){
+        if( $('#product-photo').hasClass("active-list"))
+        {
+            //remove active line
+            $('#product-photo').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#product-general').hasClass('active-list'))
+        {
+            $('#product-general').addClass('active-list');
+        }
+
+        if($('#edit-product-form').hasClass('d-none'))
+        {
+            $('#edit-product-form').removeClass('d-none');
+        }
+        
+        if(!$('#prod-pic-form').hasClass('d-none'))
+        {
+            $('#prod-pic-form').addClass('d-none');
+        }  
+
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Edit General</a></li>');
+    });
+
+    $('#product-photo').click(function(){
+        if( $('#product-general').hasClass("active-list"))
+        {
+            //remove active line
+            $('#product-general').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#product-photo').hasClass('active-list'))
+        {
+            $('#product-photo').addClass('active-list');
+        }
+
+        if($('#prod-pic-form').hasClass('d-none'))
+        {
+            $('#prod-pic-form').removeClass('d-none');
+        }
+        
+        if(!$('#edit-product-form').hasClass('d-none'))
+        {
+            $('#edit-product-form').addClass('d-none');
+        }  
+
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Edit Photo</a></li>');
     });
 
     //data to php to delete product 
@@ -487,6 +569,15 @@ $(document).ready(function(){
     // $(".td-discount").mouseleave(function(){
     //     $('.hover-edit').css('opacity', '0');
     // });
+
+
+    $(".prod-view-img").mouseenter(function(){
+        $('.hover-edit').css('opacity', '1');
+    });
+
+    $(".td-discount").mouseleave(function(){
+        $('.hover-edit').css('opacity', '0');
+    });
 
 
 });

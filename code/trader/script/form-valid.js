@@ -208,6 +208,7 @@ $(document).ready(function(){
     // post details to edit product details
     $('#edit-product-form').submit(function(){
         //button value change
+
         jQuery('#edit-prod-button').text('Saving...');
         jQuery('#edit-prod-button').attr('disabled', true);
 
@@ -249,7 +250,7 @@ $(document).ready(function(){
                     // $('#edit-product-form').addClass('was-validated');
                     $('#close-modal').click();
                     removeStyle(resp);
-                    location.reload();
+                    // location.reload();
                 }
                 else{
                     // alert('not success inside form');

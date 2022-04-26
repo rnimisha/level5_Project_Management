@@ -126,7 +126,8 @@
                               }
                               oci_free_statement($parsedgetImg);
                             ?>
-                      <td><img class="prod-view-img" src="<?php echo $img;?>" alt="product-img" /></td>
+                      <td><img class="prod-view-img" src="<?php echo $img;?>" alt="product-img" value="<?php echo $row['PRODUCT_ID']; ?>"/>
+                      </td>
                       <td><?php echo $row['DESCRIP']->load(); ?></td>
                       <td><?php echo $row['STOCK_QUANTITY']; ?></td>
                       <td><?php echo $row['PRICE'].'/'. $row['PRICING_UNIT'];?></td>
@@ -173,6 +174,7 @@
               <div class="col-12 d-none" id="product-detail-table">
               </div>
             </div>
+          
             <!-- add discount container -->
             <div class="col-12 form-container w-100 py-3 d-none" id="add-discount-form">
               <div class="row">
@@ -180,10 +182,8 @@
                   <div class="h4 font-weight-bold"> Add Discount</div>
                 </div>
                 <div class="col-12">
-                  <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="discount-sucess-msg">
-                    <strong>Success! </strong>Discount has been added.
-                  </div>
-                  <!-- add discount form -->
+
+                  <!--add discount form -->
                   <form class="w-75 mx-auto py-4" id="discount-form" action="add-discount.php" method="POST">
                     <input type="hidden" class="form-control" id="prod-id" value="" />
                     <div class="form-group">
@@ -314,98 +314,102 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- modal for editing product -->
-    <div class="d-none">
-      <button type="hidden" id="product-modal" data-toggle="modal" data-target="#editProductForm">
-      </button>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="editProductForm" tabindex="-1" role="dialog" aria-labelledby="editProductFormTitle"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header mygreen">
-            <h5 class="modal-title ">Edit Product</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body edit-product-form">
-            <!-- edit product form -->
-            <form class=" w-75 mx-auto py-4" id="edit-product-form" action="edit-product.php" method="POST">
-              <div class="form-group d-none">
-                <input type="hidden" class="form-control" id="product_id" value="" />
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="product-name" class="text-muted">Product Name</label>
-                  <input type="text" class="form-control" id="product-name" value="" />
-                  <div class="invalid-feedback" id="error-product-name"></div>
+
+            <!-- product edit category -->
+            <div class="col-12 form-container w-100 py-3 d-none" id="product-edit-form">
+              <div class="row w-100" id="settings">
+                <div class="col-lg-2 col-md-3 border-right h-75">
+                  <ul class="list-group list-group-flush my-1">
+                  <li class="list-group-item" id="product-general">General</li>
+                    <li class="list-group-item" id="product-photo">Photo</li>
+                  </ul>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="product-stock" class="text-muted">Stock Quantity</label>
-                  <input type="number" class="form-control" id="product-stock" />
-                  <div class="invalid-feedback" id="error-product-stock"></div>
+
+                <!-- edit product form -->
+                <form class=" w-75 mx-auto py-4" id="edit-product-form" action="edit-product.php" method="POST">
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" id="product_id" value="" />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="product-name" class="text-muted">Product Name</label>
+                      <input type="text" class="form-control" id="product-name"/>
+                      <div class="invalid-feedback" id="error-product-name"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="product-stock" class="text-muted">Stock Quantity</label>
+                      <input type="number" class="form-control" id="product-stock" />
+                      <div class="invalid-feedback" id="error-product-stock"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="product-category" class="text-muted">Category</label>
+                    <select class="custom-select form-control" id="product-category">
+                      <?php
+                      $query="SELECT * FROM PRODUCT_CATEGORY";
+                      $parsed = oci_parse($connection, $query);
+                      oci_execute($parsed);
+                      while (($row = oci_fetch_assoc($parsed)) != false) {
+                      ?>
+                      <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
+                      <?php
+                      }
+                      ?>
+                    </select>
+                    <div class="invalid-feedback" id="error-product-category"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="product-price" class="text-muted">Price</label>
+                      <input type="number" step="0.1" class="form-control" id="product-price" value="" />
+                      <div class="invalid-feedback" id="error-product-price"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="product-unit" class="text-muted">Pricing Unit</label>
+                      <input type="text" class="form-control" id="product-unit" value="" />
+                      <div class="invalid-feedback" id="error-product-unit"></div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="product-min" class="text-muted">Minimum Order</label>
+                      <input type="number" class="form-control" id="product-min" value="" />
+                      <div class="invalid-feedback" id="error-product-min"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="product-max" class="text-muted">Maximum Order</label>
+                      <input type="number" class="form-control" id="product-max" value="" />
+                      <div class="invalid-feedback" id="error-product-max"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="product-descp" class="text-muted">Description</label>
+                    <textarea class="form-control" id="product-descp" value=""></textarea>
+                    <div class="invalid-feedback" id="error-product-descp"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="product-allergy" class="text-muted">Allergy Information</label>
+                    <textarea class="form-control" id="product-allergy" value=""></textarea>
+                    <div class="invalid-feedback" id="error-product-allergy"></div>
+                  </div>
+                  <div class="row justify-content-end pr-1">
+                    <button type="submit" class="btn" id="edit-prod-button">Save Changes</button>
+                  </div>
+                </form>
+
+                <!-- profile picture change -->
+                <div id="prod-pic-form"  class="col-lg-10 col-md-9 py-4">
+                  <div class="row d-flex justify-content-center align-items-center w-100 ">
+                    <!-- display pic -->
+                    <div class="col-4 w-100">
+                      <div class="row justify-content-center">
+                      
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="product-category" class="text-muted">Category</label>
-                <select class="custom-select form-control" id="product-category">
-                  <?php
-                  $query="SELECT * FROM PRODUCT_CATEGORY";
-                  $parsed = oci_parse($connection, $query);
-                  oci_execute($parsed);
-                  while (($row = oci_fetch_assoc($parsed)) != false) {
-                  ?>
-                  <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
-                  <?php
-                  }
-                  ?>
-                </select>
-                <div class="invalid-feedback" id="error-product-category"></div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="product-price" class="text-muted">Price</label>
-                  <input type="number" step="0.1" class="form-control" id="product-price" value="" />
-                  <div class="invalid-feedback" id="error-product-price"></div>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="product-unit" class="text-muted">Pricing Unit</label>
-                  <input type="text" class="form-control" id="product-unit" value="" />
-                  <div class="invalid-feedback" id="error-product-unit"></div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="product-min" class="text-muted">Minimum Order</label>
-                  <input type="number" class="form-control" id="product-min" value="" />
-                  <div class="invalid-feedback" id="error-product-min"></div>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="product-max" class="text-muted">Maximum Order</label>
-                  <input type="number" class="form-control" id="product-max" value="" />
-                  <div class="invalid-feedback" id="error-product-max"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="product-descp" class="text-muted">Description</label>
-                <textarea class="form-control" id="product-descp" value=""></textarea>
-                <div class="invalid-feedback" id="error-product-descp"></div>
-              </div>
-              <div class="form-group">
-                <label for="product-allergy" class="text-muted">Allergy Information</label>
-                <textarea class="form-control" id="product-allergy" value=""></textarea>
-                <div class="invalid-feedback" id="error-product-allergy"></div>
-              </div>
-              <div class="row justify-content-end pr-1">
-                <button type="submit" class="btn" id="edit-prod-button">Save Changes</button>
-              </div>
-            </form>
           </div>
         </div>
       </div>
