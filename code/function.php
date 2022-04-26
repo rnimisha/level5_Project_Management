@@ -37,8 +37,21 @@ function checkRegistrationNumValid($reg_id, $connection)
     }
     else{
         return true;
+    }                 
+}
+
+//returns email of user in parameter
+function getEmail($user_id, $connection)
+{
+    $getEmail= "SELECT * from mart_user where USER_ID=$user_id";
+    $parsedGetEmail = oci_parse($connection, $getEmail);
+    oci_execute($parsedGetEmail);
+    while (($row = oci_fetch_assoc($parsedGetEmail)) != false) {
+        $email= $row['EMAIL'];
     }
-                    
+    oci_free_statement($parsedGetEmail);
+
+    return $email;
 }
 
 ?>

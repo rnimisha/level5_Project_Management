@@ -368,25 +368,19 @@ $(document).ready(function(){
         jQuery('#add-shop-button').text('Adding...');
         jQuery('#add-shop-button').attr('disabled', true);
 
-        var trader_id=$('#trader-id').val();
-        var shop_name=$('#shop-name').val();
-        var reg_id=$('#reg-id').val();
-        var shop_date=$('#reg-date').val();
-        var shop_logo=$('#shoplogo').val();
+        var formData= new FormData(this);
+        formData.append("form_name", "add-shop-form");
+
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
-            data: {
-                trader_id:trader_id,
-                shop_name:shop_name,
-                reg_id:reg_id,
-                shop_date:shop_date,
-                shop_logo:shop_logo,
-                form_name: 'add-shop-form'
-            },
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false,
             success: function(response){
                 console.log(response);
-                var resp=jQuery.parseJSON(response);
+                var resp=response;
                
                 jQuery('#add-shop-button').text('Add Shop');
                 jQuery('#add-shop-button').attr('disabled', false);

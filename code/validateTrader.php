@@ -434,9 +434,6 @@
                     }
                 }
                 oci_free_statement($parsedShopQuery);
-
-                
-
             }
         }
     }

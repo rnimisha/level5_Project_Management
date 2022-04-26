@@ -139,25 +139,31 @@
                 <div class="col-12">
                   <!-- add shop form -->
                   <form class="w-75 mx-auto py-4" id="add-shop-form" action="add-shop.php" method="POST">
-                    <input type="hidden" id="trader-id" value="<?php echo $current_trader_id;?>" />
+                    <input type="hidden" name="trader-id" id="trader-id" value="<?php echo $current_trader_id;?>" />
                     <div class="form-group">
                       <label for="shop-name" class="text-muted">Shop Name</label>
-                      <input type="text" class="form-control" id="shop-name" />
+                      <input type="text" class="form-control" name="shop-name" id="shop-name" />
                       <div class="invalid-feedback" id="error-shop-name"></div>
                     </div>
                     <div class="form-group">
                       <label for="reg-id" class="text-muted">Registration ID</label>
-                      <input type="text" class="form-control" id="reg-id" />
+                      <input type="text" class="form-control" name="reg-id" id="reg-id" />
                       <div class="invalid-feedback" id="error-reg-id"></div>
                     </div>
                     <div class="form-group">
-                      <label for="reg-date" class="text-muted">Registration Date</label>
-                      <input type="date" class="form-control" id="reg-date" />
+                      <label for="shop-date" class="text-muted">Registration Date</label>
+                      <input type="date" class="form-control" name="shop-date" id="shop-date" />
                       <div class="invalid-feedback" id="error-reg-date"></div>
                     </div>
                     <div class="form-group">
+                      <label for="reg-reason" class="text-muted">What you want to sell?</label>
+                      <textarea class="form-control" name="reg-reason" id="reg-reason"></textarea>
+                      <div class="invalid-feedback" id="error-reg-reason"></div>
+                    </div>
+                    <div class="form-group">
                       <label for="shop-logo" class="text-muted ">Shop Logo</label><br>
-                      <input type="file" id="shoplogo">
+                      <input type="file" name="shoplogo" id="shoplogo">
+                      <div class="invalid-feedback" id="error-shoplogo"></div>
                     </div>
                     <div class="row justify-content-end pr-1">
                       <button type="submit" class="btn" id="add-shop-button">Add Shop</button>
