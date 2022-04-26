@@ -546,6 +546,85 @@ $(document).ready(function(){
         var shop_id=$(this).attr('value');
         $("#edit_shop_id").val(shop_id);
         $("#logo_shop_id").val(shop_id);
+
+        if( $('#shop-photo').hasClass("active-list"))
+        {
+            //remove active line
+            $('#shop-photo').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#shop-general').hasClass('active-list'))
+        {
+            $('#shop-general').addClass('active-list');
+        }
+
+        if($('#shop-edit-form').hasClass('d-none'))
+        {
+            $('#shop-edit-form').removeClass('d-none');
+        }
+        
+        if(!$('#shop-detail-table').hasClass('d-none'))
+        {
+            $('#shop-detail-table').addClass('d-none');
+        }  
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Edit General</a></li>');
+    });
+
+    //change to logo edit form
+    $('#shop-photo').click(function(){
+
+        if( $('#shop-general').hasClass("active-list"))
+        {
+            //remove active line
+            $('#shop-general').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#shop-photo').hasClass('active-list'))
+        {
+            $('#shop-photo').addClass('active-list');
+        }
+
+        if($('#shop-pic-form').hasClass('d-none'))
+        {
+            $('#shop-pic-form').removeClass('d-none');
+        }
+        
+        if(!$('#edit-shop-form').hasClass('d-none'))
+        {
+            $('#edit-shop-form').addClass('d-none');
+        }  
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Edit Logo</a></li>');
+    });
+
+    //change to shop name edit form
+    $('#shop-general').click(function(){
+
+        if( $('#shop-logo').hasClass("active-list"))
+        {
+            //remove active line
+            $('#shop-logo').removeClass('active-list');
+        }
+
+        //add active line
+        if(!$('#shop-general').hasClass('active-list'))
+        {
+            $('#shop-general').addClass('active-list');
+        }
+
+        if($('#edit-shop-form').hasClass('d-none'))
+        {
+            $('#edit-shop-form').removeClass('d-none');
+        }
+        
+        if(!$('#shop-pic-form').hasClass('d-none'))
+        {
+            $('#shop-pic-form').addClass('d-none');
+        }  
+
+        $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Edit General</a></li>');
     });
 
     //data to php to deactivate shop

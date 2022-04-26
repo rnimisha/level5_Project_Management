@@ -223,4 +223,13 @@
         }
         echo json_encode($add_shop_error);
     }
+
+
+    //edit shop name
+    $edit_shop_error=array();
+    $edit_shop_error['clear']=true;
+
+    if(isset($_POST['form_name']) && $_POST['form_name']=='edit-shop-form' && isset($_POST['shop_id'])){
+
+    }
 ?>
