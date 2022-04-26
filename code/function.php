@@ -54,4 +54,22 @@ function getEmail($user_id, $connection)
     return $email;
 }
 
+//get number of shop of a trader
+//returns false if shop exceeds 2
+function checkShopExceed($trader_id, $connection)
+{
+    $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE USER_ID=$trader_id AND UPPER(ACTIVE_STATUS)='A'";
+    $result=oci_parse($connection,$checkQuery);
+
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    if($number_of_rows>2){
+        return false;
+    }
+    else{
+        return true;
+    }   
+}
+
 ?>

@@ -440,7 +440,14 @@ $(document).ready(function(){
     });
 
     $('#add-shop-btn').click(function(){
-        $('#add-shop-form').addClass('transition-effect');
+
+        var shopcount=$(this).attr("value");
+        if(shopcount>1)
+        {
+            alert("You cant register more than two active shops");
+        }
+        else{
+            $('#add-shop-form').addClass('transition-effect');
         if(!$('#shop-detail-table').hasClass('d-none'))
         {
             $('#shop-detail-table').addClass('d-none');
@@ -450,7 +457,7 @@ $(document).ready(function(){
             $('#add-shop-container').removeClass('d-none');
         }
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Add Shop</a></li>');
-
+        }
     });
 
     //change opacity on hover

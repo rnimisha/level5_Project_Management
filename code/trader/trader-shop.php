@@ -1,5 +1,6 @@
 <?php
   include_once('../connection.php');
+  include_once('../function.php');
   if(!isset($_SESSION['phoenix_user']) & empty($_SESSION['phoenix_user']))
   {
     header('Location: ../loginform.php');
@@ -79,7 +80,7 @@
             <div class="col-12 form-container w-100 py-3" id="shop-detail-table">
               <div class="row" id="add-shop-row">
                 <div class="col-2 offset-lg-10 add-shop">
-                  <button class="btn ml-lg-n2" id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
+                  <button class="btn ml-lg-n2" value="<?php echo checkShopExceed($current_trader_id, $connection);?>"id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
                 </div>
               </div>
               <div class="col-12 table-responsive mt-3" id="shop-table">
