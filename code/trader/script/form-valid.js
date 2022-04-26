@@ -385,6 +385,7 @@ $(document).ready(function(){
                 form_name: 'add-shop-form'
             },
             success: function(response){
+                console.log(response);
                 var resp=jQuery.parseJSON(response);
                
                 jQuery('#add-shop-button').text('Add Shop');

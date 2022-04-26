@@ -269,9 +269,18 @@
         if(isset($_POST['register_date'])){
             if(!empty($_POST['register_date']))
             {
-                $trader_error['#register_date_error']="";
-                $register_date=date("d-m-Y", strtotime($_POST['register_date']));
                 
+                $register_date=date("d-m-Y", strtotime($_POST['register_date']));
+                $current=date("d-m-Y");
+
+                if($current<$register_date)
+                {
+                    $trader_error['clear']=false;
+                    $$trader_error['#register_date_error']="Registration date can't be after today";
+                }
+                else{
+                    $trader_error['#register_date_error']="";
+                }
             }
             else{
                 $trader_error['#register_date_error']="Registration date cannot be empty";

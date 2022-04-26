@@ -139,7 +139,7 @@
                 <div class="col-12">
                   <!-- add shop form -->
                   <form class="w-75 mx-auto py-4" id="add-shop-form" action="add-shop.php" method="POST">
-                    <input type="number" id="trader-id" value="<?php echo $current_trader_id;?>" />
+                    <input type="hidden" id="trader-id" value="<?php echo $current_trader_id;?>" />
                     <div class="form-group">
                       <label for="shop-name" class="text-muted">Shop Name</label>
                       <input type="text" class="form-control" id="shop-name" />
