@@ -216,9 +216,9 @@
                     <strong>Success! </strong>Changes has been saved.
                   </div>
                   <div class="row d-flex justify-content-center align-items-center w-100 ">
-                    <form action="edit-product.php" method="POST" id="new-shop-logo-form">
+                    <form action="edit-shop.php" method="POST" id="new-shop-logo-form">
                       <div class="form-group">
-                        <input type="hidden" class="form-control" id="logo_shop_id" name="log_shop_id" value="" />
+                        <input type="hidden" class="form-control" id="logo_shop_id" name="logo_shop_id" value="" />
                       </div>
                       <div class="form-group">
                         <label for="new-shop-logo" class="text-muted">Upload new logo</label><br>

@@ -249,7 +249,7 @@ $(document).ready(function(){
                 jQuery('#edit-prod-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    $('#product-edit-sucess-msg').show();
+                    $('#product-edit-sucess-msg').show().delay(5000).fadeOut();;
                     $('#product-img-sucess-msg').hide();
                     $('#close-modal').click();
                     removeStyle(resp);
@@ -311,7 +311,7 @@ $(document).ready(function(){
                 if(resp.clear == true)
                 {
                     $('#product-edit-sucess-msg').hide();
-                    $('#product-img-sucess-msg').show();
+                    $('#product-img-sucess-msg').show().delay(5000).fadeOut();;
                     resetForm('add-product-form');
                     // clearFormValidation();
                 }
@@ -355,7 +355,7 @@ $(document).ready(function(){
                 jQuery('#add-discount-btn').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    $('#discount-sucess-msg').show();
+                    $('#discount-sucess-msg').show().delay(5000).fadeOut();;
                     resetForm('discount-form');
                     clearFormValidation();
                 }
@@ -478,7 +478,7 @@ $(document).ready(function(){
                 jQuery('#add-discount-btn').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    $('#discount-sucess-msg').show();
+                    $('#discount-sucess-msg').show().delay(5000).fadeOut();;
                     resetForm('discount-form');
                     clearFormValidation();
                 }
@@ -516,9 +516,46 @@ $(document).ready(function(){
                 jQuery('#edit-shop-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    $('#shop-edit-sucess-msg').show();
+                    $('#shop-edit-sucess-msg').show().delay(5000).fadeOut();
                     resetForm('edit-shop-form');
                     clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+
+    // post logo of shop
+    $('#new-shop-logo-form').submit(function(){
+        jQuery('#add-shop-logo').text('Uploading...');
+        jQuery('#add-shop-logo').attr('disabled', true);
+
+        var formData= new FormData(this);
+        formData.append("form_name", "new-shop-logo-form");
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false,
+            success: function(response){
+                console.log(response);
+                var resp=response;
+               
+                jQuery('#add-shop-logo').text('Upload Image');
+                jQuery('#add-shop-logo').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    resetForm('new-shop-logo-form');
+                    clearFormValidation();
+                    $('#shop-logo-sucess-msg').show().delay(5000).fadeOut();
                 }
                 else{
                     inlineMsg(resp);

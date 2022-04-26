@@ -236,7 +236,7 @@
                     }
                     else{
                         $edit_img_error['clear']=false;
-                        $edit_img_error['#error-new-prod-pic']="Unable to upload image";
+                        $edit_img_error['#error-new-prod-pic']="File extension is not supported";
                         $edit_img_error['#new-prod-pic']='is-invalid';
                     }
                 }

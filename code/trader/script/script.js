@@ -656,13 +656,13 @@ $(document).ready(function(){
     // });
 
 
-    $(".prod-view-img").mouseenter(function(){
-        $('.hover-edit').css('opacity', '1');
-    });
+    // $(".prod-view-img").mouseenter(function(){
+    //     $('.hover-edit').css('opacity', '1');
+    // });
 
-    $(".td-discount").mouseleave(function(){
-        $('.hover-edit').css('opacity', '0');
-    });
+    // $(".td-discount").mouseleave(function(){
+    //     $('.hover-edit').css('opacity', '0');
+    // });
 
 
 });

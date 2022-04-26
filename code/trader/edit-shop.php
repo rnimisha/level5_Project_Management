@@ -83,5 +83,55 @@
     }
 
 
+    //upload changed logo for shop 
+    $shop_logo_error=array();
+    $shop_logo_error['clear']=true;
+
+    if(isset($_POST['form_name']) && $_POST['form_name']=='new-shop-logo-form' && isset($_POST['logo_shop_id']))
+    {
+        $shop_id=$_POST['logo_shop_id'];
+        if(isset($_FILES['new-shop-logo']['name']))
+        {
+            if(!empty($_FILES['new-shop-logo']['name']))
+            {
+                $filename=$_FILES['new-shop-logo']['name'];
+
+                $extension=pathinfo($filename, PATHINFO_EXTENSION);
+
+                $valid=array("jpg", "jpeg", "png", "gif");
+                if(in_array($extension, $valid))
+                {
+                    $new_pic_name= rand().".".$extension;
+                    $destination="../image/shop/".$new_pic_name;
+                    if(move_uploaded_file($_FILES['new-shop-logo']['tmp_name'], $destination))
+                    {
+                        $shop_logo_error['#error-new-shop-logo']="";
+                        $shop_logo_error['#new-shop-logo']='valid';
+                    }
+                    else{
+                        $shop_logo_error['clear']=false;
+                        $shop_logo_error['#error-new-shop-logo']="File extension is not supported";
+                        $shop_logo_error['#new-shop-logo']='is-invalid';
+                    }
+                }
+                else{
+                    $shop_logo_error['clear']=false;
+                    $shop_logo_error['#error-new-shop-logo']="Unable to upload image";
+                    $shop_logo_error['#new-shop-logo']='is-invalid';
+                }
+            }
+        }
+
+        if($shop_logo_error['clear']==true)
+        {
+            $query="UPDATE SHOP SET SHOPLOGO='$new_pic_name' WHERE SHOP_ID=$shop_id";
+            $parsed=oci_parse($connection, $query);
+            oci_execute($parsed);
+            oci_free_statement($parsed);
+        }
+
+        echo json_encode($shop_logo_error);
+    }
+
   
 ?>
