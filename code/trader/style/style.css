@@ -180,7 +180,7 @@ form .btn{
     border-bottom: 2px solid #bacebc;
 }
 
-#picture, #personal, #pass-change, #about-me-div, #setting-div{
+#picture, #personal, #pass-change, #about-me-div, #setting-div, #product-photo, #product-general{
     cursor: pointer;
 
 }
@@ -359,7 +359,8 @@ td .fa-solid:hover{
 
 .prod-detail-img{
     width:100%;
-    height: 250px;
+    max-height: 250px;
+    padding-top: 15px;
 }
 
 .add-product .btn, .add-discount, .add-shop .btn{

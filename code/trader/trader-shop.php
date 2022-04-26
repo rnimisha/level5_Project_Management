@@ -116,7 +116,7 @@
                       <td class="text-uppercase"><?php echo $row['RESGISTERED_DATE']; ?></td>
                       <td>
                         <span>
-                          <!-- <i class="fa-solid fa-pen-to-square edit-shop" value="<?php echo $row['SHOP_ID'];?>"></i> -->
+                          <i class="fa-solid fa-pen-to-square edit-shop" value="<?php echo $row['SHOP_ID'];?>"></i>
                           &nbsp;
                           <i class="fa-solid fa-trash-can delete-shop"
                             value="<?php echo $row['SHOP_ID'];?>"></i>

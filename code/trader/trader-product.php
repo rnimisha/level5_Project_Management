@@ -327,6 +327,9 @@
 
                 <!-- edit product form -->
                 <form class=" w-75 mx-auto py-4" id="edit-product-form" action="edit-product.php" method="POST">
+                  <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="product-edit-sucess-msg">
+                      <strong>Success!</strong>Changes has been saved.
+                  </div>
                   <div class="form-group">
                     <input type="hidden" class="form-control" id="product_id" value="" />
                   </div>
@@ -398,7 +401,10 @@
                 </form>
 
                 <!-- profile picture change -->
-                <div id="prod-pic-form"  class="col-lg-10 col-md-9 py-4">
+                <div id="prod-pic-form"  class="col-lg-10 col-md-9 py-4 d-none">
+                  <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="product-img-sucess-msg">
+                    <strong>Success!</strong>Changes has been saved.
+                  </div>
                   <div class="row d-flex justify-content-center align-items-center w-100 ">
                     <form action="edit-product.php" method="POST" id="new-prod-pic-form">
                       <div class="form-group">

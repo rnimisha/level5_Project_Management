@@ -4,6 +4,8 @@ $(document).ready(function(){
     $('#profile-sucess-msg').hide();
     $('#pass-sucess-msg').hide();
     $('#discount-sucess-msg').hide();
+    $('#product-edit-sucess-msg').hide();
+    $('#product-img-sucess-msg').hide();
 
     $('#personal-form').submit(function(){
         $('#personal-sucess-msg').hide();
@@ -246,8 +248,8 @@ $(document).ready(function(){
                 jQuery('#edit-prod-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
-                    // resetForm('personal-form');
-                    // $('#edit-product-form').addClass('was-validated');
+                    $('#product-edit-sucess-msg').show();
+                    $('#product-img-sucess-msg').hide();
                     $('#close-modal').click();
                     removeStyle(resp);
                     // location.reload();
@@ -307,6 +309,8 @@ $(document).ready(function(){
                 jQuery('#add-prod-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
+                    $('#product-edit-sucess-msg').hide();
+                    $('#product-img-sucess-msg').show();
                     resetForm('add-product-form');
                     // clearFormValidation();
                 }

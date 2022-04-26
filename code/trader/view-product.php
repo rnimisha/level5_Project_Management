@@ -3,7 +3,6 @@ include_once('../connection.php');
 if(isset($_POST['product_id']))
 {
   $product_id=$_POST['product_id'];
-  $img=array();
   $getProduct= "SELECT * FROM ACTIVE_PRODUCT WHERE PRODUCT_ID=$product_id";
   // echo $getProduct;
   $parsedgetProduct = oci_parse($connection, $getProduct);
@@ -25,8 +24,9 @@ if(isset($_POST['product_id']))
   $getImg="SELECT * FROM PRODUCT_IMAGE WHERE PRODUCT_ID=$product_id AND ROWNUM <= 4";
   $parsed=oci_parse($connection, $getImg);
   oci_execute($parsed);
+  $img=array();
   while (($row = oci_fetch_assoc($parsed)) != false) {
-    $img=array_push($img, $row['IMAGE_DETAIL']);
+    array_push($img, $row['IMAGE_DETAIL']);
   }
   oci_free_statement($parsed);
   if(empty($img[0]))
