@@ -207,5 +207,58 @@
 
         echo json_encode($edit_prod_error);
     }
+
+
     
+    $edit_img_error=array();
+    $edit_img_error['clear']=true;
+
+    if(isset($_POST['form_name']) && $_POST['form_name']=='new-prod-pic-form' && isset($_POST['p_id']))
+    {
+
+        if(isset($_FILES['new-prod-pic']['name']))
+        {
+            if(!empty($_FILES['new-prod-pic']['name']))
+            {
+                $filename=$_FILES['new-prod-pic']['name'];
+
+                $extension=pathinfo($filename, PATHINFO_EXTENSION);
+
+                $valid=array("jpg", "jpeg", "png", "gif");
+                if(in_array($extension, $valid))
+                {
+                    $new_pic_name= rand().".".$extension;
+                    $destination="../image/product/".$new_pic_name;
+                    if(move_uploaded_file($_FILES['new-prod-pic']['tmp_name'], $destination))
+                    {
+                        $edit_img_error['#error-new-prod-pic']="";
+                        $edit_img_error['#new-prod-pic']='valid';
+                    }
+                    else{
+                        $edit_img_error['clear']=false;
+                        $edit_img_error['#error-new-prod-pic']="Unable to upload image";
+                        $edit_img_error['#new-prod-pic']='is-invalid';
+                    }
+                }
+                else{
+                    $edit_img_error['clear']=false;
+                    $edit_img_error['#error-new-prod-pic']="Unable to upload image";
+                    $edit_img_error['#new-prod-pic']='is-invalid';
+                }
+            }
+
+        }
+
+
+        if($edit_img_error['clear']==true)
+        {
+            $p_id=$_POST['p_id'];
+            $query="INSERT INTO PRODUCT_IMAGE(IMAGE_DETAIL, PRODUCT_ID) VALUES('$new_pic_name', $p_id)";
+            $parsed=oci_parse($connection, $query);
+            oci_execute($parsed);
+            oci_free_statement($parsed);
+        }
+        echo json_encode($edit_img_error);
+
+    }
 ?>

@@ -399,6 +399,51 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
+
+
+
+
+    //submit form on change
+    $('#trad-pic').change(function(){
+        if (confirm('Do you want to upload the image?')) {
+            $('#picture-form-up').submit();
+        } 
+    });
+
+    //post new picture for product
+    $('#new-prod-pic-form').submit(function(){
+
+        //button value change
+        jQuery('#add-prod-pic').text('Uploading..');
+        jQuery('#add-prod-pic').attr('disabled', true);
+
+        //for file
+        var formData= new FormData(this);
+        formData.append("form_name", "new-prod-pic-form");
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false, //not obj nor string
+            success: function(response){
+                var resp=response;
+                console.log(response);
+                jQuery('#add-prod-pic').text('Upload Image');
+                jQuery('#add-prod-pic').attr('disabled', false);
+                if(resp.clear == true){
+                    clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
 });
 
 

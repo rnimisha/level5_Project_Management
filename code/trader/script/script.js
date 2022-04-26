@@ -319,8 +319,6 @@ $(document).ready(function(){
 
     //populate product detail edit form with values of current product
     $('.edit-product').click(function(){
-       
-
         var product_id=$(this).attr('value');
         // alert(product_id);
         $.ajax({
@@ -336,6 +334,7 @@ $(document).ready(function(){
                 {
                     // alert(response);
                     $("#product_id").val( product_id );
+                    $("#p_id").val( product_id );
                     $("#product-name").val( resp.name );
                     $("#product-stock").val( resp.quantity );
                     $("#product-price").val( resp.price);
@@ -380,7 +379,7 @@ $(document).ready(function(){
     });
 
 
-
+    //change container on click
     $('#product-general').click(function(){
         if( $('#product-photo').hasClass("active-list"))
         {

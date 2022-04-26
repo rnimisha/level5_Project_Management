@@ -400,13 +400,19 @@
                 <!-- profile picture change -->
                 <div id="prod-pic-form"  class="col-lg-10 col-md-9 py-4">
                   <div class="row d-flex justify-content-center align-items-center w-100 ">
-                    <!-- display pic -->
-                    <div class="col-4 w-100">
-                      <div class="row justify-content-center">
-                      
-                        
+                    <form action="edit-product.php" method="POST" id="new-prod-pic-form">
+                      <div class="form-group">
+                        <input type="hidden" class="form-control" id="p_id" name="p_id" value="" />
                       </div>
-                    </div>
+                      <div class="form-group">
+                        <label for="new-prod-pic" class="text-muted">Upload new picture</label><br>
+                        <input type="file" id="new-prod-pic" name="new-prod-pic">
+                        <div class="invalid-feedback" id="error-new-prod-pic"></div>
+                      </div>
+                      <div class="row justify-content-end pr-1">
+                        <button type="submit" class="btn" id="add-prod-pic">Upload Image</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
