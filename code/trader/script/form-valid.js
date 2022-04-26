@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
     //hide success mesages
     $('#personal-sucess-msg').hide();
     $('#profile-sucess-msg').hide();
@@ -448,6 +448,7 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
+
 });
 
 

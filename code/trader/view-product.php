@@ -43,7 +43,7 @@ echo '<div class="row">
     </div>
     <div class="row detail-prod">
     <div class="row justify-content-center align-item-center mx-auto">
-        <img src="../image/product/'.$img[0].'" alt="product-image" class="prod-detail-img"/>
+        <img src="../image/product/'.$img[0].'" alt="product-image" class="prod-detail-img img-fluid"/>
     </div>
     <ul class="list-group list-group-flush my-1 col-md-6 pl-4">
         <li class="list-group-item ">

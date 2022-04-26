@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
     $("#left-toggle").click(function(){
         var navigation = $("#nav1");
         var container = $(".main-container");
@@ -539,6 +539,13 @@ $(document).ready(function(){
         }
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Add Shop</a></li>');
         }
+    });
+
+    //populate edit shop form 
+    $('.edit-shop').click(function(){
+        var shop_id=$(this).attr('value');
+        $("#edit_shop_id").val(shop_id);
+        $("#logo_shop_id").val(shop_id);
     });
 
     //data to php to deactivate shop

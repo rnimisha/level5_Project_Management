@@ -137,7 +137,7 @@
                           <!-- display pic -->
                           <div class=" col-lg-8 w-100 mb-3 d-flex justify-content-center align-items-center">
                             <div class="row w-50">
-                              <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="changing-profile"/>
+                              <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" alt="profile" id="changing-profile" class="img-fluid"/>
                             </div>
                           </div>
                           <div class="col-4 w-100">

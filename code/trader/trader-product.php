@@ -76,7 +76,7 @@
           <div class="row" id="detail-container">
             <div class="col-12 form-container w-100 py-3" id="product-detail-table">
               <div class="row" id="add-prod-row">
-                <div class="col-2 offset-lg-10 add-product">
+                <div class="col-lg-2 offset-lg-10 add-product">
                   <button class="btn ml-lg-n4" id="add-prod-btn"><i class="fa-solid fa-plus"></i>Add Product</button>
                 </div>
               </div>

@@ -79,7 +79,7 @@
           <div class="row" id="detail-container">
             <div class="col-12 form-container w-100 py-3" id="shop-detail-table">
               <div class="row" id="add-shop-row">
-                <div class="col-2 offset-lg-10 add-shop">
+                <div class="col-lg-2 offset-lg-10 add-shop">
                   <button class="btn ml-lg-n2" value="<?php echo checkShopExceed($current_trader_id, $connection);?>"id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
                 </div>
               </div>
@@ -104,13 +104,13 @@
                     <tr>
                       <td><?php echo $row['SHOP_NAME']; ?></td>
                       <?php
-                             $img='../image/product/productplaceholder.png';
-                            if(!empty(trim($row['SHOPLOGO'])))
-                            {
-                              $temp=$row['SHOPLOGO'];
-                              $img='../image/shop/'.$temp;
-                            }
-                            ?>
+                          $img='../image/product/productplaceholder.png';
+                          if(!empty(trim($row['SHOPLOGO'])))
+                          {
+                            $temp=$row['SHOPLOGO'];
+                            $img='../image/shop/'.$temp;
+                          }
+                        ?>
                       <td><img class="prod-view-img" src="<?php echo $img;?>" alt="shoplogo" /></td>
                       <td class="text-uppercase"><?php echo '#'.$row['REGISTATION_ID']; ?></td>
                       <td class="text-uppercase"><?php echo $row['RESGISTERED_DATE']; ?></td>
@@ -177,6 +177,62 @@
               </div>
             </div>
 
+            <!-- edit shop category -->
+            <div class="col-12 form-container w-100 py-3" id="shop-edit-form">
+              <div class="row w-100" id="settings">
+                <div class="col-lg-2 col-md-3 border-right h-75">
+                  <ul class="list-group list-group-flush my-1">
+                  <li class="list-group-item" id="shop-general">General</li>
+                    <li class="list-group-item" id="shop-photo">Photo</li>
+                  </ul>
+                </div>
+
+                <!-- edit product form -->
+                <form class=" w-75 mx-auto py-4" id="edit-shop-form" action="add-shop.php" method="POST">
+                  <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="shop-edit-sucess-msg">
+                      <strong>Success!</strong>Changes has been saved.
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" id="edit_shop_id" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="new-shop-name" class="text-muted">Shop Name</label>
+                    <input type="text" class="form-control" id="new-shop-name" />
+                    <div class="invalid-feedback" id="error-new-shop-name"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="check-pass" class="text-muted">Enter Password</label>
+                    <input type="password" class="form-control" id="check-pass"/>
+                    <div class="invalid-feedback" id="error-check-pass"></div>
+                  </div>
+                  <div class="row justify-content-end pr-1">
+                    <button type="submit" class="btn" id="edit-shop-button">Save Changes</button>
+                  </div>
+                </form>
+
+                <!-- change shop logo containere-->
+                <div id="shop-pic-form"  class="col-lg-10 col-md-9 py-4">
+                  <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="shop-logo-sucess-msg">
+                    <strong>Success!</strong>Changes has been saved.
+                  </div>
+                  <div class="row d-flex justify-content-center align-items-center w-100 ">
+                    <form action="edit-product.php" method="POST" id="new-shop-logo-form">
+                      <div class="form-group">
+                        <input type="hidden" class="form-control" id="logo_shop_id" name="log_shop_id" value="" />
+                      </div>
+                      <div class="form-group">
+                        <label for="new-shop-logo" class="text-muted">Upload new logo</label><br>
+                        <input type="file" id="new-shop-logo" name="new-shop-logo">
+                        <div class="invalid-feedback" id="error-new-shop-logo"></div>
+                      </div>
+                      <div class="row justify-content-end pr-1">
+                        <button type="submit" class="btn" id="add-shop-logo">Upload Image</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
           </div>
         </div>
       </div>
