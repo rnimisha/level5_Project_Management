@@ -76,7 +76,7 @@
 
           <!-- shop table view container-->
           <div class="row" id="detail-container">
-            <div class="col-12 form-container w-100 py-3">
+            <div class="col-12 form-container w-100 py-3" id="shop-detail-table">
               <div class="row" id="add-shop-row">
                 <div class="col-2 offset-lg-10 add-shop">
                   <button class="btn ml-lg-n2" id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
@@ -121,7 +121,7 @@
                         </span>
                       </td>
                     </tr>
-                    <?php
+                    <?php 
                         }
                         oci_free_statement($parsedgetShop);
                       ?>
@@ -131,10 +131,10 @@
             </div>
 
             <!-- add shop form container -->
-            <div class="col-12 form-container w-100 py-3" id="product-detail-form">
-              <div class="row">
+            <div class="col-12 form-container w-100 py-3 d-none" id="add-shop-container">
+              <div class="row ">
                 <div class="col-12 d-flex justify-content-center border-bottom">
-                  <div class="h4 font-weight-bold">Add Product</div>
+                  <div class="h4 font-weight-bold">Add Shop</div>
                 </div>
                 <div class="col-12">
                   <!-- add shop form -->
@@ -145,15 +145,17 @@
                       <input type="text" class="form-control" name="shop-name" id="shop-name" />
                       <div class="invalid-feedback" id="error-shop-name"></div>
                     </div>
-                    <div class="form-group">
-                      <label for="reg-id" class="text-muted">Registration ID</label>
-                      <input type="text" class="form-control" name="reg-id" id="reg-id" />
-                      <div class="invalid-feedback" id="error-reg-id"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="shop-date" class="text-muted">Registration Date</label>
-                      <input type="date" class="form-control" name="shop-date" id="shop-date" />
-                      <div class="invalid-feedback" id="error-reg-date"></div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="reg-id" class="text-muted">Registration ID</label>
+                        <input type="text" class="form-control" name="reg-id" id="reg-id" />
+                        <div class="invalid-feedback" id="error-reg-id"></div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="shop-date" class="text-muted">Registration Date</label>
+                        <input type="date" class="form-control" name="shop-date" id="shop-date" />
+                        <div class="invalid-feedback" id="error-reg-date"></div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="reg-reason" class="text-muted">What you want to sell?</label>
