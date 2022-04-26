@@ -100,7 +100,7 @@ body{
 
 
 #nav1 .list-group-item:hover{
-    background-color: #789680;  
+    background-color: #bacebc;  
     z-index: 99999;
 }
 #nav1 .list-group-item:hover::before{
@@ -112,7 +112,7 @@ body{
     right: 0;
     bottom: 100%;
     border-bottom-right-radius: 20px;
-    box-shadow: 0 25px 0 #789680;  
+    box-shadow: 0 25px 0 #bacebc;  
 
 }
 #nav1 .list-group-item:hover::after{
@@ -124,7 +124,7 @@ body{
     right: 0;
     top: 100%;
     border-top-right-radius: 20px;
-    box-shadow: 0 -25px 0 #789680;  
+    box-shadow: 0 -25px 0 #bacebc;  
 }
 
 .nav-list .fa-solid{
@@ -177,7 +177,7 @@ form .btn{
 
 .active-form{
     margin-top: 1px;
-    border-bottom: 2px solid #789680;
+    border-bottom: 2px solid #bacebc;
 }
 
 #picture, #personal, #pass-change, #about-me-div, #setting-div{

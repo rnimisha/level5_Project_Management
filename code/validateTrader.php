@@ -1,5 +1,6 @@
 <?php
     include_once('connection.php');
+    include_once('function.php');
 
     $trader_error=array();
     $trader_error['clear']=true;
@@ -230,22 +231,32 @@
                 }
                 else{
                         $t_shop=$_POST['shopname'];
-                        $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(shop_name)=upper(:shopname)";
-                        $result=oci_parse($connection,$checkQuery);
-    
-                        $rows=oci_bind_by_name($result, ":shopname", $t_shop);
-                        oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
-                        oci_execute($result);
-                        oci_fetch($result);
-                        if($number_of_rows>0){
+                        if(!checkShopNameValid($t_shop, $connection))
+                        {
                             $trader_error['#shopname_error']="Name already registered";
                             $trader_error['clear']=false;
-                            oci_free_statement($result); 
                         }
                         else{
                             $trader_error['#shopname_error']="";
                             $shopname= $_POST['shopname'];
                         }
+
+                        // $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(shop_name)=upper(:shopname)";
+                        // $result=oci_parse($connection,$checkQuery);
+    
+                        // $rows=oci_bind_by_name($result, ":shopname", $t_shop);
+                        // oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                        // oci_execute($result);
+                        // oci_fetch($result);
+                        // if($number_of_rows>0){
+                        //     $trader_error['#shopname_error']="Name already registered";
+                        //     $trader_error['clear']=false;
+                        //     oci_free_statement($result); 
+                        // }
+                        // else{
+                        //     $trader_error['#shopname_error']="";
+                        //     $shopname= $_POST['shopname'];
+                        // }
                 }
             }
             else{

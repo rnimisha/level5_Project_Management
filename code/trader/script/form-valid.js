@@ -319,6 +319,8 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
+
+
     //details to add product
     $('#discount-form').submit(function(){
         jQuery('#add-discount-btn').text('Adding...');
@@ -349,6 +351,47 @@ $(document).ready(function(){
                 {
                     $('#discount-sucess-msg').show();
                     resetForm('discount-form');
+                    clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    //details to add shop
+    $('#add-shop-form').submit(function(){
+        jQuery('#add-shop-button').text('Adding...');
+        jQuery('#add-shop-button').attr('disabled', true);
+
+        var trader_id=$('#trader-id').val();
+        var shop_name=$('#shop-name').val();
+        var shop_id=$('#reg-id').val();
+        var shop_date=$('#reg-date').val();
+        var shop_logo=$('#shoplogo').val();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                trader_id:trader_id,
+                shop_name:shop_name,
+                shop_id:shop_id,
+                shop_date:shop_date,
+                shop_logo:shop_logo,
+                form_name: 'add-shop-form'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+               
+                jQuery('#add-shop-button').text('Add Shop');
+                jQuery('#add-shop-button').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    resetForm('add-shop-form');
                     clearFormValidation();
                 }
                 else{
