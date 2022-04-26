@@ -96,7 +96,7 @@
                   </thead>
                   <tbody>
                     <?php
-                        $getShop= "SELECT * FROM SHOP WHERE USER_ID=$current_trader_id";
+                        $getShop= "SELECT * FROM SHOP WHERE USER_ID=$current_trader_id AND UPPER(ACTIVE_STATUS)='A'";
                         $parsedgetShop = oci_parse($connection, $getShop);
                         oci_execute($parsedgetShop);
                         while (($row = oci_fetch_assoc($parsedgetShop)) != false) {
@@ -116,8 +116,9 @@
                       <td class="text-uppercase"><?php echo $row['RESGISTERED_DATE']; ?></td>
                       <td>
                         <span>
-                          <i class="fa-solid fa-pen-to-square edit-product" value="<?php echo $row['SHOP_ID'];?>"></i>
-                          &nbsp;<i class="fa-solid fa-trash-can delete-product"
+                          <i class="fa-solid fa-pen-to-square edit-shop" value="<?php echo $row['SHOP_ID'];?>"></i>
+                          &nbsp;
+                          <i class="fa-solid fa-trash-can delete-shop"
                             value="<?php echo $row['SHOP_ID'];?>"></i>
                         </span>
                       </td>

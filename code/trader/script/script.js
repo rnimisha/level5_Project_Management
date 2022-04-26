@@ -442,7 +442,7 @@ $(document).ready(function(){
     $('#add-shop-btn').click(function(){
 
         var shopcount=$(this).attr("value");
-        if(shopcount>1)
+        if(shopcount>2)
         {
             alert("You cant register more than two active shops");
         }
@@ -457,6 +457,25 @@ $(document).ready(function(){
             $('#add-shop-container').removeClass('d-none');
         }
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Add Shop</a></li>');
+        }
+    });
+
+    //data to php to deactivate shop
+    $('.delete-shop').click(function(){
+        var shop_id=$(this).attr('value');
+        if (confirm('Do you want to disable the shop?')) 
+        {
+            $.ajax({
+                url: 'deleteShop.php?shopID='+shop_id,
+                success: function(response){
+                    location.reload();
+                }
+            });
+            //prevent page reload
+            return false;
+        }
+        else{
+            return false;
         }
     });
 
