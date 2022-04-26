@@ -201,7 +201,7 @@
                     <div class="invalid-feedback" id="error-new-shop-name"></div>
                   </div>
                   <div class="form-group">
-                    <label for="check-pass" class="text-muted">Enter Your Password</label>
+                    <label for="check-pass" class="text-muted">Your Password</label>
                     <input type="password" class="form-control" id="check-pass"/>
                     <div class="invalid-feedback" id="error-check-pass"></div>
                   </div>

@@ -510,7 +510,7 @@ $(document).ready(function(){
                 form_name: 'edit-shop-form'
             },
             success: function(response){
-                 var resp=jQuery.parseJSON(response);
+                var resp=jQuery.parseJSON(response);
                 console.log(response);
                 jQuery('#edit-shop-button').text('Save Changes');
                 jQuery('#edit-shop-button').attr('disabled', false);
@@ -518,7 +518,7 @@ $(document).ready(function(){
                 {
                     $('#shop-edit-sucess-msg').show();
                     resetForm('edit-shop-form');
-                    // clearFormValidation();
+                    clearFormValidation();
                 }
                 else{
                     inlineMsg(resp);
