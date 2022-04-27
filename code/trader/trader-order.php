@@ -40,7 +40,7 @@
                   <span class="hide-text">Order</span>
                 </a>
                 <a href="trader-product.php" class="list-group-item text-decoration-none" >
-                  <i class="fa-solid fa-basket-shopping"></i>
+                  <i class="fa-solid fa-apple-whole"></i>
                   <span class="hide-text">Product</span>
                 </a>
                 <a href="trader-shop.php" class="list-group-item text-decoration-none" >
@@ -68,9 +68,7 @@
                   </nav>
               </div>
               <div class="row" id="detail-container">
-                <div class="col-12 form-container  w-100 py-3">
-                  <div class="col-12">
-                  </div>
+                <div class="col-12 form-container  w-100 py-3" id="order-table-container">
                   <div class="col-12 table-responsive mt-3" id="order-table">
                     <table class="table table-hover">
                       <thead class="mygreen">
@@ -81,7 +79,7 @@
                           <th>ORDER DATE</th>
                           <th>STATUS</th>
                           <th>QUANTITY</th>
-                          <!-- <th>ACTION</th> -->
+                          <th>ACTION</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -135,11 +133,11 @@
                               }
                             ?>
                             <td><?php echo $QUANTITY ?></td>
-                            <!-- <td>
+                            <td>
                               <span>
-                                    <i class="fa-solid fa-magnifying-glass view-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                    <i class="fa-solid fa-pen-to-square edit-order" value="<?php echo $row['ORDER_ID'];?>"></i>
                               </span>
-                            </td> -->
+                            </td>
                             <?php
                               oci_free_statement($parse);
                             ?>
@@ -154,7 +152,7 @@
                 </div>
                 
                 <!-- Change order status -->
-                <div class="col-12 form-container w-100 py-3" id="edit-status-container">
+                <div class="col-12 form-container w-100 py-3 d-none" id="edit-status-container">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center border-bottom">
                       <div class="h4 font-weight-bold">Edit Order Status</div>
@@ -165,14 +163,14 @@
                         <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="status-change-sucess-msg">
                             <strong>Success! </strong>Changes has been saved.
                         </div>
-                        <input type="number" class="form-control" id="order-id-status" value="" />
+                        <input type="hidden" class="form-control" id="order-id-status" value="" />
                         <div class="form-group">
                           <label for="new-order-status" class="text-muted">New Order Status</label>
                           <select class="custom-select form-control" id="new-order-status">
-                            <option selected disabled>Choose Order Status</option>
-                            <option value="p">Pending</option>
-                            <option value="c">Processing</option>
-                            <option value="p">Completed</option>
+                            <option selected>Choose Order Status</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="PROCESSING">Processing</option>
+                            <option value="COMPLETED">Completed</option> 
                           </select>
                           <div class="invalid-feedback" id="error-new-order-status"></div>
                         </div>

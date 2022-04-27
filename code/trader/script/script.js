@@ -330,6 +330,23 @@ $(document).ready(function(){
         });
     });
 
+    //populaate order status update form with order id
+    $('.edit-order').click(function(){
+        var order_id=$(this).attr('value');
+        $("#order-id-status").val( order_id );
+
+        if(!$('#order-table-container').hasClass('d-none'))
+        {
+            $('#order-table-container').addClass('d-none');
+        }
+
+        if($('#edit-status-container').hasClass('d-none'))
+        {
+            $('#edit-status-container').removeClass('d-none');
+        }
+    });
+
+
     //populate product detail edit form with values of current product
     $('.edit-product').click(function(){
         var product_id=$(this).attr('value');

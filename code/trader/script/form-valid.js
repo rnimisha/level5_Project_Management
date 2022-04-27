@@ -10,6 +10,7 @@ $(document).ready(function(){
     $('#shop-edit-sucess-msg').hide();
     $('#shop-logo-sucess-msg').hide();
     $('#add-shop-sucess-msg').hide();
+    $('#status-change-sucess-msg').hide();
 
 
     // ------------trader profile setting---------------
@@ -564,6 +565,77 @@ $(document).ready(function(){
                     resetForm('new-shop-logo-form');
                     clearFormValidation();
                     $('#shop-logo-sucess-msg').show().delay(5000).fadeOut();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#new-prod-pic-form').submit(function(){
+
+        //button value change
+        jQuery('#add-prod-pic').text('Uploading..');
+        jQuery('#add-prod-pic').attr('disabled', true);
+
+        //for file
+        var formData= new FormData(this);
+        formData.append("form_name", "new-prod-pic-form");
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false, //not obj nor string
+            success: function(response){
+                var resp=response;
+                console.log(response);
+                jQuery('#add-prod-pic').text('Upload Image');
+                jQuery('#add-prod-pic').attr('disabled', false);
+                $('#product-img-sucess-msg').show().delay(5000).fadeOut();;
+                if(resp.clear == true){
+                    clearFormValidation();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
+
+    //change order status
+    $('#edit-status-form').submit(function(){
+        jQuery('#change-status-button').text('Changing...');
+        jQuery('#change-status-button').attr('disabled', true);
+
+        var order_id=$('#order-id-status').val();
+        var order_status=$('#new-order-status').val();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                order_id:order_id,
+                order_status:order_status,
+                form_name: 'edit-status-form'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+               
+                jQuery('#change-status-button').text('Save Changes');
+                jQuery('#change-status-button').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    $('#status-change-sucess-msg').show().delay(5000).fadeOut();
+                    resetForm('edit-status-form');
+                    clearFormValidation();
                 }
                 else{
                     inlineMsg(resp);

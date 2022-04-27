@@ -40,7 +40,7 @@
                   <span class="hide-text">Order</span>
                 </a>
                 <a href="trader-product.php" class="list-group-item text-decoration-none" >
-                  <i class="fa-solid fa-basket-shopping"></i>
+                  <i class="fa-solid fa-apple-whole"></i>
                   <span class="hide-text">Product</span>
                 </a>
                 <a href="trader-shop.php" class="list-group-item text-decoration-none" >
