@@ -222,6 +222,9 @@
                 <div class="col-12">
                   <!-- add product form -->
                   <form class="w-75 mx-auto py-4" id="add-product-form" action="add-product.php" method="POST">
+                  <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="add-prod-sucess-msg">
+                      <strong>Success! </strong>Changes has been saved.
+                  </div>
                     <?php
                           $getShopId="SELECT * FROM SHOP WHERE USER_ID=".$_SESSION['phoenix_user'];
                           $parsedShop=oci_parse($connection, $getShopId);
@@ -232,18 +235,6 @@
                           oci_free_statement($parsedShop);
                         ?>
                     <input type="hidden" class="form-control" id="add-product-shop" value="<?php echo $shop_id;?>" />
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="add-product-name" class="text-muted">Product Name</label>
-                        <input type="text" class="form-control" id="add-product-name" />
-                        <div class="invalid-feedback" id="error-add-product-name"></div>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="add-product-stock" class="text-muted">Stock Quantity</label>
-                        <input type="number" class="form-control" id="add-product-stock" />
-                        <div class="invalid-feedback" id="error-add-product-stock"></div>
-                      </div>
-                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="add-product-name" class="text-muted">Product Name</label>

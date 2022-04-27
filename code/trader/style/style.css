@@ -186,6 +186,9 @@ form .btn{
     color: #dfb7a7;
 }
 
+#header .bx:hover, #header .fa-solid{
+    background-color: #dfb7a7;
+}
 #picture, #personal, #pass-change, #about-me-div, #setting-div, #product-photo, #product-general, .hover-cat{
     cursor: pointer;
 

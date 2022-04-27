@@ -70,7 +70,7 @@
               <!-- profile-->
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
-                  <div class="row border-bottom d-flex justify-content-around align-items-center mt-1">
+                  <div class="row border-bottom d-flex justify-content-around align-items-center my-1 pb-2">
                     <div class="col-4 h5 active-form" id="about-me-div">
                       <i class="fa-solid fa-address-card"></i>
                       <span class="d-none d-sm-inline">About Me</span>

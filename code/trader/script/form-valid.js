@@ -5,6 +5,7 @@ $(document).ready(function(){
     $('#pass-sucess-msg').hide();
     $('#discount-sucess-msg').hide();
     $('#product-edit-sucess-msg').hide();
+    $('#add-prod-sucess-msg').hide();
     $('#product-img-sucess-msg').hide();
     $('#shop-edit-sucess-msg').hide();
     $('#shop-logo-sucess-msg').hide();
@@ -315,7 +316,7 @@ $(document).ready(function(){
                 if(resp.clear == true)
                 {
                     $('#product-edit-sucess-msg').hide();
-                    $('#product-img-sucess-msg').show().delay(5000).fadeOut();;
+                    $('#add-prod-sucess-msg').show().delay(5000).fadeOut();;
                     resetForm('add-product-form');
                     // clearFormValidation();
                 }

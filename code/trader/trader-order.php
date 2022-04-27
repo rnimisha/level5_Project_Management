@@ -151,7 +151,36 @@
                       </tbody>
                     </table>
                   </div>
-                  <div class="col-12 d-none" id="order-detail-table">
+                </div>
+                
+                <!-- Change order status -->
+                <div class="col-12 form-container w-100 py-3" id="edit-status-container">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center border-bottom">
+                      <div class="h4 font-weight-bold">Edit Order Status</div>
+                    </div>
+                    <div class="col-12">
+                      <!-- Change order status form-->
+                      <form class="w-75 mx-auto py-4" id="edit-status-form" action="edit-order-status.php" method="POST">
+                        <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="status-change-sucess-msg">
+                            <strong>Success! </strong>Changes has been saved.
+                        </div>
+                        <input type="number" class="form-control" id="order-id-status" value="" />
+                        <div class="form-group">
+                          <label for="new-order-status" class="text-muted">New Order Status</label>
+                          <select class="custom-select form-control" id="new-order-status">
+                            <option selected disabled>Choose Order Status</option>
+                            <option value="p">Pending</option>
+                            <option value="c">Processing</option>
+                            <option value="p">Completed</option>
+                          </select>
+                          <div class="invalid-feedback" id="error-new-order-status"></div>
+                        </div>
+                        <div class="row justify-content-end pr-1">
+                          <button type="submit" class="btn" id="change-status-button">Change Status</button>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
