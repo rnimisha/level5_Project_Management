@@ -10,8 +10,53 @@ body{
 }
 
 #filter-option .list-group-flush .list-group-item {
-    color: #000000;
+    color: #666666;
     border-color: #ffffff;
     margin-left: 0;
     padding-left: 0;
+}
+
+#filter-option h5{
+    color: #78967e;
+}
+
+.slider-box {
+    width: 90%; 
+    height: 1px;
+}
+
+element.style {
+    left: 0%;
+    width: 100%;
+}
+.ui-slider-horizontal {
+    height: 0.3em;
+}
+.ui-slider-range {
+    background: #78967e;
+    border-color: #78967e;
+}
+label, input {
+    border: none;
+    display: inline-block;
+    margin-right: -4px;
+    vertical-align: top; 
+    width: 30%;
+}
+.ui-state-default{
+    border-radius: 20px;
+    top: -0.5em;
+}
+.slider-box input {
+    width: 90%;
+}
+
+.ui-widget-content {
+    border: 1px solid #ddd;
+    background: #ffffff;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -0.5em;
+    background-color: #78967e;
 }
