@@ -4,33 +4,51 @@ body{
     font-family: 'Fredoka', sans-serif;
 }
  
+/* -------banner-------- */
 .category-banner
 {
     border-radius: 10px;
 }
 
+/* --------filter options------- */
 #filter-option .list-group-flush .list-group-item {
     color: #666666;
     border-color: #ffffff;
     margin-left: 0;
     padding-left: 0;
 }
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.1rem 1.25rem;
+}
 
 #filter-option h5{
     color: #78967e;
 }
 
+.bxs-star{
+    color: #dac775 ;
+}
+
+.btn 
+{
+    background-color: #78967e;
+    padding: 2px 5px;
+}
+
+
+/*---------- Range slider-------- */
 .slider-box {
     width: 90%; 
     height: 1px;
 }
-
 element.style {
     left: 0%;
     width: 100%;
 }
 .ui-slider-horizontal {
-    height: 0.3em;
+    height: 0.2em;
 }
 .ui-slider-range {
     background: #78967e;
@@ -51,12 +69,9 @@ label, input {
     width: 90%;
 }
 
-.ui-widget-content {
-    border: 1px solid #ddd;
-    background: #ffffff;
-}
 
 .ui-slider-horizontal .ui-slider-handle {
     top: -0.5em;
-    background-color: #78967e;
+    border: 2px solid #78967e;
 }
+
