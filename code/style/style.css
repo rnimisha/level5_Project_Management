@@ -1,10 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap');
 body{
     background-color: #ffffff;
-    font-family:'Poppins', sans-serif;
+    font-family: 'Fredoka', sans-serif;
 }
  
 .category-banner
 {
     border-radius: 10px;
+}
+
+#filter-option .list-group-flush .list-group-item {
+    color: #000000;
+    border-color: #ffffff;
+    margin-left: 0;
+    padding-left: 0;
 }
