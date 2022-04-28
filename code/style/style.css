@@ -75,3 +75,38 @@ label, input {
     border: 2px solid #78967e;
 }
 
+.cat-product{
+    height: 270px;
+}
+.product-pic
+{
+    max-height: 270px;
+    padding: 20px;
+    transition: all 1s ease;
+}
+
+.cat-product{
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+}
+.product-pic:hover{
+    padding: 10px;
+    transform: rotate(5deg);
+    transition: all 1s ease;
+}
+.checkbox-css{
+    accent-color: #78967e;
+}
+input {
+    border: none;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: middle;
+    width: 17px;
+
+}
+label{
+    width: auto;
+    margin-bottom: 0rem;
+}
+
