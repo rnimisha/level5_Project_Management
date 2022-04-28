@@ -16,11 +16,15 @@ $(document).ready(function(){
     });
 
     $(".cat-product").hover(function(){
-        $(this).find('.option-container2').css("visibility", "visible");
-        $(this).find('.option-container2').css("transform", "scale(1.5)");
+        $(this).find('.option-container').css("visibility", "visible");
+        $(this).find('.option-container').css("transform", "scale(1.5)");
+        $(this).find('.product-pic').css("padding", "25px");
+
     }, function(){
-        $(this).find('.option-container2').css("visibility", "hidden");
-        $(this).find('.option-container2').css("transform", "scale(0)");
+        $(this).find('.option-container').css("transform", "scale(0)");
+        $(this).find('.product-pic').css("padding", "15px");
+        $(this).find('.option-container').css("visibility", "hidden");
+
     });
 
 });
