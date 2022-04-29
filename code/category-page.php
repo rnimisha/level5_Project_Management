@@ -1,5 +1,6 @@
 <?php
 include_once('connection.php');
+include_once('function.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -125,7 +126,6 @@ include_once('connection.php');
                                     <i class='bx bx-star'></i>
                                 </span>
                             </li>
-
                             <!-- clear button -->
                             <li class="list-group-item text-decoration-none pt-2 ml-1">
                                 <button class="btn">Clear</button>
@@ -162,9 +162,16 @@ include_once('connection.php');
 
                 <!-- display product container -->
                 <div class="row">
+                    <?php
+                        $query="SELECT * FROM ACTIVE_PRODUCT";
+                        $parsed=oci_parse($connection, $query);
+                        oci_execute($parsed);
+                        while(($row = oci_fetch_assoc($parsed)) != false) 
+                        {
+                    ?>
                     <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
                         <div class="cat-product col-12 text-center">
-                            <img src="image/product/fruit1.png" class="img-fluid product-pic" alt="banner"/>
+                            <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>" class="img-fluid product-pic" alt="banner"/>
                             <div class="option-container d-flex">
                                 <div>
                                     <i class='bx bx-heart'></i>
@@ -173,21 +180,28 @@ include_once('connection.php');
                                     <i class='bx bx-cart-add'></i>
                                 </div>
                             </div>
+                           
                             <div>
-                                <b>Apricot</b>
+                                <?php 
+                                    
+                                ?>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
                             </div>
                             <div>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
+                                <b><?php echo $row['PRODUCT_NAME']; ?></b>
                             </div>
                             <div class="prod-price">
-                                33.5
+                            <?php echo $row['PRICE']; ?>
                             </div>
                         </div>
                     </div>
+                    <?php
+                        }
+                    ?>
                     <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
                         <div class="cat-product col-12 text-center">
                             <img src="image/product/fruit5.png" class="img-fluid product-pic" alt="banner"/>
@@ -240,84 +254,7 @@ include_once('connection.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
-                        <div class="cat-product col-12 text-center">
-                            <img src="image/product/fruit1.png" class="img-fluid product-pic" alt="banner"/>
-                            <div class="option-container d-flex">
-                                <div>
-                                    <i class='bx bx-heart'></i>
-                                </div>
-                                <div>
-                                    <i class='bx bx-cart-alt'></i>
-                                </div>
-                            </div>
-                            <div class="">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
-                            </div>
-                            <div class="text-center">
-                                <b>Apricot</b>
-                            </div>
-                            <div class="prod-price">
-                                33.5
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
-                        <div class="cat-product col-12 text-center">
-                            <img src="image/product/fruit1.png" class="img-fluid product-pic" alt="banner"/>
-                            <div class="option-container d-flex">
-                                <div>
-                                    <i class='bx bx-heart'></i>
-                                </div>
-                                <div>
-                                    <i class='bx bx-cart-alt'></i>
-                                </div>
-                            </div>
-                            <div class="">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
-                            </div>
-                            <div class="text-center">
-                                <b>Apricot</b>
-                            </div>
-                            <div class="prod-price">
-                                33.5
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
-                        <div class="cat-product col-12 text-center">
-                            <img src="image/product/fruit1.png" class="img-fluid product-pic" alt="banner"/>
-                            <div class="option-container d-flex">
-                                <div>
-                                    <i class='bx bx-heart'></i>
-                                </div>
-                                <div>
-                                    <i class='bx bx-cart-alt'></i>
-                                </div>
-                            </div>
-                            <div class="">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
-                            </div>
-                            <div class="text-center">
-                                <b>Apricot</b>
-                            </div>
-                            <div class="prod-price">
-                                33.5
-                            </div>
-                        </div>
-                    </div>
+             
                 </div>
             </div>
         </div>

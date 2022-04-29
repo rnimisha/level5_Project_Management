@@ -72,4 +72,27 @@ function checkShopExceed($trader_id, $connection)
     }   
 }
 
+//get product image
+function getProductImage($product_id, $connection)
+{
+    $query="SELECT * FROM PRODUCT_IMAGE WHERE PRODUCT_ID=$product_id";
+    $parsed=oci_parse($connection,$query);
+
+    oci_execute($parsed);
+    $img=[];
+    while (($row = oci_fetch_assoc($parsed)) != false) {
+        array_push($img, $row['IMAGE_DETAIL']);
+    }
+    oci_free_statement($parsed);
+
+    if(empty($img))
+    {
+        array_push($img, 'productplaceholder.png');
+    }
+
+    return $img;
+}
+
+
+
 ?>
