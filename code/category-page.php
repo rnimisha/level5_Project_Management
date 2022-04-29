@@ -183,13 +183,20 @@ include_once('function.php');
                            
                             <div>
                                 <?php 
-                                    
+                                    $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                                    for($i=1; $i<=$avgRating; $i++)
+                                    {
+                                        ?>
+                                        <i class='bx bxs-star'></i>
+                                        <?php
+                                    }
+                                    for($i=1; $i<=(5-$avgRating); $i++)
+                                    {
+                                        ?>
+                                         <i class='bx bx-star'></i>
+                                        <?php
+                                    }
                                 ?>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
                             </div>
                             <div>
                                 <b><?php echo $row['PRODUCT_NAME']; ?></b>

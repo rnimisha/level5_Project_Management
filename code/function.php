@@ -93,6 +93,26 @@ function getProductImage($product_id, $connection)
     return $img;
 }
 
+//get total rating of product
+function getAvgRating($product_id, $connection)
+{
+    $query="SELECT * FROM REVIEW WHERE PRODUCT_ID=$product_id";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $count_rating=0;
+    $total=0;
+    while (($row = oci_fetch_assoc($parsed)) != false) {
+        $count_rating++;
+        $total+=$row['STAR_RATING'];
+    }
 
+    if($count_rating!=0)
+    {
+        return (intval($total/$count_rating));
+    }
+    else{
+        return 0;
+    } 
+}
 
 ?>
