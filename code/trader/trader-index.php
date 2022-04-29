@@ -31,7 +31,7 @@
                   <i class='bx bxs-dashboard'></i></i>
                   Dashboard
                 </a> -->
-                <a href="trader-index.php" class="list-group-item text-decoration-none active " >
+                <a href="trader-index.php" class="list-group-item text-decoration-none active" >
                   <i class="fa-solid fa-user"></i>
                   <span class="hide-text">Profile</span>
                 </a>
