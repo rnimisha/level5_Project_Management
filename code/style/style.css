@@ -153,6 +153,6 @@ label{
     font-size: 1.3em
 }
 
-.prod-price::before{
+.prod-price::before, #min-price::before, #max-price::before{
     content:'\00A3';
 }
