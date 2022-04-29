@@ -1,3 +1,6 @@
+<?php
+include_once('connection.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -37,39 +40,43 @@
                         <!-- Filter by Category -->
                         <h5 class="py-2"><b>Category</b></h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id="cat1"/>
-                                <label class="" for="cat1">Category 1</label>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id="cat1"/>
-                                <label class="" for="cat1">Category 2</label>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id="cat1"/>
-                                <label class="" for="cat1">Category 1</label>
-                            </li>
+                            <?php
+                                $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
+                                $parsed=oci_parse($connection, $query);
+                                oci_execute($parsed);
+                                while(($row = oci_fetch_assoc($parsed)) != false) 
+                                {
+                                    ?>
+                                    <li class="list-group-item text-decoration-none">
+                                        <input type="checkbox" class="checkbox-css" id="<?php echo $row['CATEGORY_ID'];?>"/>
+                                        <label class="text-uppercase" for="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME'];?></label>
+                                    </li>
+                                    <?php
+                                }
+                            ?>
                         </ul>
                         <hr>
 
                         <!-- Filter by Shop -->
                         <h5 class="py-2"><b>Filter by Shop</b></h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <label class="" for="">Shop 1</label>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <label class="" for="">Shop 1</label>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <label class="" for="">Shop 1</label>
-                            </li>
+                        <?php
+                                $query="SELECT * FROM SHOP ORDER BY SHOP_NAME";
+                                $parsed=oci_parse($connection, $query);
+                                oci_execute($parsed);
+                                while(($row = oci_fetch_assoc($parsed)) != false) 
+                                {
+                                    ?>
+                                    <li class="list-group-item text-decoration-none">
+                                        <input type="checkbox" class="checkbox-css" id="<?php echo $row['SHOP_ID'];?>"/>
+                                        <label class="text-uppercase" for="<?php echo $row['SHOP_ID'];?>"><?php echo $row['SHOP_NAME'];?></label>
+                                    </li>
+                                    <?php
+                                }
+                            ?>
                         </ul>
                         <hr>
-
+                        
                         <!-- filter by rating -->
                         <h5 class="py-2"><b>Filter by Rating</b></h5>
                         <ul class="list-group list-group-flush">
