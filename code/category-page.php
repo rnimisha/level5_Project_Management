@@ -49,8 +49,8 @@ include_once('function.php');
                                 {
                                     ?>
                                     <li class="list-group-item text-decoration-none">
-                                        <input type="checkbox" class="checkbox-css" id="<?php echo $row['CATEGORY_ID'];?>"/>
-                                        <label class="text-uppercase" for="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME'];?></label>
+                                        <input type="checkbox" class="checkbox-css filter-selection check-category" value="<?php echo $row['CATEGORY_ID'];?>" id="<?php echo $row['CATEGORY_NAME'];?>"/>
+                                        <label class="text-uppercase" for="<?php echo $row['CATEGORY_NAME'];?>"><?php echo $row['CATEGORY_NAME'];?></label>
                                     </li>
                                     <?php
                                 }
@@ -272,7 +272,7 @@ include_once('function.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="script/category-filter.js"></script>
 <script src="script/function.js"></script>
+<script src="script/category-filter.js"></script>
 
 </html>

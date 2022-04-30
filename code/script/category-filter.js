@@ -35,4 +35,10 @@ $(document).ready(function(){
 
     });
 
+
+    //post selected filter to php
+    $(".filter-selection").click(function(){
+        var category=getFilterValue('check-category');
+        
+    });
 });

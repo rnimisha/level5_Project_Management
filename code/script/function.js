@@ -72,14 +72,12 @@ function clearFormValidation()
     }
 }
 
-//confirm before signing out
-// $(document).ready(function(){
-//     $('.confirm-logout').click(function(){
-//         if (confirm('Do you want to sign out?')) 
-//         {
-//         
-//         } 
-//     });
-// });
-
-//jquery function for price range
+//get all the values checked in array for filtering
+function getFilterValue(filter_class)
+{
+    var filteredValue=[];
+    $('.'+filter_class+':checked').each(function(){
+        filteredValue.push($(this).val());
+        return filteredValue;
+    });
+}
