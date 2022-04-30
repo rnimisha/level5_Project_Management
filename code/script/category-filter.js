@@ -35,11 +35,13 @@ $(document).ready(function(){
     //post selected filter to php
     $(".filter-selection").click(function(){
         var category=getFilterValue('check-category');
+        var shops=getFilterValue('check-shop');
         $.ajax({
             type: "POST",
             url: 'filter-product.php',
             data: {
                 category:category,
+                shops:shops,
                 form_name: 'filter-product'
             },
             success: function(response){

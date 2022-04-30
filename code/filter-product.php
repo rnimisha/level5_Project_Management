@@ -9,8 +9,17 @@
         if(isset($_POST['category']) && !empty($_POST['category']))
         {
             $category=implode(",", $_POST['category']);
-            $filter_query.="AND CATEGORY_ID IN($category)";
+            $filter_query.=" AND CATEGORY_ID IN($category) ";
             // echo $filter_query;
+        }
+
+        //------filter by shop-----
+        if(isset($_POST['shops']) && !empty($_POST['shops']))
+        {
+            $shop=implode(",", $_POST['shops']);
+            $filter_query.=" AND SHOP_ID IN($shop)";
+            // echo $filter_query;
+            // exit;
         }
 
         //run query
@@ -51,7 +60,14 @@
                             '</div>
                         </div>
                         </div>';
+        } 
+
+        if($count_row==0)
+        {
+            echo 'No Match found';
         }
-        
     }
 ?>
+
+<!-- link script for new html content -->
+<script src="script/category-filter.js"></script>

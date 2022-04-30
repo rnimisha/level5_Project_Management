@@ -69,8 +69,8 @@ include_once('function.php');
                                 {
                                     ?>
                                     <li class="list-group-item text-decoration-none">
-                                        <input type="checkbox" class="checkbox-css" id="<?php echo $row['SHOP_ID'];?>"/>
-                                        <label class="text-uppercase" for="<?php echo $row['SHOP_ID'];?>"><?php echo $row['SHOP_NAME'];?></label>
+                                        <input type="checkbox" class="checkbox-css filter-selection check-shop" value="<?php echo $row['SHOP_ID'];?>" id="<?php echo $row['SHOP_NAME'];?>"/>
+                                        <label class="text-uppercase" for="<?php echo $row['SHOP_NAME'];?>"><?php echo $row['SHOP_NAME'];?></label>
                                     </li>
                                     <?php
                                 }
