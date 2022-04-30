@@ -22,7 +22,7 @@ $(document).ready(function(){
     $(".cat-product").hover(function(){
         $(this).find('.option-container').css("visibility", "visible");
         $(this).find('.option-container2').css("visibility", "visible");
-        $(this).find('.option-container').css("transform", "scale(1.5)");
+        $(this).find('.option-container').css("transform", "scale(1.4)");
         $(this).find('.option-container2').css("transform", "translate(-15px)");
         $(this).find('.product-pic').css("padding", "25px");
 

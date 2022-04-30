@@ -180,8 +180,8 @@ include_once('function.php');
                                     <i class='bx bx-cart-add'></i>
                                 </div>
                             </div>
-                           
                             <div>
+                                <!-- display rating for product -->
                                 <?php 
                                     $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
                                     for($i=1; $i<=$avgRating; $i++)
