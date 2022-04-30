@@ -32,24 +32,9 @@ $(document).ready(function(){
     });
 
 
-    //post selected filter to php
+    //click submit
     $(".filter-selection").click(function(){
-        var category=getFilterValue('check-category');
-        var shops=getFilterValue('check-shop');
-        $.ajax({
-            type: "POST",
-            url: 'filter-product.php',
-            data: {
-                category:category,
-                shops:shops,
-                form_name: 'filter-product'
-            },
-            success: function(response){
-                // console.log(response);
-                $('.product-display').html(response);
-            }
-        });
-        //prevent page reload
-        // return false;
+        $('#submit-filter').click();
     });
+
 });

@@ -96,16 +96,17 @@ function getProductImage($product_id, $connection)
 //get total rating of product
 function getAvgRating($product_id, $connection)
 {
-    $query="SELECT * FROM REVIEW WHERE PRODUCT_ID=$product_id";
-    $parsed=oci_parse($connection, $query);
-    oci_execute($parsed);
+    $query="SELECT STAR_RATING FROM REVIEW WHERE PRODUCT_ID=$product_id";
+    $parsed2=oci_parse($connection, $query);
+    oci_execute($parsed2);
     $count_rating=0;
     $total=0;
-    while (($row = oci_fetch_assoc($parsed)) != false) {
+    while (($row = oci_fetch_assoc($parsed2)) != false) {
         $count_rating++;
         $total+=$row['STAR_RATING'];
     }
 
+    oci_free_statement($parsed2);
     if($count_rating!=0)
     {
         return (intval($total/$count_rating));

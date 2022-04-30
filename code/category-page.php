@@ -37,100 +37,104 @@ include_once('function.php');
                             </div>
                         </div>
                         <hr>
+                        <form id="product-filter-form" action="category-page.php" method="GET">
+                            <!-- Filter by Category -->
+                            <h5 class="py-2"><b>Category</b></h5>
+                            <ul class="list-group list-group-flush">
+                                <?php
+                                    $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
+                                    $parsed=oci_parse($connection, $query);
+                                    oci_execute($parsed);
+                                    while(($row = oci_fetch_assoc($parsed)) != false) 
+                                    {
+                                        ?>
+                                        <li class="list-group-item text-decoration-none">
+                                            <input type="checkbox" class="checkbox-css filter-selection check-category" value="<?php echo $row['CATEGORY_ID'];?>" name="category[]" id="<?php echo $row['CATEGORY_NAME'];?>" <?php if(isset($_GET['category']) && (in_array($row['CATEGORY_ID'], $_GET['category']))){echo 'checked="checked"';}?>/>
+                                            <label class="text-uppercase" for="<?php echo $row['CATEGORY_NAME'];?>"><?php echo $row['CATEGORY_NAME']; ?></label>
+                                        </li>
+                                        <?php
+                                    }
+                                ?>
+                            </ul>
+                            <hr>
 
-                        <!-- Filter by Category -->
-                        <h5 class="py-2"><b>Category</b></h5>
-                        <ul class="list-group list-group-flush">
+                            <!-- Filter by Shop -->
+                            <h5 class="py-2"><b>Filter by Shop</b></h5>
+                            <ul class="list-group list-group-flush">
                             <?php
-                                $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
-                                $parsed=oci_parse($connection, $query);
-                                oci_execute($parsed);
-                                while(($row = oci_fetch_assoc($parsed)) != false) 
-                                {
-                                    ?>
-                                    <li class="list-group-item text-decoration-none">
-                                        <input type="checkbox" class="checkbox-css filter-selection check-category" value="<?php echo $row['CATEGORY_ID'];?>" id="<?php echo $row['CATEGORY_NAME'];?>"/>
-                                        <label class="text-uppercase" for="<?php echo $row['CATEGORY_NAME'];?>"><?php echo $row['CATEGORY_NAME'];?></label>
-                                    </li>
-                                    <?php
-                                }
-                            ?>
-                        </ul>
-                        <hr>
-
-                        <!-- Filter by Shop -->
-                        <h5 class="py-2"><b>Filter by Shop</b></h5>
-                        <ul class="list-group list-group-flush">
-                        <?php
-                                $query="SELECT * FROM SHOP ORDER BY SHOP_NAME";
-                                $parsed=oci_parse($connection, $query);
-                                oci_execute($parsed);
-                                while(($row = oci_fetch_assoc($parsed)) != false) 
-                                {
-                                    ?>
-                                    <li class="list-group-item text-decoration-none">
-                                        <input type="checkbox" class="checkbox-css filter-selection check-shop" value="<?php echo $row['SHOP_ID'];?>" id="<?php echo $row['SHOP_NAME'];?>"/>
-                                        <label class="text-uppercase" for="<?php echo $row['SHOP_NAME'];?>"><?php echo $row['SHOP_NAME'];?></label>
-                                    </li>
-                                    <?php
-                                }
-                            ?>
-                        </ul>
-                        <hr>
-                        
-                        <!-- filter by rating -->
-                        <h5 class="py-2"><b>Filter by Rating</b></h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <span> &nbsp; <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </span>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <span> &nbsp; <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bx-star'></i>
-                                </span>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <span> &nbsp; <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bx-star'></i>
-                                    <i class='bx bx-star'></i>
-                                </span>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <label for=""> &nbsp; <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bx-star'></i>
-                                    <i class='bx bx-star'></i>
-                                    <i class='bx bx-star'></i>
+                                    $query="SELECT * FROM SHOP ORDER BY SHOP_NAME";
+                                    $parsed=oci_parse($connection, $query);
+                                    oci_execute($parsed);
+                                    while(($row = oci_fetch_assoc($parsed)) != false) 
+                                    {
+                                        ?>
+                                        <li class="list-group-item text-decoration-none">
+                                            <input type="checkbox" class="checkbox-css filter-selection check-shop" value="<?php echo $row['SHOP_ID'];?>" id="<?php echo $row['SHOP_NAME'];?>"/>
+                                            <label class="text-uppercase" for="<?php echo $row['SHOP_NAME'];?>"><?php echo $row['SHOP_NAME'];?></label>
+                                        </li>
+                                        <?php
+                                    }
+                                ?>
+                            </ul>
+                            <hr>
+                            
+                            <!-- filter by rating -->
+                            <h5 class="py-2"><b>Filter by Rating</b></h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-decoration-none">
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" id="rate5" value="rate5"/>
+                                    <label for="rate5"> &nbsp; <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
                                 </label>
-                            </li>
-                            <li class="list-group-item text-decoration-none">
-                                <input type="checkbox" class="checkbox-css" id=""/>
-                                <span> &nbsp; <i class='bx bxs-star'></i>
-                                    <i class='bx bx-star'></i>
-                                    <i class='bx bx-star'></i>
-                                    <i class='bx bx-star'></i>
-                                    <i class='bx bx-star'></i>
-                                </span>
-                            </li>
-                            <!-- clear button -->
-                            <li class="list-group-item text-decoration-none pt-2 ml-1">
-                                <button class="btn">Clear</button>
-                            </li>
-                        </ul>
+                                </li>
+                                <li class="list-group-item text-decoration-none">
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" id="rate4" value="rate4"/>
+                                    <label for="rate4"> &nbsp; <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bx-star'></i>
+                                </label>
+                                </li>
+                                <li class="list-group-item text-decoration-none">
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" id="rate3" value="rate3"/>
+                                    <label for="rate3"> &nbsp; <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bx-star'></i>
+                                        <i class='bx bx-star'></i>
+                                </label>
+                                </li>
+                                <li class="list-group-item text-decoration-none">
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" value="rate2" id="rate2"/>
+                                    <label for="rate2"> &nbsp; <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bx-star'></i>
+                                        <i class='bx bx-star'></i>
+                                        <i class='bx bx-star'></i>
+                                    </label>
+                                </li>
+                                <li class="list-group-item text-decoration-none">
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" value="rate1" id="rate1"/>
+                                    <label for="rate1"> &nbsp; <i class='bx bxs-star'></i>
+                                        <i class='bx bx-star'></i>
+                                        <i class='bx bx-star'></i>
+                                        <i class='bx bx-star'></i>
+                                        <i class='bx bx-star'></i>
+                                    </label>
+                                </li>
+                                <li class="list-group-item text-decoration-none pt-2 ml-1">
+                                    <button class="btn d-none" type="submit" name="submit-filter" id="submit-filter">Submit</button>
+                                </li>
+                                <!-- clear button -->
+                                <li class="list-group-item text-decoration-none pt-2 ml-1">
+                                    <button class="btn">Clear</button>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -163,8 +167,18 @@ include_once('function.php');
                 <!-- display product container -->
                 <div class="row product-display">
                     <?php
-                        $query="SELECT * FROM ACTIVE_PRODUCT";
-                        $parsed=oci_parse($connection, $query);
+                        $filter_query="SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
+                        if(isset($_GET['submit-filter']))
+                        {
+                            if(isset($_GET['category']))
+                            {
+                                $category=implode(",", $_GET['category']);
+                                $filter_query.=" AND CATEGORY_ID IN($category) ";
+                                // echo $filter_query;
+
+                            }
+                        }
+                        $parsed=oci_parse($connection, $filter_query);
                         oci_execute($parsed);
                         while(($row = oci_fetch_assoc($parsed)) != false) 
                         {
