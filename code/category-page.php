@@ -69,7 +69,7 @@ include_once('function.php');
                                     {
                                         ?>
                                         <li class="list-group-item text-decoration-none">
-                                            <input type="checkbox" class="checkbox-css filter-selection check-shop" value="<?php echo $row['SHOP_ID'];?>" id="<?php echo $row['SHOP_NAME'];?>"/>
+                                            <input type="checkbox" class="checkbox-css filter-selection check-shop" value="<?php echo $row['SHOP_ID'];?>" name="shops[]" id="<?php echo $row['SHOP_NAME'];?>" <?php if(isset($_GET['shops']) && (in_array($row['SHOP_ID'], $_GET['shops']))){echo 'checked="checked"';}?>/>
                                             <label class="text-uppercase" for="<?php echo $row['SHOP_NAME'];?>"><?php echo $row['SHOP_NAME'];?></label>
                                         </li>
                                         <?php
@@ -82,7 +82,7 @@ include_once('function.php');
                             <h5 class="py-2"><b>Filter by Rating</b></h5>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item text-decoration-none">
-                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" id="rate5" value="rate5"/>
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" id="rate5" value="rate5"  <?php if(isset($_GET['rating']) && (in_array('rate5', $_GET['rating']))){echo 'checked="checked"';}?>/>
                                     <label for="rate5"> &nbsp; <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
@@ -91,7 +91,7 @@ include_once('function.php');
                                 </label>
                                 </li>
                                 <li class="list-group-item text-decoration-none">
-                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" id="rate4" value="rate4"/>
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" id="rate4" value="rate4"  <?php if(isset($_GET['rating']) && (in_array('rate4', $_GET['rating']))){echo 'checked="checked"';}?>/>
                                     <label for="rate4"> &nbsp; <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
@@ -100,7 +100,7 @@ include_once('function.php');
                                 </label>
                                 </li>
                                 <li class="list-group-item text-decoration-none">
-                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" id="rate3" value="rate3"/>
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" id="rate3" value="rate3"  <?php if(isset($_GET['rating']) && (in_array('rate3', $_GET['rating']))){echo 'checked="checked"';}?>/>
                                     <label for="rate3"> &nbsp; <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
@@ -109,7 +109,7 @@ include_once('function.php');
                                 </label>
                                 </li>
                                 <li class="list-group-item text-decoration-none">
-                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" value="rate2" id="rate2"/>
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" value="rate2" id="rate2"  <?php if(isset($_GET['rating']) && (in_array('rate2', $_GET['rating']))){echo 'checked="checked"';}?>/>
                                     <label for="rate2"> &nbsp; <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
                                         <i class='bx bx-star'></i>
@@ -118,7 +118,7 @@ include_once('function.php');
                                     </label>
                                 </li>
                                 <li class="list-group-item text-decoration-none">
-                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" value="rate1" id="rate1"/>
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" value="rate1" id="rate1"  <?php if(isset($_GET['rating']) && (in_array('rate1', $_GET['rating']))){echo 'checked="checked"';}?>/>
                                     <label for="rate1"> &nbsp; <i class='bx bxs-star'></i>
                                         <i class='bx bx-star'></i>
                                         <i class='bx bx-star'></i>
@@ -170,18 +170,48 @@ include_once('function.php');
                         $filter_query="SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
                         if(isset($_GET['submit-filter']))
                         {
-                            if(isset($_GET['category']))
+                             //------filter by shop-----
+                            if(isset($_GET['category']) && !empty($_GET['category']))
                             {
                                 $category=implode(",", $_GET['category']);
                                 $filter_query.=" AND CATEGORY_ID IN($category) ";
                                 // echo $filter_query;
 
                             }
+
+                            //------filter by rating-----
+                            if(isset($_GET['shops']) && !empty($_GET['shops']))
+                            {
+                                $shop=implode(",", $_GET['shops']);
+                                $filter_query.=" AND SHOP_ID IN($shop)";
+                                echo $filter_query;
+                            }
+
+                            //------filter by rating-----
+                            if(isset($_GET['rating']) && !empty($_GET['rating']))
+                            {
+                                //array to store real rating
+                                $rating=[];
+                                foreach($_GET['rating'] as $rate)
+                                {
+                                    array_push($rating, intVal($rate[4]));
+                                }
+                            }
                         }
                         $parsed=oci_parse($connection, $filter_query);
                         oci_execute($parsed);
+                        $count_row=0;
                         while(($row = oci_fetch_assoc($parsed)) != false) 
                         {
+                            $avg_rating =getAvgRating($row['PRODUCT_ID'], $connection);
+                             //skip the product if rating does not match
+                            if(isset($_GET['rating']) && !empty($_GET['rating']) && isset($rating))
+                            {
+                                if(!in_array($avg_rating, $rating))
+                                {
+                                    continue;
+                                }
+                            }
                     ?>
                     <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
                         <div class="cat-product col-12 text-center">
@@ -221,7 +251,12 @@ include_once('function.php');
                         </div>
                     </div>
                     <?php
+                    $count_row++;
                         }
+                        if($count_row==0)
+        {
+            echo 'No Match found';
+        }
                     ?>
                 </div>
             </div>
