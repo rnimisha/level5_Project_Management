@@ -21,15 +21,11 @@ $(document).ready(function(){
     //show cartand wishlist option on hover
     $(".cat-product").hover(function(){
         $(this).find('.option-container').css("visibility", "visible");
-        $(this).find('.option-container2').css("visibility", "visible");
         $(this).find('.option-container').css("transform", "scale(1.4)");
-        $(this).find('.option-container2').css("transform", "translate(-15px)");
         $(this).find('.product-pic').css("padding", "25px");
 
     }, function(){
         $(this).find('.option-container').css("transform", "scale(0)");
-        $(this).find('.option-container2').css("transform", "translate(10px)");
-        $(this).find('.option-container2').css("visibility", "hidden");
         $(this).find('.product-pic').css("padding", "15px");
         $(this).find('.option-container').css("visibility", "hidden");
 
@@ -44,13 +40,14 @@ $(document).ready(function(){
             url: 'filter-product.php',
             data: {
                 category:category,
-                c:'1'
+                form_name: 'filter-product'
             },
             success: function(response){
-                console.log(response);
+                // console.log(response);
+                $('.product-display').html(response);
             }
         });
         //prevent page reload
-        return false;
+        // return false;
     });
 });
