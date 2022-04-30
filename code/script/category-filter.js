@@ -39,6 +39,18 @@ $(document).ready(function(){
     //post selected filter to php
     $(".filter-selection").click(function(){
         var category=getFilterValue('check-category');
-        
+        $.ajax({
+            type: "POST",
+            url: 'filter-product.php',
+            data: {
+                category:category,
+                c:'1'
+            },
+            success: function(response){
+                console.log(response);
+            }
+        });
+        //prevent page reload
+        return false;
     });
 });

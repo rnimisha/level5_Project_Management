@@ -78,6 +78,6 @@ function getFilterValue(filter_class)
     var filteredValue=[];
     $('.'+filter_class+':checked').each(function(){
         filteredValue.push($(this).val());
-        return filteredValue;
     });
+    return filteredValue;
 }
