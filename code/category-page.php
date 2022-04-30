@@ -100,7 +100,7 @@ include_once('function.php');
                                 </label>
                                 </li>
                                 <li class="list-group-item text-decoration-none">
-                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" id="rate3" value="rate3"  <?php if(isset($_GET['rating']) && (in_array('rate3', $_GET['rating']))){echo 'checked="checked"';}?>/>
+                                    <input type="checkbox" class="checkbox-css filter-selection check-rating" name="rating[]" id="rate3" value="rate3"  <?php if(isset($_GET['rating']) && (in_array('rate3', $_GET['rating']))){echo 1;}?>/>
                                     <label for="rate3"> &nbsp; <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
                                         <i class='bx bxs-star'></i>
@@ -131,7 +131,7 @@ include_once('function.php');
                                 </li>
                                 <!-- clear button -->
                                 <li class="list-group-item text-decoration-none pt-2 ml-1">
-                                    <button class="btn">Clear</button>
+                                    <button class="btn" name="clear-filter" id="clear-filter" value="default">Clear</button>
                                 </li>
                             </ul>
                         </form>
@@ -184,7 +184,7 @@ include_once('function.php');
                             {
                                 $shop=implode(",", $_GET['shops']);
                                 $filter_query.=" AND SHOP_ID IN($shop)";
-                                echo $filter_query;
+                                // echo $filter_query;
                             }
 
                             //------filter by rating-----
@@ -197,6 +197,12 @@ include_once('function.php');
                                     array_push($rating, intVal($rate[4]));
                                 }
                             }
+                        }
+
+                        if(isset($_GET['clear-filter']) && ($_GET['clear-filter'])=='default')
+                        {
+                            $filter_query="SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
+                            $_GET['category']=$_GET['shops']=$_GET['rating']=[];
                         }
                         $parsed=oci_parse($connection, $filter_query);
                         oci_execute($parsed);

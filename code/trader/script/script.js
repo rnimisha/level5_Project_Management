@@ -651,7 +651,7 @@ $(document).ready(function(){
         
         if(!$('#shop-pic-form').hasClass('d-none'))
         {
-            $('#shop-pic-form').addClass('d-none');
+            $('#shop-pic-form').addClass('d-none'); 
         }  
 
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-shop.php" ><b>Shop</b></a></li><li class="breadcrumb-item active"><a href="#">Edit General</a></li>');

@@ -1,4 +1,3 @@
-
 // reset form data 
 function resetForm(formID){
     document.getElementById(formID).reset();
