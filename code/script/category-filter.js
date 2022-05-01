@@ -57,8 +57,12 @@ $(document).ready(function(){
         $('#submit-filter').click();
     });
 
+
     $('#clear-filter').click(function(){
         $('.filter-selection').prop('checked', false);
     })
 
+    $("#sort-product-option").change(function(){
+        $('#submit-filter').click();
+    });
 });
