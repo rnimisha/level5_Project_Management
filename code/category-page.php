@@ -190,8 +190,8 @@ include_once('function.php');
                             <option value=""
                                 <?php if(isset($_GET['sort-product-option']) && $_GET['sort-product-option']==""){echo 'selected';}?>>
                                 Sort by : Default</option>
-                            <option value="NEWARRIVAL"
-                                <?php if(isset($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="NEWARRIVAL"){echo 'selected';}?>>
+                            <option value="PRODUCT_ID DESC"
+                                <?php if(isset($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="PRODUCT_ID DESC"){echo 'selected';}?>>
                                 Sort by : New Arrival</option>
                             <option value="BESTSELLING"
                                 <?php if(isset($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="BESTSELLING"){echo 'selected';}?>>
@@ -199,8 +199,8 @@ include_once('function.php');
                             <option value="PRICE"
                                 <?php if(isset($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="PRICE"){echo 'selected';}?>>
                                 Price : Low to High</option>
-                            <option value="PRICEDESC"
-                                <?php if(isset($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="PRICEDESC"){echo 'selected';}?>>
+                            <option value="PRICE DESC"
+                                <?php if(isset($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="PRICE DESC"){echo 'selected';}?>>
                                 Price : High to Low</option>
                         </select>
                     </div>
@@ -214,7 +214,21 @@ include_once('function.php');
                 <!-- display product container -->
                 <div class="row product-display">
                     <?php
-                        $filter_query="SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
+                        $filter_query="SELECT P.PRODUCT_ID AS PRODUCT_ID, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME, SUM(ITEM_QUANTITY) AS TOTAL_PURCHASED 
+                        FROM ORDER_ITEM O
+                        RIGHT JOIN PRODUCT P
+                        ON P.PRODUCT_ID=O.PRODUCT_ID
+                        WHERE UPPER(DISABLED)='F'";
+
+                        // ------filter by price-----
+                        if(isset($_GET['min-input']) & !empty($_GET['min-input']) )
+                        {
+                            // echo $_GET['min-input'];
+                            $min_price=intVal($_GET['min-input']);
+                            $max_price=intVal($_GET['max-input']);
+                            $filter_query.=" AND PRICE>=$min_price AND PRICE<=$max_price";
+                        }
+
                         if(isset($_GET['submit-filter']))
                         {
                              //------filter by category-----
@@ -223,7 +237,6 @@ include_once('function.php');
                                 $category=implode(",", $_GET['category']);
                                 $filter_query.=" AND CATEGORY_ID IN($category) ";
                                 // echo $filter_query;
-
                             }
 
                             //------filter by shop-----
@@ -246,14 +259,22 @@ include_once('function.php');
                             }
 
                         }
+
+                        $filter_query.=" GROUP BY P.PRODUCT_ID, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME";
+
+                        //------sort the products -----
+                        if(isset($_GET['submit-filter'])){
+                            if(isset($_GET['sort-product-option']) && !empty($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])!="BESTSELLING")
+                            {
+                                $filter_query.=" ORDER BY ".$_GET['sort-product-option'];
                         
-                        // ------filter by price-----
-                        if(isset($_GET['min-input']) & !empty($_GET['min-input']) )
-                        {
-                            // echo $_GET['min-input'];
-                            $min_price=intVal($_GET['min-input']);
-                            $max_price=intVal($_GET['max-input']);
-                            $filter_query.=" AND PRICE>=$min_price AND PRICE<=$max_price";
+                            }
+                            if(isset($_GET['sort-product-option']) && !empty($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])=="BESTSELLING")
+                            {
+                                $filter_query.=" ORDER BY (CASE WHEN TOTAL_PURCHASED  IS NULL THEN 2 ELSE 1 END), TOTAL_PURCHASED  DESC";
+                                // echo $filter_query;
+                        
+                            }
                         }
 
                         if(isset($_GET['clear-filter']) && ($_GET['clear-filter'])=='default')
