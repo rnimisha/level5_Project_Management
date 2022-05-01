@@ -3,20 +3,40 @@ $(document).ready(function(){
     //jquery ui function for price range
     $(function() {
         $("#price-range").slider({
+            
             step: 1,
             range: true, 
             min: 0, 
-            max: 1000, 
-            values: [0, 1000], 
+            max: 100, 
+            values: [0, 100], 
             slide: function(event, ui)
             {
-                $("#min-price").text(ui.values[0]);
+                $("#min-price").text(ui.values[0] + ' -  ');
+                $("#min-price").val(ui.values[0]);
+                $("#min-input").val(ui.values[0]);
+
+                $('.hide-div').hide();
+
                 $("#max-price").text(ui.values[1]);
+                $("#max-price").val(ui.values[1]);
+                $("#max-input").val(ui.values[1]);
+
+
             }
         });
-        $("#min-price").text($("#price-range").slider("values", 0));
-        $("#max-price").text($("#price-range").slider("values", 1));
+
+        var minimum= $("#min-input").val();
+        var maximum= $("#max-input").val();
+        $("#min-price").text(minimum );
+        $("#min-input").val($("#price-range").slider("values", 0));
+        $("#max-input").val($("#price-range").slider("values", 1));
+        $("#max-price").text(maximum);
+       
     });
+
+    // $("#price-range").mouseup(function(){
+    //    $('#price-filter-form').submit();
+    // });
 
     //show cartand wishlist option on hover
     $(".cat-product").hover(function(){

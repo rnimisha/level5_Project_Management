@@ -81,3 +81,6 @@ function getFilterValue(filter_class)
   
     return filteredValue;
 }
+
+
+$('body').addClass('transition-effect');

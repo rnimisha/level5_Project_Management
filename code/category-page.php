@@ -26,20 +26,28 @@ include_once('function.php');
                 <!-- category option list -->
                 <div class="row" id="filter-option">
                     <div class="col-11 mx-auto justify-content-center align-items-center" id="filter-content">
+                        <form id="price-filter-form" action="category-page.php" method="GET">
                         <!-- jquery ui -->
                         <h5 class="pb-2"><b>Price</b></h5>
                         <div class="slider-box align-items-center pb-5">
                             <div id="price-range" class="slider mb-3"></div>
                             <!-- <input class="text-center" type="text" id="priceRange" readonly> -->
                             <div class="row d-flex justify-content-center align-items-center">
-                               <div id="min-price"></div><span>&nbsp;- &nbsp;</span>
-                               <div id="max-price"></div>
+                                <input type="hidden" name="min-input" id="min-input"/>
+                                <input type="hidden" name="max-input" id="max-input"/>
+                               <div id="min-price"  name="min-price"></div><span class="hide-div">&nbsp; <?php if(isset($_GET["min-input"])){echo $_GET["min-input"];}else{echo 0;}?> - &nbsp;</span>
+                               <div id="max-price" name="max-price"></div><span class="hide-div"><?php if(isset($_GET["max-input"])){echo $_GET["max-input"];}else{echo 1000;}?></span>
+                            </div>
+                            <div class="row col-5 mx-auto pt-2 ml-1">
+                                    <button class="btn" type="submit" name="price-filter" id="price-filter">Filter</button>
                             </div>
                         </div>
+                        </form>
+                        <br>
                         <hr>
+                        <!-- Filter by Category -->
+                        <h5 class="py-2"><b>Category</b></h5>
                         <form id="product-filter-form" action="category-page.php" method="GET">
-                            <!-- Filter by Category -->
-                            <h5 class="py-2"><b>Category</b></h5>
                             <ul class="list-group list-group-flush">
                                 <?php
                                     $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
@@ -154,14 +162,13 @@ include_once('function.php');
                 <div class="row py-3">
                     <div class="col-md-3 offset-md-9 col-sm-4 offset-sm-8" >
                         <select class="custom-select form-control" id="sort-product-option">
-                            <option selected>Sort by : Default</option>
-                            <option value="">Sort by : New Arrival</option> 
-                            <option value="">Sort by : Best Selling</option> 
-                            <option value="">Price : Low to High</option>
-                            <option value="">Price : High to Low</option>
+                            <option value="" <?php if(isset($_GET['sort-product-option']) && $_GET['sort-product-option']==""){echo 'selected';}?> >Sort by : Default</option>
+                            <option value="NEW ARRIVAL">Sort by : New Arrival</option> 
+                            <option value="BEST SELLING">Sort by : Best Selling</option> 
+                            <option value="PRICE">Price : Low to High</option>
+                            <option value="PRICE DESC">Price : High to Low</option>
                         </select>
                     </div>
-
                 </div>
 
                 <!-- display product container -->
@@ -170,7 +177,7 @@ include_once('function.php');
                         $filter_query="SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
                         if(isset($_GET['submit-filter']))
                         {
-                             //------filter by shop-----
+                             //------filter by category-----
                             if(isset($_GET['category']) && !empty($_GET['category']))
                             {
                                 $category=implode(",", $_GET['category']);
@@ -179,7 +186,7 @@ include_once('function.php');
 
                             }
 
-                            //------filter by rating-----
+                            //------filter by shop-----
                             if(isset($_GET['shops']) && !empty($_GET['shops']))
                             {
                                 $shop=implode(",", $_GET['shops']);
@@ -197,6 +204,16 @@ include_once('function.php');
                                     array_push($rating, intVal($rate[4]));
                                 }
                             }
+
+                        }
+                        
+                        // ------filter by price-----
+                        if(isset($_GET['min-input']) & !empty($_GET['min-input']) )
+                        {
+                            // echo $_GET['min-input'];
+                            $min_price=intVal($_GET['min-input']);
+                            $max_price=intVal($_GET['max-input']);
+                            $filter_query.=" AND PRICE>=$min_price AND PRICE<=$max_price";
                         }
 
                         if(isset($_GET['clear-filter']) && ($_GET['clear-filter'])=='default')
@@ -258,11 +275,17 @@ include_once('function.php');
                     </div>
                     <?php
                     $count_row++;
-                        }
-                        if($count_row==0)
-        {
-            echo 'No Match found';
-        }
+                    }
+                    if($count_row==0)
+                    {  
+                    ?>
+                    <div class="row w-100">
+                        <divc class="col-5 mx-auto">
+                            <img src="image/noresultfound.png" class="no-data-found img-fluid"/>
+                        </div>
+                    </div>
+                    <?php
+                    }
                     ?>
                 </div>
             </div>

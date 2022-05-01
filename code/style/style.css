@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
 body{
     background-color: #ffffff;
-    font-family: 'Fredoka', sans-serif;
+    font-family:'Poppins', sans-serif;
 }
  
 /* -------banner-------- */
@@ -152,4 +152,23 @@ label{
 
 .prod-price::before, #min-price::before, #max-price::before{
     content:'\00A3';
+}
+
+.transition-effect{
+    animation-duration: 2s;
+    animation-name: fadeInAnimation;
+  }
+  
+  @keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.no-data-found{
+    /* width: 100%; */
+    padding-top:30px;
+    max-height: 270px;
 }
