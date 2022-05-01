@@ -225,8 +225,13 @@ include_once('function.php');
                         {
                             // echo $_GET['min-input'];
                             $min_price=intVal($_GET['min-input']);
+                            $filter_query.=" AND PRICE>=$min_price";
+                        }
+                        if(isset($_GET['max-input']) & !empty($_GET['max-input']) )
+                        {
                             $max_price=intVal($_GET['max-input']);
-                            $filter_query.=" AND PRICE>=$min_price AND PRICE<=$max_price";
+                            $filter_query.=" AND PRICE<=$max_price";
+                            // echo $filter_query;
                         }
 
                         if(isset($_GET['submit-filter']))
