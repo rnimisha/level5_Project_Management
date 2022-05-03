@@ -11,6 +11,7 @@ $(document).ready(function(){
     $('#shop-logo-sucess-msg').hide();
     $('#add-shop-sucess-msg').hide();
     $('#status-change-sucess-msg').hide();
+    $('#check-email-msg').hide();
 
 
     // ------------trader profile setting---------------
@@ -52,11 +53,19 @@ $(document).ready(function(){
                 {
                     // // resetForm('personal-form');
                     // $('#personal-form').addClass('was-validated');
-                    $('#personal-sucess-msg').show().delay(5000).fadeOut();
                     $('#profile-sucess-msg').hide();
                     $('#pass-sucess-msg').hide();
                     clearFormValidation();
                     removeStyle(resp);
+                    if(resp.emailchange==true)
+                    {
+                        $('#check-email-msg').show().delay(5000).fadeOut();
+                        $('#personal-sucess-msg').hide();
+                    }
+                    else{
+                        $('#personal-sucess-msg').show().delay(5000).fadeOut();
+                        $('#check-email-msg').hide();
+                    }
                 }
                 else{
                     // alert('success inside form');

@@ -2,6 +2,7 @@
     include_once('../connection.php');
     $edit_trader_error=array();
     $edit_trader_error['clear']=true;
+  
 
     if(isset($_POST['form_name']) && $_POST['form_name']=='personal-form' && isset($_POST['trader_id']))
     {
@@ -55,6 +56,7 @@
                         }
                         if(strtoupper($email) == strtoupper($traderemail))
                         {
+                            $email_changed=false;
                             $edit_trader_error['#error-trad-email']="";
                             $email=$_POST['traderemail'];
                             $edit_trader_error['#trad-email']='valid';
@@ -67,6 +69,7 @@
                         oci_free_statement($parsedGetEmail); 
                     }
                     else{
+                        $email_changed=true;
                         $edit_trader_error['#error-trad-email']="";
                         $email=$_POST['traderemail'];
                         $edit_trader_error['#trad-email']='valid';
@@ -195,19 +198,83 @@
         //updating to database
         if($edit_trader_error['clear']==true)
         {
-            $updateQuery="UPDATE MART_USER SET NAME=:fullname, EMAIL=:email, CONTACT=:contact, ADDRESS=:addr, DOB=to_date(:dob,'DD/MM/YYYY') WHERE USER_ID=:trader_id";
-            $parsedQuery=oci_parse($connection, $updateQuery);
+            if($email_changed==false)
+            {
+                $updateQuery="UPDATE MART_USER SET NAME=:fullname, CONTACT=:contact, ADDRESS=:addr, DOB=to_date(:dob,'DD/MM/YYYY') WHERE USER_ID=:trader_id";
+                $parsedQuery=oci_parse($connection, $updateQuery);
 
-            oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
-            oci_bind_by_name($parsedQuery, ":email", $email);
-            oci_bind_by_name($parsedQuery, ":contact", $contact);
-            oci_bind_by_name($parsedQuery, ":addr", $address);
-            oci_bind_by_name($parsedQuery, ":dob", $t_dob);
-            oci_bind_by_name($parsedQuery, ":trader_id", $trader_id);
+                oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
+                oci_bind_by_name($parsedQuery, ":contact", $contact);
+                oci_bind_by_name($parsedQuery, ":addr", $address);
+                oci_bind_by_name($parsedQuery, ":dob", $t_dob);
+                oci_bind_by_name($parsedQuery, ":trader_id", $trader_id);
 
-            // $edit_trader_error['query']=$updateQuery;
-            oci_execute($parsedQuery);
-            oci_free_statement($parsedQuery);
+                // $edit_trader_error['query']=$updateQuery;
+                oci_execute($parsedQuery);
+                oci_free_statement($parsedQuery);
+                $edit_trader_error['emailchange']=false;
+
+            }
+
+            //email change requires validation
+            if($email_changed==true)
+            {
+                $updateQuery="UPDATE MART_USER SET NAME=:fullname, CONTACT=:contact, ADDRESS=:addr, DOB=to_date(:dob,'DD/MM/YYYY') WHERE USER_ID=:trader_id";
+                $parsedQuery=oci_parse($connection, $updateQuery);
+
+                oci_bind_by_name($parsedQuery, ":fullname", $fullnames);
+                oci_bind_by_name($parsedQuery, ":contact", $contact);
+                oci_bind_by_name($parsedQuery, ":addr", $address);
+                oci_bind_by_name($parsedQuery, ":dob", $t_dob);
+                oci_bind_by_name($parsedQuery, ":trader_id", $trader_id);
+
+                // $edit_trader_error['query']=$updateQuery;
+                if(oci_execute($parsedQuery))
+                {
+                    $to=$email;
+                    $subject="Verify Your New Details";
+                    $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
+
+                    $body="
+                    <html>
+                    <head>
+                        <title>Verify Details Change</title>
+                    </head>
+                    <body>
+                        <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
+                            <center>
+                                $image 
+                                <h2> Hi $fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button to verify new email address. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?email=$email&userid=$trader_id&type=emailchange'><button style='background-color: #a4bfa7;border: none;
+                                color: white;
+                                padding: 15px 32px;
+                                text-align: center;
+                                text-decoration: none;
+                                display: inline-block;
+                                font-size: 16px;
+                                border-radius: 25px;'>Activate</button></a>
+                                <br><br><br>  
+                                <hr style='border: 0.7px solid grey; width:80%;'>
+                                <span style='color:grey';>Please ignore if you did not use this email in Phoenix Mart.</span>
+                            </center>
+                        </div>
+                    </body>
+                    </html>";
+                    // $headers="From: phoenixmart123@gmail.com";
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    if(mail($to, $subject, $body, $headers))
+                    {
+                        $edit_trader_error['clear']=true;
+                        $edit_trader_error['emailchange']=true;
+                    }
+                    else{
+                        $edit_trader_errorr['clear']=false;
+                    }
+                }
+                oci_free_statement($parsedQuery);
+
+            }
+            
         }
 
         // $edit_trader_error['id']=$trader_id;

@@ -156,7 +156,38 @@
             echo "Some errors";
         }
     }
-    else{
-        echo 'Some Errors';
+
+    if(isset($_GET['email']) && isset($_GET['userid']) && isset($_GET['type']))
+    {
+        $email=$_GET['email'];
+        $userid=$_GET['userid'];
+        $query="UPDATE MART_USER SET EMAIL='$email' where USER_ID=$userid";
+        $parsedQuery=oci_parse($connection,$query);
+
+        if(oci_execute($parsedQuery)){
+            echo "<html>
+            <head>
+                <title>Success</title>
+                <style>
+                    th, td {
+                      padding: 10px;
+                      border-color: grey;
+                    }
+                </style>
+            </head>
+            <body>
+                <div style=' width:80%; margin:10%; padding: 20px;'>
+                    <center>
+                        <img src='image/successpic.gif'/>
+                        <p><b>Email Validation Successfull!</b></p>
+                    </center>
+                </div>
+            </body>
+            </html>";
+        }
+        else{
+            echo "lol";
+        }
+        oci_free_statement($parsedQuery);
     }
 ?>

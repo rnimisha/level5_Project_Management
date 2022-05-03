@@ -171,6 +171,9 @@
                         <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="personal-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
                         </div>
+                        <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="check-email-msg">
+                          Check your new email to verify email change.
+                        </div>
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="trad-id" value="<?php  echo (isset($current_trader_id)) ? $current_trader_id : null;?>"/>
                         </div>
