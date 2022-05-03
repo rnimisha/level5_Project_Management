@@ -71,7 +71,7 @@
                         Trader details are provided below <br> 
                         <br> 
 
-                        <table style='width:50%;  border-collapse: collapse;'>
+                        <table style='width:80%;  border-collapse: collapse;'>
                            <tr style='border: 1px solid; background-color: #dabeae; '>
                                <th style='border: 1px solid;'> Email</th>
                                <th style='border: 1px solid;'> Shop Name</th>
@@ -94,7 +94,7 @@
                            </tr>
                         </table>
                         <br> 
-                        <table style='width:50%;  border-collapse: collapse;'>
+                        <table style='width:80%;  border-collapse: collapse;'>
                             <tr  style='border: 1px solid; background-color: #dabeae; '>
                                 <th>
                                     Trader's Message
@@ -127,17 +127,36 @@
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             if(mail($to, $subject, $body, $headers))
             {
-                echo "doneeee";
+                echo "<html>
+                <head>
+                    <title>Success</title>
+                    <style>
+                        th, td {
+                          padding: 10px;
+                          border-color: grey;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div style=' width:80%; margin:10%; padding: 20px;'>
+                        <center>
+                            <img src='image/successpic.gif'/>
+                            <p><b>Email Validation Successfull!</b></p>
+                            Please wait for account confirmation and activation from company.
+                        </center>
+                    </div>
+                </body>
+                </html>";
             }
             else{
-                echo "looooollll";
+                echo "some error during verification";
             }
         }
         else{
-            echo "lol again";
+            echo "Some errors";
         }
     }
     else{
-        echo 'hhhhh';
+        echo 'Some Errors';
     }
 ?>

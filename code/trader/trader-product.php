@@ -234,22 +234,22 @@
                           }
                           oci_free_statement($parsedShop);
                         ?>
-                    <input type="hidden" class="form-control" id="add-product-shop" value="<?php echo $shop_id;?>" />
+                    <input type="hidden" class="form-control" name="add-product-shop" id="add-product-shop" value="<?php echo $shop_id;?>" />
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="add-product-name" class="text-muted">Product Name</label>
-                        <input type="text" class="form-control" id="add-product-name" />
+                        <input type="text" class="form-control" id="add-product-name" name="add-product-name" />
                         <div class="invalid-feedback" id="error-add-product-name"></div>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="add-product-stock" class="text-muted">Stock Quantity</label>
-                        <input type="number" class="form-control" id="add-product-stock" />
+                        <input type="number" class="form-control" id="add-product-stock" name="add-product-stock"/>
                         <div class="invalid-feedback" id="error-add-product-stock"></div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="add-product-category" class="text-muted">Category</label>
-                      <select class="custom-select form-control" id="add-product-category">
+                      <select class="custom-select form-control" id="add-product-category" name="add-product-category">
                         <?php
                             $query="SELECT * FROM PRODUCT_CATEGORY";
                             $parsed = oci_parse($connection, $query);
@@ -267,36 +267,41 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="add-product-price" class="text-muted">Price</label>
-                        <input type="number" step="0.1" class="form-control" id="add-product-price" />
+                        <input type="number" step="0.1" class="form-control" id="add-product-price" name="add-product-price"/>
                         <div class="invalid-feedback" id="error-add-product-price"></div>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="add-product-unit" class="text-muted">Pricing Unit</label>
-                        <input type="text" class="form-control" id="add-product-unit" />
+                        <input type="text" class="form-control" id="add-product-unit" name="add-product-unit"/>
                         <div class="invalid-feedback" id="error-add-product-unit"></div>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="add-product-min" class="text-muted">Minimum Order</label>
-                        <input type="number" class="form-control" id="add-product-min" />
+                        <input type="number" class="form-control" id="add-product-min" name="add-product-min" />
                         <div class="invalid-feedback" id="error-add-product-min"></div>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="add-product-max" class="text-muted">Maximum Order</label>
-                        <input type="number" class="form-control" id="add-product-max" />
+                        <input type="number" class="form-control" id="add-product-max" name="add-product-max"/>
                         <div class="invalid-feedback" id="error=add-product-max"></div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="add-product-descp" class="text-muted">Description</label>
-                      <textarea class="form-control" id="add-product-descp"></textarea>
+                      <textarea class="form-control" id="add-product-descp" name="add-product-descp"></textarea>
                       <div class="invalid-feedback" id="error-add-product-descp"></div>
                     </div>
                     <div class="form-group">
                       <label for="add-product-allergy" class="text-muted">Allergy Information</label>
-                      <textarea class="form-control" id="add-product-allergy"></textarea>
+                      <textarea class="form-control" id="add-product-allergy" name="add-product-allergy"></textarea>
                       <div class="invalid-feedback" id="error-add-product-allergy"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-pic" class="text-muted">Upload picture</label><br>
+                        <input type="file" id="prod-pic" name="prod-pic">
+                        <div class="invalid-feedback" id="error-prod-pic"></div>
                     </div>
                     <div class="row justify-content-end pr-1">
                       <button type="submit" class="btn" id="add-prod-button">Add Product</button>

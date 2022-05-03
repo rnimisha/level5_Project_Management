@@ -42,7 +42,25 @@
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 if(mail($to, $subject, $body, $headers))
                 {
-                    echo "Done";
+                    echo "<html>
+                    <head>
+                        <title>Customer query</title>
+                        <style>
+                            th, td {
+                              padding: 10px;
+                              border-color: grey;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div style=' width:80%; margin:10%; padding: 20px;'>
+                            <center>
+                                <img src='image/successpic.gif'/>
+                                <p><b>Activation success email sent to Trader!</b></p>
+                            </center>
+                        </div>
+                    </body>
+                    </html>";
                 }
                 else{
                     echo "looooollllll";
@@ -96,7 +114,28 @@
                 </html>";
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                mail($to, $subject, $body, $headers);
+                if(mail($to, $subject, $body, $headers))
+                {
+                    echo "<html>
+                    <head>
+                        <title>Success</title>
+                        <style>
+                            th, td {
+                              padding: 10px;
+                              border-color: grey;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div style=' width:80%; margin:10%; padding: 20px;'>
+                            <center>
+                                <img src='image/successpic.gif'/>
+                                <p><b>Shop addition success email sent to Trader!</b></p>
+                            </center>
+                        </div>
+                    </body>
+                    </html>";
+                }
             } 
         }
     }

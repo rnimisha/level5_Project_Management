@@ -3,15 +3,14 @@
 
     $add_prod_error=array();
     $add_prod_error['clear']=true;
-
-    if(isset($_POST['form_name']) && $_POST['form_name']=='add-product-form' && isset($_POST['shop_id']))
+    if(isset($_POST['form_name']) && $_POST['form_name']=='add-product-form' && isset($_POST['add-product-shop']))
     {
-        if(isset($_POST['name']))
+        if(isset($_POST['add-product-name']))
         {
             //validate product
-            if(!empty(trim($_POST['name'])))
+            if(!empty(trim($_POST['add-product-name'])))
             {
-                $name=$_POST['name'];
+                $name=$_POST['add-product-name'];
                 $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM PRODUCT WHERE UPPER(PRODUCT_NAME)=upper('$name')";
                 $parsed=oci_parse($connection, $checkQuery);
                 oci_define_by_name($parsed, 'NUMBER_OF_ROWS', $number_of_rows);
@@ -36,11 +35,11 @@
             }
         }
 
-        if(isset($_POST['stock']))
+        if(isset($_POST['add-product-stock']))
         {
-            if(!empty(trim($_POST['stock'])))
+            if(!empty(trim($_POST['add-product-stock'])))
             {
-                $stock=trim($_POST['stock']);
+                $stock=trim($_POST['add-product-stock']);
                 $add_prod_error['#error-add-product-stock']="";
                 $add_prod_error['#add-product-stock']='valid';
             }
@@ -52,11 +51,11 @@
         }
 
         //check price
-        if(isset($_POST['price']))
+        if(isset($_POST['add-product-price']))
         {
-            if(!empty(trim($_POST['price'])))
+            if(!empty(trim($_POST['add-product-price'])))
             {
-                $price=trim($_POST['price']);
+                $price=trim($_POST['add-product-price']);
                 if($price<=0)
                 {
                     $add_prod_error['clear']=false;
@@ -77,11 +76,11 @@
         }
 
         //check unit
-        if(isset($_POST['unit']))
+        if(isset($_POST['add-product-unit']))
         {
-            if(!empty(trim($_POST['unit'])))
+            if(!empty(trim($_POST['add-product-unit'])))
             {
-                $unit=$_POST['unit'];
+                $unit=$_POST['add-product-unit'];
                 $add_prod_error['#error-add-product-unit']="";
                 $add_prod_error['#add-product-unit']='valid';
             }
@@ -93,11 +92,11 @@
         }
 
         //check minimum order
-        if(isset($_POST['min']))
+        if(isset($_POST['add-product-min']))
         {
-            if(!empty(trim($_POST['min'])))
+            if(!empty(trim($_POST['add-product-min'])))
             {
-                $min=trim($_POST['min']);
+                $min=trim($_POST['add-product-min']);
                 if (filter_var($min, FILTER_VALIDATE_INT))
                 {
                     $add_prod_error['#error-add-product-min']="";
@@ -117,16 +116,16 @@
         }
 
         //check maximum order
-        if(isset($_POST['max']))
+        if(isset($_POST['add-product-max']))
         {
-            if(!empty(trim($_POST['max'])))
+            if(!empty(trim($_POST['add-product-max'])))
             {
-                $max=trim($_POST['max']);
+                $max=trim($_POST['add-product-max']);
                 if (filter_var($max, FILTER_VALIDATE_INT))
                 {
-                    if(isset($_POST['min']))
+                    if(isset($_POST['add-product-min']))
                     {
-                        if($_POST['min']>$max)
+                        if($_POST['add-product-min']>$max)
                         {
                             $add_prod_error['clear']=false;
                             $add_prod_error['#error-add-product-max']="Maximum order can't be less than minimum order.";
@@ -150,11 +149,11 @@
         }
 
         //check category_id
-        if(isset($_POST['cat_id']))
+        if(isset($_POST['add-product-category']))
         {
-            if(!empty($_POST['cat_id']) && ($_POST['cat_id']!='null'))
+            if(!empty($_POST['add-product-category']) && ($_POST['add-product-category']!='null'))
             {
-                $category=$_POST['cat_id'];
+                $category=$_POST['add-product-category'];
             }
             else{
                 $add_prod_error['clear']=false;
@@ -163,36 +162,39 @@
             }
         }
 
-        $allergy=$descp='';
-        if(isset($_POST['descp']) || isset($_POST['allergy']))
+        if(isset($_POST['add-product-descp']))
         {
-            $descp=$_POST['descp'];
-            $allergy=$_POST['allergy'];
-        }
-        if(isset($_POST['cat_id']))
-        {
-            if(!empty($_POST['cat_id']))
+            if(!empty(trim($_POST['add-product-descp'])))
             {
-                $cat_id=trim($_POST['cat_id']);
+                $descp=$_POST['add-product-descp'];
+                $add_prod_error['#error-add-product-descp']="";
+                $add_prod_error['#add-product-descp']='valid';
             }
             else
             {
                 $add_prod_error['clear']=false;
+                $add_prod_error['#error-add-product-descp']="Please enter a short description.";
+                $add_prod_error['#add-product-descp']='is-invalid';
             }
         }
-
-        //if all validations pass
-        if( $add_prod_error['clear'])
+        $allergy='';
+        if(isset($_POST['add-product-descp']) || isset($_POST['add-product-allergy']))
         {
-            $shop=$_POST['shop_id'];
-            $query="INSERT INTO PRODUCT(PRODUCT_NAME, PRICE, STOCK_QUANTITY, CATEGORY_ID, PRICING_UNIT, MIN_ORDER, MAX_ORDER, DESCRIPTION, ALLERGY_INFO, DISABLED, SHOP_ID) VALUES('$name', $price, $stock, $category, '$unit', $min, $max, '$descp', '$allergy', 'F', $shop)";
-            // $add_prod_error['q']=$query;
-            $parsed=oci_parse($connection, $query);
-            oci_execute($parsed);
+            $allergy=$_POST['add-product-allergy'];
         }
+       
+
+        // //if all validations pass
+        // if( $add_prod_error['clear'])
+        // {
+        //     $shop=$_POST['add-product-shop'];
+        //     $query="INSERT INTO PRODUCT(PRODUCT_NAME, PRICE, STOCK_QUANTITY, CATEGORY_ID, PRICING_UNIT, MIN_ORDER, MAX_ORDER, DESCRIPTION, ALLERGY_INFO, DISABLED, SHOP_ID) VALUES('$name', $price, $stock, $category, '$unit', $min, $max, '$descp', '$allergy', 'F', $shop)";
+        //     // $add_prod_error['q']=$query;
+        //     $parsed=oci_parse($connection, $query);
+        //     oci_execute($parsed);
+        // }
 
         echo json_encode($add_prod_error);
     }
-
     
 ?>

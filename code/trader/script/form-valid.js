@@ -280,38 +280,19 @@ $(document).ready(function(){
     $('#add-product-form').submit(function(){
         jQuery('#add-prod-button').text('Adding...');
         jQuery('#add-prod-button').attr('disabled', true);
-
-        var name=$('#add-product-name').val();
-        var stock=$('#add-product-stock').val();
-        var price=$('#add-product-price').val();
-        var unit=$('#add-product-unit').val();
-        var min=$('#add-product-min').val();
-        var max=$('#add-product-max').val();
-        var descp=$('#add-product-descp').val();
-        var allergy=$('#add-product-allergy').val();
-        var cat_id=$('#add-product-category').val();
-        var shop_id=$('#add-product-shop').val();
-        // alert(shop_id);
+        
+        var formData= new FormData(this);
+        formData.append("form_name", "add-product-form");
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
-            data: {
-                name:name,
-                stock,stock,
-                price:price,
-                unit:unit,
-                min:min,
-                max:max,
-                descp:descp,
-                allergy:allergy,
-                cat_id:cat_id,
-                shop_id:shop_id,
-                form_name: 'add-product-form'
-            },
+            data: formData,
+            dataType: "JSON",
+            contentType: false, //multipart/formdata
+            processData: false,
             success: function(response){
-    
-                var resp=jQuery.parseJSON(response);
-               
+                var resp=response;
+                console.log(resp);
                 jQuery('#add-prod-button').text('Add Product');
                 jQuery('#add-prod-button').attr('disabled', false);
                 if(resp.clear == true)
