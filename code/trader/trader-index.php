@@ -154,6 +154,7 @@
                                 <div class="row form-group prof-upload ">
                                   <label for="trad-pic" class="btn w-100"><i class="fa-solid fa-upload"></i><span class="d-none d-sm-inline">&nbsp; Change Image</span></label>
                                   <input type="file" id="trad-pic" name="trad-pic" hidden/>
+                                  <div class="invalid-feedback" id="error-pp-pic"></div>
                                 </div>
                                 <!-- submit upload  -->
                                 <div class="row justify-content-end mx-auto pr-1">
@@ -239,9 +240,43 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Button trigger modal -->
+<button type="button" id="preview-pp" class="btn btn-primary d-none" data-toggle="modal" data-target="#popConfirm">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="popConfirm" tabindex="-1" role="dialog" aria-labelledby="popConfirmTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="popConfirmTitle">Confirm Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-item-center">
+        <img src="../image/product/fruit1.png" id="trad-preview">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="upload-pp-confirm">Upload Image</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
   </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <script src="script/script.js"></script>
   <script src="../script/function.js"></script>
   <script src="script/form-valid.js"></script>

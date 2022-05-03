@@ -116,12 +116,41 @@ $(document).ready(function(){
 
     //submit form on change
     $('#trad-pic').change(function(){
-        if (confirm('Do you want to upload the image?')) {
-            $('#picture-form-up').submit();
-        } 
+        $('#trad-pic').removeClass('is-invalid');
+        var file=this.files[0];
+        var imgfile=file.type;
+        var match=["image/jpeg", "image/png", "image/jpg"];
+        if(!((imgfile==match[0]) || (imgfile==match[1]) || (imgfile==match[2])))
+        {
+            // alert(9);
+            $('#trad-pic').addClass('is-invalid');
+            $('#error-pp-pic').text("Please select valid image");
+            return false;
+        }
+        else
+        {
+            $('#preview-pp').click();
+            $('#trad-pic').addClass('valid');
+            $('#error-pp-pic').text("");
+            var reader=new FileReader();
+            reader.onload=loadProfile;
+            reader.readAsDataURL(this.files[0]);
+        }
     });
 
-    //post 
+
+    function loadProfile(e)
+    {
+        $('#trad-preview').attr('src', e.target.result);
+        $('#trad-preview').css('width', '250px');
+        $('#trad-preview').css('height', '250px');
+    }
+
+    $('#upload-pp-confirm').click(function(){
+        $('#picture-form-up').submit();
+    });
+
+    //post picture
     $('#picture-form-up').submit(function(){
         $('#personal-sucess-msg').hide();
         $('#profile-sucess-msg').hide();
@@ -297,6 +326,7 @@ $(document).ready(function(){
                 jQuery('#add-prod-button').attr('disabled', false);
                 if(resp.clear == true)
                 {
+                    $('#prod-preview').attr('src', '../image/product/productplaceholder.png');
                     $('#product-edit-sucess-msg').hide();
                     $('#add-prod-sucess-msg').show().delay(5000).fadeOut();;
                     resetForm('add-product-form');
@@ -341,7 +371,13 @@ $(document).ready(function(){
         }
     });
 
-    
+    //load image as preview
+    function imageIsLoaded(e)
+    {
+        $('#prod-preview').attr('src', e.target.result);
+        $('#prod-preview').css('width', '200px');
+        $('#prod-preview').css('height', '200px');
+    }
 
     //post new picture for product
     $('#new-prod-pic-form').submit(function(){
