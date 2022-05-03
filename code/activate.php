@@ -56,6 +56,12 @@
             <html>
             <head>
                 <title>Trader Registration Request</title>
+                <style>
+                    th, td {
+                      padding: 10px;
+                      border-color: grey;
+                    }
+                </style>
             </head>
             <body>
                 <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
@@ -63,17 +69,50 @@
                         $image <br/>
                          A new registration request from trader <b>$fullnames </b>has arrived!
                         Trader details are provided below <br> 
-                        Email : $email<br> 
-                        Shop Name : $shopname <br> 
-                        Shop Registration date : $register_date<br> 
-                        PAN : $register_no <br> 
-                        Trader's Message : $reason <br> 
-                            <br> <b>Click button  to activate trader $fullnames.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activateTrader.php?userid=$user_id'><button style='background-color: #4CAF50;border: none;
-                        color: white;
+                        <br> 
+
+                        <table style='width:50%;  border-collapse: collapse;'>
+                           <tr style='border: 1px solid; background-color: #dabeae; '>
+                               <th style='border: 1px solid;'> Email</th>
+                               <th style='border: 1px solid;'> Shop Name</th>
+                               <th style='border: 1px solid;'> Registration No</th>
+                               <th style='border: 1px solid;'> Registration Date</th>
+                           </tr>
+                           <tr style='border: 1px solid; text-align: center;'>
+                                <td style='border: 1px solid;'>
+                                    $email
+                                </td>
+                                <td style='border: 1px solid;'>
+                                    $shopname
+                                </td>
+                                <td style='border: 1px solid;'>
+                                    $register_no
+                                </td>
+                                <td style='border: 1px solid;'>
+                                    $register_date
+                                </td>
+                           </tr>
+                        </table>
+                        <br> 
+                        <table style='width:50%;  border-collapse: collapse;'>
+                            <tr  style='border: 1px solid; background-color: #dabeae; '>
+                                <th>
+                                    Trader's Message
+                                </th>
+                            </tr>
+                            <tr  style='border: 1px solid; padding-left: 10px;'>
+                                <td>
+                                    $reason
+                                </td>
+                            </tr>
+                        </table>
+                            <br> <b>Click button  to activate trader $fullnames.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activateTrader.php?userid=$user_id'><button style='background-color: #a4bfa7;border: none;
+                        color: #ffffff;
                         padding: 15px 32px;
                         text-align: center;
                         text-decoration: none;
                         display: inline-block;
+                        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                         font-size: 16px;
                         border-radius: 25px;'>Activate</button></a>
                         <br><br><br>  

@@ -27,7 +27,7 @@ $(document).ready(function(){
 
         var minimum= $("#min-input").val();
         var maximum= $("#max-input").val();
-        $("#min-price").text(minimum );
+        $("#min-price").text(minimum);
         $("#min-input").val($("#price-range").slider("values", 0));
         $("#max-input").val($("#price-range").slider("values", 1));
         $("#max-price").text(maximum);
