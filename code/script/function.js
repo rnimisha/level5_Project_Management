@@ -82,5 +82,12 @@ function getFilterValue(filter_class)
     return filteredValue;
 }
 
+//load image as preview
+function imageIsLoaded(e)
+{
+    $('#prod-preview').attr('src', e.target.result);
+    $('#prod-preview').css('width', '200px');
+    $('#prod-preview').css('height', '200px');
+}
 
 $('body').addClass('transition-effect');

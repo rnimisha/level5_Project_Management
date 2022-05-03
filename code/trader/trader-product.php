@@ -299,9 +299,12 @@
                       <div class="invalid-feedback" id="error-add-product-allergy"></div>
                     </div>
                     <div class="form-group">
-                        <label for="prod-pic" class="text-muted">Upload picture</label><br>
-                        <input type="file" id="prod-pic" name="prod-pic">
-                        <div class="invalid-feedback" id="error-prod-pic"></div>
+                      <div class="preview-img">
+                        <img src="..\image\product\productplaceholder.png" id="prod-preview"/>
+                      </div>
+                      <label for="prod-pic" class="text-muted">Upload picture</label><br>
+                      <input type="file" id="prod-pic" name="prod-pic">
+                      <div class="invalid-feedback" id="error-prod-pic"></div>
                     </div>
                     <div class="row justify-content-end pr-1">
                       <button type="submit" class="btn" id="add-prod-button">Add Product</button>

@@ -280,7 +280,7 @@ $(document).ready(function(){
     $('#add-product-form').submit(function(){
         jQuery('#add-prod-button').text('Adding...');
         jQuery('#add-prod-button').attr('disabled', true);
-        
+        // alert(1);
         var formData= new FormData(this);
         formData.append("form_name", "add-product-form");
         $.ajax({
@@ -312,6 +312,36 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
+
+    // preview image on change
+    $('#prod-pic').change(function(){
+        
+        $('#error-prod-pic').text("");
+        $('#prod-pic').removeClass('is-valid');
+        $('#prod-pic').removeClass('is-invalid');
+
+        var file=this.files[0];
+        var imgfile=file.type;
+        var match=["image/jpeg", "image/png", "image/jpg"];
+        if(!((imgfile==match[0]) || (imgfile==match[1]) || (imgfile==match[2])))
+        {
+            // alert(9);
+            $('#prod-preview').attr('src', '../image/product/productplaceholder.png');
+            $('#prod-pic').addClass('is-invalid');
+            $('#error-prod-pic').text("Please select valid image");
+            return false;
+        }
+        else
+        {
+            $('#prod-pic').addClass('valid');
+            $('#error-prod-pic').text("");
+            var reader=new FileReader();
+            reader.onload=imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    
 
     //post new picture for product
     $('#new-prod-pic-form').submit(function(){

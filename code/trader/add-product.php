@@ -183,13 +183,13 @@
                     }
                     else{
                         $add_prod_error['clear']=false;
-                        $add_prod_error['#error-prod-pic']="File extension is not supported";
+                        $add_prod_error['#error-prod-pic']="Unable to upload image";
                         $add_prod_error['#prod-pic']='is-invalid';
                     }
                 }
                 else{
                     $add_prod_error['clear']=false;
-                    $add_prod_error['#error-prod-pic']="Unable to upload image";
+                    $add_prod_error['#error-prod-pic']="File extension is not supported";
                     $add_prod_error['#prod-pic']='is-invalid';
                 }
             }

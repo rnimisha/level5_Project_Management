@@ -172,3 +172,8 @@ label{
     padding-top:30px;
     max-height: 270px;
 }
+.preview-img
+{
+    width:200px;
+    height: 200px;
+}
