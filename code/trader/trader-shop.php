@@ -5,6 +5,7 @@
   {
     header('Location: ../loginform.php');
   }
+  include_once('confirm-logout.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,7 +54,7 @@
             <i class="fa-solid fa-store"></i>
             <span class="hide-text">Shop</span>
           </a>
-          <a href="../logout.php" class="list-group-item text-decoration-none confirm-logout">
+          <a href="#" class="list-group-item text-decoration-none confirm-logout">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span class="hide-text">Sign out</span>
           </a>
@@ -223,6 +224,9 @@
                       <div class="form-group">
                         <input type="hidden" class="form-control" id="logo_shop_id" name="logo_shop_id" value="" />
                       </div>
+                      <div class="preview-img">
+                        <img src="..\image\product\productplaceholder.png" id="preview-logo"/>
+                      </div>
                       <div class="form-group">
                         <label for="new-shop-logo" class="text-muted">Upload new logo</label><br>
                         <input type="file" id="new-shop-logo" name="new-shop-logo">
@@ -242,6 +246,9 @@
     </div>
 </body>
 <!-- external script -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- custom script -->

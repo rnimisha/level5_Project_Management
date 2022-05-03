@@ -4,6 +4,7 @@
   {
     header('Location: ../loginform.php');
   }
+  include_once('confirm-logout.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -52,7 +53,7 @@
             <i class="fa-solid fa-store"></i>
             <span class="hide-text">Shop</span>
           </a>
-          <a href="../logout.php" class="list-group-item text-decoration-none confirm-logout">
+          <a href="#" class="list-group-item text-decoration-none confirm-logout">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span class="hide-text">Sign out</span>
           </a>
@@ -109,7 +110,7 @@
                           value="<?php echo $row['PRODUCT_ID'];?>"></i></td>
                       <td><?php echo $row['PRODUCT_NAME']; ?></td>
                       <?php
-                             $getImg ="SELECT IMAGE_DETAIL FROM PRODUCT_IMAGE WHERE PRODUCT_ID=".$row['PRODUCT_ID']." AND ROWNUM<=1";
+                             $getImg ="SELECT IMAGE_DETAIL FROM PRODUCT_IMAGE WHERE PRODUCT_ID=".$row['PRODUCT_ID']." AND ROWNUM<=1 ORDER BY IMAGE_ID DESC";
                             //  echo $getImg;
                              $parsedgetImg = oci_parse($connection, $getImg);
                              $img='../image/product/productplaceholder.png';
@@ -399,7 +400,7 @@
                   </div>
                 </form>
 
-                <!-- profile picture change -->
+                <!-- product picture change -->
                 <div id="prod-pic-form"  class="col-lg-10 col-md-9 py-4 d-none">
                   <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="product-img-sucess-msg">
                     <strong>Success!</strong>Changes has been saved.
@@ -408,6 +409,9 @@
                     <form action="edit-product.php" method="POST" id="new-prod-pic-form">
                       <div class="form-group">
                         <input type="hidden" class="form-control" id="p_id" name="p_id" value="" />
+                      </div>
+                      <div class="preview-img">
+                        <img src="..\image\product\productplaceholder.png" id="preview-prod-img"/>
                       </div>
                       <div class="form-group">
                         <label for="new-prod-pic" class="text-muted">Upload new picture</label><br>
@@ -425,13 +429,17 @@
         </div>
       </div>
     </div>
+
 </body>
+<!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
   integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!-- custom script -->
 <script src="script/script.js"></script>
 <script src="../script/function.js"></script>
 <script src="script/form-valid.js"></script>

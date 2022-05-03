@@ -21,7 +21,7 @@ if(isset($_POST['product_id']))
   }
   oci_free_statement($parsedgetProduct);
 
-  $getImg="SELECT * FROM PRODUCT_IMAGE WHERE PRODUCT_ID=$product_id AND ROWNUM <= 4";
+  $getImg="SELECT * FROM PRODUCT_IMAGE WHERE PRODUCT_ID=$product_id AND ROWNUM <= 4 ORDER BY IMAGE_ID DESC";
   $parsed=oci_parse($connection, $getImg);
   oci_execute($parsed);
   $img=array();

@@ -388,6 +388,38 @@ $(document).ready(function(){
         $('#prod-preview').css('height', '200px');
     }
 
+
+    //submit form on change
+    $('#new-prod-pic').change(function(){
+        $('#new-prod-pic').removeClass('is-invalid');
+        var file=this.files[0];
+        var imgfile=file.type;
+        var match=["image/jpeg", "image/png", "image/jpg"];
+        if(!((imgfile==match[0]) || (imgfile==match[1]) || (imgfile==match[2])))
+        {
+            
+            $('#new-prod-pic').addClass('is-invalid');
+            $('#error-new-prod-pic').text("Please select valid image");
+            return false;
+        }
+        else
+        {
+            $('#new-prod-pic').addClass('valid');
+            $('#error-new-prod-pic').text("");
+            var reader=new FileReader();
+            reader.onload=loadProductImg;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+
+    function loadProductImg(e)
+    {
+        $('#preview-prod-img').attr('src', e.target.result);
+        $('#preview-prod-img').css('width', '250px');
+        $('#preview-prod-img').css('height', '250px');
+    }
+
     //post new picture for product
     $('#new-prod-pic-form').submit(function(){
 
@@ -595,6 +627,37 @@ $(document).ready(function(){
         return false;
     });
 
+    //submit form on change
+    $('#new-shop-logo').change(function(){
+        $('#new-shop-logo').removeClass('is-invalid');
+        var file=this.files[0];
+        var imgfile=file.type;
+        var match=["image/jpeg", "image/png", "image/jpg"];
+        if(!((imgfile==match[0]) || (imgfile==match[1]) || (imgfile==match[2])))
+        {
+            
+            $('#new-shop-logo').addClass('is-invalid');
+            $('#error-new-shop-logo').text("Please select valid image");
+            return false;
+        }
+        else
+        {
+            $('#new-shop-logo').addClass('valid');
+            $('#error-new-shop-logo').text("");
+            var reader=new FileReader();
+            reader.onload=loadShopLogo;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+
+    function loadShopLogo(e)
+    {
+        $('#preview-logo').attr('src', e.target.result);
+        $('#preview-logo').css('width', '250px');
+        $('#preview-logo').css('height', '250px');
+    }
+
 
     // post logo of shop
     $('#new-shop-logo-form').submit(function(){
@@ -632,40 +695,40 @@ $(document).ready(function(){
         return false;
     });
 
-    $('#new-prod-pic-form').submit(function(){
+    // $('#new-prod-pic-form').submit(function(){
 
-        //button value change
-        jQuery('#add-prod-pic').text('Uploading..');
-        jQuery('#add-prod-pic').attr('disabled', true);
+    //     //button value change
+    //     jQuery('#add-prod-pic').text('Uploading..');
+    //     jQuery('#add-prod-pic').attr('disabled', true);
 
-        //for file
-        var formData= new FormData(this);
-        formData.append("form_name", "new-prod-pic-form");
+    //     //for file
+    //     var formData= new FormData(this);
+    //     formData.append("form_name", "new-prod-pic-form");
 
-        $.ajax({
-            type: $(this).attr('method'),
-            url: $(this).attr('action'),
-            data: formData,
-            dataType: "JSON",
-            contentType: false, //multipart/formdata
-            processData: false, //not obj nor string
-            success: function(response){
-                var resp=response;
-                console.log(response);
-                jQuery('#add-prod-pic').text('Upload Image');
-                jQuery('#add-prod-pic').attr('disabled', false);
-                $('#product-img-sucess-msg').show().delay(5000).fadeOut();;
-                if(resp.clear == true){
-                    clearFormValidation();
-                }
-                else{
-                    inlineMsg(resp);
-                }
-            }
-        });
-        //prevent page reload
-        return false;
-    });
+    //     $.ajax({
+    //         type: $(this).attr('method'),
+    //         url: $(this).attr('action'),
+    //         data: formData,
+    //         dataType: "JSON",
+    //         contentType: false, //multipart/formdata
+    //         processData: false, //not obj nor string
+    //         success: function(response){
+    //             var resp=response;
+    //             console.log(response);
+    //             jQuery('#add-prod-pic').text('Upload Image');
+    //             jQuery('#add-prod-pic').attr('disabled', false);
+    //             $('#product-img-sucess-msg').show().delay(5000).fadeOut();;
+    //             if(resp.clear == true){
+    //                 clearFormValidation();
+    //             }
+    //             else{
+    //                 inlineMsg(resp);
+    //             }
+    //         }
+    //     });
+    //     //prevent page reload
+    //     return false;
+    // });
 
     //change order status
     $('#edit-status-form').submit(function(){
@@ -703,4 +766,11 @@ $(document).ready(function(){
         return false;
     });
 
+    $('.confirm-logout').click(function(){
+        $('#confirm-log-out').click();
+    });
+
+    $('#sign-out-yes').click(function(){
+        $(location).attr('href','../logout.php');
+    });
 });
