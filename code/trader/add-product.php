@@ -162,6 +162,45 @@
             }
         }
 
+        //add image
+        if(isset($_FILES['prod-pic']['name']))
+        {
+            if(!empty($_FILES['prod-pic']['name']))
+            {
+                $filename=$_FILES['prod-pic']['name'];
+
+                $extension=pathinfo($filename, PATHINFO_EXTENSION);
+
+                $valid=array("jpg", "jpeg", "png", "gif");
+                if(in_array($extension, $valid))
+                {
+                    $new_pic_name= rand().".".$extension;
+                    $destination="../image/product/".$new_pic_name;
+                    if(move_uploaded_file($_FILES['prod-pic']['tmp_name'], $destination))
+                    {
+                        $add_prod_error['#errorprod-pic']="";
+                        $add_prod_error['#prod-pic']='valid';
+                    }
+                    else{
+                        $add_prod_error['clear']=false;
+                        $add_prod_error['#error-prod-pic']="File extension is not supported";
+                        $add_prod_error['#prod-pic']='is-invalid';
+                    }
+                }
+                else{
+                    $add_prod_error['clear']=false;
+                    $add_prod_error['#error-prod-pic']="Unable to upload image";
+                    $add_prod_error['#prod-pic']='is-invalid';
+                }
+            }
+            else{
+                $add_prod_error['clear']=false;
+                $add_prod_error['#error-prod-pic']="Product needs an image";
+                $add_prod_error['#prod-pic']='is-invalid';
+            }
+
+        }
+
         if(isset($_POST['add-product-descp']))
         {
             if(!empty(trim($_POST['add-product-descp'])))
@@ -185,14 +224,32 @@
        
 
         // //if all validations pass
-        // if( $add_prod_error['clear'])
-        // {
-        //     $shop=$_POST['add-product-shop'];
-        //     $query="INSERT INTO PRODUCT(PRODUCT_NAME, PRICE, STOCK_QUANTITY, CATEGORY_ID, PRICING_UNIT, MIN_ORDER, MAX_ORDER, DESCRIPTION, ALLERGY_INFO, DISABLED, SHOP_ID) VALUES('$name', $price, $stock, $category, '$unit', $min, $max, '$descp', '$allergy', 'F', $shop)";
-        //     // $add_prod_error['q']=$query;
-        //     $parsed=oci_parse($connection, $query);
-        //     oci_execute($parsed);
-        // }
+        if( $add_prod_error['clear'])
+        {
+            $shop=$_POST['add-product-shop'];
+            $query="INSERT INTO PRODUCT(PRODUCT_NAME, PRICE, STOCK_QUANTITY, CATEGORY_ID, PRICING_UNIT, MIN_ORDER, MAX_ORDER, DESCRIPTION, ALLERGY_INFO, DISABLED, SHOP_ID) VALUES('$name', $price, $stock, $category, '$unit', $min, $max, '$descp', '$allergy', 'F', $shop)";
+            // $add_prod_error['q']=$query;
+            $parsed=oci_parse($connection, $query);
+            oci_execute($parsed);
+            oci_free_statement($parsed);
+
+            $getProdId="SELECT * FROM PRODUCT WHERE UPPER(PRODUCT_NAME)=UPPER('$name')";
+            $parsed=oci_parse($connection, $getProdId);
+            oci_execute($parsed);
+            while(($row = oci_fetch_assoc($parsed)) != false) 
+            {
+                $product_id=$row['PRODUCT_ID'];
+            }
+
+            oci_free_statement($parsed);
+
+            $insertImg="INSERT INTO  PRODUCT_IMAGE(IMAGE_DETAIL, PRODUCT_ID) VALUES('$new_pic_name', $product_id)";
+            $parsed=oci_parse($connection, $insertImg);
+            oci_execute($parsed);
+            oci_free_statement($parsed);
+        }
+
+
 
         echo json_encode($add_prod_error);
     }
