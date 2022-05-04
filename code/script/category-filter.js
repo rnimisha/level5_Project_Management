@@ -8,7 +8,7 @@ $(document).ready(function(){
             range: true, 
             min: 0, 
             max: 100, 
-            values: [0, 100], 
+            values: [0, 1000], 
             slide: function(event, ui)
             {
                 $("#min-price").text(ui.values[0] + ' -  ');
@@ -64,5 +64,22 @@ $(document).ready(function(){
 
     $("#sort-product-option").change(function(){
         $('#submit-filter').click();
+    });
+
+
+    $('.quick-view-product').click(function(){
+        var product_id=$(this).attr('value');
+        $.ajax({
+            type: 'POST',
+            url: 'quick-view.php',
+            data: {
+               product_id:product_id,
+               type: 'quick-view'
+            },
+            success: function(response){
+                $('.quick-view-body').html(response);
+                $('#quick-view').click();
+            }
+        });
     });
 });

@@ -401,3 +401,9 @@ td .fa-solid:hover{
     width: 100px;
     height: 100px;
 }
+
+.preview-img
+{
+    width:200px;
+    height: 200px;
+} 

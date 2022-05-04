@@ -174,18 +174,22 @@ include_once('function.php');
             <div class="col-md-9">
                 <!-- banner -->
                 <div class="row">
-                    <div class="col-md-6 pb-2">
-                        <img src="image/banner/banner2.png" class="img-fluid category-banner" alt="banner">
-                    </div>
-                    <div class="col-md-6 pb-2">
+                    <div class="col-md-6 pb-2 d-none d-md-block img-container">
                         <img src="image/banner/banner1.png" class="img-fluid category-banner" alt="banner">
+                    </div>
+                    <div class="col-md-6 pb-2 banner-img img-container">
+                        <img src="image/banner/banner2.png" class="img-fluid category-banner" alt="banner">
+                        <div class="banner-text col-5">
+                            <h3>Fresh Up! Power Up !</h3>
+                            <p>Experience the whole new freshness</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- sorting option for product -->
                 <!-- <form id="sort-product" action="category-page.php" method="GET"> -->
                 <div class="row py-3">
-                    <div class="col-md-3 offset-md-9 col-sm-4 offset-sm-8">
+                    <div class="col-lg-3 offset-md-9 col-sm-4 offset-sm-8">
                         <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
                             <option value=""
                                 <?php if(isset($_GET['sort-product-option']) && $_GET['sort-product-option']==""){echo 'selected';}?>>
@@ -309,10 +313,13 @@ include_once('function.php');
                                 class="img-fluid product-pic" alt="banner" />
                             <div class="option-container d-flex">
                                 <div>
-                                    <i class='bx bx-heart'></i>
+                                    <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
                                     <i class='bx bx-cart-add'></i>
+                                </div>
+                                <div>
+                                    <i class='bx bx-heart'></i>
                                 </div>
                             </div>
                             <div>
@@ -359,12 +366,47 @@ include_once('function.php');
         </div>
     </div>
     </div>
+    <!-- Button trigger modal -->
+    <button type="button" id="quick-view" class="btn btn-primary" data-toggle="modal" data-target="#popProductPreview">
+        preview
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="popProductPreview" tabindex="-1" role="dialog"
+        aria-labelledby="popProductPreviewTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="quick-view-body">
+                    
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
 </body>
+
+<!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- for price range -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- custom script -->
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
 
