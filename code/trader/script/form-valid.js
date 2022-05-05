@@ -332,7 +332,7 @@ $(document).ready(function(){
         return false;
     });
 
-    //submit form on change
+    //submit form on pic change
     $('#trad-pic').change(function(){
         $('#trad-pic').removeClass('is-invalid');
         var file=this.files[0];
@@ -530,6 +530,7 @@ $(document).ready(function(){
         // alert(1);
         var formData= new FormData(this);
         formData.append("form_name", "add-product-form");
+        formData.append("run_query", "t");
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
@@ -539,7 +540,6 @@ $(document).ready(function(){
             processData: false,
             success: function(response){
                 var resp=response;
-                console.log(resp);
                 jQuery('#add-prod-button').text('Add Product');
                 jQuery('#add-prod-button').attr('disabled', false);
                 if(resp.clear == true)
@@ -554,6 +554,165 @@ $(document).ready(function(){
                     // alert('not success inside form');
                     inlineMsg(resp);
                 }
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+     //add product live validation
+     $('#add-product-name').keyup(function(){
+        var product_name=$('#add-product-name').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-name':product_name,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#add-product-stock').keyup(function(){
+        var stock=$('#add-product-stock').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-stock':stock,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#add-product-price').keyup(function(){
+        var price=$('#add-product-price').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-price':price,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#add-product-unit').keyup(function(){
+        var unit=$('#add-product-unit').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-unit':unit,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#add-product-min').keyup(function(){
+        var min=$('#add-product-min').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-min':min,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#add-product-max').keyup(function(){
+        var min=$('#add-product-min').val();
+        var max=$('#add-product-max').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-min':min,
+                'add-product-max':max,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#add-product-descp').keyup(function(){
+       
+        var descp=$('#add-product-descp').val();
+        var shop_id=$('#add-product-shop').val();
+        $.ajax({
+            type: "POST",
+            url: "add-product.php",
+            data: {
+                'add-product-descp':descp,
+                'add-product-shop':shop_id,
+                form_name:'add-product-form',
+                run_query:'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
             }
             
         });

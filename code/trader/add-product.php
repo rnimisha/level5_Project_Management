@@ -39,9 +39,18 @@
         {
             if(!empty(trim($_POST['add-product-stock'])))
             {
-                $stock=trim($_POST['add-product-stock']);
-                $add_prod_error['#error-add-product-stock']="";
-                $add_prod_error['#add-product-stock']='valid';
+                if($_POST['add-product-stock']>0)
+                {
+                    $stock=trim($_POST['add-product-stock']);
+                    $add_prod_error['#error-add-product-stock']="";
+                    $add_prod_error['#add-product-stock']='valid';
+                }
+                else{
+                    $add_prod_error['clear']=false;
+                    $add_prod_error['#error-add-product-stock']="Stock cannot be less than 1.";
+                    $add_prod_error['#add-product-stock']='is-invalid';
+                }
+                
             }
             else{
                 $add_prod_error['clear']=false;
@@ -125,15 +134,17 @@
                 {
                     if(isset($_POST['add-product-min']))
                     {
-                        if($_POST['add-product-min']>$max)
+                        if(intVal($_POST['add-product-min']) > intVal($max))
                         {
                             $add_prod_error['clear']=false;
                             $add_prod_error['#error-add-product-max']="Maximum order can't be less than minimum order.";
                             $add_prod_error['#add-product-max']='is-invalid';
                         }
+                        else{
+                            $add_prod_error['#error-add-product-max']="";
+                            $add_prod_error['#add-product-max']='valid';
+                        }
                     }
-                    $add_prod_error['#error-add-product-max']="";
-                    $add_prod_error['#add-product-max']='valid';
                 }
                 else{
                     $add_prod_error['clear']=false;
@@ -217,14 +228,14 @@
             }
         }
         $allergy='';
-        if(isset($_POST['add-product-descp']) || isset($_POST['add-product-allergy']))
+        if(isset($_POST['add-product-allergy']))
         {
             $allergy=$_POST['add-product-allergy'];
         }
        
 
         // //if all validations pass
-        if( $add_prod_error['clear'])
+        if( $add_prod_error['clear'] && ($_POST['run_query']=='t'))
         {
             $shop=$_POST['add-product-shop'];
             $query="INSERT INTO PRODUCT(PRODUCT_NAME, PRICE, STOCK_QUANTITY, CATEGORY_ID, PRICING_UNIT, MIN_ORDER, MAX_ORDER, DESCRIPTION, ALLERGY_INFO, DISABLED, SHOP_ID) VALUES('$name', $price, $stock, $category, '$unit', $min, $max, '$descp', '$allergy', 'F', $shop)";
@@ -253,5 +264,4 @@
 
         echo json_encode($add_prod_error);
     }
-    
 ?>

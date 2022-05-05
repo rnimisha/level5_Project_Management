@@ -285,7 +285,7 @@
                       <div class="form-group col-md-6">
                         <label for="add-product-max" class="text-muted">Maximum Order</label>
                         <input type="number" class="form-control" id="add-product-max" name="add-product-max"/>
-                        <div class="invalid-feedback" id="error=add-product-max"></div>
+                        <div class="invalid-feedback" id="error-add-product-max"></div>
                       </div>
                     </div>
                     <div class="form-group">
