@@ -234,7 +234,7 @@
                           }
                           oci_free_statement($parsedShop);
                         ?>
-                    <input type="hidden" class="form-control" name="add-product-shop" id="add-product-shop" value="<?php echo $shop_id;?>" />
+                    <!-- <input type="hidden" class="form-control" name="add-product-shop" id="add-product-shop" value="<?php echo $shop_id;?>" /> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="add-product-name" class="text-muted">Product Name</label>
@@ -247,22 +247,40 @@
                         <div class="invalid-feedback" id="error-add-product-stock"></div>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="add-product-category" class="text-muted">Category</label>
-                      <select class="custom-select form-control" id="add-product-category" name="add-product-category">
+                    
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="add-product-category" class="text-muted">Category</label>
+                        <select class="custom-select form-control" id="add-product-category" name="add-product-category">
+                          <?php
+                              $query="SELECT * FROM PRODUCT_CATEGORY";
+                              $parsed = oci_parse($connection, $query);
+                              oci_execute($parsed);
+                              while (($row = oci_fetch_assoc($parsed)) != false) {
+                              ?>
+                          <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
+                          <?php
+                              }
+                              oci_free_statement($parsed);
+                              ?>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="add-product-shop" class="text-muted">Shop</label>
+                        <select class="custom-select form-control" name="add-product-shop" id="add-product-shop">
                         <?php
-                            $query="SELECT * FROM PRODUCT_CATEGORY";
-                            $parsed = oci_parse($connection, $query);
-                            oci_execute($parsed);
-                            while (($row = oci_fetch_assoc($parsed)) != false) {
-                            ?>
-                        <option value="<?php echo $row['CATEGORY_ID'];?>"><?php echo $row['CATEGORY_NAME']?></option>
-                        <?php
-                            }
-                            oci_free_statement($parsed);
-                            ?>
-                      </select>
-                      <!-- <div class="invalid-feedback" id="error-add-product-category"></div> -->
+                              $query="SELECT * FROM SHOP WHERE USER_ID=$current_trader_id";
+                              $parsed = oci_parse($connection, $query);
+                              oci_execute($parsed);
+                              while (($row = oci_fetch_assoc($parsed)) != false) {
+                              ?>
+                          <option value="<?php echo $row['SHOP_ID'];?>"><?php echo $row['SHOP_NAME']?></option>
+                          <?php
+                              }
+                              oci_free_statement($parsed);
+                          ?>
+                        </select>
+                      </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">

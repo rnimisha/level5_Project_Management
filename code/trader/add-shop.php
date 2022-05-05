@@ -160,7 +160,7 @@
         }
 
         //inserting data to database
-        if($add_shop_error['clear']==true)
+        if($add_shop_error['clear']==true && ($_POST['run_query']=='t'))
         {
             //inserting shop details
             $statuss='I';
