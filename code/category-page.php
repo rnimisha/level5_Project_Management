@@ -367,7 +367,7 @@ include_once('function.php');
     </div>
     </div>
     <!-- Button trigger modal -->
-    <button type="button" id="quick-view" class="btn btn-primary" data-toggle="modal" data-target="#popProductPreview">
+    <button type="button" id="quick-view" class="btn btn-primary d-none" data-toggle="modal" data-target="#popProductPreview">
         preview
     </button>
 

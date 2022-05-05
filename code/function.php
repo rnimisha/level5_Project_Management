@@ -116,4 +116,16 @@ function getAvgRating($product_id, $connection)
     } 
 }
 
+//get total rating of product
+function getTotalReview($product_id, $connection)
+{
+    $query="SELECT  COUNT(*) AS NUMBER_OF_ROWS FROM REVIEW WHERE PRODUCT_ID=$product_id";
+    $result=oci_parse($connection, $query);
+
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    return $number_of_rows;
+}
+
 ?>

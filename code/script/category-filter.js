@@ -67,6 +67,7 @@ $(document).ready(function(){
     });
 
 
+    //show quick view modal on clicking icon
     $('.quick-view-product').click(function(){
         var product_id=$(this).attr('value');
         $.ajax({
@@ -82,4 +83,24 @@ $(document).ready(function(){
             }
         });
     });
+
+
+    var minimum_val=1;
+    $('.plus').click(function(){
+        minimum_val++;
+        $('#real-quantity').val(minimum_val);
+        $('.quantity').text(minimum_val);
+    })
+
+    $('.minus').click(function(){
+        current_val=$('#real-quantity').val();
+        if(current_val > 1){
+            current_val--;
+            $('#real-quantity').val(current_val);
+            $('.quantity').text(current_val);
+        }
+        else{
+            alert('Quantity cannot be less than 1');
+        }
+    })
 });
