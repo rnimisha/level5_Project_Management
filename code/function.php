@@ -183,4 +183,25 @@ function getProductDiscount($product_id, $order_id,  $connection)
     return $discount_rate;
 
 }
+
+//get price for specific order with pricing history
+function getPrice($product_id, $order_id, $connection)
+{
+    $query="SELECT PRICE
+    FROM CUST_ORDER CO
+    JOIN ORDER_ITEM OI
+    ON CO.ORDER_ID=OI.ORDER_ID
+    JOIN PRICING_HISTORY PH
+    ON PH.PRODUCT_ID=OI.PRODUCT_ID
+    WHERE CO.ORDER_DATE>=START_DATE
+    AND CO.ORDER_ID=$order_id
+    AND PH.PRODUCT_ID=$product_id
+    ORDER BY START_DATE";
+
+    $result=oci_parse($connection, $query);
+    oci_execute($result);
+    $row = oci_fetch_assoc($result);
+    $price=$row['PRICE'];
+    return $price;
+}
 ?>

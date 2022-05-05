@@ -66,14 +66,15 @@ echo '<div class="row">
 
             oci_execute($parsed2);
             while (($row = oci_fetch_assoc($parsed2)) != false) {
+              $price=getPrice($row['PRODUCT_ID'], $od_id, $connection);
               $discount=floatval(getProductDiscount($row['PRODUCT_ID'], $od_id, $connection));
-              $amount=floatval($row['PRICE'] * $row['ITEM_QUANTITY']);
+              $amount=floatval($price * $row['ITEM_QUANTITY']);
               $total=$amount-(($discount/100)*$amount);
               echo '
               <tr>
                 <td>'.$row['PRODUCT_NAME'].'</td>
                 <td> '.$row['ITEM_QUANTITY'].'</td>
-                <td> <span>&#163;</span>'.$row['PRICE'].'</td>
+                <td> <span>&#163;</span>'.$price.'</td>
                 <td> '.$discount.'</td>
                 <td> <span>&#163;</span>'.$total.'</td>
               </tr>';
