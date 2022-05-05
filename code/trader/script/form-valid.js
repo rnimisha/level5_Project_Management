@@ -873,6 +873,7 @@ $(document).ready(function(){
 
         var formData= new FormData(this);
         formData.append("form_name", "add-shop-form");
+        formData.append("run_query", "t");
 
         $.ajax({
             type: $(this).attr('method'),
@@ -903,8 +904,102 @@ $(document).ready(function(){
         return false;
     });
 
+    //add shop live validation
+    $('#shop-name').keyup(function(){
+       
+        var name=$('#shop-name').val();
+        var trader_id=$('#trader-id').val();
+        $.ajax({
+            type: "POST",
+            url: "add-shop.php",
+            data: {
+                'shop-name':name,
+                'trader-id':trader_id,
+                form_name:'add-shop-form',
+                run_query:'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
 
+    $('#shop-date').keyup(function(){
+       
+        var shopdate=$('#shop-date').val();
+        var trader_id=$('#trader-id').val();
+        $.ajax({
+            type: "POST",
+            url: "add-shop.php",
+            data: {
+                'shop-date':shopdate,
+                'trader-id':trader_id,
+                form_name:'add-shop-form',
+                run_query:'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
 
+    $('#reg-id').keyup(function(){
+       
+        var regid=$('#reg-id').val();
+        var trader_id=$('#trader-id').val();
+        $.ajax({
+            type: "POST",
+            url: "add-shop.php",
+            data: {
+                'reg-id':regid,
+                'trader-id':trader_id,
+                form_name:'add-shop-form',
+                run_query:'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
+
+    $('#reg-reason').keyup(function(){
+       
+        var reason=$('#reg-reason').val();
+        var trader_id=$('#trader-id').val();
+        $.ajax({
+            type: "POST",
+            url: "add-shop.php",
+            data: {
+                'reg-reason':reason,
+                'trader-id':trader_id,
+                form_name:'add-shop-form',
+                run_query:'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+            
+        });
+        //prevent page reload
+        return false;
+    });
 
     // //submit form on change
     // $('#trad-pic').change(function(){
