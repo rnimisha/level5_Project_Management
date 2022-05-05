@@ -35,7 +35,7 @@ include_once('function.php');
                                 <div class="row d-flex justify-content-center align-items-center">
                                     <input type="hidden" name="min-input" id="min-input" />
                                     <input type="hidden" name="max-input" id="max-input" />
-                                    <div id="min-price" name="min-price"></div><span class="hide-div">&nbsp;
+                                    <div id="min-price" name="min-price"></div><span class="hide-div">
                                         <?php if(isset($_GET["min-input"])){echo $_GET["min-input"];}else{echo 0;}?> -
                                         &nbsp;</span>
                                     <div id="max-price" name="max-price"></div><span
@@ -174,11 +174,15 @@ include_once('function.php');
             <div class="col-md-9">
                 <!-- banner -->
                 <div class="row">
-                    <div class="col-md-6 pb-2 d-none d-md-block img-container">
-                        <img src="image/banner/banner1.png" class="img-fluid category-banner" alt="banner">
+                    <div class="col-md-6 pb-2 d-none d-md-block">
+                        <div class="img-container">
+                            <img src="image/banner/banner1.png" class="img-fluid category-banner" alt="banner">
+                        </div>
                     </div>
-                    <div class="col-md-6 pb-2 banner-img img-container">
-                        <img src="image/banner/banner2.png" class="img-fluid category-banner" alt="banner">
+                    <div class="col-md-6 pb-2 banner-img">
+                        <div class="img-container">
+                            <img src="image/banner/banner2.png" class="img-fluid category-banner" id="text-img-banner" alt="banner">
+                        </div>
                         <div class="banner-text col-5">
                             <h3>Fresh Up! Power Up !</h3>
                             <p>Experience the whole new freshness</p>

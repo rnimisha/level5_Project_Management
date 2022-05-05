@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Quicksand:wght@300;400;500&display=swap');
 body{
     background-color: #ffffff;
-    font-family:'Poppins', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+
 }
  
 /* header */
@@ -398,8 +399,8 @@ td .fa-solid:hover{
 
 
 .preview-sign-out{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .preview-img
@@ -407,3 +408,12 @@ td .fa-solid:hover{
     width:200px;
     height: 200px;
 } 
+
+.modal-footer .btn-primary{
+    background-color: #bacebc;
+    border-color: #bacebc;
+}
+
+.modal-footer .btn-secondary{
+    border: 0px;
+}

@@ -147,9 +147,9 @@ $(document).ready(function(){
 
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-index.php" ><b>My Profile</b></a></li><li class="breadcrumb-item"><a href="#">Settings</a></li><li class="breadcrumb-item active" aria-current="page">Avatar</li>');
     });
-
     //change to about me
     $("#about-me-div").click(function(){
+        location.reload();
         if(!$("#about-me-div").hasClass('active-form')){
 
             $("#about-me-div").addClass('active-form');

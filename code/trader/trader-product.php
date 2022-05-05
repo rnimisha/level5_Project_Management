@@ -300,7 +300,7 @@
                       <div class="invalid-feedback" id="error-add-product-allergy"></div>
                     </div>
                     <div class="form-group">
-                      <div class="preview-img">
+                      <div class="preview-img mb-5">
                         <img src="..\image\product\productplaceholder.png" id="prod-preview"/>
                       </div>
                       <label for="prod-pic" class="text-muted">Upload picture</label><br>
@@ -410,7 +410,7 @@
                       <div class="form-group">
                         <input type="hidden" class="form-control" id="p_id" name="p_id" value="" />
                       </div>
-                      <div class="preview-img">
+                      <div class="preview-img mb-5">
                         <img src="..\image\product\productplaceholder.png" id="preview-prod-img"/>
                       </div>
                       <div class="form-group">

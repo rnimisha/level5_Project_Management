@@ -224,7 +224,7 @@
                       <div class="form-group">
                         <input type="hidden" class="form-control" id="logo_shop_id" name="logo_shop_id" value="" />
                       </div>
-                      <div class="preview-img">
+                      <div class="preview-img mb-5">
                         <img src="..\image\product\productplaceholder.png" id="preview-logo"/>
                       </div>
                       <div class="form-group">
@@ -239,7 +239,6 @@
                   </div>
                 </div>
               </div>
-              
           </div>
         </div>
       </div>

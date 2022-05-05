@@ -7,7 +7,7 @@ $(document).ready(function(){
             step: 1,
             range: true, 
             min: 0, 
-            max: 100, 
+            max: 1000, 
             values: [0, 1000], 
             slide: function(event, ui)
             {
@@ -112,4 +112,18 @@ $(document).ready(function(){
             alert('Quantity cannot be less than 1');
         }
     })
+
+    $(".banner-text").hover(function(){
+        $('#text-img-banner').css("transform", "scale(1.1)");
+
+    }, function(){
+        $('#text-img-banner').css("transform", "scale(1)");
+    });
+
+    $("#text-img-banner").hover(function(){
+        $('#text-img-banner').css("transform", "scale(1.1)");
+
+    }, function(){
+        $('#text-img-banner').css("transform", "scale(1)");
+    });
 });

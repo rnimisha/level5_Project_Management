@@ -2,7 +2,6 @@
     include_once('../connection.php');
     $edit_trader_error=array();
     $edit_trader_error['clear']=true;
-  
 
     if(isset($_POST['form_name']) && $_POST['form_name']=='personal-form' && isset($_POST['trader_id']))
     {
@@ -194,10 +193,11 @@
                 $edit_trader_error['#trad-address']='is-invalid';
             }
         }
-
+        $edit_trader_error['c']=$_POST['run_query'];
         //updating to database
-        if($edit_trader_error['clear']==true)
+        if(($edit_trader_error['clear']==true) && ($_POST['run_query']=='t'))
         {
+            $edit_trader_error['d']=$_POST['run_query'];
             if($email_changed==false)
             {
                 $updateQuery="UPDATE MART_USER SET NAME=:fullname, CONTACT=:contact, ADDRESS=:addr, DOB=to_date(:dob,'DD/MM/YYYY') WHERE USER_ID=:trader_id";

@@ -13,7 +13,7 @@ $(document).ready(function(){
     $('#status-change-sucess-msg').hide();
     $('#check-email-msg').hide();
 
-
+    
     // ------------trader profile setting---------------
     $('#personal-form').submit(function(){
         $('#personal-sucess-msg').hide();
@@ -40,10 +40,10 @@ $(document).ready(function(){
                 dob: dob,
                 address: address,
                 trader_id:trader_id,
-                form_name: 'personal-form'
+                form_name: 'personal-form',
+                run_query: 't'
             },
             success: function(response){
-                console.log(response);
                 // alert('success inside form');
                 var resp=jQuery.parseJSON(response);
                 // console.log(resp);
@@ -74,6 +74,167 @@ $(document).ready(function(){
             }
         });
         //prevent page reload
+        return false;
+    });
+
+    // personal information edit live validation 
+    $('#trad-address').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+     
+        var address=$('#trad-address').val();
+        var trader_id=$('#trad-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                address:address,
+                trader_id:trader_id,
+                form_name: 'personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
+    });
+
+    $('#trad-dob').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+     
+        var dob=$('#trad-dob').val();
+        var trader_id=$('#trad-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                dob:dob,
+                trader_id:trader_id,
+                form_name: 'personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
+    });
+
+    $('#trad-email').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+     
+        var traderemail=$('#trad-email').val();
+        var trader_id=$('#trad-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                traderemail: traderemail,
+                trader_id:trader_id,
+                form_name: 'personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
+    });
+
+    $('#trad-fullname').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+     
+        var fullname=$('#trad-fullname').val();
+        var trader_id=$('#trad-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                fullname: fullname,
+                trader_id:trader_id,
+                form_name: 'personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
+    });
+
+    $('#trad-contact').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+     
+        var contact=$('#trad-contact').val();
+        var trader_id=$('#trad-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                contact:contact,
+                trader_id:trader_id,
+                form_name: 'personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
         return false;
     });
 
@@ -261,7 +422,7 @@ $(document).ready(function(){
 
         jQuery('#edit-prod-button').text('Saving...');
         jQuery('#edit-prod-button').attr('disabled', true);
-
+ 
         var product_id=$('#product_id').val();
         var name=$('#product-name').val();
         var stock=$('#product-stock').val();
