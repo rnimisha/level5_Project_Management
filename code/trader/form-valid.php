@@ -350,7 +350,7 @@
             if(!empty(trim($_POST['re_pass'])))
             {
                 $re_pass=trim($_POST['re_pass']);
-                if(isset( $_POST['new_pass']) )
+                if(isset( $_POST['new_pass']) && !empty( $_POST['new_pass']))
                 {
                     if( $_POST['re_pass'] == $_POST['new_pass'])
                     {
@@ -373,7 +373,7 @@
         }
 
         //updating password to database
-        if($edit_pass_error['clear']==true)
+        if($edit_pass_error['clear']==true && ($_POST['run_query']=='t'))
         {
             $updateQuery="UPDATE MART_USER SET PASSWORD=:pass WHERE USER_ID=:trader_id";
             $parsedQuery=oci_parse($connection, $updateQuery);

@@ -4,7 +4,6 @@
   {
     header('Location: ../loginform.php');
   }
-  include_once('confirm-logout.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -429,7 +428,9 @@
         </div>
       </div>
     </div>
-
+    <?php
+      include_once('confirm-logout.php');
+    ?>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>

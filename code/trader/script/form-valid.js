@@ -98,13 +98,7 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
-                if(resp.clear == true)
-                {
-                    removeStyle(resp);
-                }
-                else{
-                    inlineMsg(resp);
-                }
+                inlineMsg(resp);
             }
         });
         return false;
@@ -130,13 +124,7 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
-                if(resp.clear == true)
-                {
-                    removeStyle(resp);
-                }
-                else{
-                    inlineMsg(resp);
-                }
+                inlineMsg(resp);
             }
         });
         return false;
@@ -162,13 +150,7 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
-                if(resp.clear == true)
-                {
-                    removeStyle(resp);
-                }
-                else{
-                    inlineMsg(resp);
-                }
+                inlineMsg(resp);
             }
         });
         return false;
@@ -194,13 +176,7 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
-                if(resp.clear == true)
-                {
-                    removeStyle(resp);
-                }
-                else{
-                    inlineMsg(resp);
-                }
+                inlineMsg(resp);
             }
         });
         return false;
@@ -226,13 +202,7 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
-                if(resp.clear == true)
-                {
-                    removeStyle(resp);
-                }
-                else{
-                    inlineMsg(resp);
-                }
+                inlineMsg(resp);
             }
         });
         return false;
@@ -261,7 +231,8 @@ $(document).ready(function(){
                 new_pass:new_pass,
                 re_pass:re_pass,
                 trader_id:trader_id,
-                form_name: 'pass-form'
+                form_name: 'pass-form',
+                run_query: 't'
             },
             success: function(response){
                 var resp=jQuery.parseJSON(response);
@@ -281,6 +252,83 @@ $(document).ready(function(){
             }
         });
         //prevent page reload
+        return false;
+    });
+
+    $('#trad-new-pass').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+
+        var new_pass=$('#trad-new-pass').val();
+        var trader_id=$('#trader-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                new_pass:new_pass,
+                trader_id:trader_id,
+                form_name: 'pass-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#trad-re-pass').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+
+        var new_pass=$('#trad-new-pass').val();
+        var re_pass=$('#trad-re-pass').val();
+        var trader_id=$('#trader-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                new_pass:new_pass,
+                re_pass:re_pass,
+                trader_id:trader_id,
+                form_name: 'pass-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#trad-old-pass').keyup(function(){
+        $('#personal-sucess-msg').hide();
+        $('#profile-sucess-msg').hide();
+        $('#pass-sucess-msg').hide();
+
+        var old_pass=$('#trad-old-pass').val();
+        var trader_id=$('#trader-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: 'form-valid.php',
+            data: {
+                old_pass:old_pass,
+                trader_id:trader_id,
+                form_name: 'pass-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
         return false;
     });
 
