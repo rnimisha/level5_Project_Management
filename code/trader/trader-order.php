@@ -4,6 +4,7 @@
   {
     header('Location: ../loginform.php');
   }
+  include_once('../function.php');
 ?>
 <!doctype html>
 <html lang="en">

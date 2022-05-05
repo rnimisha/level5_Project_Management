@@ -90,6 +90,21 @@
                 }
                 else
                 {
+                    $query="SELECT * FROM PRODUCT WHERE PRODUCT_ID=$product_id";
+                    $parsed= oci_parse($connection, $query);
+                    oci_execute($parsed);
+                    while(($row= oci_fetch_assoc($parsed)) != false)
+                    {
+                        $old_price=$row['PRICE'];
+                    }
+                    oci_free_statement($parsed);
+                    if($old_price==$price)
+                    {
+                        $price_change=false;
+                    }
+                    else{
+                        $price_change=true;
+                    }
                     $edit_prod_error['#error-product-price']="";
                     $edit_prod_error['#product-price']='valid';
                 }
@@ -192,16 +207,33 @@
         //if all validations pass
         if( $edit_prod_error['clear'])
         {
-            $query="UPDATE PRODUCT SET PRODUCT_NAME='$name', STOCK_QUANTITY=$stock, PRICE=$price, PRICING_UNIT='$unit', MIN_ORDER=$min, MAX_ORDER=$max, DESCRIPTION='$descp', ALLERGY_INFO='$allergy', CATEGORY_ID=$cat_id WHERE PRODUCT_ID=$product_id";
-            $parsed=oci_parse($connection, $query);
-            if(oci_execute($parsed))
+            if($price_change==true)
             {
-                $edit_prod_error['clear']=true;
+                $query="UPDATE PRODUCT SET PRODUCT_NAME='$name', STOCK_QUANTITY=$stock, PRICE=$price, PRICING_UNIT='$unit', MIN_ORDER=$min, MAX_ORDER=$max, DESCRIPTION='$descp', ALLERGY_INFO='$allergy', CATEGORY_ID=$cat_id WHERE PRODUCT_ID=$product_id";
+                $parsed=oci_parse($connection, $query);
+                if(oci_execute($parsed))
+                {
+                    $edit_prod_error['clear']=true;
+                }
+                else{
+                    $edit_prod_error['clear']=false;
+                }
+                oci_free_statement($parsed);
             }
-            else{
-                $edit_prod_error['clear']=false;
+            if($price_change==false)
+            {
+                $query="UPDATE PRODUCT SET PRODUCT_NAME='$name', STOCK_QUANTITY=$stock, PRICING_UNIT='$unit', MIN_ORDER=$min, MAX_ORDER=$max, DESCRIPTION='$descp', ALLERGY_INFO='$allergy', CATEGORY_ID=$cat_id WHERE PRODUCT_ID=$product_id";
+                $parsed=oci_parse($connection, $query);
+                if(oci_execute($parsed))
+                {
+                    $edit_prod_error['clear']=true;
+                }
+                else{
+                    $edit_prod_error['clear']=false;
+                }
             }
-            oci_free_statement($parsed);
+            
+            
 
         }
 

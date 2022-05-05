@@ -301,17 +301,17 @@ form .btn{
 }
 .badge-completed {
     color: #304b37;
-    background-color: #b1c7b7;
+    background-color: #d5e3d9;
     
 }
 .badge-pending{
     color: #5e561b;
-    background-color: #fcf2bc;
+    background-color: #f2edcb;
 }
 
 .badge-processing{
     color: #353ea4;
-    background-color: #96afd1;
+    background-color: #c9dcf0;
 }
 
 .mygreen{

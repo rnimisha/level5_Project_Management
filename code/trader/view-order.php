@@ -1,5 +1,6 @@
 <?php
 include_once('../connection.php');
+include_once('../function.php');
 if(!isset($_SESSION['phoenix_user']) & empty($_SESSION['phoenix_user']))
   {
     header('Location: ../loginform.php');
@@ -28,7 +29,7 @@ if(isset($_POST['order_id']))
   }
   oci_free_statement($parsed);
 
-  $query="SELECT PRODUCT_NAME, PRICE, ITEM_QUANTITY FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE ORDER_ID=$od_id";
+  $query="SELECT  P.PRODUCT_ID AS PRODUCT_ID, PRODUCT_NAME, PRICE, ITEM_QUANTITY FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE ORDER_ID=$od_id";
   $parsed2=oci_parse($connection, $query);
 }
 
@@ -57,17 +58,24 @@ echo '<div class="row">
               <th>PRODUCT NAME</th>
               <th>QUANTITY</th>
               <th>PRICE PER UNIT</th>
+              <th>DISCOUNT(%)</th>
+              <th>AMOUNT</th>
             </tr>
           </thead>
           <tbody>';
 
             oci_execute($parsed2);
             while (($row = oci_fetch_assoc($parsed2)) != false) {
+              $discount=floatval(getProductDiscount($row['PRODUCT_ID'], $od_id, $connection));
+              $amount=floatval($row['PRICE'] * $row['ITEM_QUANTITY']);
+              $total=$amount-(($discount/100)*$amount);
               echo '
               <tr>
                 <td>'.$row['PRODUCT_NAME'].'</td>
                 <td> '.$row['ITEM_QUANTITY'].'</td>
                 <td> <span>&#163;</span>'.$row['PRICE'].'</td>
+                <td> '.$discount.'</td>
+                <td> <span>&#163;</span>'.$total.'</td>
               </tr>';
             }
             echo'

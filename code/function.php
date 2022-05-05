@@ -157,4 +157,30 @@ function getShop($shop_id, $connection)
     oci_free_statement($result);
     return $shop_name;
 }
+
+//get product discount for specific order
+function getProductDiscount($product_id, $order_id,  $connection)
+{
+    $discount_rate=0;
+    $query="SELECT DISTINCT DISCOUNT_ID, DISCOUNT_RATE,  P.PRODUCT_ID FROM DISCOUNT D
+    JOIN PRODUCT P
+    ON P.PRODUCT_ID=D.PRODUCT_ID
+    JOIN ORDER_ITEM OI
+    ON P.PRODUCT_ID=OI.PRODUCT_ID
+    JOIN CUST_ORDER CO
+    ON OI.ORDER_ID=CO.ORDER_ID
+    WHERE START_DATE<= ORDER_DATE
+    AND EXPIRY_DATE>= ORDER_DATE
+    AND P.PRODUCT_ID=$product_id
+    AND CO.ORDER_ID=$order_id";
+    $result=oci_parse($connection, $query);
+
+    oci_execute($result);
+    while (($row = oci_fetch_assoc($result)) != false) {
+        $discount_rate=$row['DISCOUNT_RATE'];
+    }
+    oci_free_statement($result);
+    return $discount_rate;
+
+}
 ?>
