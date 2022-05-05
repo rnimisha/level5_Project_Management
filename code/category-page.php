@@ -316,7 +316,7 @@ include_once('function.php');
                                     <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
-                                    <i class='bx bx-cart-add'></i>
+                                    <i class='bx bx-cart-alt'></i>
                                 </div>
                                 <div>
                                     <i class='bx bx-heart'></i>

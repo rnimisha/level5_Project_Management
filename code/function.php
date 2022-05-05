@@ -125,7 +125,36 @@ function getTotalReview($product_id, $connection)
     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
     oci_execute($result);
     oci_fetch($result);
+    oci_free_statement($result);
     return $number_of_rows;
 }
 
+
+//get category name from id
+function getCategory($cat_id, $connection)
+{
+    $query="SELECT * FROM PRODUCT_CATEGORY WHERE CATEGORY_ID=$cat_id";
+    $result=oci_parse($connection, $query);
+
+    oci_execute($result);
+    while (($row = oci_fetch_assoc($result)) != false) {
+        $cat_name=$row['CATEGORY_NAME'];
+    }
+    oci_free_statement($result);
+    return $cat_name;
+}
+
+//get shop name from id
+function getShop($shop_id, $connection)
+{
+    $query="SELECT * FROM SHOP WHERE SHOP_ID=$shop_id";
+    $result=oci_parse($connection, $query);
+
+    oci_execute($result);
+    while (($row = oci_fetch_assoc($result)) != false) {
+        $shop_name=$row['SHOP_NAME'];
+    }
+    oci_free_statement($result);
+    return $shop_name;
+}
 ?>

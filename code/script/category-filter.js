@@ -87,13 +87,22 @@ $(document).ready(function(){
 
     var minimum_val=1;
     $('.plus').click(function(){
-        minimum_val++;
-        $('#real-quantity').val(minimum_val);
-        $('.quantity').text(minimum_val);
+        var stock=$('#stock-amount').val();
+        if(stock > minimum_val)
+        {
+            minimum_val++;
+            $('#real-quantity').val(minimum_val);
+            $('.quantity').text(minimum_val);
+        }
+        else{
+
+            alert('There are no further quantity in stock');
+        }
+        
     })
 
     $('.minus').click(function(){
-        current_val=$('#real-quantity').val();
+        var current_val=$('#real-quantity').val();
         if(current_val > 1){
             current_val--;
             $('#real-quantity').val(current_val);

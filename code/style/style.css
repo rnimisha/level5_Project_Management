@@ -219,7 +219,9 @@ label{
     width:90%;
     height: auto;
 }
-
+.quick-view-body .row{
+    margin-left: 0;
+}
 .modal-header {
     border-bottom: 0px solid #ffffff;
     border-radius:2rem 2rem 0 0 ;
@@ -245,11 +247,12 @@ label{
 /* increment decrement quantity */
 .wrapper{
     height: 40px;
-    width: 130px;
+    width: 120px;
     border-radius: 10px;
     border: 2px solid #78967e;
     color: #78967e;
 }
+
 
 .wrapper span{
     width: 100%;
@@ -258,9 +261,38 @@ label{
     font-weight: 500;
 }
 
+.mini-wrapper{
+    height: 40px;
+    border: 2px solid #e8e8e8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.mini-wrapper span{
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.mini-wrapper .bx{
+    font-size: 20px;
+    color: #78967e;
+}
+
 .plus, .minus{
     cursor: pointer;
 }
+
+.second-wrapper{
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    background-color: #78967e;
+    color: #ffffff;
+    font-weight: bold;
+}
+
 
 @media (min-width: 576px)
 {

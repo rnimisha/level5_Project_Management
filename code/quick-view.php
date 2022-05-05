@@ -14,11 +14,16 @@ if(isset($_POST['product_id']) && isset($_POST['type']) && strtolower($_POST['ty
       $descp=$row['DESCRIPTION']->load();
       $price=$row['PRICE'];
       $unit=$row['PRICING_UNIT'];
+      $stock=$row['STOCK_QUANTITY'];
+      $cat_id=$row['CATEGORY_ID'];
+      $shop_id=$row['SHOP_ID'];
   }
   oci_free_statement($parsedgetProduct);
   $img= getProductImage($product_id,$connection)[0];
   $avgRating=getAvgRating($product_id, $connection);
   $totalReviews=getTotalReview($product_id, $connection);
+  $cat_name=getCategory($cat_id, $connection);
+  $shop_name=getShop($shop_id, $connection);
 }
 
 echo '<div class="row">
@@ -42,12 +47,33 @@ echo '<div class="row">
             <div class="py-2">
             <p>'.$descp.'</p>
             </div>
-            <div class="py-2 wrapper d-flex  align-items-center">
-                <span class="minus">-</span>
-                <span class="quantity">1</span>
-                <span class="plus">+</span>
+            <div class="row d-flex justify-content-left align-items-center">
+                <div class="py-2 wrapper d-flex  align-items-center">
+                    <span class="minus">-</span>
+                    <span class="quantity">1</span>
+                    <span class="plus">+</span>
+                </div>
+                
+            </div>
+            <div class="row mt-3 d-flex justify-content-left align-items-center">
+                <div class="py-2 second-wrapper d-flex justify-content-center align-items-center">
+                    <span>Buy Now</span>
+                </div>
+                <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center">
+                    <span>Add To Cart</span>
+                </div>
+                <div class="px-2 mx-1 mini-wrapper">
+                    <i class="bx bx-heart"></i>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <span class="text-muted"><small>category : <span class="text-lowercase">'.$cat_name.'</small></span></span>
+            </div>
+            <div class="row mb-4">
+                <span class="text-muted"><small>shop : <span class="text-lowercase">'.$shop_name.'</small></span></span>
             </div>
             <input type="hidden" value="1" id="real-quantity"/>
+            <input type="hidden" value="'.$stock.'" id="stock-amount"/>
         </div>
     </div>';
 
