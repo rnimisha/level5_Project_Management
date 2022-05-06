@@ -1,6 +1,7 @@
 <?php
     include_once('connection.php');
-    
+
+    //activate user when admin clicks activate button
     if(isset($_GET['token']) && isset($_GET['role']) && strtolower($_GET['role'])=='c')
     {
         $token=$_GET['token'];
@@ -8,10 +9,10 @@
         $parsedQuery=oci_parse($connection,$query);
 
         if(oci_execute($parsedQuery)){
-            echo "sucess";
+            echo "user activation successfull";
         }
         else{
-            echo "lol";
+            echo "error while activating user";
         }
         oci_free_statement($parsedQuery);
     }
