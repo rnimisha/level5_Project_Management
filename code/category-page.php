@@ -194,10 +194,10 @@ include_once('function.php');
                 <!-- <form id="sort-product" action="category-page.php" method="GET"> -->
                 <div class="row py-3">
                     <div class="col-sm-3 offset-lg-6 offset-sm-5 d-flex justify-content-end align-items-center view-change">
-                        <div id="grid-view-product" class="active-view" value="grid">
+                        <div id="grid-view-product" class="<?php if( isset($_GET['view-type']) && $_GET['view-type']=='grid'){echo "active-view";} else{echo "";} if(!isset($_GET['view-type'])){echo "active-view";} else{echo "";}?>" value="grid">
                             <i class='bx bxs-grid'></i>
                         </div>
-                        <div id="list-view-product" value="list">
+                        <div id="list-view-product" class="<?php if(isset($_GET['view-type']) && $_GET['view-type']=='list'){echo "active-view";} else{echo "";}?>" value="list">
                             <i class='bx bx-list-ul' ></i>
                         </div>
                     </div>
@@ -488,12 +488,12 @@ include_once('function.php');
                 $page_count=ceil($total_row/$limit_per_page);
             ?>
             <div>
-                <ul class="pagination justify-content-end">
+                <ul class="pagination justify-content-end mt-2">
                     <?php 
                     for ($i=1; $i<=$page_count; $i++)
                     {
                         ?>
-                    <li class="page-item"><span class="page-link" value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
+                    <li class="page-item"><span class="page-link <?php if($page==$i){echo "active-page";} else{echo "";}?>" value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
                     <?php
                     }
                     ?>

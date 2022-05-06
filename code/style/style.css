@@ -353,6 +353,19 @@ label{
     font-weight: bold;
 }
 
+.page-link {
+    color: #78967e;
+    font-weight: 600;
+}
+
+.page-link:hover{
+    background-color: #f4ebc8;
+    color: #000000;
+}
+
+.active-page{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
 
 @media (min-width: 576px)
 {

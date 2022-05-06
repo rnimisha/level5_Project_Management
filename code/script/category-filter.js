@@ -192,10 +192,13 @@ $(document).ready(function(){
             $('.list-view-container').addClass('d-flex');
         }
         $('#submit-filter').click();
+        
     });
 
     $('.page-link').click(function(){
         $page=$(this).attr('value');
         $('#page-value').val($page);
+        $('#submit-filter').click();
     });
+    
 });
