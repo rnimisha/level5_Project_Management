@@ -322,8 +322,11 @@ include_once('function.php');
                     <!-- grid view product -->
                     <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
                         <div class="cat-product col-12 text-center">
+                            <div class="inner-img-container">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="product-img" />
+
+                            </div>
                             <div class="option-container d-flex">
                                 <div>
                                     <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
@@ -363,11 +366,11 @@ include_once('function.php');
                     </div>
                     <!-- list view product -->
                     <div class="list-view-container row w-100 d-none p-3">
-                       <div class="col-4 list-prod-img">
+                       <div class="col-md-4 list-prod-img">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="product-img" />
                        </div>
-                       <div class="col-8 list-prod-detail d-flex justify-content-start align-items-center">
+                       <div class="col-md-8 list-prod-detail d-flex justify-content-start align-items-center">
                             <div class="col-12">
                                 <div>
                                     <h3><?php echo $row['PRODUCT_NAME']; ?></h3>
