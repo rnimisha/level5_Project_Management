@@ -361,16 +361,15 @@ include_once('function.php');
                             </div>
                         </div>
                     </div>
+                    <div class="list-view-container d-none">
+                       hello
+                    </div>
                     <?php
                     $count_row++;
                     }
                     if($count_row==0)
                     {  
                     ?>
-                    <div class="list-view-container">
-                        hello
-                    </div>
-
                     <div class="row w-100">
                         <divc class="col-5 mx-auto">
                             <img src="image/noresultfound.png" class="no-data-found img-fluid" />

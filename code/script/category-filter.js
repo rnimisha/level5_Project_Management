@@ -134,20 +134,52 @@ $(document).ready(function(){
             $('#grid-view-product').addClass('active-view');
         }
 
-        if($('#grid-view-container').hasClass('d-none')){
-            $('#grid-view-container').removeClass('d-none');
+        if($('#list-view-product').hasClass('active-view')){
+            $('#list-view-product').removeClass('active-view');
         }
 
-        if(!$('#grid-view-container').hasClass('d-flex')){
-            $('#grid-view-container').addClass('d-flex');
+        if($('.grid-view-container').hasClass('d-none')){
+            $('.grid-view-container').removeClass('d-none');
         }
 
-        if(!$('#list-view-container').hasClass('d-none')){
-            $('#list-view-container').addClass('d-none');
+        if(!$('.grid-view-container').hasClass('d-flex')){
+            $('.grid-view-container').addClass('d-flex');
         }
 
-        if($('#list-view-container').hasClass('d-flex')){
-            $('#list-view-container').removeClass('d-flex');
+        if(!$('.list-view-container').hasClass('d-none')){
+            $('.list-view-container').addClass('d-none');
+        }
+
+        if($('.list-view-container').hasClass('d-flex')){
+            $('.list-view-container').removeClass('d-flex');
+        }
+    });
+
+    $('#list-view-product').click(function(){
+
+        if(!$('#list-view-product').hasClass('active-view')){
+            $('#list-view-product').addClass('active-view');
+        }
+
+        if($('#grid-view-product').hasClass('active-view')){
+            $('#grid-view-product').removeClass('active-view');
+        }
+
+        if($('.grid-view-container').hasClass('d-flex')){
+            $('.grid-view-container').removeClass('d-flex');
+        }
+
+        if(!$('.grid-view-container').hasClass('d-none')){
+            $('.grid-view-container').addClass('d-none');
+        }
+
+       
+        if($('.list-view-container').hasClass('d-none')){
+            $('.list-view-container').removeClass('d-none');
+        }
+
+        if(!$('.list-view-container').hasClass('d-flex')){
+            $('.list-view-container').addClass('d-flex');
         }
     });
 });
