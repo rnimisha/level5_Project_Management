@@ -94,11 +94,13 @@
         $_SESSION['phoenix_user']=$user_id;
         if(strtoupper($user_role)=='C')
         {
+            $_SESSION['user_role']='C';
             $l_error['role']='C';
         }
         elseif (strtoupper($user_role)=='T')
         {
             $l_error['role']='T';
+            $_SESSION['user_role']='T';
         }
         echo json_encode($l_error);
     }

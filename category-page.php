@@ -22,6 +22,9 @@ include_once('function.php');
     <div class="loader">
         <img src="image/loader.gif"/>
     </div>
+    <div class="alert alert-success action-success" role="alert">
+        
+    </div>
     <div class="container-fluid">
         <div class="row w-100 p-5">
             <div class="col-md-3">
@@ -367,7 +370,7 @@ include_once('function.php');
                                     <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
-                                    <i class='bx bx-cart-alt'></i>
+                                    <i class='bx bx-cart-alt add-to-cart'  value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
                                     <i class='bx bx-heart'></i>
@@ -553,5 +556,5 @@ include_once('function.php');
 <!-- custom script -->
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
-
+<script src="script/cart-action.js"></script>
 </html>

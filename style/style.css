@@ -263,12 +263,12 @@ label{
     transform: scale(1.1);
 }
 /* quick view */
-.quick-view-product{
+.quick-view-product, .add-to-cart{
     cursor: pointer;
     transition: 0.5s 0s linear;
 }
 
-.quick-view-product:hover{
+.quick-view-product:hover, .add-to-cart:hover{
     background-color: #c5deca;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     color:#000000;
@@ -377,7 +377,16 @@ label{
     display:flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
+.action-success{
+    width: 30%;
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    z-index: 1000;
+
+}
 @media (min-width: 576px)
 {
     .modal-dialog {

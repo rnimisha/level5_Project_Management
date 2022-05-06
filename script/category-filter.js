@@ -75,7 +75,9 @@ $(document).ready(function(){
 
 
     //show quick view modal on clicking icon
+    var click_count=0;
     $('.quick-view-product').click(function(){
+        click_count++;
         var product_id=$(this).attr('value');
         $.ajax({
             type: 'POST',
@@ -89,8 +91,11 @@ $(document).ready(function(){
                 $('#quick-view').click();
             }
         });
+        //prevent protocol stack overload
+        if(click_count>6){
+            $('#submit-filter').click();
+        }
     });
-
 
     var minimum_val=1;
     $('.plus').click(function(){
