@@ -221,6 +221,7 @@ include_once('function.php');
                         </select>
                     </div>
                 </div>
+                <input type="hidden" id="page-value" name="page-value">
                 <div class="d-none">
                     <button class="btn d-none" type="submit" name="sort-product-btn"
                         id="sort-product-btn">Submit</button>
@@ -230,7 +231,18 @@ include_once('function.php');
                 <!-- display product container -->
                 <div class="row product-display">
                     <?php
-                        $filter_query="SELECT P.PRODUCT_ID AS PRODUCT_ID,STOCK_QUANTITY, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME, SUM(ITEM_QUANTITY) AS TOTAL_PURCHASED 
+                        $page=1;
+                        $limit_per_page=9;
+                        if(isset($_GET['page-value']))
+                        {
+                            if(!empty($_GET['page-value']))
+                            {
+                                $page=$_GET['page-value'];
+                            }
+                        }
+                        $offset=($page -1) * $limit_per_page;
+                        $limit=$limit_per_page*$page;
+                        $filter_query="SELECT * FROM (SELECT a.*, ROWNUM rnum FROM (SELECT P.PRODUCT_ID AS PRODUCT_ID,STOCK_QUANTITY, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME, SUM(ITEM_QUANTITY) AS TOTAL_PURCHASED 
                         FROM ORDER_ITEM O
                         RIGHT JOIN PRODUCT P
                         ON P.PRODUCT_ID=O.PRODUCT_ID
@@ -294,15 +306,22 @@ include_once('function.php');
                             {
                                 $filter_query.=" ORDER BY (CASE WHEN TOTAL_PURCHASED  IS NULL THEN 2 ELSE 1 END), TOTAL_PURCHASED  DESC";
                                 // echo $filter_query;
-                        
                             }
                         }
+                        else{
+                            $filter_query.=" ORDER BY PRODUCT_ID";
+                        }
 
+
+             
                         if(isset($_GET['clear-filter']) && ($_GET['clear-filter'])=='default')
                         {
-                            $filter_query="SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
+                            $filter_query="SELECT * FROM (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
                             $_GET['category']=$_GET['shops']=$_GET['rating']=[];
                         }
+                        $count_query=$filter_query.")a)";
+                        $filter_query.=")a WHERE ROWNUM <= $limit) WHERE rnum > $offset";
+                        // echo $filter_query;
                         $parsed=oci_parse($connection, $filter_query);
                         oci_execute($parsed);
                         $count_row=0;
@@ -365,7 +384,7 @@ include_once('function.php');
                         </div>
                     </div>
                     <!-- list view product -->
-                    <div class="list-view-container row w-100 d-none p-3">
+                    <div class="list-view-container row w-100 d-none p-3 mx-auto">
                        <div class="col-md-4 list-prod-img">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="product-img" />
@@ -430,6 +449,30 @@ include_once('function.php');
                 <?php
                     }
                     ?>
+            </div>
+            <?php
+                $parse_count=oci_parse($connection, $count_query);
+                // echo $count_query;
+                oci_execute($parse_count);
+                $total_row=0;
+                while(($row = oci_fetch_assoc($parse_count)) != false) 
+                {
+                    $total_row++;
+                }
+                $limit_per_page=9;
+                $page_count=ceil($total_row/$limit_per_page);
+            ?>
+            <div>
+                <ul class="pagination justify-content-end">
+                    <?php 
+                    for ($i=1; $i<=$page_count; $i++)
+                    {
+                        ?>
+                    <li class="page-item"><span class="page-link" value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
+                    <?php
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </div>
