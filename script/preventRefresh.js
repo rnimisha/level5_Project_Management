@@ -265,6 +265,7 @@ $(document).ready(function(){
         //data to be passed
         var l_useremail=$('#l_useremail').val();
         var l_pword=$('#l_pword').val();
+        var message=$('#login-message').val();
 
         $.ajax({
             type: $(this).attr('method'),
@@ -272,6 +273,7 @@ $(document).ready(function(){
             data: {
                 l_useremail: l_useremail,
                 l_pword: l_pword,
+                message:message,
                 loginuser: 'yes'
             },
             success: function(response){
@@ -283,7 +285,13 @@ $(document).ready(function(){
                     inlineMsg(resp);
                     if(resp.role == 'C')
                     {
-                        window.location.href = 'cust-index.php';
+                        if(resp.msg == 'category-page.php')
+                        {
+                            window.location.href = 'category-page.php';
+                        }
+                        else{
+                            window.location.href = 'cust-index.php';
+                        }
                     }
                     else if(resp.role == 'T')
                     {

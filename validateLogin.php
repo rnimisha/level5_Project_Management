@@ -102,6 +102,19 @@
             $l_error['role']='T';
             $_SESSION['user_role']='T';
         }
+        if(isset($_POST['message']))
+        {
+            if(!empty(trim($_POST['message'])))
+            {
+                $l_error['msg']='category-page.php';
+            }
+            else{
+                $l_error['msg']="";
+            }
+        }
+        else{
+            $l_error['msg']="";
+        }
         echo json_encode($l_error);
     }
     else
