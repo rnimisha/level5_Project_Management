@@ -51,6 +51,13 @@ $(document).ready(function(){
 
     });
 
+    $(".list-view-container").hover(function(){
+        $(this).find('.product-pic').css("padding", "25px");
+
+    }, function(){
+        $(this).find('.product-pic').css("padding", "15px");
+    });
+
 
     //click submit
     $(".filter-selection").click(function(){

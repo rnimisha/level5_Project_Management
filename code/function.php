@@ -202,6 +202,19 @@ function getPrice($product_id, $order_id, $connection)
     oci_execute($result);
     $row = oci_fetch_assoc($result);
     $price=$row['PRICE'];
+    oci_free_statement($result);
     return $price;
+}
+
+//get description from product id
+function getDescription($product_id, $connection)
+{
+    $query="SELECT * FROM PRODUCT WHERE PRODUCT_ID=$product_id";
+    $result=oci_parse($connection, $query);
+    oci_execute($result);
+    $row = oci_fetch_assoc($result);
+    $descp=$row['DESCRIPTION']->load();
+    oci_free_statement($result);
+    return $descp;
 }
 ?>

@@ -230,7 +230,7 @@ include_once('function.php');
                 <!-- display product container -->
                 <div class="row product-display">
                     <?php
-                        $filter_query="SELECT P.PRODUCT_ID AS PRODUCT_ID, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME, SUM(ITEM_QUANTITY) AS TOTAL_PURCHASED 
+                        $filter_query="SELECT P.PRODUCT_ID AS PRODUCT_ID,STOCK_QUANTITY, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME, SUM(ITEM_QUANTITY) AS TOTAL_PURCHASED 
                         FROM ORDER_ITEM O
                         RIGHT JOIN PRODUCT P
                         ON P.PRODUCT_ID=O.PRODUCT_ID
@@ -281,7 +281,7 @@ include_once('function.php');
 
                         }
 
-                        $filter_query.=" GROUP BY P.PRODUCT_ID, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME";
+                        $filter_query.=" GROUP BY P.PRODUCT_ID, CATEGORY_ID, STOCK_QUANTITY, SHOP_ID, PRICE, PRODUCT_NAME";
 
                         //------sort the products -----
                         if(isset($_GET['submit-filter'])){
@@ -323,7 +323,7 @@ include_once('function.php');
                     <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
                         <div class="cat-product col-12 text-center">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
-                                class="img-fluid product-pic" alt="banner" />
+                                class="img-fluid product-pic" alt="product-img" />
                             <div class="option-container d-flex">
                                 <div>
                                     <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
@@ -361,8 +361,57 @@ include_once('function.php');
                             </div>
                         </div>
                     </div>
-                    <div class="list-view-container d-none">
-                       hello
+                    <!-- list view product -->
+                    <div class="list-view-container row w-100 d-none p-3">
+                       <div class="col-4 list-prod-img">
+                            <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
+                                class="img-fluid product-pic" alt="product-img" />
+                       </div>
+                       <div class="col-8 list-prod-detail d-flex justify-content-start align-items-center">
+                            <div class="col-12">
+                                <div>
+                                    <h3><?php echo $row['PRODUCT_NAME']; ?></h3>
+                                </div>
+                                <div class="mt-n1">
+                                    <!-- display rating for product -->
+                                    <?php 
+                                        $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                                        for($i=1; $i<=$avgRating; $i++)
+                                        {
+                                            ?>
+                                    <i class='bx bxs-star'></i>
+                                    <?php
+                                        }
+                                        for($i=1; $i<=(5-$avgRating); $i++)
+                                        {
+                                            ?>
+                                    <i class='bx bx-star'></i>
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                                <div class="prod-price">
+                                    <?php echo $row['PRICE']; ?>
+                                </div>
+                                <div class="my-1">
+                                    <?php echo getDescription($row['PRODUCT_ID'], $connection); ?>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <div class="py-2 second-wrapper d-flex justify-content-center align-items-center">
+                                        <span>Buy Now</span>
+                                    </div>
+                                    <div class="list-options">
+                                        <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
+                                    </div>
+                                    <div class="list-options">
+                                        <i class='bx bx-cart-alt'></i>
+                                    </div>
+                                    <div class="list-options">
+                                        <i class='bx bx-heart'></i>
+                                    </div>
+                            </div>
+                            </div>
+                       </div>
                     </div>
                     <?php
                     $count_row++;
