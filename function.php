@@ -217,4 +217,52 @@ function getDescription($product_id, $connection)
     oci_free_statement($result);
     return $descp;
 }
+
+//Check if product exists in cart
+function checkCartProduct($product_id, $user_id, $connection)
+{
+    $query="SELECT  COUNT(*) AS NUMBER_OF_ROWS FROM CART_ITEM WHERE PRODUCT_ID=$product_id AND USER_ID=$user_id";
+    $result=oci_parse($connection, $query);
+
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    oci_free_statement($result);
+    return $number_of_rows;
+}
+
+
+//insert into cart
+function insertCartProduct($product_id, $user_id,$quantity, $connection)
+{
+    $query="INSERT INTO CART_ITEM(QUANTITY, PRODUCT_ID, USER_ID) VALUES($quantity, $product_id, $user_id)";
+    $result=oci_parse($connection, $query);
+
+    oci_execute($result);
+    oci_free_statement($result);
+}
+
+//get quantity of product in cart
+function getCartProductQuantity($product_id, $user_id, $connection)
+{
+    $query="SELECT * FROM CART_ITEM WHERE PRODUCT_ID=$product_id AND USER_ID=$user_id";
+    $result=oci_parse($connection, $query);
+    oci_execute($result);
+    $row = oci_fetch_assoc($result);
+    $quantity=$row['QUANTITY'];
+    oci_free_statement($result);
+    return $quantity;
+}
+
+//add quantity of product in cart
+function addProductQuantity($product_id, $user_id, $old_quantity, $quantity, $connection)
+{
+    $new_quantity=$old_quantity+$quantity;
+    $query="UPDATE CART_ITEM SET QUANTITY=$new_quantity WHERE USER_ID=$user_id AND PRODUCT_ID=$product_id";
+    $result=oci_parse($connection, $query);
+
+    oci_execute($result);
+    oci_free_statement($result);
+}
+
 ?>

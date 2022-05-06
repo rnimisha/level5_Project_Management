@@ -1,6 +1,19 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
+if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']))
+{
+    if((checkCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection))>0)
+    {
+        $original_quantity=getCartProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection);
+        addProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],$original_quantity,1, $connection);
+    }
+    else{
+        insertCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],1, $connection);
+    }
+    echo 'item added to cart'.$_SESSION['cart-product-remaining'];
+    unset($_SESSION['cart-product-remaining']);
+}
 ?>
 <!doctype html>
 <html lang="en">
