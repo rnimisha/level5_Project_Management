@@ -194,10 +194,10 @@ include_once('function.php');
                 <!-- <form id="sort-product" action="category-page.php" method="GET"> -->
                 <div class="row py-3">
                     <div class="col-sm-3 offset-lg-6 offset-sm-5 d-flex justify-content-end align-items-center view-change">
-                        <div id="grid-view-product" class="active-view">
+                        <div id="grid-view-product" class="active-view" value="grid">
                             <i class='bx bxs-grid'></i>
                         </div>
-                        <div id="list-view-product">
+                        <div id="list-view-product" value="list">
                             <i class='bx bx-list-ul' ></i>
                         </div>
                     </div>
@@ -222,6 +222,7 @@ include_once('function.php');
                     </div>
                 </div>
                 <input type="hidden" id="page-value" name="page-value">
+                <input type="hidden" id="view-type" name="view-type" value="<?php if(isset($_GET['view-type']) &&!empty($_GET['view-type'])){echo $_GET['view-type'];} ?>">
                 <div class="d-none">
                     <button class="btn d-none" type="submit" name="sort-product-btn"
                         id="sort-product-btn">Submit</button>
@@ -231,6 +232,14 @@ include_once('function.php');
                 <!-- display product container -->
                 <div class="row product-display">
                     <?php
+                        $view='grid';
+                        if(isset($_GET['view-type']))
+                        {
+                            if(!empty($_GET['view-type']))
+                            {
+                                $view=$_GET['view-type'];
+                            }
+                        }
                         $page=1;
                         $limit_per_page=9;
                         if(isset($_GET['page-value']))
@@ -339,6 +348,11 @@ include_once('function.php');
                     ?>
 
                     <!-- grid view product -->
+                    <?php 
+                    if($view=='grid')
+                    {
+
+                    ?>
                     <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
                         <div class="cat-product col-12 text-center">
                             <div class="inner-img-container">
@@ -383,8 +397,16 @@ include_once('function.php');
                             </div>
                         </div>
                     </div>
+                    <?php
+                    }
+                    ?>
+
                     <!-- list view product -->
-                    <div class="list-view-container row w-100 d-none p-3 mx-auto">
+                    <?php 
+                    if($view=='list')
+                    {
+                    ?>
+                    <div class="list-view-container row w-100 d-flex p-3 mx-auto">
                        <div class="col-md-4 list-prod-img">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="product-img" />
@@ -435,6 +457,9 @@ include_once('function.php');
                             </div>
                        </div>
                     </div>
+                    <?php
+                    }
+                    ?>
                     <?php
                     $count_row++;
                     }
