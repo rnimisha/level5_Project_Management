@@ -2,7 +2,7 @@
   include_once('../connection.php');
   if(!isset($_SESSION['phoenix_user']) & empty($_SESSION['phoenix_user']))
   {
-    header('Location: ../loginform.php');
+    header('Location: ../loginform.php');   
   }
   include_once('../function.php');
 ?>

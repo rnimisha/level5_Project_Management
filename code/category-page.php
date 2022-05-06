@@ -193,7 +193,15 @@ include_once('function.php');
                 <!-- sorting option for product -->
                 <!-- <form id="sort-product" action="category-page.php" method="GET"> -->
                 <div class="row py-3">
-                    <div class="col-lg-3 offset-md-9 col-sm-4 offset-sm-8">
+                    <div class="col-sm-3 offset-lg-6 offset-sm-5 d-flex justify-content-end align-items-center view-change">
+                        <div id="grid-view-product" class="active-view">
+                            <i class='bx bxs-grid'></i>
+                        </div>
+                        <div id="list-view-product">
+                            <i class='bx bx-list-ul' ></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-sm-4 ">
                         <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
                             <option value=""
                                 <?php if(isset($_GET['sort-product-option']) && $_GET['sort-product-option']==""){echo 'selected';}?>>
@@ -310,8 +318,9 @@ include_once('function.php');
                                 }
                             }
                     ?>
-                    <div
-                        class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center">
+
+                    <!-- grid view product -->
+                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
                         <div class="cat-product col-12 text-center">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="banner" />
@@ -358,6 +367,10 @@ include_once('function.php');
                     if($count_row==0)
                     {  
                     ?>
+                    <div class="list-view-container">
+                        hello
+                    </div>
+
                     <div class="row w-100">
                         <divc class="col-5 mx-auto">
                             <img src="image/noresultfound.png" class="no-data-found img-fluid" />

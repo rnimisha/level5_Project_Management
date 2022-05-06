@@ -84,6 +84,23 @@ select {
     letter-spacing: -0.5px;
 }
 
+/* grid view changer */
+
+.view-change .bx{
+    font-size: 22px;
+    padding: 8px;
+    margin-left: 5px;
+    border-radius: .25rem;
+    border: 1px solid #e8e8e8;
+}
+
+.view-change .bx:hover{
+    color: #dac775;
+}
+
+.active-view{
+    color: #78967e;
+}
 /* product detail container */
 .product-pic
 {

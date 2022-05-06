@@ -126,4 +126,28 @@ $(document).ready(function(){
     }, function(){
         $('#text-img-banner').css("transform", "scale(1)");
     });
+
+
+    $('#grid-view-product').click(function(){
+
+        if(!$('#grid-view-product').hasClass('active-view')){
+            $('#grid-view-product').addClass('active-view');
+        }
+
+        if($('#grid-view-container').hasClass('d-none')){
+            $('#grid-view-container').removeClass('d-none');
+        }
+
+        if(!$('#grid-view-container').hasClass('d-flex')){
+            $('#grid-view-container').addClass('d-flex');
+        }
+
+        if(!$('#list-view-container').hasClass('d-none')){
+            $('#list-view-container').addClass('d-none');
+        }
+
+        if($('#list-view-container').hasClass('d-flex')){
+            $('#list-view-container').removeClass('d-flex');
+        }
+    });
 });
