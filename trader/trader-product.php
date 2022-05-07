@@ -1,6 +1,10 @@
 <?php
   include_once('../connection.php');
-  if(!isset($_SESSION['phoenix_user']) & empty($_SESSION['phoenix_user']))
+  if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']))
+  {
+    header('Location: ../loginform.php');
+  }
+  if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='T')
   {
     header('Location: ../loginform.php');
   }

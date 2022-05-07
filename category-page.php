@@ -18,12 +18,13 @@ include_once('function.php');
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <title>Product Category</title>
 </head>
+
 <body>
     <div class="loader">
-        <img src="image/loader.gif"/>
+        <img src="image/loader.gif" />
     </div>
     <div class="alert alert-danger action-success" role="alert">
-        <h5><strong><i class='bx bx-error-circle' ></i> Failure!</strong> <br/>No more stock available to add.</h5>
+        <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
     </div>
     <div class="container-fluid">
         <div class="row w-100 p-5">
@@ -31,32 +32,33 @@ include_once('function.php');
                 <!-- category option list -->
                 <div class="row" id="filter-option">
                     <div class="col-11 mx-auto justify-content-center align-items-center" id="filter-content">
-                        <form id="price-filter-form" action="category-page.php" method="GET">
-                            <!-- jquery ui -->
-                            <h5 class="pb-2"><b>Price</b></h5>
-                            <div class="slider-box align-items-center pb-5">
-                                <div id="price-range" class="slider mb-3"></div>
-                                <!-- <input class="text-center" type="text" id="priceRange" readonly> -->
-                                <div class="row d-flex justify-content-center align-items-center">
-                                    <input type="hidden" name="min-input" id="min-input" />
-                                    <input type="hidden" name="max-input" id="max-input" />
-                                    <div id="min-price" name="min-price"></div><span class="hide-div">
-                                        <?php if(isset($_GET["min-input"])){echo $_GET["min-input"];}else{echo 0;}?> -
-                                        &nbsp;</span>
-                                    <div id="max-price" name="max-price"></div><span
-                                        class="hide-div"><?php if(isset($_GET["max-input"])){echo $_GET["max-input"];}else{echo 1000;}?></span>
-                                </div>
-                                <div class="row col-5 mx-auto pt-2 ml-1">
-                                    <button class="btn" type="submit" name="price-filter"
-                                        id="price-filter">Filter</button>
-                                </div>
+                        <!-- <form id="price-filter-form" action="category-page.php" method="GET"> -->
+                        <!-- jquery ui -->
+                        <h5 class="pb-2"><b>Price</b></h5>
+                        <div class="slider-box align-items-center pb-5">
+                            <div id="price-range" class="slider mb-3"></div>
+                            <!-- <input class="text-center" type="text" id="priceRange" readonly> -->
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <!-- <input type="hidden" name="min-input" id="min-input" />
+                                    <input type="hidden" name="max-input" id="max-input" /> -->
+                                <div id="min-price" name="min-price"></div><span class="hide-div">
+                                    <?php if(isset($_GET["min-input"])){echo $_GET["min-input"];}else{echo 0;}?> -
+                                    &nbsp;</span>
+                                <div id="max-price" name="max-price"></div><span
+                                    class="hide-div"><?php if(isset($_GET["max-input"])){echo $_GET["max-input"];}else{echo 1000;}?></span>
                             </div>
-                        </form>
+                            <div class="row col-5 mx-auto pt-2 ml-1">
+                                <button class="btn" type="submit" name="price-filter" id="price-filter">Filter</button>
+                            </div>
+                        </div>
+                        <!-- </form> -->
                         <br>
                         <hr>
                         <!-- Filter by Category -->
                         <h5 class="py-2"><b>Category</b></h5>
                         <form id="product-filter-form" action="category-page.php" method="GET">
+                            <input type="hidden" name="min-input" id="min-input" />
+                            <input type="hidden" name="max-input" id="max-input" />
                             <ul class="list-group list-group-flush">
                                 <?php
                                     $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
@@ -186,7 +188,8 @@ include_once('function.php');
                     </div>
                     <div class="col-md-6 pb-2 banner-img">
                         <div class="img-container">
-                            <img src="image/banner/banner2.png" class="img-fluid category-banner" id="text-img-banner" alt="banner">
+                            <img src="image/banner/banner2.png" class="img-fluid category-banner" id="text-img-banner"
+                                alt="banner">
                         </div>
                         <div class="banner-text col-5">
                             <h3>Fresh Up! Power Up !</h3>
@@ -198,12 +201,17 @@ include_once('function.php');
                 <!-- sorting option for product -->
                 <!-- <form id="sort-product" action="category-page.php" method="GET"> -->
                 <div class="row py-3">
-                    <div class="col-sm-3 offset-lg-6 offset-sm-5 d-flex justify-content-end align-items-center view-change">
-                        <div id="grid-view-product" class="<?php if( isset($_GET['view-type']) && $_GET['view-type']=='grid'){echo "active-view";} else{echo "";} if(!isset($_GET['view-type'])){echo "active-view";} else{echo "";}?>" value="grid">
+                    <div
+                        class="col-sm-3 offset-lg-6 offset-sm-5 d-flex justify-content-end align-items-center view-change">
+                        <div id="grid-view-product"
+                            class="<?php if( isset($_GET['view-type']) && $_GET['view-type']=='grid'){echo "active-view";} else{echo "";} if(!isset($_GET['view-type'])){echo "active-view";} else{echo "";}?>"
+                            value="grid">
                             <i class='bx bxs-grid'></i>
                         </div>
-                        <div id="list-view-product" class="<?php if(isset($_GET['view-type']) && $_GET['view-type']=='list'){echo "active-view";} else{echo "";}?>" value="list">
-                            <i class='bx bx-list-ul' ></i>
+                        <div id="list-view-product"
+                            class="<?php if(isset($_GET['view-type']) && $_GET['view-type']=='list'){echo "active-view";} else{echo "";}?>"
+                            value="list">
+                            <i class='bx bx-list-ul'></i>
                         </div>
                     </div>
                     <div class="col-lg-3  col-sm-4 ">
@@ -227,7 +235,8 @@ include_once('function.php');
                     </div>
                 </div>
                 <input type="hidden" id="page-value" name="page-value">
-                <input type="hidden" id="view-type" name="view-type" value="<?php if(isset($_GET['view-type']) &&!empty($_GET['view-type'])){echo $_GET['view-type'];} ?>">
+                <input type="hidden" id="view-type" name="view-type"
+                    value="<?php if(isset($_GET['view-type']) &&!empty($_GET['view-type'])){echo $_GET['view-type'];} ?>">
                 <div class="d-none">
                     <button class="btn d-none" type="submit" name="sort-product-btn"
                         id="sort-product-btn">Submit</button>
@@ -358,19 +367,21 @@ include_once('function.php');
                     {
 
                     ?>
-                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
+                    <div
+                        class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
                         <div class="cat-product col-12 text-center">
                             <div class="inner-img-container">
-                            <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
-                                class="img-fluid product-pic" alt="product-img" />
+                                <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
+                                    class="img-fluid product-pic" alt="product-img" />
 
                             </div>
                             <div class="option-container d-flex">
                                 <div>
-                                    <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
+                                    <i class='bx bx-search-alt-2 quick-view-product'
+                                        value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
-                                    <i class='bx bx-cart-alt add-to-cart'  value="<?php echo $row['PRODUCT_ID'];?>"></i>
+                                    <i class='bx bx-cart-alt add-to-cart' value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
                                     <i class='bx bx-heart'></i>
@@ -412,11 +423,11 @@ include_once('function.php');
                     {
                     ?>
                     <div class="list-view-container row w-100 d-flex p-3 mx-auto">
-                       <div class="col-md-4 list-prod-img">
+                        <div class="col-md-4 list-prod-img">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="product-img" />
-                       </div>
-                       <div class="col-md-8 list-prod-detail d-flex justify-content-start align-items-center">
+                        </div>
+                        <div class="col-md-8 list-prod-detail d-flex justify-content-start align-items-center">
                             <div class="col-12">
                                 <div>
                                     <h3><?php echo $row['PRODUCT_NAME']; ?></h3>
@@ -450,17 +461,19 @@ include_once('function.php');
                                         <span>Buy Now</span>
                                     </div>
                                     <div class="list-options">
-                                        <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
+                                        <i class='bx bx-search-alt-2 quick-view-product'
+                                            value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                     </div>
                                     <div class="list-options">
-                                        <i class='bx bx-cart-alt add-to-cart'  value="<?php echo $row['PRODUCT_ID'];?>"></i>
+                                        <i class='bx bx-cart-alt add-to-cart'
+                                            value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                     </div>
                                     <div class="list-options">
                                         <i class='bx bx-heart'></i>
                                     </div>
+                                </div>
                             </div>
-                            </div>
-                       </div>
+                        </div>
                     </div>
                     <?php
                     }
@@ -498,7 +511,9 @@ include_once('function.php');
                     for ($i=1; $i<=$page_count; $i++)
                     {
                         ?>
-                    <li class="page-item"><span class="page-link <?php if($page==$i){echo "active-page";} else{echo "";}?>" value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
+                    <li class="page-item"><span
+                            class="page-link <?php if($page==$i){echo "active-page";} else{echo "";}?>"
+                            value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
                     <?php
                     }
                     ?>
@@ -508,13 +523,14 @@ include_once('function.php');
     </div>
     </div>
     <!-- Button trigger modal -->
-    <button type="button" id="quick-view" class="btn btn-primary d-none" data-toggle="modal" data-target="#popProductPreview">
+    <button type="button" id="quick-view" class="btn btn-primary d-none" data-toggle="modal"
+        data-target="#popProductPreview">
         preview
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="popProductPreview" tabindex="-1" role="dialog"
-        aria-labelledby="popProductPreviewTitle" aria-hidden="true">
+    <div class="modal fade" id="popProductPreview" tabindex="-1" role="dialog" aria-labelledby="popProductPreviewTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -524,7 +540,7 @@ include_once('function.php');
                     </button>
                 </div>
                 <div class="quick-view-body">
-                    
+
                 </div>
                 <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -535,13 +551,14 @@ include_once('function.php');
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" id="item-added-modal" class="btn btn-primary d-none" data-toggle="modal" data-target="#popItemAdded">
+    <button type="button" id="item-added-modal" class="btn btn-primary d-none" data-toggle="modal"
+        data-target="#popItemAdded">
         preview
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="popItemAdded" tabindex="-1" role="dialog"
-        aria-labelledby="popItemAdded" aria-hidden="true">
+    <div class="modal fade" id="popItemAdded" tabindex="-1" role="dialog" aria-labelledby="popItemAdded"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content w-50 mx-auto">
                 <div class="modal-header">
@@ -554,7 +571,7 @@ include_once('function.php');
                         <h3 style="color:#78967e; font-weight:bolder;">Item Added To Cart Successfully</h3>
                     </div>
                     <div class="col-12 text-center mt-n2">
-                        <img src="image/cart-add-success.gif" alt="cart-add-success" class="product-pic"/>
+                        <img src="image/cart-add-success.gif" alt="cart-add-success" class="product-pic" />
                     </div>
                     <div class="col-4 text-center py-3 btn">
                         Continue Shopping
@@ -587,9 +604,15 @@ include_once('function.php');
 
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- for price range -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
@@ -600,4 +623,5 @@ include_once('function.php');
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>
+
 </html>

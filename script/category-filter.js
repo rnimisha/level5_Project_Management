@@ -77,7 +77,6 @@ $(document).ready(function(){
         $('#submit-filter').click();
     });
 
-
     //show quick view modal on clicking icon
     var click_count=0;
     $('.quick-view-product').click(function(){
@@ -210,5 +209,8 @@ $(document).ready(function(){
         $('#page-value').val($page);
         $('#submit-filter').click();
     });
-    
+ 
+    $('#price-filter').click(function(){
+        $('#submit-filter').click();
+    });
 });

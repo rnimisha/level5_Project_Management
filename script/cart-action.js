@@ -1,6 +1,7 @@
 $('.action-success').hide();
 $(document).ready(function(){
 
+    //add to cart on click
     $('.add-to-cart').click(function(){
         var product_id=$(this).attr('value');
         $.ajax({
@@ -30,6 +31,7 @@ $(document).ready(function(){
     });
 
 
+    //cart with quantity
     $('#add-cart-with-quantity').click(function(){
         var product_id=$(this).attr('value');
         var quantity=$('#real-quantity').val();
