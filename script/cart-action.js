@@ -11,13 +11,20 @@ $(document).ready(function(){
                 action:'add-to-cart'
             },
             success: function(response){
+                console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.valid == false) {
                     window.location.href = 'loginform.php?msg=cartaccess';
                 }
                 else{
-                    $('.action-success').html("<strong>Item added to cart!</strong>");
-                    $('.action-success').show();
+                    if(resp.stocklimit == true)
+                    {
+
+                        $('.action-success').show().delay(3000).fadeOut();
+                    }
+                    else{
+                        $("#item-added-modal").click();
+                    }
                 }
             }
         });

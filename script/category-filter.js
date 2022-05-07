@@ -1,3 +1,7 @@
+$(window).on("load",function(){
+    $(".loader").fadeOut(1000);
+    $(".container-fluid").fadeIn(1000);
+});
 $(document).ready(function(){
 
     //jquery ui function for price range
@@ -93,7 +97,8 @@ $(document).ready(function(){
         });
         //prevent protocol stack overload
         if(click_count>6){
-            $('#submit-filter').click();
+            location.reload();
+            // $('#submit-filter').click();
         }
     });
 
