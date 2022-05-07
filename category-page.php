@@ -643,7 +643,18 @@ include_once('function.php');
             }
             unset($_SESSION['cart-product-remaining']);
             unset($_SESSION['quantity']);
+            echo '<script> window.onload = function () {location.reload(); }; </script>';
             echo '<script> window.onload = function () {document.getElementById("item-added-modal").click(); }; </script>';
+        }
+
+        if(isset($_SESSION['phoenix_user']) &&  isset($_SESSION['wishlist-product-remaining']))
+        {
+            if(saveToWishlist($_SESSION['wishlist-product-remaining'], $_SESSION['phoenix_user'], $connection))
+            {
+                echo 'wishlist done';
+            }
+            unset ($_SESSION['wishlist-product-remaining']);
+            echo '<script> window.onload = function () {location.reload(); }; </script>';
         }
     ?>
 </body>

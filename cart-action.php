@@ -63,6 +63,12 @@
                 $cart_action['stocklimit']=false;
             }
         }
+
+        if($_POST['action']=='save-to-wishlist')
+        {
+            saveToWishlist($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
+        }
+        
         $cart_action['valid']=true;
     }
 

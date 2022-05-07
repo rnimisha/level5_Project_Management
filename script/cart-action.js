@@ -58,7 +58,6 @@ $(document).ready(function(){
                 else{
                     if(resp.stocklimit == true)
                     {
-
                         $('.action-success').show().delay(3000).fadeOut();
                     }
                     else{
@@ -71,6 +70,7 @@ $(document).ready(function(){
 
     //save to wishlist
     $('.save-to-wishlist').click(function(){
+        var current=$(this);
         var product_id=$(this).attr('value');
 
         $.ajax({
@@ -92,6 +92,8 @@ $(document).ready(function(){
                         alert('error');
                     }
                     else{
+                        current.removeClass('bx-heart');
+                        current.addClass('bxs-heart');
                         alert('done');
                     }
                 }

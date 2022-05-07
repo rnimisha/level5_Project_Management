@@ -313,4 +313,22 @@ function checkProductInWishList($product_id, $user_id, $connection)
     }
 }
 
+//add product to wishlist
+function saveToWishlist($product_id, $user_id, $connection)
+{
+    if(checkProductInWishList($product_id, $user_id, $connection))
+    {
+        return false;
+    }
+    else{
+        $query="INSERT INTO WISHLIST_ITEM( PRODUCT_ID, USER_ID) VALUES( $product_id, $user_id)";
+        $result=oci_parse($connection, $query);
+
+        oci_execute($result);
+        oci_free_statement($result);
+        return true;
+    }    
+}
+
+
 ?>

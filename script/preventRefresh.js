@@ -266,7 +266,6 @@ $(document).ready(function(){
         var l_useremail=$('#l_useremail').val();
         var l_pword=$('#l_pword').val();
         var message=$('#login-message').val();
-        var cartproduct=$('#product-add-cart').val();
 
         $.ajax({
             type: $(this).attr('method'),
