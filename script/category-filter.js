@@ -113,7 +113,7 @@ $(document).ready(function(){
         }
         else{
 
-            alert('There are no further quantity in stock');
+            alert('There are no further quantity in stock to add in cart');
         }
         
     })

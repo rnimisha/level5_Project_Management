@@ -568,17 +568,18 @@ include_once('function.php');
     </div>
 
     <?php
-        if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']))
+        if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']) && isset($_SESSION['quantity']))
         {
             if((checkCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection))>0)
             {
                 $original_quantity=getCartProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection);
-                addProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],$original_quantity,1, $connection);
+                addProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],$original_quantity, $_SESSION['quantity'] , $connection);
             }
             else{
-                insertCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],1, $connection);
+                insertCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $_SESSION['quantity'] , $connection);
             }
             unset($_SESSION['cart-product-remaining']);
+            unset($_SESSION['quantity']);
             echo '<script> window.onload = function () {document.getElementById("item-added-modal").click(); }; </script>';
         }
     ?>

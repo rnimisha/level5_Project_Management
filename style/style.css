@@ -263,10 +263,11 @@ label{
     transform: scale(1.1);
 }
 /* quick view */
-.quick-view-product, .add-to-cart{
+.quick-view-product, .add-to-cart, #add-cart-with-quantity{
     cursor: pointer;
     transition: 0.5s 0s linear;
 }
+
 
 .quick-view-product:hover, .add-to-cart:hover{
     background-color: #c5deca;
@@ -358,7 +359,7 @@ label{
     font-weight: 600;
 }
 
-.page-link:hover{
+.page-link:hover, #add-cart-with-quantity:hover{
     background-color: #f4ebc8;
     color: #000000;
 }
@@ -384,10 +385,11 @@ label{
     position: fixed;
     top:40px;
     right: 0px;
-    z-index: 1000;
+    z-index: 1070;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
+
 .bx-error-circle
 {
     font-size: 20px;

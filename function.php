@@ -284,4 +284,15 @@ function getProductStock($product_id, $connection)
     $stock=$row['STOCK_QUANTITY'];
     return $stock;
 }
+
+function getStockLeftToAdd($product_id, $user_id,$stock, $connection)
+{
+    $query="SELECT * FROM CART_ITEM WHERE USER_ID=$user_id AND PRODUCT_ID=$product_id";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $row=oci_fetch_assoc($parsed);
+    $quantity=$stock-$row['QUANTITY'];
+    return $quantity;
+}
+
 ?>

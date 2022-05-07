@@ -24,6 +24,11 @@ if(isset($_POST['product_id']) && isset($_POST['type']) && strtolower($_POST['ty
   $totalReviews=getTotalReview($product_id, $connection);
   $cat_name=getCategory($cat_id, $connection);
   $shop_name=getShop($shop_id, $connection);
+
+  if(isset($_SESSION['phoenix_user']))
+  {
+    $stock=getStockLeftToAdd($product_id,$_SESSION['phoenix_user'] ,$stock, $connection);
+  }
 }
 
 echo '<div class="row">
@@ -59,7 +64,7 @@ echo '<div class="row">
                 <div class="py-2 second-wrapper d-flex justify-content-center align-items-center">
                     <span>Buy Now</span>
                 </div>
-                <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center">
+                <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center" id="add-cart-with-quantity" value="'.$product_id.'">
                     <span>Add To Cart</span>
                 </div>
                 <div class="px-2 mx-1 mini-wrapper">
@@ -80,3 +85,4 @@ echo '<div class="row">
 ?>
 
 <script src="script/category-filter.js"></script>
+<script src="script/cart-action.js"></script>
