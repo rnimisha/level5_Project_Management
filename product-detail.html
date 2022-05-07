@@ -12,31 +12,77 @@
 </head>
 <body>
     
-    <div class="container-fluid">
+    <div class="container-fluid product-detail-main-container">
         <div class="row w-100 p-5">
             <div class="col-md-5">
                 <div class="row prod-image-div">
-                    <div class="product-img-container w-100">
-                        <img src="image\product\1875885879.png"  class="img-fluid product-detail-img"/>
+                    <div class="product-img-container">
+                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img m-auto"/>
                     </div>
                 </div>
-                <div class="row d-flex justify-content-between align-items-center prod-image-div pt-2">
+                <div class="row d-flex justify-content-center align-items-center prod-image-div pt-2">
                     <div class="col-3 mini-img-container mr-2">
-                        <img src="image\product\1875885879.png"  class="img-fluid product-detail-img"/>
+                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img"/>
                     </div>
                     <div class="col-3 mini-img-container mr-2">
-                        <img src="image\product\1875885879.png"  class="img-fluid product-detail-img"/>
+                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img"/>
                     </div>
                     <div class="col-3 mini-img-container">
-                        <img src="image\product\1875885879.png"  class="img-fluid product-detail-img"/>
+                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
-
+            <div class="col-md-7 pl-4 main-product-detail">
+                <div class="pl-4 mt-3">
+                    <h1 class="pb-2">Strawberry</h1>
+                </div>
+                <div  class="pl-4">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <span class="text-muted"><small>(20 reviews)</small></span>
+                </div>
+                <div class="pl-4  mt-3">
+                    <span  class="badge badge-pill badge-completed">In Stock</span>
+                </div>
+                <div class="pl-4 pt-3">
+                    <h3><span>&#163;</span>12/lb</h3>
+                </div>
+                <div class="pl-4 d-none d-lg-flex">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus molestiae libero, dolorum id accusamus eius asperiores quod aut eligendi iste iure veritatis mollitia similique assumenda suscipit laudantium perferendis est quas?
+                </div>
+                <div class="pl-4 mt-4 d-flex justify-content-left align-items-center">
+                    <div class="py-2 wrapper d-flex  align-items-center">
+                        <span class="minus">-</span>
+                        <span class="quantity">1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+                <div class="pl-4 mt-4 d-flex justify-content-left align-items-center">
+                    <div class="py-2 second-wrapper d-flex justify-content-center align-items-center mr-2">
+                        <span>Buy Now</span>
+                    </div>
+                    <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center mr-2" id="add-cart-with-quantity" value="'.$product_id.'">
+                        <span>Add To Cart</span>
+                    </div>
+                    <div class="px-2 mx-1 mini-wrapper">
+                        <i class='bx bxs-heart'></i>
+                    </div>
+                </div>
+                <hr>
+                <div class="pl-4  mt-3">
+                    <span class="text-muted"><small>category : <span class="text-lowercase">category</small></span></span>
+                </div>
+                <div class="pl-4  mb-4">
+                    <span class="text-muted"><small>shop : <span class="text-lowercase">shop</small></span></span>
+                </div>
             </div>
         </div>
     </div>
+    <input type="hidden" value="1" id="real-quantity"/>
+    <input type="hidden" value="" id="stock-amount"/>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
