@@ -373,7 +373,7 @@ label{
     width: 100%;
     height: 100%;
     background-color: #ffffff;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display:flex;
@@ -388,7 +388,6 @@ label{
     right: 0px;
     z-index: 1070;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
 }
 
 .bx-error-circle
@@ -419,4 +418,28 @@ i.bx.bxs-heart {
     .modal-dialog {
         max-width: 70%;
     }
+}
+
+
+/* product detail */
+
+.prod-image-div{
+    margin-left: 0px;
+}
+.product-detail-img
+{
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+}
+.product-img-container
+{
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+}
+.mini-img-container
+{
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
 }

@@ -81,17 +81,16 @@ $(document).ready(function(){
                 action:'save-to-wishlist'
             },
             success: function(response){
-                console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.valid == false) {
                     window.location.href = 'loginform.php?msg=wishlistaccess';
                 }
-                else{
-                    
+                else{  
                     current.removeClass('bx-heart');
                     current.addClass('bxs-heart');
-                    alert('done');
-                
+                    current.addClass('remove-from-wishlist');
+                    current.removeClass('save-to-wishlist');
+                    $("#item-saved-modal").click();
                 }
             }
         });
@@ -101,7 +100,7 @@ $(document).ready(function(){
     $('.remove-from-wishlist').click(function(){
         var current=$(this);
         var product_id=$(this).attr('value');
-
+        
         $.ajax({
             type: "POST",
             url: 'cart-action.php',
@@ -110,7 +109,6 @@ $(document).ready(function(){
                 action:'remove-from-wishlist'
             },
             success: function(response){
-                console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.valid == false) {
                     window.location.href = 'loginform.php?msg=wishlistaccess';
@@ -118,7 +116,8 @@ $(document).ready(function(){
                 else{
                     current.removeClass('bxs-heart');
                     current.addClass('bx-heart');
-                    alert('done');
+                    current.addClass('save-to-wishlist');
+                    current.removeClass('remove-from-wishlist');
                 }
             }
         });
