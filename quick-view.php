@@ -32,10 +32,10 @@ if(isset($_POST['product_id']) && isset($_POST['type']) && strtolower($_POST['ty
 }
 
 echo '<div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <img src="image/product/'.$img.'" class="img-fluid quick-img" >
         </div>
-        <div class="col-5 justify-content-center align-item-center">
+        <div class="col-md-5 justify-content-center align-item-center">
             <h1 class="pb-2">'.$name.'</h1>';
             for($i=1; $i<=$avgRating; $i++)
             {
@@ -67,9 +67,24 @@ echo '<div class="row">
                 <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center" id="add-cart-with-quantity" value="'.$product_id.'">
                     <span>Add To Cart</span>
                 </div>
-                <div class="px-2 mx-1 mini-wrapper">
-                    <i class="bx bx-heart"></i>
-                </div>
+                <div class="px-2 mx-1 mini-wrapper">';
+                if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
+                {
+                    $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
+
+                    if($wishlist_status)
+                    {
+                        echo '<i class="bx bxs-heart remove-from-wishlist" value="'.$product_id.'"></i>';
+                    }
+                    else
+                    {
+                        echo '<i class="bx bx-heart save-to-wishlist" value="'.$product_id.'"></i>';
+                    }
+                }
+                else{
+                    echo '<i class="bx bx-heart save-to-wishlist" value="'.$product_id.'"></i>';
+                }
+                echo '</div>
             </div>
             <div class="row mt-3">
                 <span class="text-muted"><small>category : <span class="text-lowercase">'.$cat_name.'</small></span></span>

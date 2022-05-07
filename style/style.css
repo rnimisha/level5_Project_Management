@@ -270,7 +270,7 @@ label{
 }
 
 
-.quick-view-product:hover, .add-to-cart:hover, .bx-heart:hover, .bxs-heart:hover{
+.quick-view-product:hover, .add-to-cart:hover, .bx-heart:hover, .bxs-heart:hover, .mini-wrapper:hover{
     background-color: #c5deca;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     color:#000000;

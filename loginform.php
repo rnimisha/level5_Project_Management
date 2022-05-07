@@ -45,6 +45,17 @@
                 </div>
                 <?php
             }
+            if($_GET['msg']=="wishlistaccess")
+            {
+                ?>
+                <div class="alert alert-warning login-msg" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                    </button>
+                    <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access wishlist.</h5>
+                </div>
+                <?php
+            }
         }
     ?>
     <form action="validateLogin.php" method="POST"  id="login-form">

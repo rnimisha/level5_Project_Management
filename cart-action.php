@@ -6,11 +6,12 @@
 
     if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
     {
+        //cart
         if(isset($_POST['action']) && $_POST['action']=='add-to-cart')
         {
             if(isset($_POST['product_id']) && !empty($_POST['product_id']))
             {
-            $_SESSION['cart-product-remaining']=$_POST['product_id'];
+                $_SESSION['cart-product-remaining']=$_POST['product_id'];
             }
 
             if(isset($_POST['quantity']))
@@ -21,6 +22,15 @@
                 $_SESSION['quantity']=1;
             }
         }
+        //wishlist 
+        if(isset($_POST['action']) && $_POST['action']=='save-to-wishlist')
+        {
+            if(isset($_POST['product_id']) && !empty($_POST['product_id']))
+            {
+                $_SESSION['wishlist-product-remaining']=$_POST['product_id'];
+            }
+        }
+        //for response
         $cart_action['valid']=false;
     }
     else if(isset($_SESSION['phoenix_user']) && isset($_SESSION['user_role']) && $_SESSION['user_role']=='C' && isset($_POST['product_id']) && !empty($_POST['product_id']) && isset($_POST['action']))

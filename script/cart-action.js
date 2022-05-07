@@ -68,4 +68,34 @@ $(document).ready(function(){
             }
         });
     });
+
+    //save to wishlist
+    $('.save-to-wishlist').click(function(){
+        var product_id=$(this).attr('value');
+
+        $.ajax({
+            type: "POST",
+            url: 'cart-action.php',
+            data: {
+                product_id:product_id,
+                action:'save-to-wishlist'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.valid == false) {
+                    window.location.href = 'loginform.php?msg=wishlistaccess';
+                }
+                else{
+                    if(resp.stocklimit == true)
+                    {
+                        alert('error');
+                    }
+                    else{
+                        alert('done');
+                    }
+                }
+            }
+        });
+    });
 });

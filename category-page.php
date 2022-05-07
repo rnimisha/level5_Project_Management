@@ -392,19 +392,19 @@ include_once('function.php');
                                         if($wishlist_status)
                                         {
                                         ?>
-                                            <i class='bx bxs-heart'></i>
+                                            <i class='bx bxs-heart remove-from-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                         <?php
                                         }
                                         else
                                         {
                                         ?>
-                                            <i class='bx bx-heart'></i>
+                                            <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                         <?php
                                         }
                                     }
                                     else{
                                         ?>
-                                            <i class='bx bx-heart'></i>
+                                            <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                     <?php
                                     }
                                     ?>
@@ -500,19 +500,19 @@ include_once('function.php');
                                             if($wishlist_status)
                                             {
                                             ?>
-                                                <i class='bx bxs-heart'></i>
+                                                <i class='bx bxs-heart remove-from-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                             <?php
                                             }
                                             else
                                             {
                                             ?>
-                                                <i class='bx bx-heart'></i>
+                                                <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                             <?php
                                             }
                                         }
                                         else{
                                             ?>
-                                            <i class='bx bx-heart'></i>
+                                            <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                         <?php
                                         }
                                     ?>
