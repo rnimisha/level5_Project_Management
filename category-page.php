@@ -493,7 +493,7 @@ include_once('function.php');
                                     </div>
                                     <div class="list-options">
                                     <?php
-                                        if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
+                                        if(isset($_SESSION['phoenix_user']) && strtoupper($_SESSION['user_role'])=='C')
                                         {
                                             $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
 

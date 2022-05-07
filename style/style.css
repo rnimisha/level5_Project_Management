@@ -457,3 +457,43 @@ i.bx.bxs-heart {
     background-color: #d5e3d9;
     font-size: 15px;
 }
+
+.active-img{
+    background: #F3F9EE33;
+    border-radius: 16px;
+    box-shadow: 0 2px 15px #d7d2d2;
+    backdrop-filter: blur(5.2px);
+    -webkit-backdrop-filter: blur(5.2px);
+    border: 1px solid #F3F9EE33;
+}
+
+.more-product-info{
+    border-radius: 10px;
+    width: 88%;
+    margin: 5%;
+}
+
+.detail-nav{
+    border: 1px solid #e8e8e8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 1000;
+    
+}
+
+.active-detail-nav{
+    border-bottom: 6px solid #ffffff;
+    color: #78967e;
+    box-shadow: 0px -8px 8px -8px #c0e8c8, -8px 0 8px -8px #c0e8c8;
+}
+.detail-into-container{
+    margin-left: 1px;
+    border:1px solid #e8e8e8;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    margin-top: -1px;  
+}
+
+i.bx.bx-star {
+    color: gray;
+}

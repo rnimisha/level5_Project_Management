@@ -1,6 +1,34 @@
 $('.action-success').hide();
 $(document).ready(function(){
 
+    var minimum_val=1;
+    $('.plus').click(function(){
+        var stock=$('#stock-amount').val();
+        if(stock > minimum_val)
+        {
+            minimum_val++;
+            $('#real-quantity').val(minimum_val);
+            $('.quantity').text(minimum_val);
+        }
+        else{
+
+            alert('There are no further quantity in stock to add in cart');
+        }
+        
+    })
+
+    $('.minus').click(function(){
+        var current_val=$('#real-quantity').val();
+        if(current_val > 1){
+            current_val--;
+            $('#real-quantity').val(current_val);
+            $('.quantity').text(current_val);
+        }
+        else{
+            alert('Quantity cannot be less than 1');
+        }
+    })
+
     //add to cart on click
     $('.add-to-cart').click(function(){
         var product_id=$(this).attr('value');
@@ -122,4 +150,14 @@ $(document).ready(function(){
             }
         });
     });
+
+    //change product detail image shown
+    $('.mini-img').click(function(){
+        $imgname=$(this).attr('src');
+        $('.bigger-img').attr('src',$imgname);
+        $('.mini-img-container').removeClass('active-img');
+        $(this).parent().addClass('active-img');
+    });
 });
+
+$('.mini-img-container').first().addClass('active-img');
