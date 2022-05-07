@@ -448,7 +448,7 @@ i.bx.bxs-heart {
 .product-detail-main-container{
     width: 95%;
 }
-.main-product-detail .bxs-star{
+.main-product-detail .bxs-star, .main-product-detail .bx-star{
     font-size: 20px;
 }
 

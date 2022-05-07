@@ -1,3 +1,26 @@
+<?php
+include_once('connection.php');
+include_once('function.php');
+$product_id=1; //for a moment
+$getProduct= "SELECT * FROM PRODUCT WHERE PRODUCT_ID=$product_id";
+
+$parsedgetProduct = oci_parse($connection, $getProduct);
+oci_execute($parsedgetProduct);
+while (($row = oci_fetch_assoc($parsedgetProduct)) != false) {
+    $name=$row['PRODUCT_NAME'];
+    $descp=$row['DESCRIPTION']->load();
+    $price=$row['PRICE'];
+    $unit=$row['PRICING_UNIT'];
+    $stock=$row['STOCK_QUANTITY'];
+    $cat_id=$row['CATEGORY_ID'];
+    $shop_id=$row['SHOP_ID'];
+}
+$avgRating=getAvgRating($product_id, $connection);
+$totalReviews=getTotalReview($product_id, $connection);
+$cat_name=getCategory($cat_id, $connection);
+$shop_name=getShop($shop_id, $connection);
+$img= getProductImage($product_id,$connection);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,41 +40,57 @@
             <div class="col-md-5">
                 <div class="row prod-image-div">
                     <div class="product-img-container">
-                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img m-auto"/>
+                        <img src="image\product\<?php echo $img[0];?>"  class="img-fluid product-detail-img m-auto"/>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center align-items-center prod-image-div pt-2">
-                    <div class="col-3 mini-img-container mr-2">
-                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img"/>
-                    </div>
-                    <div class="col-3 mini-img-container mr-2">
-                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img"/>
-                    </div>
-                    <div class="col-3 mini-img-container">
-                        <img src="image\product\173307623.jpg"  class="img-fluid product-detail-img"/>
-                    </div>
+                    <?php
+                        foreach($img as $prodimg)
+                        {
+                            ?>
+                            <div class="col-3 mini-img-container mr-2">
+                                <img src="image\product\<?php echo $prodimg;?>"  class="img-fluid product-detail-img"/>
+                            </div>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
             <div class="col-md-7 pl-4 main-product-detail">
                 <div class="pl-4 mt-3">
-                    <h1 class="pb-2">Strawberry</h1>
+                    <h1 class="pb-2"><?php echo $name; ?></h1>
                 </div>
                 <div  class="pl-4">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <span class="text-muted"><small>(20 reviews)</small></span>
+                    <?php 
+                        for($i=1; $i<=$avgRating; $i++)
+                        {
+                    ?>
+                            <i class='bx bxs-star'></i>
+                    <?php
+                        }
+                        for($i=1; $i<=(5-$avgRating); $i++)
+                        {
+                    ?>
+                            <i class='bx bx-star'></i>
+                    <?php
+                        }
+                    ?>
+                    <span class="text-muted"><small>(<?php echo $totalReviews;?> reviews)</small></span>
                 </div>
                 <div class="pl-4  mt-3">
-                    <span  class="badge badge-pill badge-completed">In Stock</span>
+                    <?php
+                        if($stock>0){
+                    ?>
+                        <span  class="badge badge-pill badge-completed">In Stock</span>
+                    <?php
+                        }
+                    ?>
                 </div>
                 <div class="pl-4 pt-3">
-                    <h3><span>&#163;</span>12/lb</h3>
+                    <h3><span>&#163;</span><?php echo $price.'/'.$unit;?></h3>
                 </div>
                 <div class="pl-4 d-none d-lg-flex">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus molestiae libero, dolorum id accusamus eius asperiores quod aut eligendi iste iure veritatis mollitia similique assumenda suscipit laudantium perferendis est quas?
+                    <?php echo $descp;?>
                 </div>
                 <div class="pl-4 mt-4 d-flex justify-content-left align-items-center">
                     <div class="py-2 wrapper d-flex  align-items-center">
@@ -60,7 +99,7 @@
                         <span class="plus">+</span>
                     </div>
                 </div>
-                <div class="pl-4 mt-4 d-flex justify-content-left align-items-center">
+                <div class="pl-4 mt-4 pb-2 d-flex justify-content-left align-items-center">
                     <div class="py-2 second-wrapper d-flex justify-content-center align-items-center mr-2">
                         <span>Buy Now</span>
                     </div>
@@ -73,16 +112,16 @@
                 </div>
                 <hr>
                 <div class="pl-4  mt-3">
-                    <span class="text-muted"><small>category : <span class="text-lowercase">category</small></span></span>
+                    <span class="text-muted"><small>category : <span class="text-lowercase"><?php echo $cat_name;?></small></span></span>
                 </div>
                 <div class="pl-4  mb-4">
-                    <span class="text-muted"><small>shop : <span class="text-lowercase">shop</small></span></span>
+                    <span class="text-muted"><small>shop : <span class="text-lowercase"><?php echo $shop_name;?></small></span></span>
                 </div>
             </div>
         </div>
     </div>
     <input type="hidden" value="1" id="real-quantity"/>
-    <input type="hidden" value="" id="stock-amount"/>
+    <input type="hidden" value="<?php echo $stock;?>" id="stock-amount"/>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
@@ -100,4 +139,5 @@
 <!-- custom script -->
 <script src="script/function.js"></script>
 <script src="script/cart-action.js"></script>
+<script src="script/category-filter.js"></script>
 </html>

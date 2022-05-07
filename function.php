@@ -75,7 +75,7 @@ function checkShopExceed($trader_id, $connection)
 //get product image
 function getProductImage($product_id, $connection)
 {
-    $query="SELECT * FROM PRODUCT_IMAGE WHERE PRODUCT_ID=$product_id";
+    $query="SELECT * FROM PRODUCT_IMAGE WHERE PRODUCT_ID=$product_id AND ROWNUM<=3";
     $parsed=oci_parse($connection,$query);
 
     oci_execute($parsed);
