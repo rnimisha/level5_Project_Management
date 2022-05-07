@@ -4,6 +4,8 @@ $(document).ready(function(){
     //add to cart on click
     $('.add-to-cart').click(function(){
         var product_id=$(this).attr('value');
+        $(this).removeClass('bx-cart-alt');
+        $(this).addClass('bx-loader-circle bx-spin');
         $.ajax({
             type: "POST",
             url: 'cart-action.php',
@@ -13,6 +15,9 @@ $(document).ready(function(){
             },
             success: function(response){
                 var resp=jQuery.parseJSON(response);
+                $('.add-to-cart').removeClass('bx-loader-circle');
+                $('.add-to-cart').removeClass('bx-spin');
+                $('.add-to-cart').addClass('bx-cart-alt');
                 if(resp.valid == false) {
                     window.location.href = 'loginform.php?msg=cartaccess';
                 }

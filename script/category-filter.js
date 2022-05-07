@@ -3,7 +3,6 @@ $(window).on("load",function(){
     $(".container-fluid").fadeIn(1000);
 });
 $(document).ready(function(){
-
     //jquery ui function for price range
     $(function() {
         $("#price-range").slider({

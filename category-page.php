@@ -384,7 +384,30 @@ include_once('function.php');
                                     <i class='bx bx-cart-alt add-to-cart' value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                 </div>
                                 <div>
-                                    <i class='bx bx-heart'></i>
+                                    <?php
+                                    if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
+                                    {
+                                        $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
+
+                                        if($wishlist_status)
+                                        {
+                                        ?>
+                                            <i class='bx bxs-heart'></i>
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                        ?>
+                                            <i class='bx bx-heart'></i>
+                                        <?php
+                                        }
+                                    }
+                                    else{
+                                        ?>
+                                            <i class='bx bx-heart'></i>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div>
@@ -469,7 +492,30 @@ include_once('function.php');
                                             value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                     </div>
                                     <div class="list-options">
-                                        <i class='bx bx-heart'></i>
+                                    <?php
+                                        if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
+                                        {
+                                            $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
+
+                                            if($wishlist_status)
+                                            {
+                                            ?>
+                                                <i class='bx bxs-heart'></i>
+                                            <?php
+                                            }
+                                            else
+                                            {
+                                            ?>
+                                                <i class='bx bx-heart'></i>
+                                            <?php
+                                            }
+                                        }
+                                        else{
+                                            ?>
+                                            <i class='bx bx-heart'></i>
+                                        <?php
+                                        }
+                                    ?>
                                     </div>
                                 </div>
                             </div>
@@ -620,6 +666,9 @@ include_once('function.php');
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- custom script -->
+<script>
+    var click_count=0;
+</script>
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>

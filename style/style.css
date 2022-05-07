@@ -158,6 +158,7 @@ select {
     backdrop-filter: blur( 6px );
     -webkit-backdrop-filter: blur( 6px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 
 
@@ -269,7 +270,7 @@ label{
 }
 
 
-.quick-view-product:hover, .add-to-cart:hover{
+.quick-view-product:hover, .add-to-cart:hover, .bx-heart:hover, .bxs-heart:hover{
     background-color: #c5deca;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     color:#000000;
@@ -394,6 +395,11 @@ label{
 {
     font-size: 20px;
 }
+
+i.bx.bxs-heart {
+    color: rgb(247, 129, 129);
+}
+
 @media (min-width: 576px)
 {
     .modal-dialog {

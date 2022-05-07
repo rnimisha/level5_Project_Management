@@ -221,7 +221,7 @@ function getDescription($product_id, $connection)
 //Check if product exists in cart
 function checkCartProduct($product_id, $user_id, $connection)
 {
-    $query="SELECT  COUNT(*) AS NUMBER_OF_ROWS FROM CART_ITEM WHERE PRODUCT_ID=$product_id AND USER_ID=$user_id";
+    $query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM CART_ITEM WHERE PRODUCT_ID=$product_id AND USER_ID=$user_id";
     $result=oci_parse($connection, $query);
 
     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
@@ -293,6 +293,24 @@ function getStockLeftToAdd($product_id, $user_id,$stock, $connection)
     $row=oci_fetch_assoc($parsed);
     $quantity=$stock-$row['QUANTITY'];
     return $quantity;
+}
+
+function checkProductInWishList($product_id, $user_id, $connection)
+{
+    $query="SELECT  COUNT(*) AS NUMBER_OF_ROWS FROM WISHLIST_ITEM WHERE PRODUCT_ID=$product_id AND USER_ID=$user_id";
+    $result=oci_parse($connection, $query);
+
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    oci_free_statement($result);
+    if($number_of_rows>0)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 ?>
