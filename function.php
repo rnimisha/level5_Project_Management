@@ -258,11 +258,30 @@ function getCartProductQuantity($product_id, $user_id, $connection)
 function addProductQuantity($product_id, $user_id, $old_quantity, $quantity, $connection)
 {
     $new_quantity=$old_quantity+$quantity;
-    $query="UPDATE CART_ITEM SET QUANTITY=$new_quantity WHERE USER_ID=$user_id AND PRODUCT_ID=$product_id";
-    $result=oci_parse($connection, $query);
-
-    oci_execute($result);
-    oci_free_statement($result);
+    $stock=getProductStock($product_id, $connection);
+    if($stock<$new_quantity)
+    {
+        return false;
+    }
+    else
+    {
+        $query="UPDATE CART_ITEM SET QUANTITY=$new_quantity WHERE USER_ID=$user_id AND PRODUCT_ID=$product_id";
+        $result=oci_parse($connection, $query);
+    
+        oci_execute($result);
+        oci_free_statement($result);
+        return true;
+    }
 }
 
+//get product stock
+function getProductStock($product_id, $connection)
+{
+    $query="SELECT * FROM PRODUCT WHERE PRODUCT_ID=$product_id";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $row=oci_fetch_assoc($parsed);
+    $stock=$row['STOCK_QUANTITY'];
+    return $stock;
+}
 ?>
