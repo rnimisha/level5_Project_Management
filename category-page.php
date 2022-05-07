@@ -1,19 +1,6 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
-if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']))
-{
-    if((checkCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection))>0)
-    {
-        $original_quantity=getCartProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection);
-        addProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],$original_quantity,1, $connection);
-    }
-    else{
-        insertCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],1, $connection);
-    }
-    echo 'item added to cart'.$_SESSION['cart-product-remaining'];
-    unset($_SESSION['cart-product-remaining']);
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,8 +22,8 @@ if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']
     <div class="loader">
         <img src="image/loader.gif"/>
     </div>
-    <div class="alert alert-success action-success" role="alert">
-        
+    <div class="alert alert-danger action-success" role="alert">
+        <h5><strong><i class='bx bx-error-circle' ></i> Failure!</strong> <br/>No more stock available to add.</h5>
     </div>
     <div class="container-fluid">
         <div class="row w-100 p-5">
@@ -466,7 +453,7 @@ if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']
                                         <i class='bx bx-search-alt-2 quick-view-product' value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                     </div>
                                     <div class="list-options">
-                                        <i class='bx bx-cart-alt'></i>
+                                        <i class='bx bx-cart-alt add-to-cart'  value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                     </div>
                                     <div class="list-options">
                                         <i class='bx bx-heart'></i>
@@ -546,6 +533,55 @@ if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']
             </div>
         </div>
     </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" id="item-added-modal" class="btn btn-primary d-none" data-toggle="modal" data-target="#popItemAdded">
+        preview
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="popItemAdded" tabindex="-1" role="dialog"
+        aria-labelledby="popItemAdded" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content w-50 mx-auto">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row item-added-body d-flex justify-content-center align-items-center mb-4">
+                    <div class="col-12 text-center mt-n2">
+                        <h3 style="color:#78967e; font-weight:bolder;">Item Added To Cart Successfully</h3>
+                    </div>
+                    <div class="col-12 text-center mt-n2">
+                        <img src="image/cart-add-success.gif" alt="cart-add-success" class="product-pic"/>
+                    </div>
+                    <div class="col-4 text-center py-3 btn">
+                        Continue Shopping
+                    </div>
+                    <div class="col-4 text-center ml-1 py-3 btn">
+                        Go To Cart
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+        if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']))
+        {
+            if((checkCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection))>0)
+            {
+                $original_quantity=getCartProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection);
+                addProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],$original_quantity,1, $connection);
+            }
+            else{
+                insertCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],1, $connection);
+            }
+            unset($_SESSION['cart-product-remaining']);
+            echo '<script> window.onload = function () {document.getElementById("item-added-modal").click(); }; </script>';
+        }
+    ?>
 </body>
 
 <!-- external script -->
@@ -554,13 +590,6 @@ if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script>
-    $(window).on("load",function(){
-        $(".loader").fadeOut(1000);
-        $(".container-fluid").fadeIn(1000);
-    });
-</script>
 <!-- for price range -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
