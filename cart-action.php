@@ -68,7 +68,12 @@
         {
             saveToWishlist($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
         }
-        
+
+        if($_POST['action']=='remove-from-wishlist')
+        {
+            removeFromWishlist($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
+        }
+
         $cart_action['valid']=true;
     }
 

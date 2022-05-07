@@ -68,9 +68,9 @@ echo '<div class="row">
                     <span>Add To Cart</span>
                 </div>
                 <div class="px-2 mx-1 mini-wrapper">';
-                if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
+                if(isset($_SESSION['phoenix_user']) && (isset($_SESSION['user_role'])))
                 {
-                    $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
+                    $wishlist_status=checkProductInWishList($product_id, $_SESSION['phoenix_user'], $connection);
 
                     if($wishlist_status)
                     {
@@ -78,7 +78,7 @@ echo '<div class="row">
                     }
                     else
                     {
-                        echo '<i class="bx bx-heart save-to-wishlist" value="'.$product_id.'"></i>';
+                        echo '<i class="bx bx-heart save-to-wishlist wishlist-clicked" value="'.$product_id.'"></i>';
                     }
                 }
                 else{
