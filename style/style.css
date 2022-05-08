@@ -509,3 +509,14 @@ i.bx.bx-star {
 .rating-heading{
     font-size: 50px;
 }
+.comment-bar{
+    /* background-color: #e8e8e8;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px; */
+}
+
+.review-profile{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
