@@ -129,6 +129,21 @@ function getTotalReview($product_id, $connection)
     return $number_of_rows;
 }
 
+function getRatingPercent($product_id, $stars ,$connection)
+{
+    $query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM REVIEW WHERE PRODUCT_ID=$product_id AND STAR_RATING=$stars";
+    $result=oci_parse($connection, $query);
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    oci_free_statement($result);
+
+    $totalRating= getTotalReview($product_id, $connection);
+    $percent=($number_of_rows/$totalRating)*100;
+    $value=array($number_of_rows, $percent);
+    return $value;
+    
+}
 
 //get category name from id
 function getCategory($cat_id, $connection)

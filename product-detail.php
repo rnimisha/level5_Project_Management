@@ -144,7 +144,7 @@ $img= getProductImage($product_id,$connection);
             </div>
         </div>
 
-        <div class="row mt-5 more-product-info">
+        <div class="row mt-4 more-product-info">
             <div class="row w-100 px-3">
                 <div class="col-3 detail-nav p-1 active-detail-nav text-center">
                     <b><h5>Description</h5></b>
@@ -175,29 +175,33 @@ $img= getProductImage($product_id,$connection);
                     ?>
                 </div> -->
                 <div class="prod-review-div row w-100">
-                    <div class="row w-100 ">
-                        <div class="col-4 text-center">
-                            <div class="h1"><?php echo $avgRating; ?></div>
+                    <div class="row w-100">
+                        <div class="col-6 text-center mt-n2">
+                            <div class="h1 rating-heading"><?php echo $avgRating; ?></div>
                             <div>Out of 5</div>
                             <div class="d-flex d-flex justify-content-center align-items-center">
                                 <?php 
                                 for($i=1; $i<=$avgRating; $i++)
                                 {
                                 ?>
-                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star pr-2'></i>
                                 <?php
                                 }
                                 for($i=1; $i<=(5-$avgRating); $i++)
                                 {
                                 ?>
-                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star pr-2'></i>
                                 <?php
                                 }
                                 ?>
                             </div>
+                            <div class="text-muted">
+                                <?php echo $totalReviews; ?> Reviews
+                            </div>
                         </div>
-                        <div class="col-8">
-                            <div class="5-star-review">
+                        <div class="col-6">
+                            <div class="5-star-review row w-100 d-flex justify-content-end ">
+                                <div class="mr-5">
                                 <?php 
                                 for($i=1;$i<=5; $i++)
                                 {
@@ -205,57 +209,112 @@ $img= getProductImage($product_id,$connection);
                                     <i class='bx bxs-star'></i>
                                 <?php
                                 }
+                                $value= getRatingPercent($product_id, 5, $connection);
+                                $percent=$value[1];
+                                $rating_count=$value[0];
                                 ?>
+                                </div>
+                                <div class="progress col-7 p-0">
+                                    <div class="progress-bar w-<?php echo $percent;?>" role="progressbar" aria-valuenow="<?php echo $percent;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="text-muted pl-2">
+                                   <small> <?php echo $rating_count;?></small>
+                                </div>
                             </div>
-                            <div class="4-star-review">
-                                <?php 
-                                for($i=1;$i<=4; $i++)
-                                {
-                                ?>
-                                    <i class='bx bxs-star'></i>
-                                <?php
-                                }
-                                ?>
-                                <i class='bx bx-star'></i>
+                            
+                            <div class="4-star-review row w-100 d-flex justify-content-end">
+                                <div class="mr-5">
+                                    <?php 
+                                    for($i=1;$i<=4; $i++)
+                                    {
+                                    ?>
+                                        <i class='bx bxs-star'></i>
+                                    <?php
+                                    }
+                                    $value= getRatingPercent($product_id, 4, $connection);
+                                    $percent=$value[1];
+                                    $rating_count=$value[0];
+                                    ?>
+                                    <i class='bx bx-star'></i>
+                                </div>
+                                <div class="progress col-7 p-0">
+                                    <div class="progress-bar w-<?php echo $percent;?>" role="progressbar" aria-valuenow="<?php echo $percent;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="text-muted pl-2">
+                                   <small> <?php echo $rating_count;?></small>
+                                </div>
                             </div>
-                            <div class="3-star-review">
-                                <?php 
-                                for($i=1;$i<=3; $i++)
-                                {
-                                ?>
-                                    <i class='bx bxs-star'></i>
-                                <?php
-                                }
-                                ?>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
+                            <div class="3-star-review row w-100 d-flex justify-content-end">
+                                <div class="mr-5">
+                                    <?php 
+                                    for($i=1;$i<=3; $i++)
+                                    {
+                                    ?>
+                                        <i class='bx bxs-star'></i>
+                                    <?php
+                                    }
+                                    $value= getRatingPercent($product_id, 3, $connection);
+                                    $percent=$value[1];
+                                    $rating_count=$value[0];
+                                    ?>
+                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star'></i>
+                                </div>
+                                <div class="progress col-7 p-0">
+                                    <div class="progress-bar w-<?php echo $percent;?>" role="progressbar" aria-valuenow="<?php echo $percent;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="text-muted pl-2">
+                                   <small> <?php echo $rating_count;?></small>
+                                </div>
                             </div>
-                            <div class="2-star-review">
+                            <div class="2-star-review row w-100 d-flex justify-content-end">
+                                <div class="mr-5">
                                 <?php 
-                                for($i=1;$i<=2; $i++)
-                                {
-                                ?>
-                                    <i class='bx bxs-star'></i>
-                                <?php
-                                }
-                                ?>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
+                                    for($i=1;$i<=2; $i++)
+                                    {
+                                    ?>
+                                        <i class='bx bxs-star'></i>
+                                    <?php
+                                    }
+                                    $value= getRatingPercent($product_id, 2, $connection);
+                                    $percent=$value[1];
+                                    $rating_count=$value[0];
+                                    ?>
+                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star'></i>
+                                </div>
+                                <div class="progress col-7 p-0">
+                                    <div class="progress-bar w-<?php echo $percent;?>" role="progressbar" aria-valuenow="<?php echo $percent;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="text-muted pl-2">
+                                   <small> <?php echo $rating_count;?></small>
+                                </div>
                             </div>
-                            <div class="1-star-review">
-                                <?php 
-                                for($i=1;$i<=1; $i++)
-                                {
-                                ?>
-                                    <i class='bx bxs-star'></i>
-                                <?php
-                                }
-                                ?>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
-                                <i class='bx bx-star'></i>
+                            <div class="1-star-review row w-100 d-flex justify-content-end">
+                                <div class="mr-5">
+                                    <?php 
+                                    for($i=1;$i<=1; $i++)
+                                    {
+                                    ?>
+                                        <i class='bx bxs-star'></i>
+                                    <?php
+                                    }
+                                    $value= getRatingPercent($product_id, 1, $connection);
+                                    $percent=$value[1];
+                                    $rating_count=$value[0];
+                                    ?>
+                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-star'></i>
+                                </div>
+                                <div class="progress col-7 p-0">
+                                    <div class="progress-bar w-<?php echo $percent;?>" role="progressbar" aria-valuenow="<?php echo $percent;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="text-muted pl-2">
+                                   <small> <?php echo $rating_count;?></small>
+                                </div>
                             </div>
                         </div>
                     </div>
