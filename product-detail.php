@@ -146,23 +146,24 @@ $img= getProductImage($product_id,$connection);
 
         <div class="row mt-4 more-product-info">
             <div class="row w-100 px-3">
-                <div class="col-3 detail-nav p-1 active-detail-nav text-center">
+                <div class="col-3 detail-nav description-nav p-1 pt-2 active-detail-nav text-center">
                     <b><h5>Description</h5></b>
                 </div>
-                <div class="col-3 detail-nav p-1 text-center">
+                <div class="col-3 detail-nav p-1 pt-2 text-center allergy-nav">
                     <b><h5>Allergy Info</h5></b>
 
                 </div>
-                <div class="col-3 detail-nav p-1 text-center">
+                <div class="col-3 detail-nav p-1 pt-2 text-center review-nav">
                     <b><h5>Review</h5></b>
                 </div>
             </div>
             <div class="row w-100 detail-into-container p-5">
-                <!-- <div class="prod-descp-div">
-                    <h5>Information</h5>
+                <div class="prod-descp-div transition-effect">
+                    <h5>Product Details</h5>
                     <?php echo $descp;?>
                 </div>
-                <div class="prod-allergy-div">
+                <div class="prod-allergy-div d-none transition-effect">
+                    <h5>Product Ingredients</h5>
                     <?php 
                         if(isset($allergy) && !empty(trim($allergy)))
                         {
@@ -173,8 +174,12 @@ $img= getProductImage($product_id,$connection);
                             echo "No allergy information available";
                         }
                     ?>
-                </div> -->
-                <div class="prod-review-div row w-100">
+                </div>
+                <div class="prod-review-div d-none row w-100 transition-effect">
+                    <?php
+                        if(getTotalReview($product_id, $connection)>0)
+                        {
+                    ?>
                     <div class="row w-100">
                         <div class="col-lg-6 text-center mt-n2">
                             <div class="h1 rating-heading"><?php echo $avgRating; ?></div>
@@ -322,10 +327,13 @@ $img= getProductImage($product_id,$connection);
                     <div class="row w-100 ml-3 mt-4">
                         <div class="col-12 comment-bar p-1">
                             <div class="row align-items-end">
-                                <div class="col-6 justify-content-start align-items-start text-left pl-5">
+                                <div class="col-md-5 justify-content-start align-items-start text-left pl-5">
                                     <h4>Comments</h4>
                                 </div>
-                                <div class="col-3 offset-3 text-right pr-5">
+                                <div class="col-md-4 text-right">
+                                   <div class="btn write-review">Write Review</div>
+                                </div>
+                                <div class="col-3 text-right pr-5">
                                 <select class="custom-select form-control" id="sort-review-option" name="sort-review-option">
                                     <option value="top">
                                         Sort by : Top Rated
@@ -478,6 +486,22 @@ $img= getProductImage($product_id,$connection);
                         </div>
 
                     </div>
+                    <?php
+                        }
+                        else
+                        {
+                    ?>
+                        <div class="row w-100 justify-content-center align-items-center">
+                            <div class="col-12 text-center">
+                                No reviews yet
+                            </div>
+                            <div class="col-12 text-center mt-4"> 
+                                <div class="btn write-review p-2">Write Review</div>
+                            </div>
+                        </div>
+                    <?php
+                        }
+                    ?> 
                 </div>
             </div>
         </div>

@@ -22,29 +22,104 @@ $(document).ready(function(){
         }
     });
 
-    function showRecentReviews()
-    {
-        
-        if($('.newest-review').hasClass('d-none')){
-            $('.newest-review').removeClass('d-none');
-        }
-        if(!$('.top-rated-review').hasClass('d-none')){
-            $('.top-rated-review').addClass('d-none');
-        }
-    }
+    $('.description-nav').click(function(){
 
-    function showTopReviews()
-    {
+        if($('.prod-descp-div').hasClass('d-none'))
+        {
+            $('.prod-descp-div').removeClass('d-none');
+        }
+
+        if(!$('.prod-allergy-div').hasClass('d-none'))
+        {
+            $('.prod-allergy-div').addClass('d-none');
+        }
+
+        if(!$('.prod-review-div').hasClass('d-none'))
+        {
+            $('.prod-review-div').addClass('d-none');
+        }
+
+        $('.detail-nav').removeClass('active-detail-nav');
+        if(!$('.description-nav').hasClass('active-detail-nav'))
+        {
+            $('.description-nav').addClass('active-detail-nav');
+        }
+    });
+
+    $('.allergy-nav').click(function(){
+
+        if($('.prod-allergy-div').hasClass('d-none'))
+        {
+            $('.prod-allergy-div').removeClass('d-none');
+        }
+
+        if(!$('.prod-descp-div').hasClass('d-none'))
+        {
+            $('.prod-descp-div').addClass('d-none');
+        }
+
+        if(!$('.prod-review-div').hasClass('d-none'))
+        {
+            $('.prod-review-div').addClass('d-none');
+        }
+
+        $('.detail-nav').removeClass('active-detail-nav');
+        if(!$('.allergy-nav').hasClass('active-detail-nav'))
+        {
+            $('.allergy-nav').addClass('active-detail-nav');
+        }
+    });
+
+    $('.review-nav').click(function(){
+
+        if($('.prod-review-div').hasClass('d-none'))
+        {
+            $('.prod-review-div').removeClass('d-none');
+        }
+
+        if(!$('.prod-descp-div').hasClass('d-none'))
+        {
+            $('.prod-descp-div').addClass('d-none');
+        }
+
+        if(!$('.prod-allergy-div').hasClass('d-none'))
+        {
+            $('.prod-allergy-div').addClass('d-none');
+        }
         
-        if(!$('.newest-review').hasClass('d-none')){
-            $('.newest-review').addClass('d-none');
+        $('.detail-nav').removeClass('active-detail-nav');
+        if(!$('.review-nav').hasClass('active-detail-nav'))
+        {
+            $('.review-nav').addClass('active-detail-nav');
         }
-        if($('.top-rated-review').hasClass('d-none')){
-            $('.top-rated-review').removeClass('d-none');
-        }
-    }
+    });
+
 });
 
 
 //effect on first img selected
 $('.mini-img-container').first().addClass('active-img');
+
+
+function showRecentReviews()
+{
+    
+    if($('.newest-review').hasClass('d-none')){
+        $('.newest-review').removeClass('d-none');
+    }
+    if(!$('.top-rated-review').hasClass('d-none')){
+        $('.top-rated-review').addClass('d-none');
+    }
+}
+
+function showTopReviews()
+{
+    
+    if(!$('.newest-review').hasClass('d-none')){
+        $('.newest-review').addClass('d-none');
+    }
+    if($('.top-rated-review').hasClass('d-none')){
+        $('.top-rated-review').removeClass('d-none');
+    }
+}
+
