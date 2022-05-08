@@ -364,7 +364,7 @@ function removeFromWishlist($product_id, $user_id, $connection)
 function getSimilarProduct($product_id, $category_id, $shop_id, $connection)
 {
     $product_array=[];
-    $sameCategory="SELECT * FROM PRODUCT WHERE CATEGORY_ID=$category_id OR SHOP_ID=$shop_id  AND ROWNUM<=6";
+    $sameCategory="SELECT * FROM PRODUCT WHERE (CATEGORY_ID=$category_id OR SHOP_ID=$shop_id)  AND ROWNUM<=6";
     $result=oci_parse($connection, $sameCategory);
     oci_execute($result);
     while (($row = oci_fetch_assoc($result)) != false) {

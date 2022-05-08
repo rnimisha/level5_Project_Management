@@ -54,7 +54,9 @@ $img= getProductImage($product_id,$connection);
 </head>
 
 <body>
-
+    <div class="alert alert-danger action-success" role="alert">
+        <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
+    </div>
     <div class="container-fluid product-detail-main-container">
         <div class="row w-100 p-5">
             <div class="col-md-5">
@@ -548,7 +550,10 @@ $img= getProductImage($product_id,$connection);
         </div>
 
         <!-- slick slider -->
-        <div class="row mt-4 mx-0 related-product-slider p-5 w-100">
+        <div class="col-12 text-center">
+                <h3 class="mb-n4 all-heading">You Might Also Like<h3>
+        </div>
+        <div class="row mx-0 related-product-slider p-5 w-100 ">
             <?php 
                 $product_array=getSimilarProduct($product_id, $cat_id, $shop_id, $connection);
                 foreach($product_array as $topProductID)
@@ -558,7 +563,7 @@ $img= getProductImage($product_id,$connection);
                     oci_execute($parsed);
                     $row=oci_fetch_assoc($parsed);
                 ?>
-            <div class="col-3">
+            <div class="col-3 cat-product-container" value="<?php echo $row['PRODUCT_ID'];?>">
                 <div class="cat-product col-12 text-center">
                     <div class="inner-img-container">
                         <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
@@ -667,6 +672,9 @@ $img= getProductImage($product_id,$connection);
             </div>
         </div>
     </div>
+    <?php
+        include_once('popup-modal.php');
+    ?>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>

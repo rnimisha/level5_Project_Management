@@ -1,5 +1,30 @@
 $(document).ready(function(){
 
+    //show quick view modal on clicking icon
+    var click_count=0;
+    $('.quick-view-product').click(function(){
+        click_count++;
+        var product_id=$(this).attr('value');
+        $.ajax({
+            type: 'POST',
+            url: 'quick-view.php',
+            data: {
+               product_id:product_id,
+               type: 'quick-view'
+            },
+            success: function(response){
+                $('.quick-view-body').html(response);
+                $('#quick-view').click();
+            }
+        });
+        //prevent protocol stack overload
+        if(click_count>6){
+            location.reload();
+            // $('#submit-filter').click();
+        }
+    });
+
+    
     //change product detail image shown
     $('.mini-img').click(function(){
         $imgname=$(this).attr('src');

@@ -115,7 +115,7 @@ select {
     color: #78967e;
 }
 
-.list-prod-detail h3{
+.list-prod-detail h3, .all-heading{
     color: #78967e;
     font-weight: bold;
 }
