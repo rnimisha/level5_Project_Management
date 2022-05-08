@@ -151,13 +151,6 @@ $(document).ready(function(){
         });
     });
 
-    //change product detail image shown
-    $('.mini-img').click(function(){
-        $imgname=$(this).attr('src');
-        $('.bigger-img').attr('src',$imgname);
-        $('.mini-img-container').removeClass('active-img');
-        $(this).parent().addClass('active-img');
-    });
+    
 });
 
-$('.mini-img-container').first().addClass('active-img');

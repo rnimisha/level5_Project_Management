@@ -199,7 +199,7 @@ $img= getProductImage($product_id,$connection);
                                 <?php echo $totalReviews; ?> Reviews
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 d-none d-md-inline">
                             <div class="5-star-review row w-100 d-flex justify-content-end">
                                 <div class="mr-5">
                                 <?php 
@@ -320,32 +320,163 @@ $img= getProductImage($product_id,$connection);
                     </div>
                     <!-- feedbacks -->
                     <div class="row w-100 ml-3 mt-4">
-                        <div class="col-12 comment-bar p-1 text-center">
-                            <h4>Comments</h4>
-                        </div>
-                        <div class="col-12 comment-bar p-1 text-center">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="review-profile-container">
-                                        <img src="image\profile\default_profile.jpg" class="review-profile img-fluid"/>
-                                    </div>
+                        <div class="col-12 comment-bar p-1">
+                            <div class="row align-items-end">
+                                <div class="col-6 justify-content-start align-items-start text-left pl-5">
+                                    <h4>Comments</h4>
                                 </div>
-                                <div class="col-10 d-block justify-content-start">
-                                    <div class="row w-100">
-                                        <i class='bx bx-star'></i>
-                                        <i class='bx bx-star'></i>
-                                        <i class='bx bx-star'></i>
-                                        <i class='bx bx-star'></i>
-                                    </div>
-                                    <div  class="row w-100 text-muted">
-                                        <small>Name Here</small>
-                                    </div>
-                                    <div  class="row w-100 text-left mt-1">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis omnis, voluptate culpa tempora aperiam nobis! Quisquam similique, sint quae neque asperiores, assumenda repudiandae autem commodi labore sunt sed sequi saepe.
-                                    </div>
+                                <div class="col-3 offset-3 text-right pr-5">
+                                <select class="custom-select form-control" id="sort-review-option" name="sort-review-option">
+                                    <option value="top">
+                                        Sort by : Top Rated
+                                    </option>
+                                    <option value="recent">
+                                        Sort by : Newest
+                                    </option>
+                                </select>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- top rated reviews -->
+                        <div class="col-12 p-1 text-center top-rated-review">
+                            <?php
+                                $query="SELECT REVIEW_COMMENT, STAR_RATING, REVIEW_DATE, NAME,VERIFIED, EMAIL, PROFILE_PIC FROM REVIEW R JOIN MART_USER MU ON R.USER_ID=MU.USER_ID WHERE PRODUCT_ID=$product_id ORDER BY STAR_RATING DESC";
+                                $parsed_query=oci_parse($connection, $query);
+                                oci_execute($parsed_query);
+                                while (($row = oci_fetch_assoc($parsed_query)) != false) {
+                                    if($row['PROFILE_PIC']==null)
+                                    {
+                                        $src="default_profile.jpg";
+                                    }
+                                    else{
+                                        $src=$row['PROFILE_PIC'];
+                                    }
+                            ?>
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <div class="review-profile-container">
+                                            <img src="image\profile\<?php echo $src;?>" class="review-profile img-fluid"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 d-block justify-content-start">
+                                        <div  class="row w-100 text-muted">
+                                            <div class="col-6 justify-content-start align-items-start text-left px-0">
+                                            <?php 
+                                                for($i=1; $i<=$row['STAR_RATING']; $i++)
+                                                {
+                                                ?>
+                                                    <i class='bx bxs-star'></i>
+                                                <?php
+                                                }
+                                                for($i=1; $i<=(5-$row['STAR_RATING']); $i++)
+                                                {
+                                                ?>
+                                                    <i class='bx bx-star'></i>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col-6 text-right px-0">
+                                                <small><?php echo $row['REVIEW_DATE']; ?></small>
+                                            </div>
+                                        </div>
+                                        <div class="row w-100 verification">
+                                            <small><?php echo $row['NAME']; ?></small> 
+                                            <?php
+                                                if(strtoupper($row['VERIFIED'])=='T')
+                                                {
+                                            ?>
+                                                <small><i class='bx bxs-badge-check'></i></small>
+                                            <?php
+                                                }
+                                                else{
+                                                ?>
+                                                    <small><i class='bx bxs-error-alt'> Purchase Not Verified</i></small>
+                                                <?php
+                                                }
+                                            ?>
+                                        </div>
+                                        <div  class="row w-100 text-left mt-1">
+                                            <?php echo $row['REVIEW_COMMENT']->load(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                                }
+                            ?> 
+                        </div>
+
+                        <!-- recent reviews -->
+                        <div class="col-12 p-1 text-center d-none newest-review">
+                            <?php
+                                $query="SELECT REVIEW_COMMENT, STAR_RATING, REVIEW_DATE, NAME,VERIFIED, EMAIL, PROFILE_PIC FROM REVIEW R JOIN MART_USER MU ON R.USER_ID=MU.USER_ID WHERE PRODUCT_ID=$product_id ORDER BY REVIEW_DATE DESC";
+                                $parsed_query=oci_parse($connection, $query);
+                                oci_execute($parsed_query);
+                                while (($row = oci_fetch_assoc($parsed_query)) != false) {
+                                    if($row['PROFILE_PIC']==null)
+                                    {
+                                        $src="default_profile.jpg";
+                                    }
+                                    else{
+                                        $src=$row['PROFILE_PIC'];
+                                    }
+                            ?>
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <div class="review-profile-container">
+                                            <img src="image\profile\<?php echo $src;?>" class="review-profile img-fluid"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 d-block justify-content-start">
+                                        <div  class="row w-100 text-muted">
+                                            <div class="col-6 justify-content-start align-items-start text-left px-0">
+                                            <?php 
+                                                for($i=1; $i<=$row['STAR_RATING']; $i++)
+                                                {
+                                                ?>
+                                                    <i class='bx bxs-star'></i>
+                                                <?php
+                                                }
+                                                for($i=1; $i<=(5-$row['STAR_RATING']); $i++)
+                                                {
+                                                ?>
+                                                    <i class='bx bx-star'></i>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col-6 text-right px-0">
+                                                <small><?php echo $row['REVIEW_DATE']; ?></small>
+                                            </div>
+                                        </div>
+                                        <div class="row w-100 verification">
+                                            <small><?php echo $row['NAME']; ?></small> 
+                                            <?php
+                                                if(strtoupper($row['VERIFIED'])=='T')
+                                                {
+                                            ?>
+                                                <small><i class='bx bxs-badge-check'></i></small>
+                                            <?php
+                                                }
+                                                else{
+                                                ?>
+                                                    <small><i class='bx bxs-error-alt'> Purchase Not Verified</i></small>
+                                                <?php
+                                                }
+                                            ?>
+                                        </div>
+                                        <div  class="row w-100 text-left mt-1">
+                                            <?php echo $row['REVIEW_COMMENT']->load(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                                }
+                            ?>
+                            
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -404,5 +535,6 @@ $img= getProductImage($product_id,$connection);
 
 <!-- custom script -->
 <script src="script/function.js"></script>
+<script src="script/script.js"></script>
 <script src="script/cart-action.js"></script>
 </html>
