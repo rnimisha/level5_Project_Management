@@ -367,8 +367,7 @@ include_once('function.php');
                     {
 
                     ?>
-                    <div
-                        class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container">
+                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container" value="<?php echo $row['PRODUCT_ID'];?>">
                         <div class="cat-product col-12 text-center">
                             <div class="inner-img-container">
                                 <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
@@ -715,8 +714,8 @@ include_once('function.php');
 <script>
     var click_count=0;
 </script>
+<script src="script/script.js"></script>
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>
-
 </html>

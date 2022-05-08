@@ -94,6 +94,15 @@ $(document).ready(function(){
         }
     });
 
+    $('.cat-product-container').click(function(e){
+        if ($(e.target).hasClass('quick-view-product')) return;
+        if ($(e.target).hasClass('add-to-cart')) return;
+        if ($(e.target).hasClass('save-to-wishlist')) return;
+        if ($(e.target).hasClass('remove-from-wishlist')) return;
+        var product_id=$(this).attr('value');
+        window.location.href = 'product-detail-page.php?pid='+product_id;
+    });
+
 });
 
 

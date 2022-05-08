@@ -1,7 +1,13 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
-$product_id=1; //for a moment
+if(isset($_GET['pid']))
+{
+    $product_id=$_GET['pid']; 
+}
+else{
+    header('Location: category-page.php');
+}
 $getProduct= "SELECT * FROM PRODUCT WHERE PRODUCT_ID=$product_id";
 
 $parsedgetProduct = oci_parse($connection, $getProduct);
