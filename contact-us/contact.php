@@ -7,27 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrint-to-fit=no">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <style>
-    .container {
-        text-align: center;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    }
-
     form .form-control {
         border: 2px solid #d3d3d3;
     }
-    #button{
+
+    #button {
         align-content: center;
         margin-right: -13px;
     }
 </style>
 
 <body>
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <h1><b>GET IN TOUCH WITH US</b></h1>
-        <form class="row g-3 mt-2 w-75 mx-auto">
+        <form class="row g-3 mt-2">
             <div class="col-md-6 mt-5">
                 <input type="text" class="form-control" placeholder="Firstname" name="fname" />
             </div>
@@ -59,13 +56,13 @@
                 <p>+92 345 4564566</p>
             </div>
             <div class="col-md-4 mt-5">
-            <i class="fa fa-envelope fa-3x text-dark"></i>
+                <i class="fa fa-envelope fa-3x text-dark"></i>
                 <h3>Email</h3>
                 <p>phoenixmart123@gmail.com</p>
             </div>
         </div>
 
-    </div>
+
 </body>
 
 </html>

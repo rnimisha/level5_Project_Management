@@ -103,6 +103,64 @@ $(document).ready(function(){
         window.location.href = 'product-detail-page.php?pid='+product_id;
     });
 
+    //show cartand wishlist option on hover
+    $(".cat-product").hover(function(){
+        $(this).find('.option-container').css("visibility", "visible");
+        $(this).find('.option-container').css("transform", "scale(1.4)");
+        $(this).find('.product-pic').css("padding", "25px");
+
+    }, function(){
+        $(this).find('.option-container').css("transform", "scale(0)");
+        $(this).find('.product-pic').css("padding", "15px");
+        $(this).find('.option-container').css("visibility", "hidden");
+
+    });
+
+    $(".list-view-container").hover(function(){
+        $(this).find('.product-pic').css("padding", "25px");
+
+    }, function(){
+        $(this).find('.product-pic').css("padding", "15px");
+    });
+
+    $('').slick({
+        slidesToShow: 3,
+        slidesToScroll: 3
+      });
+
+    $('.related-product-slider').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 2,
+        responsive: [
+            {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+            },
+            {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+            },
+            {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+            }
+        ]
+    });
+
 });
 
 

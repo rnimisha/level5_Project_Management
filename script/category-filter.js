@@ -41,26 +41,6 @@ $(document).ready(function(){
     //    $('#price-filter-form').submit();
     // });
 
-    //show cartand wishlist option on hover
-    $(".cat-product").hover(function(){
-        $(this).find('.option-container').css("visibility", "visible");
-        $(this).find('.option-container').css("transform", "scale(1.4)");
-        $(this).find('.product-pic').css("padding", "25px");
-
-    }, function(){
-        $(this).find('.option-container').css("transform", "scale(0)");
-        $(this).find('.product-pic').css("padding", "15px");
-        $(this).find('.option-container').css("visibility", "hidden");
-
-    });
-
-    $(".list-view-container").hover(function(){
-        $(this).find('.product-pic').css("padding", "25px");
-
-    }, function(){
-        $(this).find('.product-pic').css("padding", "15px");
-    });
-
 
     //click submit
     $(".filter-selection").click(function(){

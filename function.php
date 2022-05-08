@@ -361,4 +361,44 @@ function removeFromWishlist($product_id, $user_id, $connection)
     }    
 }
 
+function getSimilarProduct($product_id, $category_id, $shop_id, $connection)
+{
+    $product_array=[];
+    $sameCategory="SELECT * FROM PRODUCT WHERE CATEGORY_ID=$category_id OR SHOP_ID=$shop_id  AND ROWNUM<=6";
+    $result=oci_parse($connection, $sameCategory);
+    oci_execute($result);
+    while (($row = oci_fetch_assoc($result)) != false) {
+        if($row['PRODUCT_ID']==$product_id)
+        {
+            continue;
+        }
+       array_push($product_array, $row['PRODUCT_ID']);
+    }
+    oci_free_statement($result);
+
+    if(count($product_array)<6)
+    {
+        $needed_prod_count=6-count($product_array);
+        $otherproduct="SELECT * FROM PRODUCT";
+        $result=oci_parse($connection, $otherproduct);
+        oci_execute($result);
+        $count=0;
+        while (($row = oci_fetch_assoc($result)) != false) {
+            if($count>=$needed_prod_count)
+            {
+                break;
+            }
+            if($row['PRODUCT_ID']==$product_id || in_array($row['PRODUCT_ID'], $product_array))
+            {
+                continue;
+            }
+            array_push($product_array, $row['PRODUCT_ID']);
+            $count++;
+        }
+        oci_free_statement($result);
+    }
+
+   return $product_array;
+}
+
 ?>
