@@ -5,6 +5,10 @@ if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
 {
     header('Location: loginform.php');
 }
+if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
+{
+    header('Location: loginform.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -52,63 +56,59 @@ if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
                     </div>
                 </div>
                 <hr>
+                <?php 
+                    $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID AND USER_ID=".$_SESSION['phoenix_user'];
+                    $parsed=oci_parse($connection,$query);
+                    oci_execute($parsed);
+                    while (($row = oci_fetch_assoc($parsed)) != false) {
+                ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
                     <div class="col-2">
                         <div class="review-profile-container">
-                            <img src="image\product\fruit3.png" class="cart-prod-img img-fluid" />
+                            <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>" class="cart-prod-img img-fluid"/>
                         </div>
                     </div>
                     <div class="col-3 d-block">
-                        <div>Strawberry</div>
+                        <div><?php echo $row['PRODUCT_NAME'];?></div>
+                        <?php 
+                        if($row['STOCK_QUANTITY']>0)
+                        {
+                        ?>
                         <span class="badge badge-pill badge-completed">In Stock</span>
+                        <?php
+                        }
+                        else{
+                        ?>
+                            <span class="badge badge-pill badge-fail">Out of Stock</span>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <div class="col-2">
-                        <span>&#163;</span>12
+                        <span>&#163;</span><?php echo $row['PRICE'];?>
                     </div>
                     <div class="col-2">
                         <div class="wrapper d-flex  align-items-center">
                             <span class="minus-cart">-</span>
-                            <span class="quantity">1</span>
+                            <span class="quantity"><?php echo $row['QUANTITY'];?></span>
                             <span class="plus-cart">+</span>
-                            <input type="hidden" value="1" id="real-quantity" />
-                            <input type="hidden" value="33" id="stock-amount" />
+                            <input type="hidden" value="<?php echo $row['QUANTITY'];?>" id="real-quantity" />
+                            <input type="hidden" value="<?php echo $row['STOCK_QUANTITY'];?>" id="stock-amount" />
                         </div>
                     </div>
                     <div class="col-2">
-                        <span>&#163;</span><span>12</span>
+                        <span>&#163;</span><span><?php echo $row['PRICE']*$row['STOCK_QUANTITY'];?></span>
                     </div>
                     <div class="col-1">
                         <i class="fa-regular fa-trash-can pl-3"></i>
                     </div>
                 </div>
                 <hr>
-                <div class="row w-100 py-2 cart-items">
-                    <div class="col-2">
-                        <div class="review-profile-container">
-                            <img src="image\product\fruit2.png" class="cart-prod-img img-fluid" />
-                        </div>
-                    </div>
-                    <div class="col-3 d-block">
-                        <div>Fruits</div>
-                        <span class="badge badge-pill badge-fail">Out of Stock</span>
-                    </div>
-                    <div class="col-2">
-                        <span>&#163;</span>1.1
-                    </div>
-                    <div class="col-3">
-                        <div class="wrapper d-flex  align-items-center">
-                            <span class="minus-cart">-</span>
-                            <span class="quantity">1</span>
-                            <span class="plus-cart">+</span>
-                            <input type="hidden" value="1" id="real-quantity" />
-                            <input type="hidden" value="11" id="stock-amount" />
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <span>&#163;</span>
-                    </div>
+                <?php
+                    }
+                    oci_free_statement(($parsed));
+                ?>
 
-                </div>
                 <div class="row w-100 py-2 cart-items mt-5">
                     <div class="col-12 pl-3">
                         <h6><b>Apply Coupon</b></h6>
@@ -165,8 +165,12 @@ if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
         }
         else{
         ?>
-        <div class="row mt-3">
-            empty cart
+        <div class="row mt-3 w-100">
+            <div class="col-5 mx-auto text-center">
+                <img src="image\cartempty.png" class="no-data-found img-fluid" />
+                <div class="mt-3"><h4><b>Your cart is empty<b></h4></div>
+                <a href="category-page.php" class="mt-3 py-1 pt-2 px-3 btn"><h6>Continue shopping</h6></a>
+            </div>
         </div>
         <?php
         }
