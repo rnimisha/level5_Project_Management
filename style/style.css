@@ -342,7 +342,7 @@ label{
     color: #78967e;
 }
 
-.plus, .minus{
+.plus, .minus, .plus-cart, .minus-cart{
     cursor: pointer;
 }
 
@@ -551,6 +551,10 @@ i.bx.bx-star {
     font-weight: bold;
     color: #78967e;
 }
+.cart-prod-img{
+    width: 65px;
+    height: 65px;
+}
 .review-profile{
     width: 55px;
     height: 55px;
@@ -571,4 +575,35 @@ i.bx.bx-star {
 .custom-select {
     border: 1px solid #78967e;
     font-size: 0.9rem;
+}
+
+/* cart */
+.cart-heading{
+    /* color: #78967e; */
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.cart-items .wrapper {
+    height: 35px;
+    width: 75px;
+}
+
+/* .cart-items input {
+    border: 1px solid #78967e;
+    border-radius: 10px;
+    display: inline-block;
+    width: 60px;
+} */
+
+.badge-fail {
+    color: #c94e4e;
+    background-color: #f1d1d1 ;
+    font-size: 15px;
+}
+
+.cart-summary{
+    border-radius: 5px;
+    background-color: #f5f8f2;
+    /* background-color: #d5e3d9; */
 }

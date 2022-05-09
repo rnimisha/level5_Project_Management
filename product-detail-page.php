@@ -693,5 +693,5 @@ $img= getProductImage($product_id,$connection);
 <script src="script/function.js"></script>
 <script src="script/script.js"></script>
 <script src="script/cart-action.js"></script>
-
+<script src="script/slick.js"></script>
 </html>

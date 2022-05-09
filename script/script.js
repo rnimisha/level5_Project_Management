@@ -24,7 +24,7 @@ $(document).ready(function(){
         }
     });
 
-    
+
     //change product detail image shown
     $('.mini-img').click(function(){
         $imgname=$(this).attr('src');
@@ -148,43 +148,64 @@ $(document).ready(function(){
         $(this).find('.product-pic').css("padding", "15px");
     });
 
-    $('').slick({
-        slidesToShow: 3,
-        slidesToScroll: 3
-      });
+    var minimum_val=1;
+    $('.plus').click(function(){
+        var stock=$('#stock-amount').val();
+        if(stock > minimum_val)
+        {
+            minimum_val++;
+            $('#real-quantity').val(minimum_val);
+            $('.quantity').text(minimum_val);
+        }
+        else{
 
-    $('.related-product-slider').slick({
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 2,
-        responsive: [
-            {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-            }
-            },
-            {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1
-            }
-            },
-            {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-            }
-        ]
-    });
+            alert('There are no further quantity in stock to add in cart');
+        }
+        
+    })
+
+    $('.minus').click(function(){
+        var current_val=$('#real-quantity').val();
+        if(current_val > 1){
+            current_val--;
+            $('#real-quantity').val(current_val);
+            $('.quantity').text(current_val);
+        }
+        else{
+            alert('Quantity cannot be less than 1');
+        }
+    })
+
+    
+    $('.plus-cart').click(function(e){
+
+        var stock= parseInt($(this).closest('.wrapper').find('#stock-amount').val());
+        var minimum_val_cart= parseInt($(this).closest('.wrapper').find('#real-quantity').val());
+  
+        if(stock > minimum_val_cart)
+        {
+            minimum_val_cart++;
+            $(this).closest('.wrapper').find('#real-quantity').val(minimum_val_cart);
+            $(this).closest('.wrapper').find('.quantity').text(minimum_val_cart);
+        }
+        else{
+
+            alert('There are no further quantity in stock to add in cart');
+        }
+        
+    })
+
+    $('.minus-cart').click(function(){
+        var current_val=  parseInt($(this).closest('.wrapper').find('#real-quantity').val());
+        if(current_val > 1){
+            current_val--;
+            $(this).closest('.wrapper').find('#real-quantity').val(current_val);
+            $(this).closest('.wrapper').find('.quantity').text(current_val);
+        }
+        else{
+            alert('Quantity cannot be less than 1');
+        }
+    })
 
 });
 

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- customized css -->
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <title>My Cart</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row my-5 w-100">
+            <div class="col-12 pl-3">
+                <h2 class="all-heading">My Cart</h2>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-8">
+                <div class="row w-100 p cart-heading">
+                    <div class="col-5">
+                        Product
+                    </div>
+                    <div class="col-2">
+                        Price
+                    </div>
+                    <div class="col-2">
+                        Quantity
+                    </div>
+                    <div class="col-2">
+                        Subtotal
+                    </div>
+                    <div class="col-1">
+                    
+                    </div>
+                </div>
+                <hr>
+                <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
+                    <div class="col-2">
+                        <div class="review-profile-container">
+                            <img src="image\product\fruit3.png" class="cart-prod-img img-fluid" />
+                        </div>
+                    </div>
+                    <div class="col-3 d-block">
+                        <div>Strawberry</div>
+                        <span class="badge badge-pill badge-completed">In Stock</span>
+                    </div>
+                    <div class="col-2">
+                        <span>&#163;</span>12
+                    </div>
+                    <div class="col-2">
+                        <div class="wrapper d-flex  align-items-center">
+                            <span class="minus-cart">-</span>
+                            <span class="quantity">1</span>
+                            <span class="plus-cart">+</span>
+                            <input type="hidden" value="1" id="real-quantity" />
+                            <input type="hidden" value="33" id="stock-amount" />
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <span>&#163;</span><span>12</span>
+                    </div>
+                    <div class="col-1">
+                        <i class="fa-regular fa-trash-can pl-3"></i>
+                    </div>
+                </div>
+                <hr>
+                <div class="row w-100 py-2 cart-items">
+                    <div class="col-2">
+                        <div class="review-profile-container">
+                            <img src="image\product\fruit2.png" class="cart-prod-img img-fluid" />
+                        </div>
+                    </div>
+                    <div class="col-3 d-block">
+                        <div>Fruits</div>
+                        <span class="badge badge-pill badge-fail">Out of Stock</span>
+                    </div>
+                    <div class="col-2">
+                        <span>&#163;</span>1.1
+                    </div>
+                    <div class="col-3">
+                        <div class="wrapper d-flex  align-items-center">
+                            <span class="minus-cart">-</span>
+                            <span class="quantity">1</span>
+                            <span class="plus-cart">+</span>
+                            <input type="hidden" value="1" id="real-quantity" />
+                            <input type="hidden" value="11" id="stock-amount" />
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <span>&#163;</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 cart-summary">
+                <div class="row w-100 justify-content-center p-2 pt-4 ">
+                    <h5>Order Summary</h5>
+                </div>
+                <div  class="row w-100  p-2">
+                    Subtotal
+                </div>
+                <div  class="row w-100  p-2">
+                   Apply Coupon
+                </div>
+                <div  class="row w-100  p-2">
+                    Total
+                 </div>
+                 <div  class="row w-100  p-2">
+                    Checkout
+                 </div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+<!-- external script -->
+<script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
+<!-- custom script -->
+<script src="script/function.js"></script>
+<script src="script/script.js"></script>
+<script src="script/cart-action.js"></script>
+</html>
