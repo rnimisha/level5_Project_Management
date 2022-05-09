@@ -38,7 +38,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         <div class="row my-5 w-100 align-items-end">
             <div class="col-6 pl-3">
                 <h2 class="all-heading">My Cart</h2>
-                <span class="text-muted">Total items : <?php echo $item_count;?></span>
+                <div class="text-muted" id="total-item-count" value="<?php echo $item_count;?>">Total items : <?php echo $item_count;?></div>
             </div>
             <div class="col-3">
                 <div class="text-right text-muted remove-all-cart-btn">
@@ -106,6 +106,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             <span class="plus-cart">+</span>
                             <input type="hidden" value="<?php echo $row['QUANTITY'];?>" id="real-quantity" />
                             <input type="hidden" value="<?php echo $row['STOCK_QUANTITY'];?>" id="stock-amount" />
+                            <input type="hidden" value="<?php echo $row['PRODUCT_ID'];?>" class="cart-product-id" />
                         </div>
                     </div>
                     <div class="col-2 each-subtotal">

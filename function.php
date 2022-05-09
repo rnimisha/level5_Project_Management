@@ -429,4 +429,12 @@ function removeAllFromCart($user_id, $connection)
     oci_execute($result);
     oci_free_statement($result);
 }
+
+function updateCartItemQuantity($pid, $quantity, $user_id, $connection)
+{
+    $query="UPDATE CART_ITEM SET QUANTITY=$quantity WHERE USER_ID=$user_id AND PRODUCT_ID=$pid";
+    $result=oci_parse($connection, $query);
+    oci_execute($result);
+    oci_free_statement($result);
+}
 ?>

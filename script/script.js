@@ -176,6 +176,7 @@ $(document).ready(function(){
         }
     })
 
+    var total_cart_items= parseInt($('#total-item-count').attr('value'));
     var overallsubtotal= parseInt($('.over-all-subtotal').attr('value'));
     $('.plus-cart').click(function(e){
         var stock= parseInt($(this).closest('.wrapper').find('#stock-amount').val());
@@ -192,6 +193,12 @@ $(document).ready(function(){
             overallsubtotal = overallsubtotal + price;
             $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal);
             $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal);
+
+            var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
+            changeQuantity(minimum_val_cart, pid)
+
+            total_cart_items++;
+            $('#total-item-count').html('Total items : '+total_cart_items);
         }
         else{
 
@@ -211,9 +218,15 @@ $(document).ready(function(){
             subtotal=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'))*current_val;
             $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
 
+            var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
+            changeQuantity(current_val, pid)
+
             overallsubtotal = overallsubtotal - price;
             $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal);
             $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal);
+
+            total_cart_items--;
+            $('#total-item-count').html('Total items : '+total_cart_items);
 
         }
         else{

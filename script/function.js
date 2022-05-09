@@ -87,5 +87,21 @@ function getFilterValue(filter_class)
     return filteredValue;
 }
 
+function changeQuantity(quantity, pid)
+{
+    $.ajax({
+        type: "POST",
+        url: 'cart-action.php',
+        data: {
+            product_id:pid,
+            quantity:quantity,
+            action:'update-cart-quantity'
+        },
+        success: function(response){
+            // alert(response);
+        }
+    });
+
+}
 
 $('body').addClass('transition-effect');

@@ -79,6 +79,11 @@
             removeFromCart($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
         }
 
+        if($_POST['action']=='update-cart-quantity')
+        {
+            updateCartItemQuantity($_POST['product_id'],$_POST['quantity'], $_SESSION['phoenix_user'], $connection);
+        }
+
         $cart_action['valid']=true;
     }
 
