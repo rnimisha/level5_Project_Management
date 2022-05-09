@@ -25,14 +25,22 @@ $(document).ready(function(){
             },
             success: function(response){
                 console.log(response);
-                jQuery('#contact-btn').val('Send..');
+                jQuery('#contact-btn').val('Send');
                 jQuery('#contact-btn').attr('disabled', false);
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true)
                 {
                     resetForm('contact-us-form');
-                    $('#contact-sucess-msg').html('Your message has been sent.');
+
                     inlineMsg(resp);
+                    if(!$('.contact-us-container').hasClass('d-none'))
+                    {
+                        $('.contact-us-container').addClass('d-none');
+                    }
+                    if($('.contact-us-sent').hasClass('d-none'))
+                    {
+                        $('.contact-us-sent').removeClass('d-none');
+                    }
 
                 }
                 else{

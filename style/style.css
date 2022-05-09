@@ -661,4 +661,23 @@ img.wishlist-prod-img.img-fluid{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(2px);
     border: 1px solid rgba(202, 214, 205, 0.3);
+    min-height: 500px;
+}
+
+.contact-us-sent{
+    min-height: 500px;
+}
+
+.contact-us-img {
+    padding-top:30px;
+    max-height: 400px;
+}
+
+input#contact-btn {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    font-weight: 500;
+}
+
+.my-green-font{
+    color: #78967e;
 }

@@ -14,15 +14,19 @@
             {
                 $contact_error['#firstname_error']="Enter a valid name";
                 $contact_error['clear']=false;
+                $contact_error['#firstname']='is-invalid';
             }
             else{
                 $contact_error['#firstname_error']="";
                 $firstname= $_POST['firstname'];
+                $contact_error['#firstname']='valid';
+                
             }
         }
         else{
             $contact_error['#firstname_error']="Name cannot be empty";
             $contact_error['clear']=false;
+            $contact_error['#firstname']='is-invalid';
         }
     }
 
@@ -33,10 +37,12 @@
         {
             $contact_error['#lastname_error']="";
             $lastname= $_POST['lastname'];
+            $contact_error['#lastname']='valid';
         }
         else{
             $contact_error['#lastname_error']="Last Name cannot be empty";
             $contact_error['clear']=false;
+            $contact_error['#lastname']='is-invalid';
         }
     }
 
@@ -50,23 +56,27 @@
                 {
                     $contact_error['#contact_error']="";
                     $contact=$_POST['contact'];
+                    $contact_error['#contact']='valid';
                 }
                 else
                 {
                     $contact_error['#contact_error']="Contact can't be less than 10 digits";
                     $contact_error['clear']=false;
+                    $contact_error['#contact']='is-invalid';
                 }
             }
             else
             {
                 $contact_error['#contact_error']="Enter valid digits";
                 $contact_error['clear']=false;
+                $contact_error['#contact']='is-invalid';
             }
 
         }
         else{
             $contact_error['#contact_error']="Contact cannot be empty";
             $contact_error['clear']=false;
+            $contact_error['#contact']='is-invalid';
         }
     }
 
@@ -75,16 +85,19 @@
         if(!empty(trim($_POST['useremail']))){
             if(filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)){
                 $contact_error['#contact_email_error']="";
-                $email=$_POST['useremail'];   
+                $email=$_POST['useremail'];  
+                $contact_error['#useremail']='valid'; 
             }
             else{
                 $contact_error['#contact_email_error']="Enter a valid email";
                 $contact_error['clear']=false;
+                $contact_error['#useremail']='is-invalid';
             }
         }
         else{
             $contact_error['#contact_email_error']="Email cannot be empty";
             $contact_error['clear']=false;
+            $contact_error['#useremail']='is-invalid';
         }
     }
 
@@ -95,11 +108,13 @@
         {
             $contact_error['#message_error']="";
             $message=$_POST['message']; 
+            $contact_error['#message']='valid';
         }
         else
         {
             $contact_error['#message_error']="Fill your message";
             $contact_error['clear']=false;
+            $contact_error['#message']='is-invalid';
         }
     }
 
