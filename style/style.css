@@ -607,3 +607,8 @@ i.bx.bx-star {
     background-color: #f5f8f2;
     /* background-color: #d5e3d9; */
 }
+.fa-trash-can
+{
+    color: #c94e4e;
+    cursor: pointer;
+}
