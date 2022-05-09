@@ -52,9 +52,9 @@
                 <div class="col-4 text-center continue-shopping py-3 btn">
                     Continue Shopping
                 </div>
-                <div class="col-4 text-center ml-1 py-3 go-to-cart btn">
-                    <a href="cart-page.php">Go To Cart</a>
-                </div>
+                <a href="cart-page.php" class="col-4 text-center ml-1 py-3 go-to-cart btn">
+                    Go To Cart
+                </a>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content w-50 mx-auto">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close close-cart-success" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -83,12 +83,12 @@
                 <div class="col-12 text-center mt-n2">
                     <img src="image/wishlist-icon.gif" alt="wishlist-add-success" class="product-pic" />
                 </div>
-                <div class="col-4 text-center py-3 btn">
+                <div class="col-4 text-center continue-shopping py-3 btn">
                     Continue Shopping
                 </div>
-                <div class="col-4 text-center ml-1 py-3 btn">
-                    View Wishlist
-                </div>
+                <a href="wishlist-page.php" class="col-4 text-center ml-1 py-3 btn">
+                   View Wishlist
+                </a>
             </div>
         </div>
     </div>

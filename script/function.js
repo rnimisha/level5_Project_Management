@@ -104,4 +104,4 @@ function changeQuantity(quantity, pid)
 
 }
 
-$('body').addClass('transition-effect');
+$('div').addClass('transition-effect');

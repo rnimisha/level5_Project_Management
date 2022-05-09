@@ -27,6 +27,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 </head>
 <body>
     <div class="container">
+        <div class="alert alert-success cart-success action-success" role="alert">
+            
+        </div>
         <?php
         $item_count=checkWishlistCount($_SESSION['phoenix_user'], $connection);
         if($item_count>0)
@@ -34,12 +37,12 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         ?>
         <div class="row my-5 w-100 align-items-end">
             <div class="col-6 pl-3">
-                <h2 class="all-heading">My Wishlit</h2>
-                <div class="text-muted">Total items : <?php echo $item_count;?></div>
+                <h2 class="all-heading">My Wishlist</h2>
+                <div class="text-muted" id="wislist-item-count" value="<?php echo $item_count;?>">Total items : <?php echo $item_count;?></div>
             </div>
             <div class="col-6">
                 <div class="text-right text-muted">
-                    <i class="fa-solid fa-heart-crack"></i></i> Remove All
+                    <i class="fa-solid fa-heart-crack text-muted"></i> Remove All</i> 
                 </div>
             </div>
         </div>
@@ -67,7 +70,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     $subtotal=0;
                     while (($row = oci_fetch_assoc($parsed)) != false) {
                 ?>
-                <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
+                <div class="row w-100 py-2 justify-content-center align-items-center wishlist-items">
                     <div class="col-2">
                         <div>
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"  class="wishlist-prod-img img-fluid"/>
@@ -94,16 +97,16 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         }
                         ?>
                     </div>
-                    <div class="col-3">
-                        <span><i class="fa-solid fa-heart-crack"></i> &nbsp;</span>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="col-3 remove-wishlist-item" value="<?php echo $row['PRODUCT_ID'];?>">
+                        <span><i class="fa-solid fa-heart-crack" style="font-size: 20px;"></i> &nbsp;</span>
+                        <!-- <i class="fa-solid fa-cart-shopping"></i> -->
                     </div>
+                    <hr class="ml-3" style="width:100%;">
                 </div>
                 <?php
                     }
                     oci_free_statement(($parsed));
                 ?>
-
             </div>
         </div>
         <?php
@@ -114,9 +117,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 <div class="col-12 justify-content-center align-items-center">
                     <h2 class="all-heading">My Wishlist</h2>
                 </div>
-                <div class="col-5 mx-auto text-center">
-                    <img src="image\cartempty.png" class="no-data-found img-fluid" />
-                    <div class="mt-3"><h4><b>Your cart is empty<b></h4></div>
+                <div class="col-5 mx-auto text-center pt-5 mb-4">
+                    <img src="image\empty-wishlist.png" class="no-data-found img-fluid" />
+                    <div class="mt-3"><h4><b>Your wishlist is empty<b></h4></div>
                     <a href="category-page.php" class="mt-3 py-1 pt-2 px-3 btn"><h6>Continue shopping</h6></a>
                 </div>
             </div>

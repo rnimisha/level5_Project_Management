@@ -607,7 +607,7 @@ i.bx.bx-star {
     background-color: #f5f8f2;
     /* background-color: #d5e3d9; */
 }
-.fa-trash-can
+.fa-trash-can,.fa-heart-crack
 {
     color: #c94e4e;
     cursor: pointer;
@@ -626,4 +626,8 @@ button#remove-all-cart-items.btn.btn-primary {
 img.wishlist-prod-img.img-fluid{
     width: 80px;
     height: 80px;
+}
+
+.fa-heart-crack:hover, .fa-trash-can:hover{
+    color: #000000
 }

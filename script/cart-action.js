@@ -174,4 +174,31 @@ $(document).ready(function(){
             }
         });
     });
+
+    var wishlist_count=$('#wislist-item-count').attr('value');
+    //remove from cart
+    $('.remove-wishlist-item').click(function(){
+       
+        var current=$(this);
+        var product_id=$(this).attr('value');
+        
+        $.ajax({
+            type: "POST",
+            url: 'cart-action.php',
+            data: {
+                product_id:product_id,
+                action:'remove-from-wishlist'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                if(resp.valid == true) {
+                    current.closest('.wishlist-items').hide();
+                    wishlist_count--;
+                    $('#wislist-item-count').html("Total items : "+wishlist_count);
+                }
+                $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Wishlist.</h5>');
+                $('.action-success').show().delay(3000).fadeOut();
+            }
+        });
+    });
 });
