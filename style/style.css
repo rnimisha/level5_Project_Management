@@ -620,3 +620,10 @@ button#remove-all-cart-items.btn.btn-primary {
     background-color: #c7d5ba;
     border-color: #c7d5ba;
 }
+
+
+/* WISHLIST */
+img.wishlist-prod-img.img-fluid{
+    width: 80px;
+    height: 80px;
+}

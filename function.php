@@ -437,4 +437,17 @@ function updateCartItemQuantity($pid, $quantity, $user_id, $connection)
     oci_execute($result);
     oci_free_statement($result);
 }
+
+function checkWishlistCount($user_id, $connection)
+{
+    $query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM WISHLIST_ITEM WHERE USER_ID=$user_id";
+    $result=oci_parse($connection, $query);
+
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    oci_free_statement($result);
+    return $number_of_rows;
+
+}
 ?>
