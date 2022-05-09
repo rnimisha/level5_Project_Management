@@ -58,7 +58,7 @@ element.style {
     background: #78967e;
     border-color: #78967e;
 }
-label, input {
+.cat-page label, .cat-page input {
     border: none;
     display: inline-block;
     margin-right: -4px;
@@ -181,7 +181,7 @@ select {
     border-radius: 25px;
 }
 
-input {
+.cat-page input {
     border: none;
     display: inline-block;
     margin-right: 0px;
@@ -630,4 +630,35 @@ img.wishlist-prod-img.img-fluid{
 
 .fa-heart-crack:hover, .fa-trash-can:hover{
     color: #000000
+}
+
+/* contact us */
+.submit-contact{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#contact-us-form .form-control {
+    color: #495057;
+    background-color: #fff;
+    border: 0px solid #ced4da;
+    border-bottom: 1px solid #d4cfcf;
+    border-radius: 0rem;
+    background-color: transparent;
+}
+
+#contact-us-form .form-control:focus {
+    border-color: #78967e;
+    box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
+}
+
+.contact-us-container{
+    border-radius: 15px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
+
+    background: rgba(198, 202, 200, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(202, 214, 205, 0.3);
 }

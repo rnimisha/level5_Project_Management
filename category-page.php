@@ -26,7 +26,7 @@ include_once('function.php');
     <div class="alert alert-danger action-success" role="alert">
         <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid cat-page">
         <div class="row w-100 p-5">
             <div class="col-md-3">
                 <!-- category option list -->
