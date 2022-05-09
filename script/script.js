@@ -176,17 +176,22 @@ $(document).ready(function(){
         }
     })
 
-    
+    var overallsubtotal= parseInt($('.over-all-subtotal').attr('value'));
     $('.plus-cart').click(function(e){
-
         var stock= parseInt($(this).closest('.wrapper').find('#stock-amount').val());
         var minimum_val_cart= parseInt($(this).closest('.wrapper').find('#real-quantity').val());
-  
+        var price=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'));
         if(stock > minimum_val_cart)
         {
             minimum_val_cart++;
             $(this).closest('.wrapper').find('#real-quantity').val(minimum_val_cart);
             $(this).closest('.wrapper').find('.quantity').text(minimum_val_cart);
+            subtotal = price*minimum_val_cart;
+            $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
+
+            overallsubtotal = overallsubtotal + price;
+            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal);
+            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal);
         }
         else{
 
@@ -197,10 +202,19 @@ $(document).ready(function(){
 
     $('.minus-cart').click(function(){
         var current_val=  parseInt($(this).closest('.wrapper').find('#real-quantity').val());
+        var price=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'));
         if(current_val > 1){
             current_val--;
             $(this).closest('.wrapper').find('#real-quantity').val(current_val);
             $(this).closest('.wrapper').find('.quantity').text(current_val);
+
+            subtotal=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'))*current_val;
+            $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
+
+            overallsubtotal = overallsubtotal - price;
+            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal);
+            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal);
+
         }
         else{
             alert('Quantity cannot be less than 1');
@@ -214,6 +228,7 @@ $(document).ready(function(){
     $('.continue-shopping').click(function(){
         $('.close-cart-success').click();
     });
+
 });
 
 

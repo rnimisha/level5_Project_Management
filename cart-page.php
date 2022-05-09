@@ -96,8 +96,8 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         }
                         ?>
                     </div>
-                    <div class="col-2">
-                        <span>&#163;</span><?php echo $row['PRICE'];?>
+                    <div class="col-2 individual-price" value="<?php echo $row['PRICE'];?>">
+                        <span>&#163;</span><?php echo $row['PRICE'];?></span>
                     </div>
                     <div class="col-2">
                         <div class="wrapper d-flex  align-items-center">
@@ -108,8 +108,8 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             <input type="hidden" value="<?php echo $row['STOCK_QUANTITY'];?>" id="stock-amount" />
                         </div>
                     </div>
-                    <div class="col-2">
-                        <span>&#163;</span><span><?php echo $row['PRICE']*$row['QUANTITY'];?></span>
+                    <div class="col-2 each-subtotal">
+                        <span>&#163;</span><?php echo $row['PRICE']*$row['QUANTITY'];?>
                     </div>
                     <div class="col-1">
                         <i class="fa-regular fa-trash-can pl-3 remove-cart-item" value="<?php echo $row['PRODUCT_ID'];?>"></i>
@@ -145,7 +145,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         <div  class="col-8">
                             Subtotal
                         </div>
-                        <div class="col-4">
+                        <div class="col-4 over-all-subtotal" value="<?php echo $subtotal;?>">
                             <span>&#163;</span><?php echo $subtotal;?>
                         </div  class="col-6">
                     </div>
@@ -162,7 +162,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         <div  class="col-8">
                             Total
                         </div>
-                        <div  class="col-4">
+                        <div  class="col-4 total-with-disc">
                             <span>&#163;</span><?php echo $subtotal;?>
                         </div>
                     </div>
