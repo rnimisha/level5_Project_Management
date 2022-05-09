@@ -612,3 +612,6 @@ i.bx.bx-star {
     color: #c94e4e;
     cursor: pointer;
 }
+a{
+    text-decoration: none;
+}

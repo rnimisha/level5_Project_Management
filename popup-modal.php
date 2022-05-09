@@ -50,7 +50,7 @@
                     <img src="image/cart-add-success.gif" alt="cart-add-success" class="product-pic" />
                 </div>
                 <div class="col-4 text-center py-3 btn">
-                    Continue Shopping
+                    <a href="cart-page.php">Continue Shopping</a>
                 </div>
                 <div class="col-4 text-center ml-1 py-3 btn">
                     Go To Cart

@@ -27,18 +27,26 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 </head>
 <body>
     <div class="container">
-        <div class="row my-5 w-100">
-            <div class="col-12 pl-3">
-                <h2 class="all-heading">My Cart</h2>
-            </div>
-        </div>
-        <?php
-        if(checkUserGotCartItem($_SESSION['phoenix_user'], $connection))
+    <?php
+        $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);
+        if($item_count>0)
         {
         ?>
+        <div class="row my-5 w-100 align-items-end">
+            <div class="col-6 pl-3">
+                <h2 class="all-heading">My Cart</h2>
+                <span class="text-muted">Total items : <?php echo $item_count;?></span>
+            </div>
+            <div class="col-3">
+                <div class="text-right text-muted">
+                <i class="fa-regular fa-trash-can text-muted"></i> Remove All
+                </div>
+            </div>
+        </div>
         <div class="row mt-3">
             <div class="col-lg-9">
-                <div class="row w-100 p cart-heading">
+                
+                <div class="row w-100 cart-heading">
                     <div class="col-5">
                         Product
                     </div>
@@ -60,6 +68,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID AND USER_ID=".$_SESSION['phoenix_user'];
                     $parsed=oci_parse($connection,$query);
                     oci_execute($parsed);
+                    $subtotal=0;
                     while (($row = oci_fetch_assoc($parsed)) != false) {
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
@@ -97,7 +106,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         </div>
                     </div>
                     <div class="col-2">
-                        <span>&#163;</span><span><?php echo $row['PRICE']*$row['STOCK_QUANTITY'];?></span>
+                        <span>&#163;</span><span><?php echo $row['PRICE']*$row['QUANTITY'];?></span>
                     </div>
                     <div class="col-1">
                         <i class="fa-regular fa-trash-can pl-3"></i>
@@ -105,6 +114,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 </div>
                 <hr>
                 <?php
+                    $subtotal=$subtotal+($row['PRICE']*$row['QUANTITY']);
                     }
                     oci_free_statement(($parsed));
                 ?>
@@ -132,7 +142,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             Subtotal
                         </div>
                         <div class="col-4">
-                            <span>&#163;</span>1.1
+                            <span>&#163;</span><?php echo $subtotal;?>
                         </div  class="col-6">
                     </div>
                     <div  class="row w-100  justify-content-between pt-2 pl-4">
@@ -140,7 +150,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             Discount
                         </div>
                         <div class="col-4">
-                            <span>&#163;</span>1.1
+                            <span>&#163;</span>0.0
                         </div>
                     </div>
                     <hr>
@@ -149,7 +159,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             Total
                         </div>
                         <div  class="col-4">
-                            <span>&#163;</span>1.1
+                            <span>&#163;</span><?php echo $subtotal;?>
                         </div>
                     </div>
                     <hr>
@@ -166,6 +176,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         else{
         ?>
         <div class="row mt-3 w-100">
+            <div class="col-12 justify-content-center align-items-center">
+                <h2 class="all-heading">My Cart</h2>
+            </div>
             <div class="col-5 mx-auto text-center">
                 <img src="image\cartempty.png" class="no-data-found img-fluid" />
                 <div class="mt-3"><h4><b>Your cart is empty<b></h4></div>
