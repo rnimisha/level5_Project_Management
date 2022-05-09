@@ -1,3 +1,11 @@
+<?php
+include_once('connection.php');
+include_once('function.php');
+if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
+{
+    header('Location: loginform.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,6 +28,10 @@
                 <h2 class="all-heading">My Cart</h2>
             </div>
         </div>
+        <?php
+        if(checkUserGotCartItem($_SESSION['phoenix_user'], $connection))
+        {
+        ?>
         <div class="row mt-3">
             <div class="col-lg-9">
                 <div class="row w-100 p cart-heading">
@@ -149,6 +161,16 @@
                  </div>
             </div>
         </div>
+        <?php
+        }
+        else{
+        ?>
+        <div class="row mt-3">
+            empty cart
+        </div>
+        <?php
+        }
+        ?>
     </div>
    
 </body>

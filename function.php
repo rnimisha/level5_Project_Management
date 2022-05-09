@@ -401,4 +401,23 @@ function getSimilarProduct($product_id, $category_id, $shop_id, $connection)
    return $product_array;
 }
 
+function checkUserGotCartItem($user_id, $connection)
+{
+    $query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM CART_ITEM WHERE USER_ID=$user_id";
+    $result=oci_parse($connection, $query);
+
+    oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+    oci_execute($result);
+    oci_fetch($result);
+    oci_free_statement($result);
+    if($number_of_rows>0)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
 ?>
