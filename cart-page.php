@@ -27,6 +27,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 </head>
 <body>
     <div class="container">
+        <div class="alert alert-success cart-success action-success" role="alert">
+            
+        </div>
     <?php
         $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);
         if($item_count>0)
@@ -109,10 +112,11 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         <span>&#163;</span><span><?php echo $row['PRICE']*$row['QUANTITY'];?></span>
                     </div>
                     <div class="col-1">
-                        <i class="fa-regular fa-trash-can pl-3"></i>
+                        <i class="fa-regular fa-trash-can pl-3 remove-cart-item" value="<?php echo $row['PRODUCT_ID'];?>"></i>
                     </div>
+                    <hr class="ml-3" style="width:100%;">
                 </div>
-                <hr>
+                
                 <?php
                     $subtotal=$subtotal+($row['PRICE']*$row['QUANTITY']);
                     }

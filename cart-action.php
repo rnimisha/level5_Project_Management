@@ -74,6 +74,11 @@
             removeFromWishlist($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
         }
 
+        if($_POST['action']=='remove-cart-item')
+        {
+            removeFromCart($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
+        }
+
         $cart_action['valid']=true;
     }
 

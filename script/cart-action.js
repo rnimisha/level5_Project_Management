@@ -124,6 +124,27 @@ $(document).ready(function(){
         });
     });
 
-    
+    //remove from cart
+    $('.remove-cart-item').click(function(){
+       
+        var current=$(this);
+        var product_id=$(this).attr('value');
+        
+        $.ajax({
+            type: "POST",
+            url: 'cart-action.php',
+            data: {
+                product_id:product_id,
+                action:'remove-cart-item'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                if(resp.valid == true) {
+                    current.closest('.cart-items').hide();
+                }
+                $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Wishlist.</h5>');
+                $('.action-success').show().delay(3000).fadeOut();
+            }
+        });
+    });
 });
-
