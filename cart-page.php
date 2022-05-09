@@ -76,11 +76,11 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
                     <div class="col-2">
-                        <div class="review-profile-container">
+                        <div class="review-profile-container cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>" class="cart-prod-img img-fluid"/>
                         </div>
                     </div>
-                    <div class="col-3 d-block">
+                    <div class="col-3 d-block cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                         <div><?php echo $row['PRODUCT_NAME'];?></div>
                         <?php 
                         if($row['STOCK_QUANTITY']>0)

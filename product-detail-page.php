@@ -637,41 +637,6 @@ $img= getProductImage($product_id,$connection);
     </div>
     <input type="hidden" value="1" id="real-quantity" />
     <input type="hidden" value="<?php echo $stock;?>" id="stock-amount" />
-
-
-    <!-- Button trigger modal for cart success -->
-    <button type="button" id="item-added-modal" class="btn btn-primary d-none" data-toggle="modal"
-        data-target="#popItemAdded">
-        preview
-    </button>
-
-    <!-- Modal for cart success -->
-    <div class="modal fade" id="popItemAdded" tabindex="-1" role="dialog" aria-labelledby="popItemAdded"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content w-50 mx-auto">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="row item-added-body d-flex justify-content-center align-items-center mb-4">
-                    <div class="col-12 text-center mt-n2">
-                        <h3 style="color:#78967e; font-weight:bolder;">Item Added To Cart Successfully</h3>
-                    </div>
-                    <div class="col-12 text-center mt-n2">
-                        <img src="image/cart-add-success.gif" alt="cart-add-success" class="product-pic" />
-                    </div>
-                    <div class="col-4 text-center py-3 btn">
-                        Continue Shopping
-                    </div>
-                    <div class="col-4 text-center ml-1 py-3 btn">
-                        Go To Cart
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <?php
         include_once('popup-modal.php');
     ?>

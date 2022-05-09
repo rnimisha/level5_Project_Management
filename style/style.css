@@ -342,7 +342,7 @@ label{
     color: #78967e;
 }
 
-.plus, .minus, .plus-cart, .minus-cart,.remove-all-cart-btn{
+.plus, .minus, .plus-cart, .minus-cart,.remove-all-cart-btn, .cat-product-container{
     cursor: pointer;
 }
 

@@ -71,12 +71,12 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     while (($row = oci_fetch_assoc($parsed)) != false) {
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center wishlist-items">
-                    <div class="col-2">
+                    <div class="col-2 cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                         <div>
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"  class="wishlist-prod-img img-fluid"/>
                         </div>
                     </div>
-                    <div class="col-3 d-block text-left">
+                    <div class="col-3 d-block text-left cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                         <div><?php echo $row['PRODUCT_NAME'];?></div>
                     </div>
                     <div class="col-2 individual-price" value="">
