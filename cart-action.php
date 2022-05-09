@@ -82,5 +82,14 @@
         $cart_action['valid']=true;
     }
 
+    if(isset($_SESSION['phoenix_user']) && isset($_SESSION['user_role']) && $_SESSION['user_role']=='C' && isset($_POST['action'])){
+        if($_POST['action']=='remove-all-cart-items')
+        {
+        removeAllFromCart($_SESSION['phoenix_user'], $connection);
+        }
+        $cart_action['valid']=true;
+    }
+    
+
     echo json_encode($cart_action);
 ?>

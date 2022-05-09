@@ -419,5 +419,14 @@ function removeFromCart($product_id, $user_id, $connection)
     $query="DELETE FROM CART_ITEM WHERE USER_ID=$user_id AND PRODUCT_ID=$product_id";
     $result=oci_parse($connection, $query);
     oci_execute($result);
+    oci_free_statement($result);
+}
+
+function removeAllFromCart($user_id, $connection)
+{
+    $query="DELETE FROM CART_ITEM WHERE USER_ID=$user_id ";
+    $result=oci_parse($connection, $query);
+    oci_execute($result);
+    oci_free_statement($result);
 }
 ?>

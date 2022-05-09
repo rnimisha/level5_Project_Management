@@ -342,7 +342,7 @@ label{
     color: #78967e;
 }
 
-.plus, .minus, .plus-cart, .minus-cart{
+.plus, .minus, .plus-cart, .minus-cart,.remove-all-cart-btn{
     cursor: pointer;
 }
 
@@ -614,4 +614,9 @@ i.bx.bx-star {
 }
 a{
     color: #000000;
+}
+button#remove-all-cart-items.btn.btn-primary {
+    color: #000000;
+    background-color: #c7d5ba;
+    border-color: #c7d5ba;
 }

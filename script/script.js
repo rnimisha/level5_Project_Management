@@ -207,6 +207,13 @@ $(document).ready(function(){
         }
     })
 
+    $('.go-to-cart').click(function(){
+        window.location.href = 'cart-page.php';
+    });
+
+    $('.continue-shopping').click(function(){
+        $('.close-cart-success').click();
+    });
 });
 
 

@@ -142,8 +142,35 @@ $(document).ready(function(){
                 if(resp.valid == true) {
                     current.closest('.cart-items').hide();
                 }
-                $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Wishlist.</h5>');
+                $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
                 $('.action-success').show().delay(3000).fadeOut();
+            }
+        });
+    });
+
+    //trigger remove from cart
+    $('.remove-all-cart-btn').click(function(){
+        
+        $('#confirm-remove-all-cart').click();
+    });
+
+    $('#remove-all-cart-items').click(function(){
+        var current=$(this);
+
+        $.ajax({
+            type: "POST",
+            url: 'cart-action.php',
+            data: {
+                action:'remove-all-cart-items'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                console.log(response);
+                if(resp.valid == true) {
+                    location.reload();
+                    $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
+                    $('.action-success').show().delay(3000).fadeOut();
+                }
             }
         });
     });

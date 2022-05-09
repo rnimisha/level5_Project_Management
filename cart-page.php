@@ -41,7 +41,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 <span class="text-muted">Total items : <?php echo $item_count;?></span>
             </div>
             <div class="col-3">
-                <div class="text-right text-muted">
+                <div class="text-right text-muted remove-all-cart-btn">
                 <i class="fa-regular fa-trash-can text-muted"></i> Remove All
                 </div>
             </div>
@@ -193,6 +193,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         }
         ?>
     </div>
+    <?php
+        include_once('popup-modal.php');
+    ?>
    
 </body>
 <!-- external script -->
