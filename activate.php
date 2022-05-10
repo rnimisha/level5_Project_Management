@@ -51,7 +51,7 @@
             $subject="New Trader Request";
             $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
 
-            // $body="Hi $name, \n Click here to activate  http://localhost/project_management/level5_project_management/code/activate.php?token=$token ";
+            // $body="Hi $name, \n Click here to activate  http://localhost/project_management/level5_project_management/activate.php?token=$token ";
             $body="
             <html>
             <head>
@@ -106,7 +106,7 @@
                                 </td>
                             </tr>
                         </table>
-                            <br> <b>Click button  to activate trader $fullnames.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activateTrader.php?userid=$user_id'><button style='background-color: #a4bfa7;border: none;
+                            <br> <b>Click button  to activate trader $fullnames.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/activateTrader.php?userid=$user_id'><button style='background-color: #a4bfa7;border: none;
                         color: #ffffff;
                         padding: 15px 32px;
                         text-align: center;

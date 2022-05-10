@@ -199,7 +199,7 @@
                             Shop Registration date : $shop_date<br> 
                             PAN : $reg_id <br> 
                             Trader's Message : $reason <br> 
-                                <br> <b>Click button  to activate shop.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activateTrader.php?regid=$reg_id&userid=$trader_id&name=$shop_name'><button style='background-color: #4CAF50;border: none;
+                                <br> <b>Click button  to activate shop.</b> <br><br><a href= 'http://localhost/project_management/level5_project_management/activateTrader.php?regid=$reg_id&userid=$trader_id&name=$shop_name'><button style='background-color: #4CAF50;border: none;
                             color: white;
                             padding: 15px 32px;
                             text-align: center;

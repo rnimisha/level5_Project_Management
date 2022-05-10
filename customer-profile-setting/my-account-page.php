@@ -94,14 +94,14 @@
                     <div class="col-12 mt-4">
                         <div class="setting-nav align-items-center pb-4">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Personal Information</b></div>
-                            <form class=" w-75 mx-auto py-4" id="cust-personal-form" action="" method="POST">
+                            <form class=" w-75 mx-auto py-4" id="cust-personal-form" action="validate-profile.php" method="POST">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" id="cust-id" value=""/>
+                                    <input type="hidden" class="form-control" id="cust-id" value="<?php echo $cust_id;?>"/>
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
                                     <label for="cust-fullname" class="text-muted">Full Name</label>
-                                    <input type="text" class="form-control" id="cust-fullname" value=""/>
+                                    <input type="text" class="form-control" id="cust-fullname" value="<?php  echo (isset($fullnames)) ? $fullnames : null;?>"/>
                                     <div class="invalid-feedback" id="error-cust-fullname"></div>
                                   </div>
                                   <div class="form-group col-md-6">
@@ -112,18 +112,18 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="cust-email" class="text-muted">Email</label>
-                                    <input type="text" class="form-control" id="cust-email" value=""/>
+                                    <input type="text" class="form-control" id="cust-email" value="<?php  echo (isset($email)) ? $email : null;?>"/>
                                     <div class="invalid-feedback" id="error-cust-email"></div>
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
                                     <label for="cust-contact" class="text-muted">Contact</label>
-                                    <input type="text" class="form-control" id="cust-contact" value=""/>
+                                    <input type="text" class="form-control" id="cust-contact" value="<?php  echo (isset($contact)) ? $contact : null;?>"/>
                                     <div class="invalid-feedback" id="error-cust-contact"></div>
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="cust-dob" class="text-muted">Address</label>
-                                    <input type="text" class="form-control" id="cust-address" value=""/>
+                                    <input type="text" class="form-control" id="cust-address" value="<?php  echo (isset($address)) ? $address : null;?>"/>
                                     <div class="invalid-feedback" id="error-cust-address"></div>
                                   </div>
                                 </div>

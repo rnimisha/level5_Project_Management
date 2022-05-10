@@ -399,7 +399,7 @@
                         <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
                             <center>
                                 $image 
-                                <h2> Hi $t_fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to verify your email address.You will be shortly notified if your request gets accepted. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?token=$token&reason=$reason&role=t'><button style='background-color: #a4bfa7;border: none;
+                                <h2> Hi $t_fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to verify your email address.You will be shortly notified if your request gets accepted. <br><br><a href= 'http://localhost/project_management/level5_project_management/activate.php?token=$token&reason=$reason&role=t'><button style='background-color: #a4bfa7;border: none;
                                 color: white;
                                 padding: 15px 32px;
                                 text-align: center;

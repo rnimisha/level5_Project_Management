@@ -231,7 +231,7 @@
                 $subject="Verify Your Account";
                 $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
 
-                // $body="Hi $name, \n Click here to activate  http://localhost/project_management/level5_project_management/code/activate.php?token=$token ";
+                // $body="Hi $name, \n Click here to activate  http://localhost/project_management/level5_project_management/activate.php?token=$token ";
                 $body="
                 <html>
                 <head>
@@ -241,7 +241,7 @@
                     <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
                         <center>
                             $image
-                            <h2> Hi $fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to activate your account with Phoenix Mart. <br><br><a href= 'http://localhost/project_management/level5_project_management/code/activate.php?token=$token&role=c'><button style='background-color: #a4bfa7;border: none;
+                            <h2> Hi $fullnames,</h2> <br> <b>Welcome to Phoenix Mart</b>.  <br> Click button  to activate your account with Phoenix Mart. <br><br><a href= 'http://localhost/project_management/level5_project_management/activate.php?token=$token&role=c'><button style='background-color: #a4bfa7;border: none;
                             color: white;
                             padding: 15px 32px;
                             text-align: center;
