@@ -43,7 +43,7 @@
                         <i class='bx bx-user' ></i>
                         <span> &nbsp; My Profile</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="my-orders-page.php" class="list-group-item">
                         <i class='bx bx-package'></i>
                         <span> &nbsp; My Orders</span>
                     </a>
@@ -102,20 +102,20 @@
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Orders</b></div>
                             <div class="row w-100 d-flex justify-content-center align-items-center">
                                 <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <i class="fa-solid fa-basket-shopping orders-icons"></i>
-                                    <div>All order</div>
+                                    <a href="my-orders-page.php"><i class="fa-solid fa-basket-shopping orders-icons"></i>
+                                    <div>All order</div></a>
                                 </div>
                                 <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <i class="fa-solid fa-truck-fast orders-icons "></i>
-                                    <div>To Receive</div>
+                                    <a href="my-orders-page.php"><i class="fa-solid fa-truck-fast orders-icons "></i>
+                                    <div>To Receive</div></a>
                                 </div>
                                 <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <i class="fa-solid fa-truck-ramp-box orders-icons"></i>
-                                    <div>Received</div>
+                                    <a href="my-orders-page.php"><i class="fa-solid fa-truck-ramp-box orders-icons"></i>
+                                    <div>Received</div></a>
                                 </div>
                                 <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <i class="fa-solid fa-comment orders-icons "></i>
-                                    <div>To Review</div>
+                                    <a href="my-review-page.php"><i class="fa-solid fa-comment orders-icons "></i>
+                                    <div>To Review</div></a>
                                 </div>
                             </div>
                         </div>

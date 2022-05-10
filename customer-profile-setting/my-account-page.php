@@ -38,7 +38,7 @@
                         <i class='bx bx-user' ></i>
                         <span> &nbsp; My Profile</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="my-orders-page.php" class="list-group-item">
                         <i class='bx bx-package'></i>
                         <span> &nbsp; My Orders</span>
                     </a>

@@ -360,11 +360,57 @@ $(document).ready(function(){
                 {
                     $('.all-orders-container').addClass('d-none');
                 }
-                
+                if(!$('.recieved-container').hasClass('d-none'))
+                {
+                    $('.recieved-container').addClass('d-none');
+                }
+                if(!$('.to-recieve-container').hasClass('d-none'))
+                {
+                    $('.to-recieve-container').addClass('d-none');
+                }
+                if($('.one-detail-container').hasClass('d-none'))
+                {
+                    $('.one-detail-container').removeClass('d-none');
+                }
+               
                 $('.one-detail-container').html(response);
 
             }
         });
+    });
+
+    $('.all-order-select').click(function(){
+        $('.all-orders-container').removeClass('d-none');
+        $('.recieved-container').addClass('d-none');
+        $('.to-recieve-container').addClass('d-none');
+        $('.one-detail-container').addClass('d-none');
+
+        $('.all-order-select').addClass('my-green-font');
+        $('.recieved-select').removeClass('my-green-font');
+        $('.to-recieve-select').removeClass('my-green-font');
+
+    });
+
+    $('.to-recieve-select').click(function(){
+        $('.all-orders-container').addClass('d-none');
+        $('.recieved-container').addClass('d-none');
+        $('.to-recieve-container').removeClass('d-none');
+        $('.one-detail-container').addClass('d-none');
+
+        $('.all-order-select').removeClass('my-green-font');
+        $('.recieved-select').removeClass('my-green-font');
+        $('.to-recieve-select').addClass('my-green-font');
+    });
+
+    $('.recieved-select').click(function(){
+        $('.all-orders-container').addClass('d-none');
+        $('.recieved-container').removeClass('d-none');
+        $('.to-recieve-container').addClass('d-none');
+        $('.one-detail-container').addClass('d-none');
+
+        $('.all-order-select').removeClass('my-green-font');
+        $('.recieved-select').addClass('my-green-font');
+        $('.to-recieve-select').removeClass('my-green-font');
     });
 });
 

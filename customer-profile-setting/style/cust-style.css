@@ -71,9 +71,11 @@ body{
 .setting-nav .list-group-item:hover, .btn:hover{
     background-color: #d9bcb7;
     transition: background-color 0.7s linear;
+    cursor: pointer;
 }
-.orders-icons:hover{
+.orders-icons:hover, .all-order-select:hover, .to-recieve-select:hover, .recieved-select:hover{
     color: #d9bcb7;
+    cursor: pointer;
 }
 
 #sticky-nav {
@@ -178,4 +180,8 @@ body{
 .table th {
     padding: 0.7rem;
     border-bottom: 0.5px solid #d7dfd2;
+}
+
+.order-cust-container{
+    min-height: 290px;
 }
