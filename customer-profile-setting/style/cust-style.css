@@ -1,6 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Quicksand:wght@300;400;500&display=swap');
 body{
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     /* font-family: 'Lato', sans-serif; */
     font-family: 'Quicksand', sans-serif;
+    background-color: #f7f7f7;
+}
+
+.cust-profile-img-container{
+    /* background-color: #c3d0bb; */
+    background-color: #d7dfd2;
+    min-height: 200px;
+}
+
+.cust-profile-img{
+    width: 70%;
+    margin: 40px 10px 5px 10px;
+    border-radius:100px;
+    border: 2px solid #ffffff;
+}
+
+
+.setting-nav{
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+.setting-nav a{
+    color:#000000;
+    text-decoration: none;
+}
+
+.container-profile{
+    width: 80%;
+    border-radius: 50px;
+    max-height: 80%;
+}
+
+.my-profile-container .fa-solid{
+    color: #78967e;
+}
+
+.wishlist-dashboard .fa-heart{
+    color: white;
+    font-size: 100px;
+    -webkit-text-stroke: 1px black;
+    padding: 10px;     
+}
+
+.overview-row{
+    height: 270px;
+    overflow: hidden;
+}
+
+.my-green-font{
+    color: #78967e;
+}
+
+.list-group-item.active {
+    color: #78967e;
+    background-color: transparent;
+    border-color: rgba(0,0,0,.125);
+    font-weight: bold;
 }
