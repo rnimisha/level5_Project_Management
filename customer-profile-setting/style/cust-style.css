@@ -56,9 +56,9 @@ body{
 }
 
 .list-group-item.active {
-    color: #78967e;
-    background-color: transparent;
-    border-color: rgba(0,0,0,.125);
+    color: #000000;
+    background-color: #d7dfd2;
+    border-color: #d7dfd2;;
     font-weight: bold;
 }
 
@@ -67,4 +67,47 @@ body{
     color: #78967e;
     /* color: #debcb2; */
     margin: 30px 10px 5px 10px;
+}
+.setting-nav .list-group-item:hover, .btn:hover{
+    background-color: #debcb2;
+    transition: background-color 0.7s linear;
+}
+.orders-icons:hover{
+    color: #debcb2;
+}
+
+#sticky-nav {
+    position: sticky;
+    top: 0;
+}
+
+.rounded-top {
+    border-top-left-radius: 0.5rem!important;
+    border-top-right-radius: 0.5rem!important;
+}
+.rounded-bottom {
+    border-bottom-right-radius: 0.5rem!important;
+    border-bottom-left-radius: 0.5rem!important;
+}
+
+.profile-row{
+    height: 350px;
+}
+.btn {
+    background-color: #d7dfd2;
+    box-shadow: 0px 0px 2px rgb(144, 139, 139);
+}
+
+.form-control {
+    color: #495057;
+    background-color: #fff;
+    border: 0px solid #ced4da;
+    border-bottom: 1px solid #d4cfcf;
+    border-radius: 0rem;
+    background-color: transparent;
+}
+
+.form-control:focus {
+    border-color: #78967e;
+    box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }
