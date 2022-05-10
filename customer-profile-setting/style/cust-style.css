@@ -73,7 +73,7 @@ body{
     transition: background-color 0.7s linear;
     cursor: pointer;
 }
-.orders-icons:hover, .all-order-select:hover, .to-recieve-select:hover, .recieved-select:hover{
+.orders-icons:hover, .all-order-select:hover, .to-recieve-select:hover, .recieved-select:hover, .add-review:hover{
     color: #d9bcb7;
     cursor: pointer;
 }

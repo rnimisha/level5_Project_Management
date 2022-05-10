@@ -78,7 +78,7 @@
                                 while (($row = oci_fetch_assoc($parsed_query)) != false) {
 
                             ?>
-                            <div class="row justify-content-center align-items-center all-orders-container transition-effect px-4 my-5">
+                            <div class="row justify-content-center d-none align-items-center reviewed-container transition-effect px-4 my-5">
                                 <div class="col-2">
                                     <div class="review-profile-container">
                                         <a href="..\product-detail-page.php?pid=<?php echo $row['PRODUCT_ID']?>">
@@ -118,6 +118,59 @@
                             </div>
                             <?php
                                 }
+                                oci_free_statement($parsed_query);
+                            ?>
+
+                            <?php
+
+                                $query="SELECT DISTINCT REVIEW_ID, CO.ORDER_ID, ORDER_ITEM_ID,ITEM_QUANTITY, OI.PRODUCT_ID FROM CUST_ORDER CO 
+                                JOIN ORDER_ITEM OI 
+                                ON CO.ORDER_ID=OI.ORDER_ID
+                                LEFT JOIN (SELECT * FROM REVIEW WHERE USER_ID=$cust_id) R
+                                ON R.PRODUCT_ID=OI.PRODUCT_ID
+                                WHERE CO.USER_ID=$cust_id
+                                AND REVIEW_ID IS NULL
+                                GROUP BY CO.ORDER_ID, ORDER_ITEM_ID, ITEM_QUANTITY,OI.PRODUCT_ID, REVIEW_ID
+                                ORDER BY ORDER_ID";
+                            
+                                $parsed=oci_parse($connection,$query);
+                            
+                                oci_execute($parsed);
+                                while (($row = oci_fetch_assoc($parsed)) != false) 
+                                {
+                                    $query2="SELECT * FROM PRODUCT WHERE PRODUCT_ID=".$row['PRODUCT_ID'];
+                                    $parsed_query=oci_parse($connection, $query2);
+                                    oci_execute($parsed_query);
+                                    while (($row2= oci_fetch_assoc($parsed_query)) != false) {
+                            ?>
+                            <div class="row justify-content-center align-items-center to-review-container transition-effect px-4 my-5">
+                                <div class="col-2 pl-5">
+                                    <div class="review-profile-container">
+                                        <a href="..\product-detail-page.php?pid=<?php echo $row2['PRODUCT_ID']?>">
+                                            <img src="..\image\product\<?php echo(getProductImage($row2['PRODUCT_ID'],$connection)[0]); ?>" class="review-profile img-fluid" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-4 d-block justify-content-start">
+                                    <div class="row w-100 text-muted">
+                                        <div class="col-6 justify-content-start align-items-start text-left px-0">
+                                            ORDER #<?php echo $row['ORDER_ID']?>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="row w-100 verification">
+                                        <small><a href="..\product-detail-page.php?pid=<?php echo $row2['PRODUCT_ID']?>"><?php echo $row2['PRODUCT_NAME']; ?></a></small>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-block justify-content-start my-green-font">
+                                    <span class="add-review"><i class="fa-solid fa-plus"></i> <b>ADD REVIEW</b><span>
+                                </div>
+                            </div>
+                            <?php
+                                    } 
+                                }
+                                oci_free_statement($parsed_query);  
+                                oci_free_statement($parsed);
                             ?>
                         </div>
                     </div>
