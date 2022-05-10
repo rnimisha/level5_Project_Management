@@ -47,13 +47,13 @@
                         <i class='bx bx-package'></i>
                         <span> &nbsp; My Orders</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="..\wishlist-page.php" class="list-group-item">
                         <i class='bx bx-heart' ></i>
                         <!-- <i class='bx bx-book-heart' ></i> -->
                         <!-- <i class='bx bx-bookmark-heart' ></i> -->
                         <span> &nbsp; My WishList</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="my-review-page.php" class="list-group-item">
                         <i class='bx bx-message-rounded-dots'></i>
                         <span> &nbsp; My Reviews</span>
                     </a>
@@ -89,12 +89,12 @@
                     <div class="col-md-6 mt-2">
                         <div class="setting-nav overview-row">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Wishlist</b></div>
-                            <div class="wishlist-dashboard text-center mt-3">
+                            <a href="..\wishlist-page.php"><div class="wishlist-dashboard text-center mt-3">
                                 <i class="fa-solid fa-heart"></i>
                             </div>
                             <div class="text-center pb-3">
                                 <?php echo checkWishlistCount($_SESSION['phoenix_user'], $connection);?> items
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                     <div class="col-12 mt-4">

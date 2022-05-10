@@ -185,3 +185,13 @@ body{
 .order-cust-container{
     min-height: 290px;
 }
+
+.review-profile{
+    width: 65px;
+    height: 65px;
+    border-radius: 50px;
+}
+
+.bxs-star{
+    color: #dac775 ;
+}

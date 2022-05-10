@@ -46,11 +46,11 @@
                         <i class='bx bx-package'></i>
                         <span> &nbsp; My Orders</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="..\wishlist-page.php" class="list-group-item">
                         <i class='bx bx-heart'></i>
                         <span> &nbsp; My WishList</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="my-review-page.php" class="list-group-item">
                         <i class='bx bx-message-rounded-dots'></i>
                         <span> &nbsp; My Reviews</span>
                     </a>
