@@ -33,11 +33,76 @@ $(document).ready(function(){
                     resetForm('update-password-form');
                     removeStyle(resp);
                     $('.profile-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Password has been updated.</h5>');
-                    $('.profile-success').show().delay(3000).fadeOut();
+                    $('.profile-success').show().delay(5000).fadeOut();
                 }
                 else{
                     inlineMsg(resp);
                 }
+            }
+        });
+        return false;
+    });
+
+    $('#cust-old-pass').keyup(function(){
+        var old_pass=$('#cust-old-pass').val();
+        var customer_id=$('#customer-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                old_pass:old_pass,
+                customer_id:customer_id,
+                form_name: 'update-password-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#cust-new-pass').keyup(function(){
+        var new_pass=$('#cust-new-pass').val();
+        var customer_id=$('#customer-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                new_pass:new_pass,
+                customer_id:customer_id,
+                form_name: 'update-password-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#cust-re-pass').keyup(function(){
+        var new_pass=$('#cust-new-pass').val();
+        var re_pass=$('#cust-re-pass').val();
+        var customer_id=$('#customer-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                new_pass:new_pass,
+                re_pass:re_pass,
+                customer_id:customer_id,
+                form_name: 'update-password-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
             }
         });
         return false;
