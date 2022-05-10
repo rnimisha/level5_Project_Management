@@ -385,4 +385,48 @@
         }
         echo json_encode($edit_cust_error);
     }
+
+    //validate profile picture
+    $change_profile_pic=array();
+    $change_profile_pic['clear']=true;
+    if(isset($_FILES['new-profile-pic']['name']))
+    {
+        if(!empty($_FILES['new-profile-pic']['name']))
+        {
+            $filename=$_FILES['new-profile-pic']['name'];
+            $extension=pathinfo($filename, PATHINFO_EXTENSION);
+
+            $valid=array("jpg", "jpeg", "png", "gif");
+            if(in_array($extension, $valid))
+            {
+                $new_name= rand().".".$extension;
+                $destination="../image/profile/".$new_name;
+
+                if(move_uploaded_file($_FILES['new-profile-pic']['tmp_name'], $destination))
+                {
+                    $change_profile_pic['error']="";
+                    $cust_id=$_POST['c_id'];
+                    $change_profile_pic['pic_name']='..\\image\\profile\\'.$new_name;
+
+                    $updateQuery="UPDATE MART_USER SET PROFILE_PIC=:pp WHERE USER_ID=:cust_id";
+                    $parsedQuery=oci_parse($connection, $updateQuery);
+        
+                    oci_bind_by_name($parsedQuery, ":pp", $new_name);
+                    oci_bind_by_name($parsedQuery, "cust_id", $cust_id);
+        
+                    oci_execute($parsedQuery);
+                    oci_free_statement($parsedQuery);
+                }
+            }
+            else{
+                 $change_profile_pic['error']='Invalid file';
+                 $change_profile_pic['clear']=false;
+            }
+        }  
+        else{
+            $change_profile_pic['error']='Upload image first';
+            $change_profile_pic['clear']=false;
+        }
+        echo json_encode($change_profile_pic);
+    }
 ?>

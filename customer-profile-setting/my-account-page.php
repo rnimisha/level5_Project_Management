@@ -65,7 +65,7 @@
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Avatar</b></div>
                               <form action="validate-profile.php" method="POST" id="change-cust-pp-form" class="row justify-content-center align-itemms-center">
                                 <div class="form-group">
-                                  <input type="hidden" class="form-control" id="c_id" name="c_id" value="" />
+                                  <input type="hidden" class="form-control" id="c_id" name="c_id" value="<?php echo $cust_id;?>" />
                                 </div>
                                 <div class="preview-img mb-1 mt-5 mx-auto">
                                   <img src="..\image\product\productplaceholder.png" class="img-fluid changing-profile"/>
@@ -76,7 +76,7 @@
                                   <div class="invalid-feedback" id="error-new-prod-pic"></div>
                                 </div>
                                 <div class="row d-none">
-                                  <button type="submit" class="btn" id="change-profile-pic-btn">Upload Image</button>
+                                  <button type="submit" class="btn" id="change-profile-pic-btn">Change Profile</button>
                                 </div>
                             </form>
                         </div>

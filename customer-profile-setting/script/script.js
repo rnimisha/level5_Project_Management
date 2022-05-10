@@ -307,4 +307,44 @@ $(document).ready(function(){
     $('#upload-profile-confirm').click(function(){
         $('#change-cust-pp-form').submit();
     });
+
+    $('#change-cust-pp-form').submit(function(){
+
+        //button value change
+        jQuery('#change-profile-pic-btn').text('Changing...');
+        jQuery('#change-profile-pic-btn').attr('disabled', true);
+
+        //for file
+        var formData= new FormData(this);
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: "JSON",
+            contentType: false,
+            processData: false,
+            success: function(response){
+                console.log(response);
+                var resp=response;
+                jQuery('#change-profile-pic-btn').text('Change Profile');
+                jQuery('#change-profile-pic-btn').attr('disabled', false);
+                if(resp.clear == true){
+
+                    var img_name=resp.pic_name;
+                    $(".cust-profile-img").attr("src",img_name);
+                    $(".changing-profile").attr("src",img_name);
+                    $('.profile-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Profile change successfully.</h5>');
+                    $('.profile-success').show().delay(5000).fadeOut();
+                }
+                else{
+                    alert('Could not change profile');
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
 });
+
+$('body').addClass('transition-effect');
