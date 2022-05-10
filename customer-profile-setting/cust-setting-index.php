@@ -1,3 +1,19 @@
+<?php
+  include_once('../connection.php');
+  include_once('../function.php');
+  if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']))
+  {
+    header('Location: ../loginform.php');
+  }
+  if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
+  {
+    header('Location: ../loginform.php');
+  }
+  if(isset($_SESSION['phoenix_user']) && !empty(($_SESSION['phoenix_user'])) && $_SESSION['user_role']=='C')
+  {
+      $cust_id=$_SESSION['phoenix_user'];
+  }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,23 +30,16 @@
     <title>My Account</title>
 </head>
 <body>
-    <div class="container-fluid p-0">
-        <div class="row p-0 m-0 w-100 mt-5 cust-profile-img-container">
-            <div class="col-2 mx-auto text-center">
-                <img src="..\image\profile\default_profile.jpg"  alt="profile" class="img-fluid cust-profile-img"/>
-                <div class="mb-4">Heedo </div>
-            </div>
-        </div>
-    </div>
+    <?php include_once('include-header.php');?>
     <div class="container setting-container mb-5">
         <div class="row w-100 mt-5">
             <div class="col-md-3 d-flex justify-content-start align-items-start pr-0 mt-2">
                 <div class="list-group list-group-flush setting-nav w-100 setting-nav" id="sticky-nav">
-                    <a href="" class="list-group-item active rounded-top">
+                    <a href="cust-setting-index.php" class="list-group-item active rounded-top">
                         <i class='bx bx-grid-alt' ></i>
                         <span> &nbsp; Dashboard</span>
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="my-account-page.php" class="list-group-item">
                         <i class='bx bx-user' ></i>
                         <span> &nbsp; My Profile</span>
                     </a>
@@ -61,19 +70,19 @@
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>My Profile</b></div>
                             <div class="px-4 py-2">
                                 <!-- <img src="..\image\profile\default_profile.jpg"  alt="profile" class="img-fluid container-profile"/> -->
-                                <i class="fa-solid fa-user-tag"></i>&nbsp; Yeonsoo
+                                <i class="fa-solid fa-user-tag"></i>&nbsp; <?php  echo (isset($fullnames)) ? $fullnames : null;?>
                             </div>
                             <div class="px-4 py-2">
-                                <i class="fa-solid fa-envelope-open-text"></i>&nbsp;&nbsp; Yeonsoo@gmail.com
+                                <i class="fa-solid fa-envelope-open-text"></i>&nbsp;&nbsp; <?php  echo (isset($email)) ? $email : null;?>
                             </div>
                             <div class="px-4 py-2">
-                                <i class="fa-solid fa-cake-candles"></i> &nbsp;&nbsp; 2000-04-26
+                                <i class="fa-solid fa-cake-candles"></i> &nbsp;&nbsp; <?php  echo (isset($dob)) ? $dob : null;?>
                             </div>
                             <div class="px-4 py-2">
-                                <i class="fa-solid fa-location-dot"></i> &nbsp;&nbsp; Saharah desert
+                                <i class="fa-solid fa-location-dot"></i> &nbsp;&nbsp; <?php  echo (isset($address)) ? $address : null;?>
                             </div>
                             <div class="px-4 py-2">
-                                <i class="fa-solid fa-phone"></i> &nbsp; 9813032413
+                                <i class="fa-solid fa-phone"></i> &nbsp; <?php  echo (isset($contact)) ? $contact : null;?>
                             </div>
                         </div>
                     </div>
@@ -84,7 +93,7 @@
                                 <i class="fa-solid fa-heart"></i>
                             </div>
                             <div class="text-center pb-3">
-                                10 items
+                                <?php echo checkWishlistCount($_SESSION['phoenix_user'], $connection);?> items
                             </div>
                         </div>
                     </div>

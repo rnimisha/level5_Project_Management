@@ -65,15 +65,15 @@ body{
 .orders-icons {
     font-size: 50px;
     color: #78967e;
-    /* color: #debcb2; */
+    /* color: #d9bcb7; */
     margin: 30px 10px 5px 10px;
 }
 .setting-nav .list-group-item:hover, .btn:hover{
-    background-color: #debcb2;
+    background-color: #d9bcb7;
     transition: background-color 0.7s linear;
 }
 .orders-icons:hover{
-    color: #debcb2;
+    color: #d9bcb7;
 }
 
 #sticky-nav {

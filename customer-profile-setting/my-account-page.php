@@ -1,3 +1,14 @@
+<?php
+  include_once('../connection.php');
+  if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']))
+  {
+    header('Location: ../loginform.php');
+  }
+  if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
+  {
+    header('Location: ../loginform.php');
+  }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,23 +25,16 @@
     <title>My Profile</title>
 </head>
 <body>
-    <div class="container-fluid p-0">
-        <div class="row p-0 m-0 w-100 mt-5 cust-profile-img-container">
-            <div class="col-2 mx-auto text-center">
-                <img src="..\image\profile\default_profile.jpg"  alt="profile" class="img-fluid cust-profile-img"/>
-                <div class="mb-4">Heedo </div>
-            </div>
-        </div>
-    </div>
+    <?php include_once('include-header.php');?>
     <div class="container setting-container mb-5">
         <div class="row w-100 mt-5">
             <div class="col-md-3 d-flex justify-content-start align-items-start pr-0 mt-2">
                 <div class="list-group list-group-flush setting-nav w-100 setting-nav" id="sticky-nav">
-                    <a href="" class="list-group-item rounded-top">
+                    <a href="cust-setting-index.php" class="list-group-item rounded-top">
                         <i class='bx bx-grid-alt' ></i>
                         <span> &nbsp; Dashboard</span>
                     </a>
-                    <a href="" class="list-group-item active">
+                    <a href="my-account-page.php" class="list-group-item active">
                         <i class='bx bx-user' ></i>
                         <span> &nbsp; My Profile</span>
                     </a>
@@ -139,4 +143,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- custom script -->
+<script src="../script/function.js"></script>
 </html>
