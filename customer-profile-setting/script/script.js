@@ -272,4 +272,39 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    /*----------customer profile change-----------*/
+    $('#new-profile-pic').change(function(){
+        $('#new-profile-pic').removeClass('is-invalid');
+        var file=this.files[0];
+        var imgfile=file.type;
+        var match=["image/jpeg", "image/png", "image/jpg"];
+        if(!((imgfile==match[0]) || (imgfile==match[1]) || (imgfile==match[2])))
+        {
+            $('#new-profile-pic').addClass('is-invalid');
+            $('#error-new-prod-pic').text("Please select valid image");
+            return false;
+        }
+        else
+        {
+            $('#preview-cust-pp').click();
+            $('#new-profile-pic').addClass('valid');
+            $('#error-new-prod-pic').text("");
+            var reader=new FileReader();
+            reader.onload=loadProfile;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+
+    function loadProfile(e)
+    {
+        $('#cust-preview').attr('src', e.target.result);
+        $('#cust-preview').css('width', '250px');
+        $('#cust-preview').css('height', '250px');
+    }
+
+    $('#upload-profile-confirm').click(function(){
+        $('#change-cust-pp-form').submit();
+    });
 });

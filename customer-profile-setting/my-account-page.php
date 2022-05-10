@@ -63,7 +63,22 @@
                     <div class="col-lg-6 pr-3 mt-2">
                         <div class="setting-nav d-block justify-content-center align-items-center my-profile-container profile-row">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Avatar</b></div>
-                            
+                              <form action="validate-profile.php" method="POST" id="change-cust-pp-form" class="row justify-content-center align-itemms-center">
+                                <div class="form-group">
+                                  <input type="hidden" class="form-control" id="c_id" name="c_id" value="" />
+                                </div>
+                                <div class="preview-img mb-1 mt-5 mx-auto">
+                                  <img src="..\image\product\productplaceholder.png" class="img-fluid changing-profile"/>
+                                </div>
+                                <div class="form-group col-12 text-center">
+                                  <label for="new-profile-pic" class="btn">Upload new picture</label><br>
+                                  <input type="file" id="new-profile-pic" name="new-profile-pic" class="d-none">
+                                  <div class="invalid-feedback" id="error-new-prod-pic"></div>
+                                </div>
+                                <div class="row d-none">
+                                  <button type="submit" class="btn" id="change-profile-pic-btn">Upload Image</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-6 mt-2">
@@ -137,10 +152,39 @@
             </div>
         </div>
     </div>
+    <!-- Button trigger modal -->
+    <button type="button" id="preview-cust-pp" class="btn btn-primary d-none" data-toggle="modal" data-target="#popConfirm">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="popConfirm" tabindex="-1" role="dialog" aria-labelledby="popConfirmTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="popConfirmTitle">Confirm Image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body d-flex justify-content-center align-item-center">
+            <img src="" id="cust-preview">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="upload-profile-confirm">Upload Image</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <!-- custom script -->
 <script src="../script/function.js"></script>
