@@ -163,4 +163,113 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $('#cust-fullname').keyup(function(){
+
+        var fullname=$('#cust-fullname').val();
+        var customer_id=$('#cust-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                fullname: fullname,
+                customer_id:customer_id,
+                form_name: 'cust-personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+    $('#cust-email').keyup(function(){
+
+        var customeremail=$('#cust-email').val();
+        var customer_id=$('#cust-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                customeremail: customeremail,
+                customer_id:customer_id,
+                form_name: 'cust-personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#cust-contact').keyup(function(){
+
+        var contact=$('#cust-contact').val();
+        var customer_id=$('#cust-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                contact: contact,
+                customer_id:customer_id,
+                form_name: 'cust-personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#cust-dob').keyup(function(){
+
+        var dob=$('#cust-dob').val();
+        var customer_id=$('#cust-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                dob: dob,
+                customer_id:customer_id,
+                form_name: 'cust-personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
+
+    $('#cust-address').keyup(function(){
+
+        var address=$('#cust-address').val();
+        var customer_id=$('#cust-id').val();
+
+        $.ajax({
+            type: "POST",
+            url: "validate-profile.php",
+            data: {
+                address: address,
+                customer_id:customer_id,
+                form_name: 'cust-personal-form',
+                run_query: 'f'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                inlineMsg(resp);
+            }
+        });
+        return false;
+    });
 });
