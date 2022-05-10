@@ -221,6 +221,34 @@ function getPrice($product_id, $order_id, $connection)
     return $price;
 }
 
+//get total items order in specific order
+function getOrderItemQuantity($order_id, $connection)
+{
+    $query="SELECT SUM(ITEM_QUANTITY) AS TOTAL_ITEMS FROM CUST_ORDER CO JOIN ORDER_ITEM OT ON OT.ORDER_ID=CO.ORDER_ID WHERE CO.ORDER_ID=$order_id";
+    $result=oci_parse($connection, $query);
+
+    oci_define_by_name($result, 'TOTAL_ITEMS', $total_items);
+    oci_execute($result);
+    oci_fetch($result);
+    oci_free_statement($result);
+    return $total_items;
+}
+
+function getSubtotalforOrder($order_id, $connection)
+{
+    $selectQuery="SELECT PRODUCT_ID FROM CUST_ORDER CO JOIN ORDER_ITEM OT ON OT.ORDER_ID=CO.ORDER_ID WHERE CO.ORDER_ID=$order_id";
+    $parsed=oci_parse($connection, $selectQuery);
+    oci_execute($parsed);
+    $total=0.0;
+    while (($row = oci_fetch_assoc($parsed)) != false) {
+        $prod_price=getPrice($row['PRODUCT_ID'], $order_id, $connection);
+        $prod_dis=getProductDiscount($row['PRODUCT_ID'], $order_id, $connection);
+        $total=$total+$prod_price-$prod_dis;
+    }
+    oci_free_statement($parsed);
+    return $total;
+}
+
 //get description from product id
 function getDescription($product_id, $connection)
 {

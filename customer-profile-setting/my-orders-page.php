@@ -1,3 +1,15 @@
+<?php
+  include_once('../connection.php');
+  include_once('../function.php');
+  if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']))
+  {
+    header('Location: ../loginform.php');
+  }
+  if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
+  {
+    header('Location: ../loginform.php');
+  }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,14 +27,7 @@
     <title>My Profile</title>
 </head>
 <body>
-    <div class="container-fluid p-0">
-        <div class="row p-0 m-0 w-100 mt-5 cust-profile-img-container">
-            <div class="col-2 mx-auto text-center">
-                <img src="..\image\profile\512619702.jpg" alt="profile" class="img-fluid cust-profile-img">
-                <div class="mb-4"> heedo</div>
-            </div>
-        </div>
-    </div>
+    <?php include_once('include-header.php');?>
     <div class="container setting-container mb-5">
         <div class="row w-100 mt-5">
             <div class="col-md-3 d-flex justify-content-start align-items-start pr-0 mt-2">
@@ -76,28 +81,62 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                      <?php
+                                        $getOrder= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE mu.USER_ID=$cust_id ORDER BY ORDER_DATE DESC";
+                                        // echo $getUser;
+                                        $parsedOrder = oci_parse($connection, $getOrder);
+                                        oci_execute($parsedOrder);
+                                        while (($row = oci_fetch_assoc($parsedOrder)) != false) {
+                                        ?>
                                           <tr>
                                               <td>
                                                 <span>
-                                                    <i class="fa-solid fa-magnifying-glass pl-1" value=""></i>
+                                                    <i class="fa-solid fa-magnifying-glass pl-1" value="<?php echo $row['ORDER_ID'];?>"></i>
                                                 </span>
-                                              </td>
-                                              <td>
-                                                  #123
-                                              </td>
-                                              <td>
-                                                  2020-1-2
-                                              </td>
-                                              <td class="badge badge-pill badge-completed">
-                                                completed
-                                              </td>
-                                              <td>
-                                                  5
-                                              </td>
-                                              <td>
-                                                <span>&#163;</span>11
-                                              </td>
+                                                </td>
+                                                <td>
+                                                    #<?php echo $row['ORDER_ID'];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['ORDER_DATE'] ?>
+                                                </td>
+                                                <?php
+                                                if(strtoupper( $row['ORDER_STATUS']) == 'COMPLETED')
+                                                {
+                                                    ?>
+                                                    <td class="badge badge-pill badge-completed"><?php echo $row['ORDER_STATUS']; ?></td>
+                                                    <?php
+                                                }
+                                                else if(strtoupper($row['ORDER_STATUS']) == 'PENDING')
+                                                {
+                                                    ?>
+                                                    <td class="badge badge-pill badge-pending"><span>&nbsp;&nbsp;&nbsp;</span><?php echo $row['ORDER_STATUS']; ?><span>&nbsp;&nbsp; </span></td>
+                                                    <?php
+                                                }
+                                                else if(strtoupper($row['ORDER_STATUS']) == 'PROCESSING')
+                                                {
+                                                    ?>
+                                                    <td class="badge badge-pill badge-processing"><?php echo $row['ORDER_STATUS']; ?></td>
+                                                    <?php
+                                                }
+                                                else
+                                                {
+                                                    ?>
+                                                    <td><?php echo $row['ORDER_STATUS']; ?></td>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <td>
+                                                    <?php echo getOrderItemQuantity($row['ORDER_ID'], $connection); ?>
+                                                </td>
+                                                <td>
+                                                    <span>&#163;</span>11<?php echo getSubtotalforOrder($row['ORDER_ID'], $connection); ?>
+                                                </td>
                                           </tr>
+                                          <?php
+                                                }
+                                                oci_free_statement($parsedOrder);
+                                            ?>
                                       </tbody>
                                     </table>
                                   </div>
