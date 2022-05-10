@@ -17,7 +17,9 @@
     oci_free_statement($parsedGetUser);
   }
 ?>
-
+<div class="alert alert-success profile-success" role="alert">
+            
+</div>
 <div class="container-fluid p-0">
         <div class="row p-0 m-0 w-100 mt-5 cust-profile-img-container">
             <div class="col-2 mx-auto text-center">

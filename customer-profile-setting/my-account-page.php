@@ -60,18 +60,18 @@
             </div>
             <div class="col-md-9 d-flex justify-content-center align-items-start">
                 <div class="row w-100 justify-content-center align-items-start">
-                    <div class="col-md-6 pr-3 mt-2">
+                    <div class="col-lg-6 pr-3 mt-2">
                         <div class="setting-nav d-block justify-content-center align-items-center my-profile-container profile-row">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Avatar</b></div>
                             
                         </div>
                     </div>
-                    <div class="col-md-6 mt-2">
+                    <div class="col-lg-6 mt-2">
                         <div class="setting-nav profile-row">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Password</b></div>
-                            <form class=" w-75 mx-auto py-4" novalidate id="update-password-form" action="" method="POST">
+                            <form class=" w-75 mx-auto py-4" novalidate id="update-password-form" action="validate-profile.php" method="POST">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" id="customer-id" value=""/>
+                                    <input type="hidden" class="form-control" id="customer-id" value="<?php echo $cust_id;?>"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="cust-old-pass" placeholder="Old Password"/>
@@ -144,4 +144,5 @@
 
 <!-- custom script -->
 <script src="../script/function.js"></script>
+<script src="script/script.js"></script>
 </html>
