@@ -171,4 +171,11 @@ body{
         opacity: 1;
     }
 }
+.light-green{
+    background-color: #d7dfd2;
+}
 
+.table th {
+    padding: 0.7rem;
+    border-bottom: 0.5px solid #d7dfd2;
+}

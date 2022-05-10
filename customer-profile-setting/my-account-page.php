@@ -60,6 +60,7 @@
             </div>
             <div class="col-md-9 d-flex justify-content-center align-items-start">
                 <div class="row w-100 justify-content-center align-items-start">
+                    <!-- change profile picture -->
                     <div class="col-lg-6 pr-3 mt-2">
                         <div class="setting-nav d-block justify-content-center align-items-center my-profile-container profile-row">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Avatar</b></div>
@@ -68,7 +69,7 @@
                                   <input type="hidden" class="form-control" id="c_id" name="c_id" value="<?php echo $cust_id;?>" />
                                 </div>
                                 <div class="preview-img mb-1 mt-5 mx-auto">
-                                  <img src="..\image\product\productplaceholder.png" class="img-fluid changing-profile"/>
+                                  <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>" class="img-fluid changing-profile"/>
                                 </div>
                                 <div class="form-group col-12 text-center">
                                   <label for="new-profile-pic" class="btn">Upload new picture</label><br>
@@ -81,6 +82,7 @@
                             </form>
                         </div>
                     </div>
+                    <!-- change password -->
                     <div class="col-lg-6 mt-2">
                         <div class="setting-nav profile-row">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Password</b></div>
@@ -106,6 +108,7 @@
                               </form>
                         </div>
                     </div>
+                    <!-- change personal information -->
                     <div class="col-12 mt-4">
                         <div class="setting-nav align-items-center pb-4">
                             <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Update Personal Information</b></div>
