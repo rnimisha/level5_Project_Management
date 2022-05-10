@@ -345,6 +345,27 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
+
+    $('.view-cust-order-detail').click(function(){
+
+        var order_id=$(this).attr('value');
+        $.ajax({
+            type: 'POST',
+            url: 'view-order-detail.php',
+            data: {
+               order_id: order_id
+            },
+            success: function(response){
+                if(!$('.all-orders-container').hasClass('d-none'))
+                {
+                    $('.all-orders-container').addClass('d-none');
+                }
+                
+                $('.one-detail-container').html(response);
+
+            }
+        });
+    });
 });
 
 $('body').addClass('transition-effect');

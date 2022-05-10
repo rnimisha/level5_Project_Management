@@ -67,7 +67,7 @@
                                 <div class="col-md-4"><b><i class="fa-solid fa-truck-fast"></i>&nbsp; To Recieve</b></div>
                                 <div class="col-md-4"><i class="fa-solid fa-truck-ramp-box"></i>&nbsp; <b>Received</b></div>
                             </div>
-                            <div class="row d-flex justify-content-center align-items-center all-orders-container px-4">
+                            <div class="row justify-content-center align-items-center all-orders-container transition-effect px-4">
                                 <div class="col-12 table-responsive mt-5 px-3 mx-auto">
                                     <table class="table">
                                       <thead class="light-green">
@@ -91,7 +91,7 @@
                                           <tr>
                                               <td>
                                                 <span>
-                                                    <i class="fa-solid fa-magnifying-glass pl-1" value="<?php echo $row['ORDER_ID'];?>"></i>
+                                                    <i class="fa-solid fa-magnifying-glass pl-1 view-cust-order-detail" value="<?php echo $row['ORDER_ID'];?>"></i>
                                                 </span>
                                                 </td>
                                                 <td>
@@ -130,7 +130,7 @@
                                                     <?php echo getOrderItemQuantity($row['ORDER_ID'], $connection); ?>
                                                 </td>
                                                 <td>
-                                                    <span>&#163;</span>11<?php echo getSubtotalforOrder($row['ORDER_ID'], $connection); ?>
+                                                    <span>&#163;</span><?php echo getSubtotalforOrder($row['ORDER_ID'], $connection); ?>
                                                 </td>
                                           </tr>
                                           <?php
@@ -141,6 +141,9 @@
                                     </table>
                                   </div>
                             </div>
+                            <div class="one-detail-container transition-effecr">
+
+                            </div>                          
                         </div>
                     </div>
                 </div>

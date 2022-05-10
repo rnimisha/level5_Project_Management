@@ -236,14 +236,16 @@ function getOrderItemQuantity($order_id, $connection)
 
 function getSubtotalforOrder($order_id, $connection)
 {
-    $selectQuery="SELECT PRODUCT_ID FROM CUST_ORDER CO JOIN ORDER_ITEM OT ON OT.ORDER_ID=CO.ORDER_ID WHERE CO.ORDER_ID=$order_id";
+    $selectQuery="SELECT DISTINCT PRODUCT_ID, ITEM_QUANTITY FROM CUST_ORDER CO JOIN ORDER_ITEM OT ON OT.ORDER_ID=CO.ORDER_ID WHERE CO.ORDER_ID=$order_id";
     $parsed=oci_parse($connection, $selectQuery);
     oci_execute($parsed);
     $total=0.0;
     while (($row = oci_fetch_assoc($parsed)) != false) {
-        $prod_price=getPrice($row['PRODUCT_ID'], $order_id, $connection);
+        
+        $prod_price=getPrice($row['PRODUCT_ID'], $order_id, $connection) * $row['ITEM_QUANTITY'];
         $prod_dis=getProductDiscount($row['PRODUCT_ID'], $order_id, $connection);
-        $total=$total+$prod_price-$prod_dis;
+        $total=$total+$prod_price;
+        $total=$total-(($prod_dis/100)*$total);
     }
     oci_free_statement($parsed);
     return $total;
