@@ -27,7 +27,7 @@
 
     <!-- customized css -->
     <link rel="stylesheet" type="text/css" href="style/cust-style.css" />
-    <title>My Account</title>
+    <title>Account Deactivation</title>
 </head>
 <body>
     <?php include_once('include-header.php');?>
@@ -35,7 +35,7 @@
         <div class="row w-100 mt-5">
             <div class="col-md-3 d-flex justify-content-start align-items-start pr-0 mt-2">
                 <div class="list-group list-group-flush setting-nav w-100 setting-nav" id="sticky-nav">
-                    <a href="cust-setting-index.php" class="list-group-item active rounded-top">
+                    <a href="cust-setting-index.php" class="list-group-item rounded-top">
                         <i class='bx bx-grid-alt' ></i>
                         <span> &nbsp; Dashboard</span>
                     </a>
@@ -60,7 +60,7 @@
                         <i class='bx bx-message-rounded-dots'></i>
                         <span> &nbsp; My Reviews</span>
                     </a>
-                    <a href="deactivate-account-page.php" class="list-group-item">
+                    <a href="deactivate-account-page.php" class="list-group-item active">
                         <i class='bx bx-user-x'></i>
                         <span> &nbsp; Deactivate</span>
                     </a>
@@ -72,57 +72,18 @@
             </div>
             <div class="col-md-9 d-flex justify-content-center align-items-start">
                 <div class="row w-100 justify-content-center align-items-start">
-                    <div class="col-md-6 pr-3 mt-2">
-                        <div class="setting-nav d-block justify-content-center align-items-center my-profile-container overview-row">
-                            <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>My Profile</b></div>
-                            <div class="px-4 py-2">
-                                <!-- <img src="..\image\profile\default_profile.jpg"  alt="profile" class="img-fluid container-profile"/> -->
-                                <i class="fa-solid fa-user-tag"></i>&nbsp; <?php  echo (isset($fullnames)) ? $fullnames : null;?>
-                            </div>
-                            <div class="px-4 py-2">
-                                <i class="fa-solid fa-envelope-open-text"></i>&nbsp;&nbsp; <?php  echo (isset($email)) ? $email : null;?>
-                            </div>
-                            <div class="px-4 py-2">
-                                <i class="fa-solid fa-cake-candles"></i> &nbsp;&nbsp; <?php  echo (isset($dob)) ? $dob : null;?>
-                            </div>
-                            <div class="px-4 py-2">
-                                <i class="fa-solid fa-location-dot"></i> &nbsp;&nbsp; <?php  echo (isset($address)) ? $address : null;?>
-                            </div>
-                            <div class="px-4 py-2">
-                                <i class="fa-solid fa-phone"></i> &nbsp; <?php  echo (isset($contact)) ? $contact : null;?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-2">
-                        <div class="setting-nav overview-row">
-                            <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Wishlist</b></div>
-                            <a href="..\wishlist-page.php"><div class="wishlist-dashboard text-center mt-3">
-                                <i class="fa-solid fa-heart"></i>
-                            </div>
-                            <div class="text-center pb-3">
-                                <?php echo checkWishlistCount($_SESSION['phoenix_user'], $connection);?> items
-                            </div></a>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="setting-nav align-items-center pb-4">
-                            <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Orders</b></div>
+                    <div class="col-12 mt-2">
+                        <div class="setting-nav align-items-center pb-4 order-cust-container">
+                            <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Delete My Account</b></div>
                             <div class="row w-100 d-flex justify-content-center align-items-center">
-                                <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <a href="my-orders-page.php"><i class="fa-solid fa-basket-shopping orders-icons"></i>
-                                    <div>All order</div></a>
+                                <div class="col-md-5 text-center">
+                                    <img src="..\image\delete_acc.gif" class="img-fluid deactivate-pic"/>
                                 </div>
-                                <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <a href="my-orders-page.php"><i class="fa-solid fa-truck-fast orders-icons "></i>
-                                    <div>To Receive</div></a>
+                                <div class="col-12 text-center">
+                                    Do you want to permanently delete your account?
                                 </div>
-                                <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <a href="my-orders-page.php"><i class="fa-solid fa-truck-ramp-box orders-icons"></i>
-                                    <div>Received</div></a>
-                                </div>
-                                <div class="col-md-3 d-block text-center px-4 py-2">
-                                    <a href="my-review-page.php"><i class="fa-solid fa-comment orders-icons "></i>
-                                    <div>To Review</div></a>
+                                <div class="col-12 mt-1 text-center">
+                                    <div class="btn" id="deactivate-account">Deactivate</div>
                                 </div>
                             </div>
                         </div>
