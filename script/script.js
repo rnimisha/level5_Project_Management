@@ -284,13 +284,18 @@ $(document).ready(function(){
     //check checkout quantity limit
     $('.checkout-btn').click(function(){
         var total_items=$('#total-item-count').attr('value');
+        var code=$('#valid-coupon').val();
         if(total_items>20)
         {
             $('.dynamic-body').html("<b>You cannot buy more than 20 items at one purchase</b>");
             $('#dynamic-msg').click();
         }
+        else if(total_items == 0){
+            $('.dynamic-body').html("<b>Your cart is empty</b>");
+            $('#dynamic-msg').click();
+        }
         else{
-
+            window.location.href = 'collection-slot.php?coup='+code;
         }
     });
 });

@@ -201,4 +201,29 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.submit-coupoun').submit(function(){
+        var coupon= $('#coupon-code').val();
+        $.ajax({
+            type: "POST",
+            url: 'check-out-valid.php',
+            data: {
+                coupon: coupon,
+                action:'apply-coupon'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true) {
+                    $('#valid-coupon').val(coupon);
+                    clearFormValidation();
+                    removeStyle(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
+    });
 });

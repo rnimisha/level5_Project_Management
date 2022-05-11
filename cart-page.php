@@ -124,16 +124,22 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     }
                     oci_free_statement(($parsed));
                 ?>
-
+                
                 <div class="row w-100 py-2 cart-items mt-5">
                     <div class="col-12 pl-3">
                         <h6><b>Apply Coupon</b></h6>
                     </div>
-                    <div class="col-4 pl-3">
-                        <input type="text" style="width: 100%; border-radius: 5px; border: 1px solid #e8e8e8;">
-                    </div>
-                    <div class="col-2  btn">
-                        Apply
+                    <div class="col-12  mb-4">
+                        <form class="row w-100 submit-coupoun">
+                            <div class="col-4 pl-3 pt-2">
+                                <input type="text" class="form-control" id="coupon-code" style="width: 100%; border-radius: 5px; border: 1px solid #e8e8e8;">
+                                <div class="invalid-feedback" id="error-coupon"></div>
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" class=" btn py-1 mt-2 px-3 coupon-btn"> Apply</button>
+                            </div>
+                        </form>
+                        <input type="hidden" id="valid-coupon">
                     </div>
                 </div>
             </div>

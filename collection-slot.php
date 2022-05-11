@@ -81,6 +81,11 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     $subtotal=$subtotal+($price*$row['QUANTITY']);
                     }
                     oci_free_statement(($parsed));
+
+                    if(isset($_GET['COUPON']) & !empty($_GET['COUPON']))
+                    {
+                        $coupon=$_GET['COUPON'];
+                    }
                 ?>
 
             </div>
