@@ -64,7 +64,7 @@
                         <i class='bx bx-user-x'></i>
                         <span> &nbsp; Deactivate</span>
                     </a>
-                    <a href="..\logout.php" class="list-group-item rounded-bottom">
+                    <a href="cust-logout.php" class="list-group-item rounded-bottom">
                         <i class='bx bx-exit bx-rotate-180' ></i>
                         <span> &nbsp; Sign Out</span>
                     </a>

@@ -60,11 +60,11 @@
                         <i class='bx bx-message-rounded-dots'></i>
                         <span> &nbsp; My Reviews</span>
                     </a>
-                    <a href="deactivate-account-page.php" class="list-group-item active">
+                    <a href="deactivate-account-page.php" class="list-group-item">
                         <i class='bx bx-user-x'></i>
                         <span> &nbsp; Deactivate</span>
                     </a>
-                    <a href="cust-logout.php" class="list-group-item rounded-bottom">
+                    <a href="cust-logout.php" class="list-group-item active rounded-bottom">
                         <i class='bx bx-exit bx-rotate-180' ></i>
                         <span> &nbsp; Sign Out</span>
                     </a>
@@ -74,16 +74,16 @@
                 <div class="row w-100 justify-content-center align-items-start">
                     <div class="col-12 mt-2">
                         <div class="setting-nav align-items-center pb-4 order-cust-container">
-                            <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Delete My Account</b></div>
+                            <div class="border-bottom text-center pt-3 pb-2 my-green-font"><b>Sign Out</b></div>
                             <div class="row w-100 d-flex justify-content-center align-items-center">
                                 <div class="col-md-5 text-center">
-                                    <img src="..\image\delete_acc.gif" class="img-fluid deactivate-pic"/>
+                                    <img src="..\image\sign-out.gif" class="img-fluid deactivate-pic"/>
                                 </div>
                                 <div class="col-12 text-center">
-                                    Do you want to permanently delete your account?
+                                    Do you want to sign out?
                                 </div>
                                 <div class="col-12 mt-1 text-center">
-                                    <div class="btn" id="deactivate-account">Deactivate</div>
+                                    <a href="../logout.php"><div class="btn">Sign Out</div></div>
                                 </div>
                             </div>
                         </div>

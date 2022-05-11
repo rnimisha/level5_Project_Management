@@ -575,7 +575,7 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true)
                 {
-                    window.location.href = '../loginform.php';
+                    window.location.href = 'account-deactivate-success.php';
                 }
                 else{
                     alert("There were some errors while deactivating.");
