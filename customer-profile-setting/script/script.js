@@ -558,6 +558,32 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $('#deactivate-account').click(function(){
+        $('#deactivate-account').text('Deactivating...');
+        $('#deactivate-account').attr('disabled', false);
+
+        $.ajax({
+            type: 'POST',
+            url: 'validate-profile.php',
+            data: {
+               form_name: 'deactivate-cust-acc',
+            },
+            success: function(response){
+                $('#deactivate-account').text('Deactivate');
+                $('#deactivate-account').attr('disabled', true);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    window.location.href = '../loginform.php';
+                }
+                else{
+                    alert("There were some errors while deactivating.");
+                }
+            }
+        });
+        return false;
+    });
 });
 
 $('body').addClass('transition-effect');

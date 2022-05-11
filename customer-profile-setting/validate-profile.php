@@ -473,4 +473,26 @@
         }
         echo json_encode($track_order);
     }
+
+    
+    //deactivate account
+    if(isset($_POST['form_name']) && $_POST['form_name']=='deactivate-cust-acc' && isset($_SESSION['phoenix_user']))
+    {
+        $deactivate=array();
+        $deactivate['clear']=true;
+
+        $user_id=$_SESSION['phoenix_user'];
+        $query="UPDATE MART_USER SET ACTIVE_STATUS='D' WHERE USER_ID=$user_id";
+        $parsed=oci_parse($connection, $query);
+        if(oci_execute($parsed))
+        {
+            $deactivate['clear']=true;
+        }
+        else{
+            $deactivate['clear']=false;
+        }
+        oci_free_statement($parsed);
+        session_destroy();
+        echo json_encode($deactivate);
+    }
 ?>
