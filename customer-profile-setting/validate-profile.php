@@ -429,4 +429,48 @@
         }
         echo json_encode($change_profile_pic);
     }
+
+
+    $track_order=array();
+    $track_order['clear']=true;
+
+    if(isset($_POST['form_name']) && $_POST['form_name']=='track-order-form' && isset($_POST['cust_id']))
+    {
+        if(isset($_POST['order_id']))
+        {
+            if(!empty($_POST['order_id']))
+            {
+                $user_id=$_POST['cust_id'];
+                $order_id=$_POST['order_id'];
+                $query="SELECT ORDER_STATUS FROM CUST_ORDER WHERE USER_ID=$user_id AND ORDER_ID=$order_id";
+                $parsed=oci_parse($connection, $query);
+                oci_execute($parsed);
+                $count=0;
+                while (($row = oci_fetch_assoc($parsed)) != false) 
+                {
+                    $count++;
+                    $status=$row['ORDER_STATUS'];
+                }
+                // $track_order['cr']=$count;
+                if($count==0)
+                {
+                    $track_order['#error-track-order-no']="Please provide your valid order number.";
+                    $track_order['clear']=false;
+                    $track_order['#track-order-no']='is-invalid';
+                }
+                else{
+                    $track_order['#error-track-order-no']="";
+                    $track_order['#track-order-no']='valid';
+                    $track_order['status']=$status;
+                }
+            }
+            else{
+                $track_order['#error-track-order-no']="Enter your order number.";
+                $track_order['clear']=false;
+                $track_order['#track-order-no']='is-invalid';
+            }
+
+        }
+        echo json_encode($track_order);
+    }
 ?>

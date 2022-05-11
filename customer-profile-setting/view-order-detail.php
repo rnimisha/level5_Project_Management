@@ -39,8 +39,8 @@ if(isset($_POST['order_id']))
 }
 
 echo '<div class="row d-flex justify-content-center align-items-center px-4">
-        <div class="col-12 mt-3 d-flex justify-content-center">
-            <div class="h4 font-weight-bold">Order #1111</div>
+        <div class="col-12 mt-3 mb-3 d-flex justify-content-center">
+            <div class="h4">Order #1111</div>
         </div>';
         if(strtoupper($status)=='COMPLETED'){
           echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">

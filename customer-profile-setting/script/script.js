@@ -506,6 +506,58 @@ $(document).ready(function(){
         $('.reviewed-select').removeClass('my-green-font');
         $('.to-review-select').addClass('my-green-font');
     });
+
+    $('#track-order-form').submit(function(){
+        jQuery('#track-order-btn').text('Tracking...');
+        jQuery('#track-order-btn').attr('disabled', true);
+        // alert(1);
+        var cust_id=$('#u_id').val();
+        var order_id=$('#track-order-no').val();
+        $.ajax({
+            type: 'POST',
+            url: 'validate-profile.php',
+            data: {
+               order_id:order_id,
+               cust_id:cust_id,
+               form_name: 'track-order-form',
+            },
+            success: function(response){
+                jQuery('#track-order-btn').text('Track');
+                jQuery('#track-order-btn').attr('disabled', false);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    // resetForm('track-order-form');
+                    removeStyle(resp);
+                    if(resp.status == 'COMPLETED')
+                    {
+                        $('.completed-container').removeClass('d-none');
+                        $('.track-order-container').addClass('d-none');
+                        $('.pending-container').addClass('d-none');
+                        $('.processing-container').addClass('d-none');
+                    }
+                    if(resp.status == 'PROCESSING')
+                    {
+                        $('.completed-container').addClass('d-none');
+                        $('.track-order-container').addClass('d-none');
+                        $('.pending-container').addClass('d-none');
+                        $('.processing-container').removeClass('d-none');
+                    }
+                    if(resp.status == 'PENDING')
+                    {
+                        $('.completed-container').addClass('d-none');
+                        $('.track-order-container').addClass('d-none');
+                        $('.pending-container').removeClass('d-none');
+                        $('.processing-container').addClass('d-none');
+                    }
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
+    });
 });
 
 $('body').addClass('transition-effect');

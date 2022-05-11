@@ -189,7 +189,7 @@ body{
 }
 
 .order-cust-container{
-    min-height: 290px;
+    min-height: 340px;
 }
 
 .review-profile{
@@ -202,15 +202,19 @@ body{
     color: #dac775 ;
 }
 
-.track-order-container hr{
-    height: 8px;
+.track-order-container hr, .pending-container hr, .processing-container hr , .completed-container hr{
+    height: 5px;
+    border-radius: 10px;
     width: 100%;
 
 }
-.track-icons{
+.track-icons .fa-solid{
     font-size: 60px;
-    color: #878181;
+    /* color: #878181; */
 }
 .line-grey{
     background: #878181;
+}
+.grey-bg{
+    color: #878181;
 }
