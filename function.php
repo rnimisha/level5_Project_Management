@@ -218,7 +218,8 @@ function getPrice($product_id, $order_id, $connection)
     $row = oci_fetch_assoc($result);
     $price=$row['PRICE'];
     oci_free_statement($result);
-    return $price;
+    // return $price;
+    return number_format($price, 2);
 }
 
 //get total items order in specific order
@@ -527,6 +528,6 @@ function calculatePriceWithDiscount($product_id, $connection){
 
     $discount= checkProductDiscountRate($product_id, $connection);
     $final=$price-(($discount/100)*$price);
-    return $final;
+    return number_format($final, 2);
 }
 ?>

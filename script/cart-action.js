@@ -141,6 +141,7 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.valid == true) {
                     current.closest('.cart-items').hide();
+                    location.reload();
                 }
                 $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
                 $('.action-success').show().delay(3000).fadeOut();
@@ -153,10 +154,9 @@ $(document).ready(function(){
         
         $('#confirm-remove-all-cart').click();
     });
-
     $('#remove-all-cart-items').click(function(){
         var current=$(this);
-
+        
         $.ajax({
             type: "POST",
             url: 'cart-action.php',
@@ -165,11 +165,11 @@ $(document).ready(function(){
             },
             success: function(response){
                 var resp=jQuery.parseJSON(response);
-                console.log(response);
+                // console.log(response);
                 if(resp.valid == true) {
                     location.reload();
-                    $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
-                    $('.action-success').show().delay(3000).fadeOut();
+                    // $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
+                    // $('.action-success').show().delay(3000).fadeOut();
                 }
             }
         });
@@ -202,3 +202,6 @@ $(document).ready(function(){
         });
     });
 });
+
+
+alert(1);

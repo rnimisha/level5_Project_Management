@@ -177,7 +177,7 @@ $(document).ready(function(){
     })
 
     var total_cart_items= parseInt($('#total-item-count').attr('value'));
-    var overallsubtotal= parseInt($('.over-all-subtotal').attr('value'));
+    var overallsubtotal= parseFloat($('.over-all-subtotal').attr('value'));
     $('.plus-cart').click(function(e){
         var stock= parseInt($(this).closest('.wrapper').find('#stock-amount').val());
         var minimum_val_cart= parseInt($(this).closest('.wrapper').find('#real-quantity').val());
@@ -187,18 +187,19 @@ $(document).ready(function(){
             minimum_val_cart++;
             $(this).closest('.wrapper').find('#real-quantity').val(minimum_val_cart);
             $(this).closest('.wrapper').find('.quantity').text(minimum_val_cart);
-            subtotal = price*minimum_val_cart;
+            subtotal = (price*minimum_val_cart).toFixed(2);
             $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
 
             overallsubtotal = overallsubtotal + price;
-            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal);
-            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal);
+            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
+            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
 
             var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
-            changeQuantity(minimum_val_cart, pid)
+            changeQuantity(minimum_val_cart, pid);
 
             total_cart_items++;
             $('#total-item-count').html('Total items : '+total_cart_items);
+            $('#total-item-count').attr('value', total_cart_items);
         }
         else{
 
@@ -208,25 +209,26 @@ $(document).ready(function(){
     })
 
     $('.minus-cart').click(function(){
-        var current_val=  parseInt($(this).closest('.wrapper').find('#real-quantity').val());
+        var current_val=  parseFloat($(this).closest('.wrapper').find('#real-quantity').val());
         var price=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'));
         if(current_val > 1){
             current_val--;
             $(this).closest('.wrapper').find('#real-quantity').val(current_val);
             $(this).closest('.wrapper').find('.quantity').text(current_val);
 
-            subtotal=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'))*current_val;
+            subtotal=(parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'))*current_val).toFixed(2);
             $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
 
             var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
-            changeQuantity(current_val, pid)
+            changeQuantity(current_val, pid);
 
             overallsubtotal = overallsubtotal - price;
-            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal);
-            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal);
+            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
+            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
 
             total_cart_items--;
             $('#total-item-count').html('Total items : '+total_cart_items);
+            $('#total-item-count').attr('value', total_cart_items);
 
         }
         else{
@@ -279,6 +281,18 @@ $(document).ready(function(){
         return false;
     })
 
+    //check checkout quantity limit
+    $('.checkout-btn').click(function(){
+        var total_items=$('#total-item-count').attr('value');
+        if(total_items>20)
+        {
+            $('.dynamic-body').html("<b>You cannot buy more than 20 items at one purchase</b>");
+            $('#dynamic-msg').click();
+        }
+        else{
+
+        }
+    });
 });
 
 
