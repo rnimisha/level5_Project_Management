@@ -41,8 +41,68 @@ if(isset($_POST['order_id']))
 echo '<div class="row d-flex justify-content-center align-items-center px-4">
         <div class="col-12 mt-3 d-flex justify-content-center">
             <div class="h4 font-weight-bold">Order #1111</div>
+        </div>';
+        if(strtoupper($status)=='COMPLETED'){
+          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">
+        <div class="col-1 text-right track-icons">
+            <i class="fa-solid fa-clock-rotate-left light-green-font"></i>
         </div>
-        <div class="col-lg-9 col-md-8 ">
+        <div class="col-2">
+            <hr class="w-100 light-green-bg">
+        </div>
+        <div class="col-2 track-icons">
+            <i class="fa-solid fa-box-open light-green-font"></i>
+        </div>
+        <div class="col-2">
+            <hr class="w-100 light-green-bg">
+        </div>
+        <div class="col-1 track-icons">
+            <i class="fa-solid fa-truck-ramp-box light-green-font"></i>
+        </div>
+        </div>';
+
+        }
+        if(strtoupper($status)=='PROCESSING'){
+          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">
+        <div class="col-1 text-right track-icons">
+            <i class="fa-solid fa-clock-rotate-left light-green-font"></i>
+        </div>
+        <div class="col-2">
+            <hr class="w-100 light-green-bg">
+        </div>
+        <div class="col-2 track-icons">
+            <i class="fa-solid fa-box-open light-green-font"></i>
+        </div>
+        <div class="col-2">
+            <hr class="w-100 line-grey">
+        </div>
+        <div class="col-1 track-icons">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+        </div>
+        </div>';
+        }
+
+        if(strtoupper($status)=='PENDING'){
+          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">
+        <div class="col-1 text-right track-icons">
+            <i class="fa-solid fa-clock-rotate-left light-green-font"></i>
+        </div>
+        <div class="col-2">
+            <hr class="w-100 line-grey">
+        </div>
+        <div class="col-2 track-icons">
+            <i class="fa-solid fa-box-open"></i>
+        </div>
+        <div class="col-2">
+            <hr class="w-100 line-grey">
+        </div>
+        <div class="col-1 track-icons">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+        </div>
+        </div>';
+
+        }
+    echo '<div class="col-lg-9 col-md-8 ">
             <br><br>
             Name : '.$name.'<br>
             Order Date : '.$od_date.'<br>

@@ -176,6 +176,12 @@ body{
 .light-green{
     background-color: #d7dfd2;
 }
+.light-green-font{
+    color: #d7dfd2;
+}
+.light-green-bg{
+    background: #d7dfd2;
+}
 
 .table th {
     padding: 0.7rem;
@@ -194,4 +200,17 @@ body{
 
 .bxs-star{
     color: #dac775 ;
+}
+
+.track-order-container hr{
+    height: 8px;
+    width: 100%;
+
+}
+.track-icons{
+    font-size: 60px;
+    color: #878181;
+}
+.line-grey{
+    background: #878181;
 }
