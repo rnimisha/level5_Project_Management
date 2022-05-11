@@ -75,6 +75,7 @@
                                 $query="SELECT REVIEW_COMMENT, STAR_RATING, REVIEW_DATE, P.PRODUCT_ID AS PRODUCT_ID, PRODUCT_NAME FROM REVIEW R JOIN PRODUCT P ON P.PRODUCT_ID=R.PRODUCT_ID WHERE USER_ID=$cust_id ORDER BY REVIEW_DATE DESC";
                                 $parsed_query=oci_parse($connection, $query);
                                 oci_execute($parsed_query);
+                               
                                 while (($row = oci_fetch_assoc($parsed_query)) != false) {
 
                             ?>
@@ -136,8 +137,10 @@
                                 $parsed=oci_parse($connection,$query);
                             
                                 oci_execute($parsed);
+                                $count=0;
                                 while (($row = oci_fetch_assoc($parsed)) != false) 
                                 {
+                                    $count++;
                                     $query2="SELECT * FROM PRODUCT WHERE PRODUCT_ID=".$row['PRODUCT_ID'];
                                     $parsed_query=oci_parse($connection, $query2);
                                     oci_execute($parsed_query);
@@ -169,8 +172,14 @@
                             <?php
                                     } 
                                 }
-                                oci_free_statement($parsed_query);  
-                                oci_free_statement($parsed);
+                                // oci_free_statement($parsed_query);  
+                                // oci_free_statement($parsed);
+                                if($count<1)
+                                {
+                                    ?>
+                                    <div class="text-center pt-3">No product to review.</div>
+                                    <?php
+                                }
                             ?>
                         </div>
                     </div>
@@ -189,13 +198,13 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="popConfirmTitle">Write Your Review</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title text-center mx-auto" id="popConfirmTitle">Write Your Review</h5>
+            <button type="button" class="close  close-review" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body d-flex justify-content-center align-item-center">
-          <form id="review-form" action="" method="POST">
+          <form id="review-form" action="submit-review.php" method="POST" class="w-75 text-center mt-4">
             <div class="form-group">
                 <input type="hidden" class="form-control" id="review_prod_id"/>
                 <input type="hidden" class="form-control" id="u_id" value="<?php echo $cust_id;?>"/>

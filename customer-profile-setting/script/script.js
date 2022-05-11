@@ -325,7 +325,7 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success: function(response){
-                console.log(response);
+                // console.log(response);
                 var resp=response;
                 jQuery('#change-profile-pic-btn').text('Change Profile');
                 jQuery('#change-profile-pic-btn').attr('disabled', false);
@@ -415,9 +415,9 @@ $(document).ready(function(){
 
     var rating=-1;
     $('.rate-star').click(function(){
-        var index=parseInt($(this).data('index'));
-        index=index+1;
-        $('#star-rating').val(index);
+        rating=parseInt($(this).data('index'));
+        rating=rating+1;
+        $('#star-rating').val(rating);
     });
 
     $('.rate-star').mouseover(function(){
@@ -433,12 +433,62 @@ $(document).ready(function(){
 
     $('.rate-star').mouseleave(function(){
         $('.rate-star').css("color", "black");
+        if(rating != -1)
+        {
+            rating--;
+            for(var i=0; i<=rating ;i++)
+            {
+                $('.rate-star:eq('+i+')').css("color", "#dac775");
+            }
+        }
     });
 
     $('.add-review').click(function(){
         var p_id=$(this).attr('value');
         $('#review_prod_id').val(p_id);
         $('#show-review-form-btn').click();
+    });
+
+    $('#submit-review-btn').click(function(){
+        $('#review-form').submit();
+    });
+
+    $('#review-form').submit(function(){
+        jQuery('#submit-review-btn').text('Submitting...');
+        jQuery('#submit-review-btn').attr('disabled', true);
+
+        var prod_id=$('#review_prod_id').val();
+        var cust_id=$('#u_id').val();
+        var star=$('#star-rating').val();
+        var comment=$('#prod-review').val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'submit-review.php',
+            data: {
+               prod_id:prod_id,
+               cust_id:cust_id,
+               star:star,
+               comment:comment,
+               form_name: 'review-form',
+            },
+            success: function(response){
+                jQuery('#submit-review-btn').text('Submit');
+                jQuery('#submit-review-btn').attr('disabled', false);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                    $('.profile-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Your Review has been submitted.</h5>');
+                    $('.profile-success').show().delay(5000).fadeOut();
+                    $('.close-review').click();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
     });
 });
 
