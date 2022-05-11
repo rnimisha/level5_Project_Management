@@ -60,7 +60,7 @@
                         <i class='bx bx-message-rounded-dots'></i>
                         <span> &nbsp; My Reviews</span>
                     </a>
-                    <a href="" class="list-group-item rounded-bottom">
+                    <a href="..\logout.php" class="list-group-item rounded-bottom">
                         <i class='bx bx-exit bx-rotate-180'></i>
                         <span> &nbsp; Sign Out</span>
                     </a>

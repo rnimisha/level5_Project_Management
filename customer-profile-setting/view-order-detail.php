@@ -38,12 +38,9 @@ if(isset($_POST['order_id']))
   $parsed2=oci_parse($connection, $query);
 }
 
-echo '<div class="row d-flex justify-content-center align-items-center px-4">
-        <div class="col-12 mt-3 mb-3 d-flex justify-content-center">
-            <div class="h4">Order #1111</div>
-        </div>';
+echo '<div class="row d-flex justify-content-center align-items-center px-4">';
         if(strtoupper($status)=='COMPLETED'){
-          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">
+          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container mt-5">
         <div class="col-1 text-right track-icons">
             <i class="fa-solid fa-clock-rotate-left light-green-font"></i>
         </div>
@@ -63,7 +60,7 @@ echo '<div class="row d-flex justify-content-center align-items-center px-4">
 
         }
         if(strtoupper($status)=='PROCESSING'){
-          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">
+          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container mt-5">
         <div class="col-1 text-right track-icons">
             <i class="fa-solid fa-clock-rotate-left light-green-font"></i>
         </div>
@@ -83,7 +80,7 @@ echo '<div class="row d-flex justify-content-center align-items-center px-4">
         }
 
         if(strtoupper($status)=='PENDING'){
-          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container">
+          echo '<div class="d-none d-md-flex justify-content-center align-items-center row w-100 p-0 track-order-container mt-5">
         <div class="col-1 text-right track-icons">
             <i class="fa-solid fa-clock-rotate-left light-green-font"></i>
         </div>
@@ -104,7 +101,7 @@ echo '<div class="row d-flex justify-content-center align-items-center px-4">
         }
     echo '<div class="col-lg-9 col-md-8 ">
             <br><br>
-            Name : '.$name.'<br>
+            Order Number : #'.$od_id.'<br>
             Order Date : '.$od_date.'<br>
         </div>
         <div class="col-lg-3 col-md-4 float-right">
