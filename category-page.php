@@ -430,8 +430,21 @@ include_once('function.php');
                             <div>
                                 <b><?php echo $row['PRODUCT_NAME']; ?></b>
                             </div>
-                            <div class="prod-price">
-                                <?php echo $row['PRICE']; ?>
+                            <div class="mb-1">
+                                <?php 
+                                    $dis_rate=checkProductDiscountRate($row['PRODUCT_ID'], $connection);
+                                    if($dis_rate>0){
+                                        ?>
+                                        <span class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp; 
+                                        <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
+                                        <?php
+                                    }
+                                    else{
+                                        ?>
+                                        <span class="prod-price"><?php echo $row['PRICE']; ?></span>
+                                        <?php
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -472,8 +485,21 @@ include_once('function.php');
                                         }
                                     ?>
                                 </div>
-                                <div class="prod-price">
-                                    <?php echo $row['PRICE']; ?>
+                                <div>
+                                <?php 
+                                    $dis_rate=checkProductDiscountRate($row['PRODUCT_ID'], $connection);
+                                    if($dis_rate>0){
+                                        ?>
+                                        <span class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp; 
+                                        <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
+                                        <?php
+                                    }
+                                    else{
+                                        ?>
+                                        <span class="prod-price"><?php echo $row['PRICE']; ?></span>
+                                        <?php
+                                    }
+                                ?>
                                 </div>
                                 <div class="my-1">
                                     <?php echo getDescription($row['PRODUCT_ID'], $connection); ?>

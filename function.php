@@ -503,4 +503,30 @@ function checkWishlistCount($user_id, $connection)
 //     return $products;
 
 // }
+
+function checkProductDiscountRate($product_id, $connection)
+{
+    $query="SELECT * FROM DISCOUNT WHERE PRODUCT_ID=$product_id AND START_DATE<=SYSDATE AND EXPIRY_DATE>=SYSDATE";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $discount=0;
+    while (($row = oci_fetch_assoc($parsed)) != false) {
+        $discount=$row['DISCOUNT_RATE'];
+    }
+    oci_free_statement($parsed);
+    return $discount;
+}
+function calculatePriceWithDiscount($product_id, $connection){
+    $query="SELECT * FROM PRODUCT WHERE PRODUCT_ID=$product_id";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    while (($row = oci_fetch_assoc($parsed)) != false) {
+        $price=$row['PRICE'];
+    }
+    oci_free_statement($parsed);
+
+    $discount= checkProductDiscountRate($product_id, $connection);
+    $final=$price-(($discount/100)*$price);
+    return $final;
+}
 ?>

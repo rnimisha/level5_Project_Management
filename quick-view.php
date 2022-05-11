@@ -46,9 +46,17 @@ echo '<div class="row">
                 echo '<i class="bx bx-star"></i>';
             }
         echo  ' <span class="text-muted">('.$totalReviews.' reviews)</span>
-            <div class="py-2">
-            <h3><span>&#163;</span>'.$price.'/'.$unit.'</h3>
-            </div>
+            <div class="py-2">';
+
+            $dis_rate=checkProductDiscountRate($product_id, $connection);
+                    if($dis_rate>0){
+                        $new_price=calculatePriceWithDiscount($product_id, $connection);
+                        echo '<h3><span>&#163;</span>'.$new_price.'/'.$unit.' <small class="before-discount">&#163; '.$price.' </small></h3>';
+                    }
+                    else{
+                        echo '<h3><span>&#163;</span>'.$price.'/'.$unit.'</h3>';
+                    }
+            echo '</div>
             <div class="py-2">
             <p>'.$descp.'</p>
             </div>
@@ -101,3 +109,4 @@ echo '<div class="row">
 
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>
+

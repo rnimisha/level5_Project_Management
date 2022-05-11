@@ -110,7 +110,20 @@ $img= getProductImage($product_id,$connection);
                     ?>
                 </div>
                 <div class="pl-4 pt-3">
-                    <h3><span>&#163;</span><?php echo $price.'/'.$unit;?></h3>
+                    <?php 
+                        $dis_rate=checkProductDiscountRate($product_id, $connection);
+                        if($dis_rate>0){
+                            ?>
+                            <h3><span>&#163;</span><?php echo calculatePriceWithDiscount($product_id, $connection).'/'.$unit;?>
+                            <small><span class="before-discount">&#163;<?php echo $price; ?> </span></small></h3>
+                            <?php
+                        }
+                        else{
+                            ?>
+                                <h3><span>&#163;</span><?php echo $price.'/'.$unit;?></h3>
+                            <?php
+                        }
+                    ?>
                 </div>
                 <div class="pl-4 d-none d-lg-flex">
                     <?php echo $descp;?>
@@ -625,8 +638,21 @@ $img= getProductImage($product_id,$connection);
                     <div>
                         <b><?php echo $row['PRODUCT_NAME']; ?></b>
                     </div>
-                    <div class="prod-price">
-                        <?php echo $row['PRICE']; ?>
+                    <div>
+                    <?php 
+                        $dis_rate=checkProductDiscountRate($row['PRODUCT_ID'], $connection);
+                        if($dis_rate>0){
+                            ?>
+                            <span class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp; 
+                            <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <span class="prod-price"><?php echo $row['PRICE']; ?></span>
+                            <?php
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
