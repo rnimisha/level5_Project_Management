@@ -23,7 +23,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 
     <!-- customized css -->
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <title>My Cart</title>
+    <title>Collection Slot</title>
 </head>
 <body>
     <div class="container">
@@ -37,33 +37,20 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         ?>
         <div class="row my-5 w-100 align-items-end">
             <div class="col-6 pl-3">
-                <h2 class="all-heading">My Cart</h2>
-                <div class="text-muted" id="total-item-count" value="<?php echo $item_count;?>">Total items : <?php echo $item_count;?></div>
-            </div>
-            <div class="col-3">
-                <div class="text-right text-muted remove-all-cart-btn">
-                <i class="fa-regular fa-trash-can text-muted"></i> Remove All
-                </div>
+                <h2 class="all-heading">Order Overview</h2>
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-lg-9">
-                
+            <div class="col-lg-8">
                 <div class="row w-100 cart-heading">
-                    <div class="col-5">
-                        Product
+                    <div class="col-4">
+                        Image
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
+                        Name 
+                    </div>
+                    <div class="col-4">
                         Price
-                    </div>
-                    <div class="col-2">
-                        Quantity
-                    </div>
-                    <div class="col-2 col-md-2 d-none d-md-flex ">
-                        Subtotal
-                    </div>
-                    <div class="col-1">
-                    
                     </div>
                 </div>
                 <hr>
@@ -76,45 +63,16 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         $price=calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
-                    <div class="col-2">
+                    <div class="col-4">
                         <div class="review-profile-container cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>" class="cart-prod-img img-fluid"/>
                         </div>
                     </div>
-                    <div class="col-3 d-block cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
+                    <div class="col-4 d-block cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                         <div><?php echo $row['PRODUCT_NAME'];?></div>
-                        <?php 
-                        if($row['STOCK_QUANTITY']>0)
-                        {
-                        ?>
-                        <span class="badge badge-pill badge-completed">In Stock</span>
-                        <?php
-                        }
-                        else{
-                        ?>
-                            <span class="badge badge-pill badge-fail">Out of Stock</span>
-                        <?php
-                        }
-                        ?>
                     </div>
-                    <div class="col-2 individual-price" value="<?php echo $price;?>">
-                        <span>&#163;</span><?php echo $price;?></span>
-                    </div>
-                    <div class="col-2">
-                        <div class="wrapper d-flex  align-items-center">
-                            <span class="minus-cart">-</span>
-                            <span class="quantity"><?php echo $row['QUANTITY'];?></span>
-                            <span class="plus-cart">+</span>
-                            <input type="hidden" value="<?php echo $row['QUANTITY'];?>" id="real-quantity" />
-                            <input type="hidden" value="<?php echo $row['STOCK_QUANTITY'];?>" id="stock-amount" />
-                            <input type="hidden" value="<?php echo $row['PRODUCT_ID'];?>" class="cart-product-id" />
-                        </div>
-                    </div>
-                    <div class="col-2 each-subtotal d-none d-md-flex ">
-                        <span>&#163;</span><?php echo $price*$row['QUANTITY'];?>
-                    </div>
-                    <div class="col-1">
-                        <i class="fa-regular fa-trash-can pl-3 remove-cart-item" value="<?php echo $row['PRODUCT_ID'];?>"></i>
+                    <div class="col-4 individual-price" value="<?php echo $price;?>">
+                        <span>&#163;</span><?php echo $price;?> X <?php echo $row['QUANTITY'];?></span>
                     </div>
                     <hr class="ml-3" style="width:100%;">
                 </div>
@@ -125,22 +83,32 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     oci_free_statement(($parsed));
                 ?>
 
-                <div class="row w-100 py-2 cart-items mt-5">
-                    <div class="col-12 pl-3">
-                        <h6><b>Apply Coupon</b></h6>
-                    </div>
-                    <div class="col-4 pl-3">
-                        <input type="text" style="width: 100%; border-radius: 5px; border: 1px solid #e8e8e8;">
-                    </div>
-                    <div class="col-2  btn">
-                        Apply
-                    </div>
-                </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="cart-summary px-2">
                     <div class="row w-100 justify-content-center px-2 pt-3 mb-n1 ">
-                        <h5>Order Summary</h5>
+                        <h5>Order Information</h5>
+                    </div>
+                    <hr>
+                    <div  class="row w-100 justify-content-between pt-1 pl-4">
+                        <div  class="col-4">
+                            Day
+                        </div>
+                        <div class="col-7" value="">
+                            <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
+                                <option value="">Collection Day</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div  class="row w-100 justify-content-between pt-3 pl-4">
+                        <div  class="col-4">
+                            Time
+                        </div>
+                        <div class="col-7" value="">
+                            <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
+                                <option value="">Collection Time</option>
+                            </select>
+                        </div>
                     </div>
                     <hr>
                     <div  class="row w-100 justify-content-between pt-1 pl-4">
@@ -171,7 +139,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     <hr>
                     <div  class="row w-100 justify-content-center px-2">
                         <div class="btn py-1 px-3 mt-1 mb-3 checkout-btn">
-                            Checkout
+                            PayPal
                         </div>
                     </div>
                  </div>
