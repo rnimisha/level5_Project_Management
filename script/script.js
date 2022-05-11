@@ -242,6 +242,43 @@ $(document).ready(function(){
         $('.close-cart-success').click();
     });
 
+    $('.write-review').click(function(){
+        var prod_id=$(this).attr('value');
+
+        $.ajax({
+            type: "POST",
+            url: "customer-profile-setting//submit-review.php",
+            data: {
+                product_id:prod_id,
+                action: 'write-review'
+            },
+            success: function(response){
+                console.log(response);
+    
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true) {
+                    window.location.href = 'customer-profile-setting\\my-review-page.php';
+             
+                }
+                else{
+                    if(resp.error == 'login')
+                    {
+                        $('.dynamic-body').html("<b>You need to login to review a product</b>");
+                        $('#dynamic-msg').click();
+                    }
+                    if(resp.error == 'buy')
+                    {
+                        $('.dynamic-body').html("<b>You need to make a purchase in order to review</b>");
+                        $('#dynamic-msg').click();
+                    }
+                    
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    })
+
 });
 
 

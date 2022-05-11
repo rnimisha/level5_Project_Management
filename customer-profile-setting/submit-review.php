@@ -1,6 +1,6 @@
 <?php 
     include_once('../connection.php');
-
+    include_once('../function.php');
     $rating_error=array();
     $rating_error['clear']=true;
 
@@ -48,5 +48,30 @@
         }
 
         echo json_encode($rating_error);
+    }
+
+    if(isset($_POST['action']) && $_POST['action']=='write-review' && isset($_POST['product_id']))
+    {
+        $check_review_right=array();
+        $check_review_right['clear']=true;
+        $prod_id=$_POST['product_id'];
+        
+        if(isset($_SESSION['phoenix_user']) && !empty($_SESSION['phoenix_user'])){
+            $product_left_to_review=productLeftToReview($_SESSION['phoenix_user'], $connection);
+            if(in_array($prod_id, $product_left_to_review))
+            {
+                $check_review_right['clear']=true;
+            }
+            else
+            {
+                $check_review_right['clear']=false;
+                $check_review_right['error']='buy';
+            }
+        }
+        else{
+            $check_review_right['clear']=false;
+            $check_review_right['error']='login';
+        }
+        echo json_encode($check_review_right);
     }
 ?>

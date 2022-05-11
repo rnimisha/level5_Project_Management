@@ -52,13 +52,13 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     <div class="col-5">
                         Product
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2 d-none d-md-flex">
                         Price
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2 d-none d-md-flex">
                         Status
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3 d-none d-md-flex">
                         Action
                     </div>
                 </div>
@@ -71,18 +71,18 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     while (($row = oci_fetch_assoc($parsed)) != false) {
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center wishlist-items">
-                    <div class="col-2 cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
+                    <div class="col-md-2 col-sm-3 cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                         <div>
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"  class="wishlist-prod-img img-fluid"/>
                         </div>
                     </div>
-                    <div class="col-3 d-block text-left cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
+                    <div class="col-md-3 col-sm-3 d-block text-left cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
                         <div><?php echo $row['PRODUCT_NAME'];?></div>
                     </div>
-                    <div class="col-2 individual-price" value="">
+                    <div class="col-md-2  d-none d-md-flex individual-price" value="">
                         <span>&#163;</span><?php echo $row['PRICE'];?></span>
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2 d-none d-md-flex">
                         <?php 
                         if($row['STOCK_QUANTITY']>0)
                         {
@@ -97,7 +97,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         }
                         ?>
                     </div>
-                    <div class="col-3 remove-wishlist-item" value="<?php echo $row['PRODUCT_ID'];?>">
+                    <div class="col-md-3 col-sm-3   remove-wishlist-item" value="<?php echo $row['PRODUCT_ID'];?>">
                         <span><i class="fa-solid fa-heart-crack" style="font-size: 20px;"></i> &nbsp;</span>
                         <!-- <i class="fa-solid fa-cart-shopping"></i> -->
                     </div>

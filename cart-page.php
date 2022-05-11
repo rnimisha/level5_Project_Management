@@ -59,7 +59,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     <div class="col-2">
                         Quantity
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 col-md-2 d-none d-md-flex ">
                         Subtotal
                     </div>
                     <div class="col-1">
@@ -109,7 +109,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             <input type="hidden" value="<?php echo $row['PRODUCT_ID'];?>" class="cart-product-id" />
                         </div>
                     </div>
-                    <div class="col-2 each-subtotal">
+                    <div class="col-2 each-subtotal d-none d-md-flex ">
                         <span>&#163;</span><?php echo $row['PRICE']*$row['QUANTITY'];?>
                     </div>
                     <div class="col-1">

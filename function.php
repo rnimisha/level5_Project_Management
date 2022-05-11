@@ -481,28 +481,28 @@ function checkWishlistCount($user_id, $connection)
 
 }
 
-// function productLeftToReview($customer_id, $connection)
-// {
-//     $query="SELECT DISTINCT REVIEW_ID, CO.ORDER_ID, ORDER_ITEM_ID,ITEM_QUANTITY, OI.PRODUCT_ID FROM CUST_ORDER CO 
-//     JOIN ORDER_ITEM OI 
-//     ON CO.ORDER_ID=OI.ORDER_ID
-//     LEFT JOIN (SELECT * FROM REVIEW WHERE USER_ID=$customer_id) R
-//     ON R.PRODUCT_ID=OI.PRODUCT_ID
-//     WHERE CO.USER_ID=$customer_id
-//     AND REVIEW_ID IS NULL
-//     GROUP BY CO.ORDER_ID, ORDER_ITEM_ID, ITEM_QUANTITY,OI.PRODUCT_ID, REVIEW_ID
-//     ORDER BY ORDER_ID";
+function productLeftToReview($customer_id, $connection)
+{
+    $query="SELECT DISTINCT REVIEW_ID, CO.ORDER_ID, ORDER_ITEM_ID,ITEM_QUANTITY, OI.PRODUCT_ID FROM CUST_ORDER CO 
+    JOIN ORDER_ITEM OI 
+    ON CO.ORDER_ID=OI.ORDER_ID
+    LEFT JOIN (SELECT * FROM REVIEW WHERE USER_ID=$customer_id) R
+    ON R.PRODUCT_ID=OI.PRODUCT_ID
+    WHERE CO.USER_ID=$customer_id
+    AND REVIEW_ID IS NULL
+    GROUP BY CO.ORDER_ID, ORDER_ITEM_ID, ITEM_QUANTITY,OI.PRODUCT_ID, REVIEW_ID
+    ORDER BY ORDER_ID";
 
-//     $parsed=oci_parse($connection,$query);
+    $parsed=oci_parse($connection,$query);
+    $products=[];
+    oci_execute($parsed);
+    while (($row = oci_fetch_assoc($parsed)) != false) {
+        array_push($products, $row['PRODUCT_ID']);
+    }
+    oci_free_statement($parsed);
+    return $products;
 
-//     oci_execute($parsed);
-//     while (($row = oci_fetch_assoc($parsed)) != false) {
-//         array_push($products, $row['PRODUCT_ID']);
-//     }
-//     oci_free_statement($parsed);
-//     return $products;
-
-// }
+}
 
 function checkProductDiscountRate($product_id, $connection)
 {

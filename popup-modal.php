@@ -118,3 +118,30 @@
     </div>
     </div>
 </div>
+
+
+<!-- Button trigger modal for remove cart confirmation -->
+<button type="button" id="dynamic-msg" class="btn btn-primary d-none" data-toggle="modal"
+    data-target="#popdynamic-msg">
+    preview
+</button>
+
+<!-- Modal for remove cart confirmation -->
+<div class="modal fade" id="popdynamic-msg" tabindex="-1" role="dialog" aria-labelledby="popCartRemove" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content w-50 mx-auto m-3">
+      <div class="modal-header">
+        <h5 class="modal-title" id="popdynamic-msgTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body dynamic-body text-center">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

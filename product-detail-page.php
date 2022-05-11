@@ -386,7 +386,7 @@ $img= getProductImage($product_id,$connection);
                                     <h4>Comments</h4>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <div class="btn write-review">Write Review</div>
+                                    <div class="btn write-review" value="<?php echo  $product_id?>">Write Review</div>
                                 </div>
                                 <div class="col-3 text-right pr-5">
                                     <select class="custom-select form-control" id="sort-review-option"
@@ -552,7 +552,7 @@ $img= getProductImage($product_id,$connection);
                             No reviews yet
                         </div>
                         <div class="col-12 text-center mt-4">
-                            <div class="btn write-review p-2">Write Review</div>
+                            <div class="btn write-review p-2"  value="<?php echo  $product_id?>">Write Review</div>
                         </div>
                     </div>
                     <?php
@@ -663,6 +663,53 @@ $img= getProductImage($product_id,$connection);
     </div>
     <input type="hidden" value="1" id="real-quantity" />
     <input type="hidden" value="<?php echo $stock;?>" id="stock-amount" />
+
+    <!-- Button trigger modal -->
+    <button type="button" id="show-review-form-btn" class="btn btn-primary d-none" data-toggle="modal" data-target="#ReviewFormContainer">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ReviewFormContainer" tabindex="-1" role="dialog" aria-labelledby="ReviewFormContainerTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center mx-auto" id="popConfirmTitle">Write Your Review</h5>
+            <button type="button" class="close  close-review" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body d-flex justify-content-center align-item-center">
+          <form id="review-form" action="submit-review.php" method="POST" class="w-75 text-center mt-4">
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="review_prod_id"/>
+                <input type="hidden" class="form-control" id="u_id" value="<?php echo $cust_id;?>"/>
+                    <div>
+                        <i class="fa-solid fa-star rate-star" data-index="0"></i>
+                        <i class="fa-solid fa-star rate-star" data-index="1"></i>
+                        <i class="fa-solid fa-star rate-star" data-index="2"></i>
+                        <i class="fa-solid fa-star rate-star" data-index="3"></i>
+                        <i class="fa-solid fa-star rate-star" data-index="4"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="star-rating"/>
+                    <div class="invalid-feedback" id="error-star"></div>
+                </div>
+                <div class="form-group">
+                    <textarea name="prod-review" class="form-control" id="prod-review" placeholder="Comment"></textarea>
+                    <span id="error_prod-review" style="color: red"></span><br/>
+                </div>
+                <div class="row d-none w-100 justify-content-end submit-contact">
+                    <input type="submit" class="btn py-2 px-4" id="submit-my-review" name="contactus" value="Send"/>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-review-btn">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <?php
         include_once('popup-modal.php');
     ?>
