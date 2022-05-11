@@ -490,6 +490,22 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $('.reviewed-select').click(function(){
+        $('.to-review-container').addClass('d-none');
+        $('.reviewed-container').removeClass('d-none');
+
+        $('.to-review-select').removeClass('my-green-font');
+        $('.reviewed-select').addClass('my-green-font');
+    });
+
+    $('.to-review-select').click(function(){
+        $('.to-review-container').removeClass('d-none');
+        $('.reviewed-container').addClass('d-none');
+
+        $('.reviewed-select').removeClass('my-green-font');
+        $('.to-review-select').addClass('my-green-font');
+    });
 });
 
 $('body').addClass('transition-effect');

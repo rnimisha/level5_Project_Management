@@ -66,9 +66,9 @@
                     <div class="col-12 mt-2">
                         <div class="setting-nav align-items-center pb-4">
                             <div class="border-bottom pt-3 pb-2 d-flex justify-content-center text-center">
-                                <div class="col-md-6 my-green-font"><b><i class="fa-solid fa-comment-dots"></i>&nbsp;
-                                        Reviewed</b></div>
-                                <div class="col-md-6"><b><i class="fa-solid fa-comment-medical"></i>&nbsp; To Review</b>
+                                <div class="col-md-6 my-green-font reviewed-select"><b><i class="fa-solid fa-comment-dots"></i>&nbsp;
+                                        Review History</b></div>
+                                <div class="col-md-6 to-review-select"><b><i class="fa-solid fa-comment-medical"></i>&nbsp; To Review</b>
                                 </div>
                             </div>
                             <?php
@@ -79,7 +79,7 @@
                                 while (($row = oci_fetch_assoc($parsed_query)) != false) {
 
                             ?>
-                            <div class="row justify-content-center d-none align-items-center reviewed-container transition-effect px-4 my-5">
+                            <div class="row justify-content-center align-items-center reviewed-container transition-effect px-4 my-5">
                                 <div class="col-2">
                                     <div class="review-profile-container">
                                         <a href="..\product-detail-page.php?pid=<?php echo $row['PRODUCT_ID']?>">
@@ -146,7 +146,7 @@
                                     oci_execute($parsed_query);
                                     while (($row2= oci_fetch_assoc($parsed_query)) != false) {
                             ?>
-                            <div class="row justify-content-center align-items-center to-review-container transition-effect px-4 my-5">
+                            <div class="row justify-content-center d-none align-items-center to-review-container transition-effect px-4 my-5">
                                 <div class="col-2 pl-5">
                                     <div class="review-profile-container">
                                         <a href="..\product-detail-page.php?pid=<?php echo $row2['PRODUCT_ID']?>">
