@@ -412,6 +412,34 @@ $(document).ready(function(){
         $('.recieved-select').addClass('my-green-font');
         $('.to-recieve-select').removeClass('my-green-font');
     });
+
+    var rating=-1;
+    $('.rate-star').click(function(){
+        var index=parseInt($(this).data('index'));
+        index=index+1;
+        $('#star-rating').val(index);
+    });
+
+    $('.rate-star').mouseover(function(){
+        $('.rate-star').css("color", "black");
+        var index=parseInt($(this).data('index'));
+        for(var i=0; i<=index; i++)
+        {
+            $('.rate-star:eq('+i+')').css("color", "#dac775");
+
+        }
+
+    });
+
+    $('.rate-star').mouseleave(function(){
+        $('.rate-star').css("color", "black");
+    });
+
+    $('.add-review').click(function(){
+        var p_id=$(this).attr('value');
+        $('#review_prod_id').val(p_id);
+        $('#show-review-form-btn').click();
+    });
 });
 
 $('body').addClass('transition-effect');
