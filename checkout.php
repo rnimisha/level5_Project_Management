@@ -135,7 +135,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                         <option value="FRI"><?php echo date('dS F, D', strtotime('next friday'));?></option>
                                     <?php 
                                     }
-                                    else if( $today_day == 'WED'  && $current_hour<16)
+                                    else if( $today_day == 'WED')
                                     {
                                     ?>
                                         <option value="THU"><?php echo date('dS F, D', strtotime('next thursday'));?></option>
@@ -143,7 +143,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                         <option value="WED"><?php echo date('dS F, D', strtotime('next wednesday'));?></option>
                                     <?php 
                                     }
-                                    else if( $today_day == 'THU'  && $current_hour<16)
+                                    else if( $today_day == 'THU')
                                     {
                                     ?>
                                         <option value="FRI"><?php echo date('dS F, D', strtotime('next friday'));?></option>

@@ -1,19 +1,73 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
-if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
-{
-    header('Location: loginform.php');
-}
-if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
-{
-    header('Location: loginform.php');
-}
-$collection_id= $_SESSION['collection-id'];
-// $payment_id= $_GET['PayerID'];
-// $coupon_id= $_SESSION['COUPON'];
-$customer_id=$_SESSION['phoenix_user'];
-// unset($_SESSION['COUPON']);
+
+    if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
+    {
+        header('Location: loginform.php');
+    }
+    if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
+    {
+        header('Location: loginform.php');
+    }
+    $payment_id= $_GET['PayerID'];
+    $customer_id=$_SESSION['phoenix_user'];
+
+    if(isset($_SESSION['collection-id']))
+    {
+        $collection_id= $_SESSION['collection-id'];
+        //insert new order
+        $insertOrder="INSERT INTO CUST_ORDER(SLOT_ID, USER_ID) VALUES($customer_id, $collection_id)";
+        $parsedOrder=oci_parse($connection, $insertOrder);
+        oci_execute($parsedOrder);
+        oci_free_statement($parsedOrder);
+
+        //get order id for current order
+        $getOrderId="SELECT ORDER_ID FROM CUST_ORDER ORDER BY ORDER_ID DESC ";
+        $parsed=oci_parse($connection, $getOrderId);
+        oci_execute($parsed);
+        $row= oci_fetch_assoc($parsed);
+        $order_id=$row['ORDER_ID'];
+        
+        //insert ordered products
+        $cartQuery="SELECT * FROM CART_ITEM WHERE USER_ID=$customer_id";
+        $paresedCart=oci_parse($connection, $cartQuery);
+        oci_execute($paresedCart);
+        while (($row = oci_fetch_assoc($paresedCart)) != false) {
+            $quantity=$row['QUANTITY'];
+            $product=$row['PRODUCT_ID'];
+            $insertItem="INSERT INTO ORDER_ITEM(ORDER_ID, ITEM_QUANTITY, PRODUCT_ID) VALUES($order_id, $quantity, $product)";
+            $parsedItem=oci_parse($connection, $insertItem);
+            oci_execute($parsedItem);
+            oci_free_statement($parsedItem);
+        }
+        oci_free_statement($paresedCart);
+
+        //clear cart for user after order
+        $clearCart="DELETE FROM CART_ITEM WHERE USER_ID=$customer_id";
+        $parsedClear=oci_parse($connection, $clearCart);
+        oci_execute($parsedClear);
+        oci_free_statement($parsedClear);
+
+        //insert coupon if used
+        if(isset($_SESSION['COUPON']))
+        {
+            $coupon_id= $_SESSION['COUPON'];
+            $insertCoupon="INSERT INTO ORDER_COUPON(ORDER_ID, COUPON_ID) VALUES($order_id, $coupon_id)";
+            $parsedCoupon=oci_parse($connection, $insertCoupon);
+            oci_execute($parsedCoupon);
+            oci_free_statement($parsedCoupon);
+            unset($_SESSION['COUPON']);
+        }
+        
+        //insert payment details
+        $paymentInsert="INSERT INTO PAYMENT(PAYMENT_METHOD, ACCOUNT_ID, ORDER_ID) VALUES('PAYPAL', '$payment_id', $order_id)";
+        $parsedPayment=oci_parse($connection, $paymentInsert);
+        oci_execute($parsedPayment);
+        // echo $paymentInsert;
+        oci_free_statement($parsedPayment);
+    unset($_SESSION['collection-id']);
+    }
 ?>
 <!doctype html>
 <html lang="en">

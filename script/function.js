@@ -115,6 +115,12 @@ function disableOption(today_date)
         $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
         $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
     }
+    else if(today_date >=16)
+    {
+        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+        $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
+        $("#select-collect-time option[value=16-19]").attr('disabled','disabled');
+    }
 }
 
 
