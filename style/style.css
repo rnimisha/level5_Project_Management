@@ -653,7 +653,7 @@ img.wishlist-prod-img.img-fluid{
     box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }
 
-.contact-us-container{
+.contact-us-container, .register-us-container{
     border-radius: 15px;
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
     background: rgba(198, 202, 200, 0.1);
@@ -705,3 +705,5 @@ a:hover {
     color: #b46a6a;
     cursor: pointer;
 }
+
+

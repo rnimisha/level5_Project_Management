@@ -29,7 +29,7 @@
 
     .leftpanel {
         position: relative;
-        background-image: linear-gradient(45deg, #c3cfbb, #c4cbbf, #c6c4c7);
+        background-image: linear-gradient(45deg, #78967e, #8ea792, #bac9bc, #c6c4c7);
         border-radius: 25px;
         height: 100%;
         padding: 25px;
@@ -38,15 +38,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        color:#000;
     }
     .leftpanel header {
-        color: #fff;
+        color:#000;
         font-size: 44px;
     }
 
     .form-container {
         background: #fff;
-        height: 600px;
+        min-height: 600px;
         position: relative;
         margin: 0 30px;
         overflow: hidden;
@@ -65,7 +66,7 @@
     }
 
     .rightpanel header {
-        color: #903775;
+        color:#78967e;
         font-size: 22px;
         font-weight: 700;
         text-align: center;
@@ -99,7 +100,7 @@
 
 
     .form-container form {
-        max-width: 300px;
+        max-width: 400px;
         padding: 10px 10px;
         position: absolute;
         transition: transform 1s;
@@ -123,7 +124,7 @@
     }
 
     .inputbox .bttn {
-        background: linear-gradient(45deg, #c3cfbb, #c4cbbf, #c6c4c7);
+        background: linear-gradient(45deg, #78967e, #8ea792, #bac9bc, #c6c4c7);
         color: #fff;
         width: 225px;
         border: none;
@@ -179,34 +180,20 @@
     .butt:focus {
         outline: none;
     }
+ .form-control {
+    color: #495057;
+    background-color: #fff;
+    border: 0px solid #ced4da;
+    border-bottom: 1px solid #d4cfcf;
+    border-radius: 0rem;
+    background-color: transparent;
+}
+.form-control:focus {
+    border-color: #78967e;
+    box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
+}
 </style>
-<?php
-        if(isset($_GET['msg']))
-        {
-            if($_GET['msg']=="cartaccess")
-            {
-                ?>
-                <div class="alert alert-warning login-msg" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="True">&times;</span>
-                    </button>
-                    <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access cart.</h5>
-                </div>
-                <?php
-            }
-            if($_GET['msg']=="wishlistaccess")
-            {
-                ?>
-                <div class="alert alert-warning login-msg" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="True">&times;</span>
-                    </button>
-                    <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access wishlist.</h5>
-                </div>
-                <?php
-            }
-        }
-?>
+
 <body>
     <div class="container">
         <div class="newaccount">
@@ -215,21 +202,65 @@
                     <div class="leftpanel">
                         <div class="contain">
                             <header>Already a member?</header>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor ipsum, odit rerum cupiditate quisquam, temporibus mollitia eaque omnis sint minima tempora corporis nesciunt aliquid facilis alias, obcaecati eos quo ut!</p>
+                            <p>Click button below to login</p>
                             <input type="button" class="butt" value="lOGIN" />
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="rightpanel">
+                <div class="col-md-6 justify-content-center align-items-center">
+                    <div class="rightpanel ">
                         <div class="form-container mt-5">
                             <header>CREATE AN ACCOUNT</header>
-                            <div class="log-opt mt-3">
+                            <div class="log-opt mt-3 ">
                                 <span class="cus" onclick="create()">Customer</span>
                                 <span class="tra" onclick="create1()">Trader</span>
                                 <hr id="line">
                             </div>
-                            <form id="cust" method="post" action="createaccount.php">
+              
+                            <form action="validateCustomer.php" method="POST"  id="cust-reg-form">
+                            <div class="inputbox">
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" name="fullname" class="inputs" placeholder="Full Name" id="fullname" />
+                                    <div id="name_error" style="color: red"></div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-envelope"></i>
+                                    <input type="text" name="uemail" id="useremail" class="inputs" placeholder="Email"/>
+                                    <div id="email_error" style="color: red"></div>
+                                </div>
+
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-phone"></i>
+                                    <input type="text" name="ucontact" id="contact" class="inputs" placeholder="Contact" />
+                                    <div id="contact_error" style="color: red"></div>
+                                </div>
+
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-calendar"></i>
+                                    <input type="date" name="udob" id="dob" class="inputs" placeholder="Date of Birth"/><br/>
+                                    <div id="dob_error" style="color: red"></div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-map-marker"></i>
+                                    <input type="text" name="uaddress" id="address" class="inputs" placeholder="Address"/><br/>
+                                <div id="address_error" style="color: red"></div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="password" name="upass" id="pword" class="inputs" placeholder="Password" />
+                                    <div id="pass_error" style="color: red"></div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="password" name="urep-pass" id="repass" class="inputs" placeholder="Confirm Password" /><br/>
+                                    <div id="repass_error" style="color: red"></div>
+                                </div>
+                                <input type="submit" id="reg-btn" name="registerCustomer" value="Register"/>
+                            </div>
+                            </form>
+    
+                            <!-- <form id="cust" method="post" action="createaccount.php" >
                                 <div class="inputbox">
                                     <div class="form-group">
                                         <i class="fa fa-user"></i>
@@ -268,7 +299,7 @@
                                     </div><br>
                                     <input type="submit" class="bttn" value="NEXT">
                                 </div>
-                            </form>
+                            </form> -->
                             <form id="trad" method="post" action="createaccount.php">
                                 <div class="inputbox">
                                     <div class="form-group">
@@ -328,7 +359,7 @@
             var line = document.getElementById("line");
 
             function create1() {
-                cust.style.transform = "translateX(100px)";
+                Trader.style.transform = "translateX(100px)";
                 trad.style.transform = "translateX(3px)";
                 line.style.transform = "translateX(98px)";
             }
@@ -341,5 +372,8 @@
         </script>
     </div>
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="script/preventRefresh.js"></script>
+<script src="script/preventRefreshTrader.js"></script>
+<script src="script/function.js"></script>
 </html>

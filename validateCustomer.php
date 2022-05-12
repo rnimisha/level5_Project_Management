@@ -14,15 +14,18 @@
             {
                 $error['#name_error']="Enter a valid name";
                 $error['clear']=false;
+                $error['#fullname']='is-invalid';
             }
             else{
                 $error['#name_error']="";
                 $fullnames= $_POST['fullname'];
+                $error['#fullname']='valid';
             }
         }
         else{
             $error['#name_error']="Name cannot be empty";
             $error['clear']=false;
+            $error['#fullname']='is-invalid';
         }
     }
 
@@ -44,10 +47,12 @@
                     $error['#email_error']="Enter already registered";
                     $error['clear']=false;
                     oci_free_statement($result); 
+                    $error['#useremail']='is-invalid';
                 }
                 else{
                     $error['#email_error']="";
                     $email=$_POST['useremail'];
+                    $error['#useremail']='valid';
                    
                 }
                   
@@ -55,12 +60,14 @@
             else{
                 $error['#email_error']="Enter a valid email";
                 $error['clear']=false;
+                $error['#useremail']='is-invalid';
             }
 
         }
         else{
             $error['#email_error']="Email cannot be empty";
             $error['clear']=false;
+            $error['#useremail']='is-invalid';
         }
     }
 
@@ -74,12 +81,14 @@
                 //encrypt password before
                 $error['#pass_error']="";
                 $password=md5($_POST['pword']);
+                $error['#pword']='valid';
             
             }
             else
             {
+                $error['#pword']='is-invalid';
                 $error['clear']=false;
-                $error['#pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit and one special char!";
+                $error['#pass_error']="Atleast 7 alphanumeric character <br/> one upper <br>one lower <br> one digit <br> one special char!";
             }
 
         }
@@ -87,6 +96,7 @@
         {
             $error['#pass_error']="Password cannot be empty";
             $error['clear']=false;
+            $error['#pword']='is-invalid';
         }
     }
 
@@ -97,18 +107,20 @@
             if($_POST['repass'] == $_POST['pword'])
             {
                 $error['#repass_error']="";
+                $error['#repass']='valid';
             }
             else
             {
                 $error['#repass_error']="Password does not match";
                 $error['clear']=false; 
+                $error['#repass']='is-invalid';
             }
         }
         else
         {
             $error['#repass_error']="Re-enter password";
             $error['clear']=false;
-            
+            $error['#repass']='is-invalid';
         }
     }
 
@@ -132,10 +144,12 @@
                             $error['#contact_error']="Contact already registered";
                             $error['clear']=false;
                             oci_free_statement($result); 
+                            $error['#contact']='is-invalid';
                         }
                         else{
                             $error['#contact_error']="";
                             $contact=$_POST['contact'];
+                            $error['#contact']='valid';
                         
                         }
                 }
@@ -143,18 +157,21 @@
                 {
                     $error['#contact_error']="Contact can't be less than 10 digits";
                     $error['clear']=false;
+                    $error['#contact']='is-invalid';
                 }
             }
             else
             {
                     $error['#contact_error']="Enter valid digits";
                     $error['clear']=false;
+                    $error['#contact']='is-invalid';
             }
 
         }
         else{
             $error['#contact_error']="Contact cannot be empty";
             $error['clear']=false;
+            $error['#contact']='is-invalid';
         }
     }
 
@@ -164,11 +181,13 @@
         {
             $error['#dob_error']="";
             $dob=date("d-m-Y", strtotime($_POST['dob']));
+            $error['#dob']='valid';
             
         }
         else{
             $error['#dob_error']="DOB cannot be empty";
             $error['clear']=false;
+            $error['#dob']='is-invalid';
         }
     }
 
@@ -180,16 +199,19 @@
             {
                 $error['#address_error']="Enter a valid address";
                 $error['clear']=false;
+                $error['#address']='is-invalid';
             }
             else{
                 $error['#address_error']="";
                 $address=$_POST['address'];
+                $error['#address']='valid';
             }
 
         }
         else{
             $error['#address_error']="Address cannot be empty";
             $error['clear']=false;
+            $error['#address']='is-invalid';
         }
     }
 

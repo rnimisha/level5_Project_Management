@@ -38,7 +38,8 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true) {
                     resetForm('cust-reg-form');
-                    $('#reg-sucess-msg').html('Please check your email to activate account');
+                    $('.success').html('<div class="alert alert-success cart-success action-success py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Please check your email to activate account.</div>').delay(4000).fadeOut();
+                    $('.success').show();
                     inlineMsg(resp);
                 }
                 else{
