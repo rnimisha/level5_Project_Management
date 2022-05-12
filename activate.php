@@ -64,7 +64,7 @@
                 </style>
             </head>
             <body>
-                <div style='background-color: #f9fcf7; width:80%; margin:10%; padding: 20px;'>
+                <div style='background-color:#fff9fa; width:80%; margin:10%; padding: 20px;'>
                     <center>
                         $image <br/>
                          A new registration request from trader <b>$fullnames </b>has arrived!
