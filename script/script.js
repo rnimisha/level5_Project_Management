@@ -301,6 +301,8 @@ $(document).ready(function(){
 
     $('#select-collection-slot').change(function(){
         $("#select-collect-time option").removeAttr('disabled');
+        $("#select-collect-time option[value=0]").attr('disabled','disabled');
+        
         var day_selected=$('#select-collection-slot').val();
         var today_day=$('#today_day').val();
         var today_date=$('#current_hour').val();
@@ -312,6 +314,11 @@ $(document).ready(function(){
                 if(today_date >= 10 && today_date < 13)
                 {
                     $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+                }
+                else if(today_date >= 13 && today_date < 16)
+                {
+                    $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+                    $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
                 }
             }
         }

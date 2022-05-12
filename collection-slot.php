@@ -94,7 +94,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
             // $today_day=date('D');
             // $today_day=strtoupper($today_day);
             $current_hour=date('G');
-            $current_hour=11;
+            $current_hour=16;
             $today_day='TUE';
             ?>
             <div class="col-lg-4">
@@ -111,7 +111,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         </div>
                         <div class="col-7" value="">
                             <select class="custom-select form-control" id="select-collection-slot" name="select-collection-slot">
-                                <option value="">Collection Day</option>
+                                <option value="0" disabled selected>Collection Day</option>
                             <?php  
                                 if($today_day== 'SAT' || $today_day== 'SUN' || $today_day== 'MON' || ($today_day='TUE' && $current_hour<16))
                                 {
@@ -124,7 +124,6 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                 else if($today_day='TUE')
                                 {
                                 ?>
-                                    <option value="WED"><?php echo date('dS F, D', strtotime('next wednesday'));?></option>
                                     <option value="THU"><?php echo date('dS F, D', strtotime('next thursday'));?></option>
                                     <option value="FRI"><?php echo date('dS F, D', strtotime('next friday'));?></option>
                                 <?php 
@@ -140,7 +139,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         </div>
                         <div class="col-7" value="">
                             <select class="custom-select form-control" id="select-collect-time" name="sort-product-option">
-                                <option value="">Collection Time</option>
+                                <option value="0" selected disabled>Collection Time</option>
                                 <option value="10-13"> 10AM - 1PM</option>
                                 <option value="13-16"> 1PM - 4PM</option>
                                 <option value="16-19"> 4PM - 7PM</option>
