@@ -180,7 +180,7 @@ $img= getProductImage($product_id,$connection);
                     <span class="text-muted"><small><b>shop</b> : <span class="text-lowercase"><?php echo $shop_name;?></small></span></span>
                 </div>
                 <hr>
-                <div class="pl-4 my-n2 report-product">
+                <div class="pl-4 my-n2 report-product" value="<?php echo $product_id;?>">
                     <span class="text-muted"><small> <i class="fa-solid fa-flag"></i> &nbsp; Report Product</small></span></span>
                 </div>
                 <hr>

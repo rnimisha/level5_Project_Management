@@ -363,8 +363,37 @@ $(document).ready(function(){
         }
     });
 
+    $('#submit-report-btn').click(function(){
+        $('#review-form').submit();
+    });
+
     $('.report-product').click(function(){
-        alert(1);
+        var product_id=$(this).attr('value');
+  
+        $.ajax({
+            type: "POST",
+            url: 'report-product.php',
+            data: {
+                product_id:product_id,
+                action:'report-product'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+
+                if(resp.valid == false) {
+                    if(resp.error == 'login')
+                    {
+                        $('.dynamic-body').html("<b>You need to login to review a product</b>");
+                        $('#dynamic-msg').click();
+                    }
+                }
+                else{
+                    $('#report_prod_id').val(product_id);
+                    $('#report-modal-btn').click();
+                }
+            }
+        });
     });
 });
 

@@ -145,3 +145,35 @@
     </div>
   </div>
 </div>
+
+<!-- Report product btn modal -->
+<button type="button" id="report-modal-btn" class="btn btn-primary d-none" data-toggle="modal" data-target="#ReportProductForm">
+    Launch demo modal
+</button>
+
+<!-- Report Form Modal -->
+<div class="modal fade" id="ReportProductForm" tabindex="-1" role="dialog" aria-labelledby="ReportProductFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content w-75 mx-auto">
+        <div class="modal-header">
+        <h5 class="modal-title text-center mx-auto" id="popConfirmTitle">Write a Report</h5>
+        </div>
+        <div class="modal-body d-flex justify-content-center align-item-center">
+        <form id="review-form" action="submit-review.php" method="POST" class="w-75 text-center mt-4">
+            <input type="hidden" class="form-control" id="report_prod_id"/>
+            <div class="form-group">
+                <textarea name="prod-report" class="form-control" id="prod-report" placeholder="Write your complain"></textarea>
+                <span id="error_prod-report" style="color: red;"></span><br/>
+            </div>
+            <div class="row d-none w-100 justify-content-end submit-report">
+                <input type="submit" class="btn py-2 px-4" id="submit-my-report" name="submit-my-report" value="Submit"/>
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-report-btn">Submit</button>
+        </div>
+    </div>
+    </div>
+</div>
