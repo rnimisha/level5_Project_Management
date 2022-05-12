@@ -19,10 +19,12 @@
                 if($number_of_rows<=0){
                     $l_error['#l_email_error']="Email not registered yet";
                     $l_error['clear']=false;
+                    $l_error['#l_useremail']='is-invalid';
                     oci_free_statement($result); 
                 }
                 else{
                     $l_error['#l_email_error']="";
+                    $l_error['#l_useremail']='valid';
                     $email=$_POST['l_useremail'];
                    
                 }
@@ -31,11 +33,13 @@
             else{
                 $l_error['#l_email_error']="Enter a valid email";
                 $l_error['clear']=false;
+                $l_error['#l_useremail']='is-invalid';
             }
 
         }
         else{
             $l_error['#l_email_error']="Email cannot be empty";
+            $l_error['#l_useremail']='is-invalid';
             $l_error['clear']=false;
         }
 
@@ -55,6 +59,7 @@
                 if($number_of_rows2<=0){
                     $l_error['#l_pass_error']="Password does not match";
                     $l_error['clear']=false;
+                    $l_error['#l_pword']='is-invalid';
                     oci_free_statement($result2); 
                 }
                 else{
@@ -73,10 +78,12 @@
                         oci_free_statement($parsedGetUser);
                         $l_error['#l_pass_error']="";
                         $pass=$_POST['l_pword'];
+                        $l_error['#l_pword']='valid';
                     }
                     else
                     {
                         $l_error['clear']=false;
+                       
                     }
                 }
             }
@@ -84,6 +91,7 @@
             {
                 $l_error['#l_pass_error']="Password cannot be empty";
                 $l_error['clear']=false;
+                $l_error['#l_pword']='is-invalid';
             }
         }
     }

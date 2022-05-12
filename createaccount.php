@@ -29,7 +29,7 @@
 
     .leftpanel {
         position: relative;
-        background-image: linear-gradient(45deg, #ff00d4, #00ddff);
+        background-image: linear-gradient(45deg, #c3cfbb, #c4cbbf, #c6c4c7);
         border-radius: 25px;
         height: 100%;
         padding: 25px;
@@ -118,12 +118,12 @@
     }
 
     .inputbox .bttn:hover {
-        background: linear-gradient(45deg, #000000, #ff00d4);
+        background: linear-gradient(45deg, #c3cfbb, #c4cbbf, #c6c4c7);
         opacity: .3;
     }
 
     .inputbox .bttn {
-        background: linear-gradient(45deg, #ff00d4, #00ddff);
+        background: linear-gradient(45deg, #c3cfbb, #c4cbbf, #c6c4c7);
         color: #fff;
         width: 225px;
         border: none;
@@ -180,7 +180,33 @@
         outline: none;
     }
 </style>
-
+<?php
+        if(isset($_GET['msg']))
+        {
+            if($_GET['msg']=="cartaccess")
+            {
+                ?>
+                <div class="alert alert-warning login-msg" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                    </button>
+                    <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access cart.</h5>
+                </div>
+                <?php
+            }
+            if($_GET['msg']=="wishlistaccess")
+            {
+                ?>
+                <div class="alert alert-warning login-msg" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                    </button>
+                    <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access wishlist.</h5>
+                </div>
+                <?php
+            }
+        }
+?>
 <body>
     <div class="container">
         <div class="newaccount">
