@@ -335,6 +335,30 @@ $(document).ready(function(){
         $('.collect-time-container').removeClass('d-none');
     });
 
+    $('.collection-btn').click(function(){
+        var day_selected= $('#select-collection-slot').val();
+        var time_selected=$("#select-collect-time").val();
+        if(day_selected == null && time_selected == null )
+        {
+            $('.fail-container').html('<div class="alert alert-warning cart-success action-success py-4" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please Select Collection Slot before payment.</div>').delay(4000).fadeOut();
+            $('.fail-container').show();
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                url: "check-out-valid.php",
+                data: {
+                    day_selected:day_selected,
+                    time_selected:time_selected,
+                    action: 'save-detail'
+                },
+                success: function(response){
+                    $('#make-payment').submit();
+                }
+            });
+        }
+    });
+
 });
 
 

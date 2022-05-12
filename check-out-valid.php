@@ -56,4 +56,21 @@
         }
         echo json_encode($collection);
     }
+
+    if(isset($_POST['action']) && $_POST['action']=='save-detail')
+    {
+        if(isset($_POST['day_selected']) && isset($_POST['time_selected']))
+        {
+            $day=$_POST['day_selected'];
+            $time=$_POST['time_selected'];
+
+            $query="SELECT * FROM SLOT WHERE SLOT_DAY='$day' AND TIME_RANGE='$time'";
+            $parsed=oci_parse($connection, $query);
+            oci_execute($parsed);
+            $row=oci_fetch_assoc($parsed);
+            $_SESSION['collection-id']=$row['SLOT_ID'];
+            oci_free_statement($parsed);
+            echo json_encode(1);
+        }
+    }
 ?>

@@ -28,7 +28,8 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 <body>
     <div class="container">
         <div class="alert alert-success cart-success action-success" role="alert">
-            
+        </div>
+        <div class="fail-container">
         </div>
     <?php
         $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);
@@ -86,8 +87,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     if(isset($_SESSION['COUPON']) & !empty($_SESSION['COUPON']))
                     {
                         $coupon=$_SESSION['COUPON'];
-                        unset($_SESSION['COUPON']);
-                   
+
                         $total= calculateSubtotalAfterCoupon($coupon, $subtotal, $connection);
                         $discount=$subtotal-$total;
                     }
@@ -110,7 +110,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         <h5>Purchase Information</h5>
                     </div>
                     <hr>
-                    <form>
+                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST" id="make-payment" name="make-payment">
                         <div  class="row w-100 justify-content-between pt-1 pl-4">
                             <div  class="col-4">
                                 Day
@@ -196,8 +196,14 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             </div>
                         </div>
                         <hr>
+                        <input type="hidden" name="business" value="sb-spqm012101291@business.example.com"/>
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <input type="hidden" name="amount" value="<?php echo $total?> " />
+                        <input type="hidden" name="currency_code" value="GBP" />
+                        <input type="hidden" name="cancel_return" value="http://localhost/project_management/level5_project_management/cart-page.php">
+                        <input type="hidden" name="return" value="http://localhost/project_management/level5_project_management/payment-sucess-page.php" />
                         <div  class="row w-100 justify-content-center px-2">
-                            <div class="btn py-1 px-3 mt-1 mb-3 checkout-btn">
+                            <div class="btn py-1 px-3 mt-1 mb-3 collection-btn">
                                 PayPal
                             </div>
                         </div>
