@@ -131,6 +131,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     </div>
                     <div class="col-12  mb-4">
                         <form class="row w-100 submit-coupoun">
+                        <input type="hidden" id="subtotal_coupon" value="<?php echo $subtotal;?>">
                             <div class="col-4 pl-3 pt-2">
                                 <input type="text" class="form-control" id="coupon-code" style="width: 100%; border-radius: 5px; border: 1px solid #e8e8e8;">
                                 <div class="invalid-feedback" id="error-coupon"></div>
@@ -139,7 +140,6 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                 <button type="submit" class=" btn py-1 mt-2 px-3 coupon-btn"> Apply</button>
                             </div>
                         </form>
-                        <input type="hidden" id="valid-coupon">
                     </div>
                 </div>
             </div>
@@ -157,11 +157,11 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             <span>&#163;</span><?php echo $subtotal;?>
                         </div  class="col-6">
                     </div>
-                    <div  class="row w-100  justify-content-between pt-2 pl-4">
+                    <div  class="row w-100 justify-content-between pt-2 pl-4">
                         <div class="col-8">
                             Discount
                         </div>
-                        <div class="col-4">
+                        <div class="col-4 overall-dis">
                             <span>&#163;</span>0.0
                         </div>
                     </div>

@@ -104,4 +104,18 @@ function changeQuantity(quantity, pid)
 
 }
 
+function disableOption(today_date)
+{
+    if(today_date >= 10 && today_date < 13)
+    {
+        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+    }
+    else if(today_date >= 13 && today_date < 16)
+    {
+        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+        $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
+    }
+}
+
+
 $('div').addClass('transition-effect');

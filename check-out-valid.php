@@ -1,5 +1,6 @@
 <?php
     include_once('connection.php');
+    include_once('function.php');
 
     $collection=array();
     $collection['clear']=true;
@@ -8,9 +9,9 @@
     {
         if(isset($_POST['coupon']))
         {
-            if(!empty($_POST['coupon']))
+            if(!empty(trim($_POST['coupon'])))
             {
-                $coupon=$_POST['coupon'];
+                $coupon=trim($_POST['coupon']);
                 $query="SELECT * FROM COUPON WHERE COUPON_CODE='$coupon' AND START_DATE<=SYSDATE AND EXPIRY_DATE>=SYSDATE";
                 $parsed=oci_parse($connection, $query);
                 oci_execute($parsed);
@@ -36,9 +37,14 @@
                     oci_execute($result);
                     oci_fetch($result);
                     if($number_of_rows<$no_of_use){
-                        $collection['coupon']=$coupon_id;
+                        $_SESSION['COUPON']=$coupon_id;
                         $collection['#error-coupon']="";
                         $collection['#coupon-code']='valid';
+                        if(isset($_POST['subtotal_coupon']))
+                        {
+                            $collection['total']= calculateSubtotalAfterCoupon($coupon_id, $_POST['subtotal_coupon'], $connection);
+                        }
+                    
                     }
                     else{
                         $collection['clear']=false;

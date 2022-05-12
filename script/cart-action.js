@@ -204,20 +204,26 @@ $(document).ready(function(){
 
     $('.submit-coupoun').submit(function(){
         var coupon= $('#coupon-code').val();
+        var subtotal_coupon=$('#subtotal_coupon').val();
         $.ajax({
             type: "POST",
             url: 'check-out-valid.php',
             data: {
                 coupon: coupon,
+                subtotal_coupon:subtotal_coupon,
                 action:'apply-coupon'
             },
             success: function(response){
-                console.log(response);
+                // console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true) {
-                    $('#valid-coupon').val(coupon);
-                    clearFormValidation();
+                    // $('#valid-coupon').val(coupon);
+                    // clearFormValidation();
                     removeStyle(resp);
+                    var total = parseFloat(resp.total);
+                    var discount = subtotal_coupon-total;
+                    $('.total-with-disc').html("<span>&#163;</span>"+total);
+                    $('.overall-dis').html("<span>&#163;</span>"+discount.toFixed(2));
                 }
                 else{
                     inlineMsg(resp);

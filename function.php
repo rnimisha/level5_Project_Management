@@ -530,4 +530,30 @@ function calculatePriceWithDiscount($product_id, $connection){
     $final=$price-(($discount/100)*$price);
     return number_format($final, 2);
 }
+
+function calculateSubtotalAfterCoupon($coupon_id, $subtotal, $connection)
+{
+    $coupon_id=trim($coupon_id);
+    $query="SELECT * FROM COUPON WHERE COUPON_ID=$coupon_id";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $row = oci_fetch_assoc($parsed);
+    $di_rate=$row['DISCOUNT_RATE'];
+    $symbol=$row['DISCOUNT_RATE'];
+    if(strtoupper($symbol)=='GBP')
+    {
+        $subtotal=$subtotal-$di_rate;
+    }
+    else{
+        $subtotal=discountFormula($di_rate, $subtotal);
+    }
+
+    return number_format($subtotal, 2);
+}
+
+function discountFormula($discount_rate, $total)
+{
+    $discount=($discount_rate/100) * $total;
+    return ($total - $discount);
+}
 ?>

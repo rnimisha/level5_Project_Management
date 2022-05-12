@@ -193,7 +193,7 @@ $(document).ready(function(){
             overallsubtotal = overallsubtotal + price;
             $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
             $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
-
+            $('#subtotal_coupon').val(overallsubtotal.toFixed(2));
             var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
             changeQuantity(minimum_val_cart, pid);
 
@@ -223,6 +223,7 @@ $(document).ready(function(){
             changeQuantity(current_val, pid);
 
             overallsubtotal = overallsubtotal - price;
+            $('#subtotal_coupon').val(overallsubtotal.toFixed(2));
             $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
             $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
 
@@ -284,7 +285,6 @@ $(document).ready(function(){
     //check checkout quantity limit
     $('.checkout-btn').click(function(){
         var total_items=$('#total-item-count').attr('value');
-        var code=$('#valid-coupon').val();
         if(total_items>20)
         {
             $('.dynamic-body').html("<b>You cannot buy more than 20 items at one purchase</b>");
@@ -295,7 +295,7 @@ $(document).ready(function(){
             $('#dynamic-msg').click();
         }
         else{
-            window.location.href = 'collection-slot.php?cpn='+code;
+            window.location.href = 'checkout.php';
         }
     });
 
@@ -334,6 +334,7 @@ $(document).ready(function(){
         }
         $('.collect-time-container').removeClass('d-none');
     });
+
 });
 
 
@@ -360,18 +361,5 @@ function showTopReviews()
     }
     if($('.top-rated-review').hasClass('d-none')){
         $('.top-rated-review').removeClass('d-none');
-    }
-}
-
-function disableOption(today_date)
-{
-    if(today_date >= 10 && today_date < 13)
-    {
-        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
-    }
-    else if(today_date >= 13 && today_date < 16)
-    {
-        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
-        $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
     }
 }

@@ -691,3 +691,7 @@ input#contact-btn {
     text-decoration: line-through;
     color: #9a9999;
 }
+
+select#select-collect-time ,select#select-collection-slot{
+    color:#000000;
+}
