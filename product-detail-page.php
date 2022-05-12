@@ -136,7 +136,7 @@ $img= getProductImage($product_id,$connection);
                     </div>
                 </div>
                 <div class="pl-4 mt-4 pb-2 d-flex justify-content-left align-items-center">
-                    <div class="py-2 second-wrapper d-flex justify-content-center align-items-center mr-2"
+                    <div class="py-2 second-wrapper d-flex justify-content-center align-items-center mr-2" id="buy-now-detail"
                         value="<?php echo $product_id;?>">
                         <a href="checkout.php?buynow=yes&pid=<?php echo $product_id;?>">Buy Now</a>
                     </div>
@@ -172,14 +172,18 @@ $img= getProductImage($product_id,$connection);
                     </div>
                 </div>
                 <hr>
-                <div class="pl-4  mt-3">
-                    <span class="text-muted"><small>category : <span
-                                class="text-lowercase"><?php echo $cat_name;?></small></span></span>
+                <div class="pl-4 my-n2">
+                    <span class="text-muted"><small><b>category</b> : <span class="text-lowercase"><?php echo $cat_name;?></small></span></span>
                 </div>
-                <div class="pl-4  mb-4">
-                    <span class="text-muted"><small>shop : <span
-                                class="text-lowercase"><?php echo $shop_name;?></small></span></span>
+                <hr>
+                <div class="pl-4 my-n2">
+                    <span class="text-muted"><small><b>shop</b> : <span class="text-lowercase"><?php echo $shop_name;?></small></span></span>
                 </div>
+                <hr>
+                <div class="pl-4 my-n2 report-product">
+                    <span class="text-muted"><small> <i class="fa-solid fa-flag"></i> &nbsp; Report Product</small></span></span>
+                </div>
+                <hr>
             </div>
         </div>
 
@@ -576,7 +580,7 @@ $img= getProductImage($product_id,$connection);
                     oci_execute($parsed);
                     $row=oci_fetch_assoc($parsed);
                 ?>
-            <div class="col-3 cat-product-container" value="<?php echo $row['PRODUCT_ID'];?>">
+            <div class="col-md-3 cat-product-container" value="<?php echo $row['PRODUCT_ID'];?>">
                 <div class="cat-product col-12 text-center">
                     <div class="inner-img-container">
                         <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"

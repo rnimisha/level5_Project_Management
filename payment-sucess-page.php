@@ -13,7 +13,7 @@ include_once('function.php');
     $payment_id= $_GET['PayerID'];
     $customer_id=$_SESSION['phoenix_user'];
 
-    if(isset($_SESSION['collection-id']))
+    if(isset($_SESSION['collection-id']) && isset($_SESSION['buynow']))
     {
         $collection_id= $_SESSION['collection-id'];
         //insert new order
@@ -80,6 +80,7 @@ include_once('function.php');
         // echo $paymentInsert;
         oci_free_statement($parsedPayment);
     unset($_SESSION['collection-id']);
+    unset($_SESSION['buynow']);
     }
 ?>
 <!doctype html>

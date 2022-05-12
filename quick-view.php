@@ -69,9 +69,9 @@ echo '<div class="row">
                 
             </div>
             <div class="row mt-3 d-flex justify-content-left align-items-center">
-                <div class="py-2 second-wrapper d-flex justify-content-center align-items-center">
+                <a href="checkout.php?buynow=yes&pid='.$product_id.'" class="py-2 second-wrapper d-flex justify-content-center align-items-center" id="buy-now-detail">
                     <span>Buy Now</span>
-                </div>
+                </a>
                 <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center" id="add-cart-with-quantity" value="'.$product_id.'">
                     <span>Add To Cart</span>
                 </div>

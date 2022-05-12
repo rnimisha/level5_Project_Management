@@ -363,6 +363,9 @@ $(document).ready(function(){
         }
     });
 
+    $('.report-product').click(function(){
+        alert(1);
+    });
 });
 
 

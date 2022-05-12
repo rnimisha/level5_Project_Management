@@ -263,7 +263,7 @@ label{
     transform: scale(1.1);
 }
 /* quick view */
-.quick-view-product, .add-to-cart, #add-cart-with-quantity{
+.quick-view-product, .add-to-cart, #add-cart-with-quantity, #buy-now-detail{
     cursor: pointer;
     transition: 0.5s 0s linear;
 }
@@ -358,8 +358,10 @@ label{
     color: #78967e;
     font-weight: 600;
 }
-
-.page-link:hover, #add-cart-with-quantity:hover{
+#buy-now-detail a{
+    color: #fff;  
+}
+.page-link:hover, #add-cart-with-quantity:hover, #buy-now-detail:hover{
     background-color: #f4ebc8;
     color: #000000;
 }
@@ -694,4 +696,12 @@ input#contact-btn {
 
 select#select-collect-time ,select#select-collection-slot{
     color:#000000;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.report-product small:hover{
+    color: #b46a6a;
+    cursor: pointer;
 }
