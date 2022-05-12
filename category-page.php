@@ -269,7 +269,8 @@ include_once('function.php');
                         FROM ORDER_ITEM O
                         RIGHT JOIN PRODUCT P
                         ON P.PRODUCT_ID=O.PRODUCT_ID
-                        WHERE UPPER(DISABLED)='F'";
+                        WHERE UPPER(DISABLED)='F'
+                        AND STOCK_QUANTITY>0";
 
                         // ------filter by price-----
                         if(isset($_GET['min-input']) & !empty($_GET['min-input']) )

@@ -68,11 +68,12 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 </div>
                 <hr>
                 <?php 
-                    $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID AND USER_ID=".$_SESSION['phoenix_user'];
+                    $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID WHERE STOCK_QUANTITY>0 AND USER_ID=".$_SESSION['phoenix_user'];
                     $parsed=oci_parse($connection,$query);
                     oci_execute($parsed);
                     $subtotal=0;
                     while (($row = oci_fetch_assoc($parsed)) != false) {
+                        $out_of_stock='f';
                         $price=calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center cart-items">

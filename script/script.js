@@ -338,6 +338,9 @@ $(document).ready(function(){
     $('.collection-btn').click(function(){
         var day_selected= $('#select-collection-slot').val();
         var time_selected=$("#select-collect-time").val();
+        var buynow=$('#purchase-type').val();
+        // alert(day_selected);
+        // alert(time_selected);
         if(day_selected == null && time_selected == null )
         {
             $('.fail-container').html('<div class="alert alert-warning cart-success action-success py-4" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please Select Collection Slot before payment.</div>').delay(4000).fadeOut();
@@ -350,6 +353,7 @@ $(document).ready(function(){
                 data: {
                     day_selected:day_selected,
                     time_selected:time_selected,
+                    buynow:buynow,
                     action: 'save-detail'
                 },
                 success: function(response){

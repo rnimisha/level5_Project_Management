@@ -70,7 +70,16 @@
             $row=oci_fetch_assoc($parsed);
             $_SESSION['collection-id']=$row['SLOT_ID'];
             oci_free_statement($parsed);
-            echo json_encode(1);
+
+            if(isset($_POST['buynow']))
+            {
+            if(!empty($_POST['buynow']))
+            {
+                $_SESSION['buynow']=$_POST['buynow'];
+            }
+            }
+            echo json_encode(1);   
         }
+
     }
 ?>

@@ -138,7 +138,7 @@ $img= getProductImage($product_id,$connection);
                 <div class="pl-4 mt-4 pb-2 d-flex justify-content-left align-items-center">
                     <div class="py-2 second-wrapper d-flex justify-content-center align-items-center mr-2"
                         value="<?php echo $product_id;?>">
-                        Buy Now
+                        <a href="checkout.php?buynow=yes&pid=<?php echo $product_id;?>">Buy Now</a>
                     </div>
                     <div class="py-2 mx-1 second-wrapper d-flex justify-content-center align-items-center mr-2"
                         id="add-cart-with-quantity" value="<?php echo $product_id;?>">

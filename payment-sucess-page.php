@@ -17,7 +17,7 @@ include_once('function.php');
     {
         $collection_id= $_SESSION['collection-id'];
         //insert new order
-        $insertOrder="INSERT INTO CUST_ORDER(SLOT_ID, USER_ID) VALUES($customer_id, $collection_id)";
+        $insertOrder="INSERT INTO CUST_ORDER(SLOT_ID, USER_ID) VALUES($collection_id,$customer_id)";
         $parsedOrder=oci_parse($connection, $insertOrder);
         oci_execute($parsedOrder);
         oci_free_statement($parsedOrder);
@@ -29,25 +29,38 @@ include_once('function.php');
         $row= oci_fetch_assoc($parsed);
         $order_id=$row['ORDER_ID'];
         
-        //insert ordered products
-        $cartQuery="SELECT * FROM CART_ITEM WHERE USER_ID=$customer_id";
-        $paresedCart=oci_parse($connection, $cartQuery);
-        oci_execute($paresedCart);
-        while (($row = oci_fetch_assoc($paresedCart)) != false) {
-            $quantity=$row['QUANTITY'];
-            $product=$row['PRODUCT_ID'];
-            $insertItem="INSERT INTO ORDER_ITEM(ORDER_ID, ITEM_QUANTITY, PRODUCT_ID) VALUES($order_id, $quantity, $product)";
-            $parsedItem=oci_parse($connection, $insertItem);
-            oci_execute($parsedItem);
-            oci_free_statement($parsedItem);
+        if(strtolower($_SESSION['buynow'])=='t')
+        {
+            if(isset($_SESSION['buy-now-product']))
+            {
+                $product=$_SESSION['buy-now-product'];
+                $insertItem="INSERT INTO ORDER_ITEM(ORDER_ID, ITEM_QUANTITY, PRODUCT_ID) VALUES($order_id, 1, $product)";
+                $parsedItem=oci_parse($connection, $insertItem);
+                oci_execute($parsedItem);
+                oci_free_statement($parsedItem);
+            }
         }
-        oci_free_statement($paresedCart);
+        else{
+            //insert ordered products
+            $cartQuery="SELECT * FROM CART_ITEM WHERE USER_ID=$customer_id";
+            $paresedCart=oci_parse($connection, $cartQuery);
+            oci_execute($paresedCart);
+            while (($row = oci_fetch_assoc($paresedCart)) != false) {
+                $quantity=$row['QUANTITY'];
+                $product=$row['PRODUCT_ID'];
+                $insertItem="INSERT INTO ORDER_ITEM(ORDER_ID, ITEM_QUANTITY, PRODUCT_ID) VALUES($order_id, $quantity, $product)";
+                $parsedItem=oci_parse($connection, $insertItem);
+                oci_execute($parsedItem);
+                oci_free_statement($parsedItem);
+            }
+            oci_free_statement($paresedCart);
 
-        //clear cart for user after order
-        $clearCart="DELETE FROM CART_ITEM WHERE USER_ID=$customer_id";
-        $parsedClear=oci_parse($connection, $clearCart);
-        oci_execute($parsedClear);
-        oci_free_statement($parsedClear);
+            //clear cart for user after order
+            $clearCart="DELETE FROM CART_ITEM WHERE USER_ID=$customer_id";
+            $parsedClear=oci_parse($connection, $clearCart);
+            oci_execute($parsedClear);
+            oci_free_statement($parsedClear);
+        }
 
         //insert coupon if used
         if(isset($_SESSION['COUPON']))

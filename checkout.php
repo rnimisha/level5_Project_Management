@@ -56,11 +56,26 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 </div>
                 <hr>
                 <?php 
+                    if(isset($_GET['buynow']) && isset($_GET['pid']) && !empty($_GET['pid']))
+                    {
+                      $query="SELECT * FROM PRODUCT WHERE PRODUCT_ID=".$_GET['pid'];
+                      $quantity=1;
+                      $_SESSION['buy-now-product']=$_GET['pid'];
+                      $buynow='t';
+                    }
+                    else
+                    {
                     $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID AND USER_ID=".$_SESSION['phoenix_user'];
+                    $buy_now='f';
+                    }
                     $parsed=oci_parse($connection,$query);
                     oci_execute($parsed);
                     $subtotal=0;
                     while (($row = oci_fetch_assoc($parsed)) != false) {
+                        if($buynow == 'f')
+                        {
+                            $quantity=$row['QUANTITY'];
+                        }
                         $price=calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);
                 ?>
                 <div class="row w-100 py-2 justify-content-center align-items-center cart-items">
@@ -73,13 +88,13 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         <div><?php echo $row['PRODUCT_NAME'];?></div>
                     </div>
                     <div class="col-4 individual-price" value="<?php echo $price;?>">
-                        <span>&#163;</span><?php echo $price;?> X <?php echo $row['QUANTITY'];?></span>
+                        <span>&#163;</span><?php echo $price;?> X <?php echo $quantity;?></span>
                     </div>
                     <hr class="ml-3" style="width:100%;">
                 </div>
                 
                 <?php
-                    $subtotal=$subtotal+($price*$row['QUANTITY']);
+                    $subtotal=$subtotal+($price*$quantity);
                     $total=$subtotal;
                     }
                     oci_free_statement(($parsed));
@@ -196,6 +211,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             </div>
                         </div>
                         <hr>
+                        <input type="hidden" name="purchase-type" id="purchase-type" value="<?php echo $buynow;?>">
                         <input type="hidden" name="business" value="sb-spqm012101291@business.example.com"/>
                         <input type="hidden" name="cmd" value="_xclick" />
                         <input type="hidden" name="amount" value="<?php echo $total?> " />
