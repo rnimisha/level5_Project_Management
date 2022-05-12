@@ -380,7 +380,6 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
-
                 if(resp.valid == false) {
                     if(resp.error == 'login')
                     {
@@ -394,6 +393,39 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+    $('#review-form').submit(function(){
+        var product_id=$('#report_prod_id').val();
+        var message=$('#prod-report').val();
+        jQuery('#submit-report-btn').text('Submitting...');
+        jQuery('#submit-report-btn').attr('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: 'report-product.php',
+            data: {
+                product_id:product_id,
+                message:message,
+                action:'report-product-submit'
+            },
+            success: function(response){
+                console.log(response);
+                var resp=jQuery.parseJSON(response);
+                jQuery('#submit-report-btn').text('Submit');
+                jQuery('#submit-report-btn').attr('disabled', false);
+                if(resp.clear == true)
+                {
+                    removeStyle(resp);
+                    $('.close-report').click();
+                    $('.succ-msg').html('<div class="alert alert-success cart-success action-success py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
+                    $('.succ-msg').show();
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        return false;
     });
 });
 

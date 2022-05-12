@@ -157,6 +157,9 @@
     <div class="modal-content w-75 mx-auto">
         <div class="modal-header">
         <h5 class="modal-title text-center mx-auto" id="popConfirmTitle">Write a Report</h5>
+        <button type="button" class="close d-none close-report" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         </div>
         <div class="modal-body d-flex justify-content-center align-item-center">
         <form id="review-form" action="submit-review.php" method="POST" class="w-75 text-center mt-4">
