@@ -82,14 +82,24 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     }
                     oci_free_statement(($parsed));
 
-                    if(isset($_GET['COUPON']) & !empty($_GET['COUPON']))
+                    if(isset($_GET['cpn']) & !empty($_GET['cpn']))
                     {
-                        $coupon=$_GET['COUPON'];
+                        $coupon=$_GET['cpn'];
                     }
                 ?>
 
             </div>
+            <?php
+            date_default_timezone_set("Europe/London");
+            // $today_day=date('D');
+            // $today_day=strtoupper($today_day);
+            $current_hour=date('G');
+            $current_hour=11;
+            $today_day='TUE';
+            ?>
             <div class="col-lg-4">
+            <input type="hidden" id="today_day" value="<?php echo $today_day; ?>"/>
+            <input type="hidden" id="current_hour" value="<?php echo $current_hour; ?>"/>
                 <div class="cart-summary px-2">
                     <div class="row w-100 justify-content-center px-2 pt-3 mb-n1 ">
                         <h5>Order Information</h5>
@@ -100,9 +110,28 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             Day
                         </div>
                         <div class="col-7" value="">
-                            <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
+                            <select class="custom-select form-control" id="select-collection-slot" name="select-collection-slot">
                                 <option value="">Collection Day</option>
+                            <?php  
+                                if($today_day== 'SAT' || $today_day== 'SUN' || $today_day== 'MON' || ($today_day='TUE' && $current_hour<16))
+                                {
+                            ?>
+                                    <option value="WED"><?php echo date('dS F, D', strtotime('next wednesday'));?></option>
+                                    <option value="THU"><?php echo date('dS F, D', strtotime('next thursday'));?></option>
+                                    <option value="FRI"><?php echo date('dS F, D', strtotime('next friday'));?></option>
+                                <?php
+                                }
+                                else if($today_day='TUE')
+                                {
+                                ?>
+                                    <option value="WED"><?php echo date('dS F, D', strtotime('next wednesday'));?></option>
+                                    <option value="THU"><?php echo date('dS F, D', strtotime('next thursday'));?></option>
+                                    <option value="FRI"><?php echo date('dS F, D', strtotime('next friday'));?></option>
+                                <?php 
+                                }
+                                ?>
                             </select>
+                           
                         </div>
                     </div>
                     <div  class="row w-100 justify-content-between pt-3 pl-4">
@@ -110,8 +139,11 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             Time
                         </div>
                         <div class="col-7" value="">
-                            <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
+                            <select class="custom-select form-control" id="select-collect-time" name="sort-product-option">
                                 <option value="">Collection Time</option>
+                                <option value="10-13"> 10AM - 1PM</option>
+                                <option value="13-16"> 1PM - 4PM</option>
+                                <option value="16-19"> 4PM - 7PM</option>
                             </select>
                         </div>
                     </div>

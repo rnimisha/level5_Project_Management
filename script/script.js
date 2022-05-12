@@ -295,7 +295,25 @@ $(document).ready(function(){
             $('#dynamic-msg').click();
         }
         else{
-            window.location.href = 'collection-slot.php?coup='+code;
+            window.location.href = 'collection-slot.php?cpn='+code;
+        }
+    });
+
+    $('#select-collection-slot').change(function(){
+        $("#select-collect-time option").removeAttr('disabled');
+        var day_selected=$('#select-collection-slot').val();
+        var today_day=$('#today_day').val();
+        var today_date=$('#current_hour').val();
+        
+        if(today_day == 'TUE')
+        {
+            if(day_selected == 'WED')
+            {
+                if(today_date >= 10 && today_date < 13)
+                {
+                    $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+                }
+            }
         }
     });
 });
