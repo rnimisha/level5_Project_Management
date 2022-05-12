@@ -301,8 +301,11 @@ $(document).ready(function(){
 
     $('#select-collection-slot').change(function(){
         $("#select-collect-time option").removeAttr('disabled');
+
+        $("#select-collect-time option[value=0]").prop({selected: true});
+
         $("#select-collect-time option[value=0]").attr('disabled','disabled');
-        
+
         var day_selected=$('#select-collection-slot').val();
         var today_day=$('#today_day').val();
         var today_date=$('#current_hour').val();
@@ -311,17 +314,25 @@ $(document).ready(function(){
         {
             if(day_selected == 'WED')
             {
-                if(today_date >= 10 && today_date < 13)
-                {
-                    $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
-                }
-                else if(today_date >= 13 && today_date < 16)
-                {
-                    $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
-                    $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
-                }
+                disableOption(today_date);
             }
         }
+
+        if(today_day == 'WED')
+        {
+            if(day_selected == 'THU')
+            {
+                disableOption(today_date);
+            }
+        }
+        if(today_day == 'THU')
+        {
+            if(day_selected == 'FRI')
+            {
+                disableOption(today_date);
+            }
+        }
+        $('.collect-time-container').removeClass('d-none');
     });
 });
 
@@ -352,3 +363,15 @@ function showTopReviews()
     }
 }
 
+function disableOption(today_date)
+{
+    if(today_date >= 10 && today_date < 13)
+    {
+        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+    }
+    else if(today_date >= 13 && today_date < 16)
+    {
+        $("#select-collect-time option[value=10-13]").attr('disabled','disabled');
+        $("#select-collect-time option[value=13-16]").attr('disabled','disabled');
+    }
+}
