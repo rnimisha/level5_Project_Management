@@ -82,9 +82,20 @@ include_once('function.php');
     unset($_SESSION['collection-id']);
     unset($_SESSION['buynow']);
     }
+    $order_id=4;//for now
+
+    //get user information for invoice
+    $getUser="SELECT * FROM MART_USER WHERE USER_ID=$customer_id";
+    $parsedUser=oci_parse($connection, $getUser);
+    oci_execute($parsedUser);
+    $row= oci_fetch_assoc($parsedUser);
+    $cust_name=$row['NAME'];
+    $address=$row['ADDRESS'];
+    $email=$row['EMAIL'];
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -98,19 +109,90 @@ include_once('function.php');
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <title>Payment Success</title>
 </head>
+
 <body>
     <div class="container">
         <div class="row w-100">
             <div class="col-7 mx-auto text-center mt-5">
                 <img src="image\payment-success.gif" alt="payment success" class="no-data-found img-fluid" />
-                <div class="mt-3 my-green-font"><h3><b>Success</b></h3></div>
+                <div class="mt-3 my-green-font">
+                    <h3><b>Success</b></h3>
+                </div>
                 <div>Your order has been placed successfully</div>
-                <a href="category-page.php" class="mt-3 py-1 pt-2 px-3 btn"><h6>Continue shopping</h6></a> &nbsp;
-                <a href="" class="mt-3 py-1 pt-2 px-3 btn"><h6>View My Invoice</h6></a>
+                <a href="category-page.php" class="mt-3 py-1 pt-2 px-3 btn">
+                    <h6>Continue shopping</h6>
+                </a> &nbsp;
+                <a href="" class="mt-3 py-1 pt-2 px-3 btn">
+                    <h6>View My Invoice</h6>
+                </a>
             </div>
         </div>
-    </div>
-           
+        <div class="invoice-container my-5 border rounded p-3">
+            <div class="col-12 text-center my-green-font">
+                <h3>ORDER #<?php echo $order_id?></h3>
+            </div>
+            <div class="row">
+                <div class="col-6 text-left">
+                    <div class="mt-1">Name : <?php echo $cust_name;?></div>
+                    <div class="mt-1">Email : <?php echo $email;?></div>
+                    <div class="mt-1">Address : <?php echo $address;?></div>
+                </div>
+                <div class="col-6 text-right">
+                    <div class="mt-1">Order Date : <?php echo $cust_name;?><div>
+                            <div class="mt-1">Collection : <?php echo $email;?></div>
+                            <div class="mt-1">Status : <?php echo $address;?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 table-responsive mt-5 px-3 mx-auto">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> </th>
+                                <th>PRODUCT NAME</th>
+                                <th>QUANTITY</th>
+                                <th>PRICE PER UNIT</th>
+                                <th>DISCOUNT(%)</th>
+                                <th>SUBTOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="review-profile-container cat-product-container">
+                                        <img src="image\product\777088782.png" alt="product image"  class="cart-prod-img img-fluid"/>
+                                    </div>
+                                </td>
+                                <td>Strawberry</td>
+                                <td>2</td>
+                                <td><span>&#163;</span>11</td>
+                                <td>3</td>
+                                <td><span>&#163;</span>11</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="review-profile-container cat-product-container">
+                                        <img src="image\product\777088782.png" alt="product image"  class="cart-prod-img img-fluid"/>
+                                    </div>
+                                </td>
+                                <td>Strawberry</td>
+                                <td>2</td>
+                                <td><span>&#163;</span>11</td>
+                                <td>3</td>
+                                <td><span>&#163;</span>11</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 text-right">
+                <hr>
+                    <div class="mt-1">Subtotal : <?php echo $cust_name;?></div>
+                    <div class="mt-1">Discount : <?php echo $email;?></div>
+                    <div class="mt-1">Total : <?php echo $address;?></div>
+                </div>
+            </div>
+        </div>
+
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
@@ -126,4 +208,5 @@ include_once('function.php');
 <script src="script/function.js"></script>
 <script src="script/script.js"></script>
 <script src="script/cart-action.js"></script>
+
 </html>
