@@ -118,6 +118,7 @@ include_once('function.php');
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- customized css -->
+    <link rel="stylesheet" type="text/css" href="style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <title>Payment Success</title>
 </head>

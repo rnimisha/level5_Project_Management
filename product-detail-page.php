@@ -49,6 +49,7 @@ $img= getProductImage($product_id,$connection);
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- customized css -->
+    <link rel="stylesheet" type="text/css" href="style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <title>Product Detail</title>
 </head>

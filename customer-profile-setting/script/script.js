@@ -601,6 +601,11 @@ $(document).ready(function(){
         $(location).attr('href','../category-page.php?ftext='+text);
         return false;
     });
+
+    $('.navbar-light .navbar-nav .nav-link').click(function(){
+        $('.navbar-light .navbar-nav .nav-link').css('color', '#000000');
+        $(this).css('color', '#78967e');
+    })
 });
 
 $('body').addClass('transition-effect');

@@ -1,6 +1,6 @@
 <div class="container-fluid p-0">
         <nav class="navbar py-0 navbar-expand-lg navbar-light border-bottom">
-            <a class="navbar-brand pl-5" href="#" id="logo-header">
+            <a class="navbar-brand pl-5" href="index.php" id="logo-header">
             <img src="image\logo.png" alt="logo"/>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,17 +9,17 @@
         
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ml-5">
-                <li class="nav-item active">
-                <a class="nav-link " href="#">Home</a>
+                <li class="nav-item">
+                <a class="nav-link " href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link  ml-3" href="#">Shop</a>
+                <a class="nav-link  ml-3" href="category-page.php">Shop</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link  ml-3" href="#">About</a>
+                <a class="nav-link  ml-3" href="about-us.php">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link ml-3" href="#">Contact</a>
+                <a class="nav-link ml-3" href="contact-us-page.php">Contact</a>
                 </li>
             </ul>
             <div class="justify-content-right navbar-nav search-bar transition-effect d-none ">
@@ -30,9 +30,9 @@
             </div>
             <div class="pr-5 nav-logo text-right">
                 <span class="mr-3 search-icon transition-effect"><ion-icon name="search-outline"></ion-icon></span>
-                <span class="mr-3"><ion-icon name="person-outline"></ion-icon></span>
-                <span class="mr-3"><ion-icon name="heart-outline"></ion-icon></i></span>
-                <span class="mr-3"><ion-icon name="cart-outline"></ion-icon></span>
+                <a href="customer-profile-setting\cust-setting-index.php"><span class="mr-3"><ion-icon name="person-outline"></ion-icon></span></a>
+                <a href="wishlist-page.php"><span class="mr-3"><ion-icon name="heart-outline"></ion-icon></i></span></a>
+                <a href="cart-page.php"><span class="mr-3"><ion-icon name="cart-outline"></ion-icon></span></a>
             </div>
             </div>
         </nav>

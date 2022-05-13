@@ -31,12 +31,6 @@
     /* font-weight: 600; */
     font-size: 18px;
 }
-.second-nav {
-  /* background-color: #e5ebe1; */
-  /* background-color: #f3f2e4; */
-/* background: #e5ebe1; */
-
-}
 
 #sticky-nav {
     position: sticky;
@@ -57,4 +51,18 @@
     background-color: #d9bcb7;
     transition: background-color 0.7s linear;
     cursor: pointer;
+}
+
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover , .nav-logo span:hover{
+    color: #d9bcb7;
+    transition: background-color 0.7s linear;
+    cursor: pointer;
+}
+
+.active-main-nav{
+    color: #78967e;
+}
+a {
+    color: #000000;
 }
