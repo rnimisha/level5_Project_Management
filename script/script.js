@@ -427,8 +427,24 @@ $(document).ready(function(){
         });
         return false;
     });
-});
 
+    $(".search-icon").mouseover(function(){
+        $('.search-icon').addClass('d-none');
+        $('.search-bar').removeClass('d-none');
+    
+    });
+    
+    $(".search-bar").mouseleave(function(){
+        $('.search-icon').removeClass('d-none');
+        $('.search-bar').addClass('d-none');
+    });
+    
+    $('#text-filter').submit(function(){
+        var text=$('#ftext').val();
+        window.location.href = 'category-page.php?ftext='+text;
+        return false;
+    });
+});
 
 //effect on first img selected
 $('.mini-img-container').first().addClass('active-img');

@@ -26,6 +26,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <title>My Wishlist</title>
 </head>
 <body>
+    <?php include_once('header.php');?>
     <div class="container">
         <div class="alert alert-success cart-success action-success" role="alert">
             

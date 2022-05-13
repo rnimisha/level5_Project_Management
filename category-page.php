@@ -52,8 +52,8 @@ include_once('function.php');
             </li>
           </ul>
           <div class="justify-content-right navbar-nav search-bar transition-effect d-none ">
-            <form class="form-inline ml-auto">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline ml-auto" id="text-filter">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" id="ftext" name="ftext"  value="<?php if(isset($_GET["ftext"])){echo $_GET["ftext"];}else{if(isset($_GET["filter-text"])){echo $_GET["filter-text"];}else{echo null;}}?> ">
               <button class="btn d-none btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
@@ -97,8 +97,9 @@ include_once('function.php');
                         <!-- Filter by Category -->
                         <h5 class="py-2"><b>Category</b></h5>
                         <form id="product-filter-form" action="category-page.php" method="GET">
-                            <input type="hidden" name="min-input" id="min-input" />
-                            <input type="hidden" name="max-input" id="max-input" />
+                            <input type="hidden" name="min-input" id="min-input"/>
+                            <input type="hidden" name="max-input" id="max-input"/>
+                            <input type="hidden" name="filter-text" id="filter-text" value="<?php if(isset($_GET["ftext"])){echo $_GET["ftext"];}else{if(isset($_GET["filter-text"])){echo $_GET["filter-text"];}else{echo null;}}?> " />
                             <ul class="list-group list-group-flush">
                                 <?php
                                     $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
@@ -357,6 +358,46 @@ include_once('function.php');
 
                         }
 
+                        //filter by text
+                        if((isset($_GET['ftext']) && !empty($_GET['ftext'])) || (isset($_GET['filter-text']) && !empty($_GET['filter-text'])))
+                        {
+                            if((isset($_GET['ftext']) && !empty($_GET['ftext'])) )
+                            {
+                                $text=$_GET['ftext'];
+                            }
+                            if((isset($_GET['filter-text']) && !empty($_GET['filter-text'])) )
+                            {
+                                $text=$_GET['filter-text'];
+                            }
+                            //separate words here with delimiter as space
+                            $data_entered=explode(' ', $text);
+
+                            $data_trimmed=array();
+                            //new array without any blank value
+                            foreach($data_entered as $data)
+                            {
+                                if(!empty(trim($data)))
+                                {
+                                    $data=strtoupper(trim($data));
+                                    array_push($data_trimmed,$data);
+                                }
+                            }
+                            // print_r ($data_trimmed);
+                            
+                            if(count($data_trimmed)>0)
+                            {
+                                //for each separated word
+                                foreach($data_trimmed as $search)
+                                {
+                                    //array of conditions
+                                    $search_word[]="CONCAT(UPPER(PRODUCT_NAME), UPPER(DESCRIPTION)) LIKE '%$search%'";
+
+                                }
+                                // concat array with OP delimiter
+                                $filter_query.=" AND (".implode(' OR ', $search_word)." )";
+                            }
+                        }
+
                         $filter_query.=" GROUP BY P.PRODUCT_ID, CATEGORY_ID, STOCK_QUANTITY, SHOP_ID, PRICE, PRODUCT_NAME";
 
                         //------sort the products -----
@@ -380,8 +421,25 @@ include_once('function.php');
              
                         if(isset($_GET['clear-filter']) && ($_GET['clear-filter'])=='default')
                         {
+    
                             $filter_query="SELECT * FROM (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
-                            $_GET['category']=$_GET['shops']=$_GET['rating']=[];
+                            if(isset($_GET['category']))
+                            {
+                                $_GET['category']=[];
+                            }
+                            if(isset($_GET['shops']))
+                            {
+                                $_GET['shops']=[];
+                            }
+                            if(isset($_GET['rating']))
+                            {
+                                $_GET['rating']=[];
+                            }
+                            if(isset($_GET['ftext']))
+                            {
+                                $_GET['ftext']="";
+                            }
+                            $_GET['filter-text']="";
                         }
                         $count_query=$filter_query.")a)";
                         $filter_query.=")a WHERE ROWNUM <= $limit) WHERE rnum > $offset";
@@ -389,6 +447,7 @@ include_once('function.php');
                         $parsed=oci_parse($connection, $filter_query);
                         oci_execute($parsed);
                         $count_row=0;
+         
                         while(($row = oci_fetch_assoc($parsed)) != false) 
                         {
                             $avg_rating =getAvgRating($row['PRODUCT_ID'], $connection);
@@ -665,8 +724,6 @@ include_once('function.php');
             echo '<script> window.onload = function () {document.getElementById("item-saved-modal").click(); }; </script>';
         }
     ?>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 <!-- external script -->
@@ -678,6 +735,8 @@ include_once('function.php');
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <!-- for price range -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"

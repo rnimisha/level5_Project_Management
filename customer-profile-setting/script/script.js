@@ -584,6 +584,23 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $(".search-icon").mouseover(function(){
+        $('.search-icon').addClass('d-none');
+        $('.search-bar').removeClass('d-none');
+    
+    });
+    
+    $(".search-bar").mouseleave(function(){
+        $('.search-icon').removeClass('d-none');
+        $('.search-bar').addClass('d-none');
+    });
+    
+    $('#text-filter').submit(function(){
+        var text=$('#ftext').val();
+        $(location).attr('href','../category-page.php?ftext='+text);
+        return false;
+    });
 });
 
 $('body').addClass('transition-effect');

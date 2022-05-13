@@ -26,6 +26,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <title>Collection Slot</title>
 </head>
 <body>
+    <?php include_once('header.php');?>
     <div class="container">
         <div class="alert alert-success cart-success action-success" role="alert">
         </div>
@@ -72,7 +73,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     oci_execute($parsed);
                     $subtotal=0;
                     while (($row = oci_fetch_assoc($parsed)) != false) {
-                        if($buynow == 'f')
+                        if($buy_now == 'f')
                         {
                             $quantity=$row['QUANTITY'];
                         }

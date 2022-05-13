@@ -21,7 +21,7 @@
             
 </div>
 <div class="container-fluid p-0">
-        <div class="row p-0 m-0 w-100 mt-5 cust-profile-img-container">
+        <div class="row p-0 m-0 w-100 cust-profile-img-container">
             <div class="col-2 mx-auto text-center">
                 <img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>"  alt="profile" class="img-fluid cust-profile-img"/>
                 <div class="mb-4"><?php  echo (isset($fullnames)) ? $fullnames : null;?> </div>

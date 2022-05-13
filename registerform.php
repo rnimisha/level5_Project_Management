@@ -16,8 +16,9 @@
 </head>
 <body>
     <div class="success"></div>
-    <div class="container pt-5">
-        <div class="row w-100 mt-5 mx-auto register-us-container mb-2">
+    <?php include_once('header.php');?>
+    <div class="container pt-5 mb-5">
+        <div class="row w-100 mt-1 mx-auto register-us-container mb-2">
             <div class="col-md-5 transition-effect side-container">
                 <div class="leftpanel">
                     <div class="contain">
@@ -165,4 +166,5 @@
 <script src="script/preventRefresh.js"></script>
 <script src="script/preventRefreshTrader.js"></script>
 <script src="script/function.js"></script>
+<script src="script/script.js"></script>
 </html>

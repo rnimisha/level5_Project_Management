@@ -14,7 +14,8 @@
     <title>My Wishlist</title>
 </head>
 <body>
-    <div class="container pt-5">
+    <?php include_once('header.php');?>
+    <div class="container pt-1">
         <div class="row w-100 mt-5 mx-auto contact-us-container">
             <div class="row w-100 mt-5">
                 <div class="col-12">
@@ -87,5 +88,6 @@
 
 <!-- custom script -->
 <script src="script/contactus.js"></script>
+<script src="script/script.js"></script>
 <script src="script/function.js"></script>
 </html>

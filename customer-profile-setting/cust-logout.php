@@ -26,10 +26,12 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- customized css -->
+    <link rel="stylesheet" type="text/css" href="../style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/cust-style.css" />
     <title>Account Deactivation</title>
 </head>
 <body>
+    <?php include_once('header.php');?>
     <?php include_once('include-header.php');?>
     <div class="container setting-container mb-5">
         <div class="row w-100 mt-5">

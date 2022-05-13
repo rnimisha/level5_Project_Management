@@ -123,6 +123,7 @@ include_once('function.php');
 </head>
 
 <body>
+    <?php include_once('header.php');?>
     <div class="container">
         <div class="row w-100">
             <div class="col-7 mx-auto text-center mt-5">
@@ -227,7 +228,6 @@ include_once('function.php');
 <script src="script/function.js"></script>
 <script src="script/script.js"></script>
 <script src="script/cart-action.js"></script>
-
 </html>
 
 

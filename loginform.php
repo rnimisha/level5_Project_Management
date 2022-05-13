@@ -7,10 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrint-into">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <link rel="stylesheet" type="text/css" href="style/login-reg.css" />
-
 
 </head>
 <style type="text/css">
@@ -22,7 +21,7 @@
     }
 
     body {
-        background-image: linear-gradient(45deg, #78967e, #8ea792, #bac9bc, #c6c4c7);
+        /* background-image: linear-gradient(45deg, #78967e, #8ea792, #bac9bc, #c6c4c7); */
         animation: gradient 10s ease infinite;
         background-size: 400% 400%;
         font-family: 'Quicksand', sans-serif;
@@ -46,9 +45,9 @@
     .container {
         position: absolute;
         max-width: 1200px;
-        height: 600px;
+        height: 550px;
         margin: auto;
-        top: 50%;
+        top: 60%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -122,7 +121,8 @@
 </style>
 
 <body>
-    <div class="container">
+<?php include_once('header.php');?>
+    <div class="container pb-5">
         <div class="myRegister mx-auto">
             <div class="row">
                 <div class="col-md-6">
@@ -139,7 +139,7 @@
                             <header>Login</header>
                             <form action="validateLogin.php" method="POST"  id="login-form" class="forms">
                                 <input type="hidden" value="<?php if(isset($_GET['msg'])){echo $_GET['msg'];} else{echo "";}?>" id="login-message" name="login-message"/>
-                                <div class="form-group mt-3">
+                                <div class="form-group mt-1">
                                     <i class="fa fa-user"></i>
                                     <input type="text"  class="form-control" name="uemail" id="l_useremail" placeholder="Email"/>
                                     <div class="invalid-feedback" id="l_email_error"></div>
@@ -165,4 +165,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="script/preventRefresh.js"></script>
 <script src="script/function.js"></script>
+<script src="script/script.js"></script>
 </html>

@@ -58,6 +58,7 @@ $img= getProductImage($product_id,$connection);
         <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
     </div>
     <div class="succ-msg"></div>
+    <?php include_once('header.php');?>
     <div class="container-fluid product-detail-main-container">
         <div class="row w-100 p-5">
             <div class="col-md-5">
