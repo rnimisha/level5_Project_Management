@@ -88,7 +88,8 @@ $(document).ready(function(){
             var resp=jQuery.parseJSON(response);
             if(resp.clear == true) {
                resetForm('trader-reg-form');
-               $('#reg-trader-sucess-msg').html('Please confirm your email.');
+               $('.success').html('<div class="alert alert-success cart-success action-success py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Please check your email to activate account.</div>').delay(4000).fadeOut();
+               $('.success').show();
                inlineMsg(resp);
             }
             else{
@@ -386,4 +387,17 @@ $(document).ready(function(){
       return false;
    });
 
+   $('.trad-form').click(function(){
+      $('.trad-form').addClass('active-form');
+      $('.cust-form').removeClass('active-form');
+      $('.customer-register-container').addClass('d-none');
+      $('.trader-register-container').removeClass('d-none');
+   });
+
+   $('.cust-form').click(function(){
+      $('.cust-form').addClass('active-form');
+      $('.trad-form').removeClass('active-form');
+      $('.customer-register-container').removeClass('d-none');
+      $('.trader-register-container').addClass('d-none');
+   });
 });

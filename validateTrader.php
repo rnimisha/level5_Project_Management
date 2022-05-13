@@ -17,15 +17,18 @@
                 {
                     $trader_error['#t_name_error']="Enter a valid name";
                     $trader_error['clear']=false;
+                    $trader_error['#t_fullname']='is-invalid';
                 }
                 else{
                     $trader_error['#t_name_error']="";
                     $t_fullnames= $_POST['t_fullname'];
+                    $trader_error['#t_fullname']='valid';
                 }
             }
             else{
                 $trader_error['#t_name_error']="Name cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#t_fullname']='is-invalid';
             }
         }
 
@@ -46,23 +49,26 @@
                         $trader_error['#t_email_error']="Email already registered";
                         $trader_error['clear']=false;
                         oci_free_statement($result); 
+                        $trader_error['#t_useremail']='is-invalid';
                     }
                     else{
                         $trader_error['#t_email_error']="";
                         $email=$_POST['t_useremail'];
-                    
+                        $trader_error['#t_useremail']='valid';
                     }
                     
                 }
                 else{
                     $trader_error['#t_email_error']="Enter a valid email";
                     $trader_error['clear']=false;
+                    $trader_error['#t_useremail']='is-invalid';
                 }
 
             }
             else{
                 $trader_error['#t_email_error']="Email cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#t_useremail']='is-invalid';
             }
         }
 
@@ -76,10 +82,11 @@
                     //encrypt password before
                     $trader_error['#t_pass_error']="";
                     $password=md5($_POST['t_pword']);
-                
+                    $trader_error['#t_pword']='valid';
                 }
                 else
                 {
+                    $trader_error['#t_pword']='is-invalid';
                     $trader_error['clear']=false;
                     $trader_error['#t_pass_error']="Atleast 7 alphanumeric character <br/> atleast one upper one lower and one digit and speecial char!<br/>";
                 }
@@ -87,6 +94,7 @@
             }
             else
             {
+                $trader_error['#t_pword']='is-invalid';
                 $trader_error['#t_pass_error']="Password cannot be empty";
                 $trader_error['clear']=false;
             }
@@ -99,17 +107,21 @@
                 if($_POST['t_repass'] == $_POST['t_pword'])
                 {
                     $trader_error['#t_repass_error']="";
+                    $trader_error['#t_repass']='valid';
+
                 }
                 else
                 {
                     $trader_error['#t_repass_error']="Password does not match";
                     $trader_error['clear']=false; 
+                    $trader_error['#t_repass']='is-invalid';
                 }
             }
             else
             {
                 $trader_error['#t_repass_error']="Re-enter password";
                 $trader_error['clear']=false;
+                $trader_error['#t_repass']='is-invalid';
                 
             }
         }
@@ -134,29 +146,33 @@
                             $trader_error['#t_contact_error']="Contact already registered";
                             $trader_error['clear']=false;
                             oci_free_statement($result); 
+                            $trader_error['#t_contact']='is-invalid';
                         }
                         else{
                             $trader_error['#t_contact_error']="";
                             $t_contact=$_POST['t_contact'];
-                        
+                            $trader_error['#t_contact']='valid';
                         }
                     }
                     else
                     {
                         $trader_error['#t_contact_error']="contact can't be less than 10 digits";
                         $trader_error['clear']=false;
+                        $trader_error['#t_contact']='is-invalid';
                     }
                 }
                 else
                 {
                         $trader_error['#t_contact_error']="Enter valid digits";
                         $trader_error['clear']=false;
+                        $trader_error['#t_contact']='is-invalid';
                 }
 
             }
             else{
                 $trader_error['#t_contact_error']="contact cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#t_contact']='is-invalid';
             }
         }
 
@@ -166,11 +182,13 @@
             {
                 $trader_error['#t_dob_error']="";
                 $t_dob=date("d-m-Y", strtotime($_POST['t_dob']));
+                $trader_error['#t_dob']='valid';
                 
             }
             else{
                 $trader_error['#t_dob_error']="dob cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#t_dob']='is-invalid';
             }
         }
 
@@ -182,16 +200,19 @@
                 {
                     $trader_error['#t_address_error']="Enter a valid address";
                     $trader_error['clear']=false;
+                    $trader_error['#t_address']='is-invalid';
                 }
                 else{
                     $trader_error['#t_address_error']="";
                     $t_address=$_POST['t_address'];
+                    $trader_error['#t_address']='valid';
                 }
 
             }
             else{
                 $trader_error['#t_address_error']="address cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#t_address']='is-invalid';
             }
         }
 
@@ -204,15 +225,18 @@
                 {
                     $trader_error['#reason_error']="Enter a valid justification";
                     $trader_error['clear']=false;
+                    $trader_error['#reason']='is-invalid';
                 }
                 else{
                     $trader_error['#reason_error']="";
                     $reason= $_POST['reason'];
+                    $trader_error['#reason']='valid';
                 }
             }
             else{
                 $trader_error['#reason_error']="Enter your reason";
                 $trader_error['clear']=false;
+                $trader_error['#reason']='is-invalid';
             }
         }
     }
@@ -228,6 +252,7 @@
                 {
                     $trader_error['#shopname_error']="Enter a valid shop name";
                     $trader_error['clear']=false;
+                    $trader_error['#shopname']='is-invalid';
                 }
                 else{
                         $t_shop=$_POST['shopname'];
@@ -235,10 +260,12 @@
                         {
                             $trader_error['#shopname_error']="Name already registered";
                             $trader_error['clear']=false;
+                            $trader_error['#shopname']='is-invalid';
                         }
                         else{
                             $trader_error['#shopname_error']="";
                             $shopname= $_POST['shopname'];
+                            $trader_error['#shopname']='valid';
                         }
 
                         // $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(shop_name)=upper(:shopname)";
@@ -262,6 +289,7 @@
             else{
                 $trader_error['#shopname_error']="Shop name cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#shopname']='is-invalid';
             }
         }
 
@@ -269,7 +297,7 @@
         if(isset($_POST['register_date'])){
             if(!empty($_POST['register_date']))
             {
-            
+                $trader_error['#register_date']='valid';
                 $register_date=date("d-m-Y", strtotime($_POST['register_date']));
                 $trader_error['#register_date_error']="";
             
@@ -277,6 +305,7 @@
             else{
                 $trader_error['#register_date_error']="Registration date cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#register_date']='is_invalid';
             }
         }
 
@@ -292,10 +321,12 @@
                     {
                         $trader_error['#register_no_error']="";
                         $register_no=$_POST['register_no'];
+                        $trader_error['#register_no']='valid';
                     }
                     else{
                         $trader_error['#register_no_error']="PAN already registered";
                         $trader_error['clear']=false;
+                        $trader_error['#register_no']='is_invalid';
                     }
 
                     // $checkQuery="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE upper(REGISTATION_ID)=upper(:t_pan)";
@@ -320,11 +351,13 @@
                 {
                     $trader_error['#register_no_error']="Registration number needs to be 8 characters";
                     $trader_error['clear']=false;
+                    $trader_error['#register_no']='is_invalid';
                 }
             }
             else{
                 $trader_error['#register_no_error']="PAN cannot be empty";
                 $trader_error['clear']=false;
+                $trader_error['#register_no']='is_invalid';
             }
         }
 
