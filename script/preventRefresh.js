@@ -307,6 +307,34 @@ $(document).ready(function(){
         //prevent page reload
         return false;
     });
+
+    $('#forgot-pass-form').submit(function(){ 
+        jQuery('#forgot-pass-btn').val('Submitting...');
+        jQuery('#forgot-pass-btn').attr('disabled', true);
+        var email=$('#forgot-email').val();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                email:email,
+                form_name:'forgot-pass'
+            },
+            success: function(response){
+                console.log(response);
+                jQuery('#forgot-pass-btn').val('Submit');
+                jQuery('#forgot-pass-btn').attr('disabled', false);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true) {
+                    inlineMsg(resp);
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
 });
 
 

@@ -639,7 +639,7 @@ img.wishlist-prod-img.img-fluid{
     margin-left: 0;
 }
 
-#contact-us-form .form-control {
+#contact-us-form .form-control , #forgot-pass-form .form-control{
     color: #495057;
     background-color: #fff;
     border: 0px solid #ced4da;
@@ -648,12 +648,12 @@ img.wishlist-prod-img.img-fluid{
     background-color: transparent;
 }
 
-#contact-us-form .form-control:focus {
+#contact-us-form .form-control:focus #forgot-pass-form .form-control{
     border-color: #78967e;
     box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }
 
-.contact-us-container, .register-us-container{
+.contact-us-container, .register-us-container, .forgot-pass-container{
     border-radius: 15px;
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
     background: rgba(198, 202, 200, 0.1);
