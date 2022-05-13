@@ -60,7 +60,7 @@ $img= getProductImage($product_id,$connection);
     </div>
     <div class="succ-msg"></div>
     <?php include_once('header.php');?>
-    <div class="container-fluid product-detail-main-container">
+    <div class="container-fluid product-detail-main-container mt-4">
         <div class="row w-100 p-5">
             <div class="col-md-5">
                 <div class="row prod-image-div">

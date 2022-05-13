@@ -21,52 +21,62 @@ include_once('function.php');
 </head>
 
 <body>
+    <div class="container-fluid p-0 header-main" id="sticky-nav">
+        <nav class="navbar py-0 navbar-expand-lg navbar-light border-bottom">
+            <a class="navbar-brand pl-5" href="index.php" id="logo-header">
+                <img src="image\logo.png" alt="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto ml-5">
+                    <li class="nav-item">
+                        <a class="nav-link " href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  ml-3" href="category-page.php">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  ml-3" href="about-us.php">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-3" href="contact-us-page.php">Contact</a>
+                    </li>
+                </ul>
+                <div class="justify-content-right navbar-nav search-bar transition-effect d-none ">
+                    <form class="form-inline ml-auto" id="text-filter">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" id="ftext" name="ftext"
+                            value="<?php if(isset($_GET["ftext"])){echo $_GET["ftext"];}else{if(isset($_GET["filter-text"])){echo $_GET["filter-text"];}else{echo null;}}?> ">
+                        <button class="btn d-none btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="pr-5 nav-logo text-right">
+                    <span class="mr-3 search-icon transition-effect">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </span>
+                    <a href="customer-profile-setting\cust-setting-index.php"><span class="mr-3">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span></a>
+                    <a href="wishlist-page.php"><span class="mr-3">
+                            <ion-icon name="heart-outline"></ion-icon></i>
+                        </span></a>
+                    <a href="cart-page.php"><span class="mr-3">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </span></a>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="loader">
         <img src="image/loader.gif" />
     </div>
     <div class="alert alert-danger action-success" role="alert">
         <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
     </div>
-    <div class="container-fluid p-0">
-    <nav class="navbar py-0 navbar-expand-lg navbar-light border-bottom">
-        <a class="navbar-brand pl-5" href="index.php" id="logo-header">
-          <img src="image\logo.png" alt="logo"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto ml-5">
-            <li class="nav-item">
-              <a class="nav-link " href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link  ml-3" href="category-page.php">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link  ml-3" href="about-us.php">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link ml-3" href="contact-us-page.php">Contact</a>
-            </li>
-          </ul>
-          <div class="justify-content-right navbar-nav search-bar transition-effect d-none ">
-            <form class="form-inline ml-auto" id="text-filter">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" id="ftext" name="ftext"  value="<?php if(isset($_GET["ftext"])){echo $_GET["ftext"];}else{if(isset($_GET["filter-text"])){echo $_GET["filter-text"];}else{echo null;}}?> ">
-              <button class="btn d-none btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
-          <div class="pr-5 nav-logo text-right">
-           <span class="mr-3 search-icon transition-effect"><ion-icon name="search-outline"></ion-icon></span>
-           <a href="customer-profile-setting\cust-setting-index.php"><span class="mr-3"><ion-icon name="person-outline"></ion-icon></span></a>
-           <a href="wishlist-page.php"><span class="mr-3"><ion-icon name="heart-outline"></ion-icon></i></span></a>
-           <a href="cart-page.php"><span class="mr-3"><ion-icon name="cart-outline"></ion-icon></span></a>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div class="container-fluid cat-page">
+    <div class="container-fluid cat-page mt-5 pt-4">
         <div class="row w-100 p-5">
             <div class="col-md-3">
                 <!-- category option list -->
@@ -97,9 +107,10 @@ include_once('function.php');
                         <!-- Filter by Category -->
                         <h5 class="py-2"><b>Category</b></h5>
                         <form id="product-filter-form" action="category-page.php" method="GET">
-                            <input type="hidden" name="min-input" id="min-input"/>
-                            <input type="hidden" name="max-input" id="max-input"/>
-                            <input type="hidden" name="filter-text" id="filter-text" value="<?php if(isset($_GET["ftext"])){echo $_GET["ftext"];}else{if(isset($_GET["filter-text"])){echo $_GET["filter-text"];}else{echo null;}}?> " />
+                            <input type="hidden" name="min-input" id="min-input" />
+                            <input type="hidden" name="max-input" id="max-input" />
+                            <input type="hidden" name="filter-text" id="filter-text"
+                                value="<?php if(isset($_GET["ftext"])){echo $_GET["ftext"];}else{if(isset($_GET["filter-text"])){echo $_GET["filter-text"];}else{echo null;}}?> " />
                             <ul class="list-group list-group-flush">
                                 <?php
                                     $query="SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORY_NAME";
@@ -467,7 +478,8 @@ include_once('function.php');
                     {
 
                     ?>
-                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container" value="<?php echo $row['PRODUCT_ID'];?>">
+                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container"
+                        value="<?php echo $row['PRODUCT_ID'];?>">
                         <div class="cat-product col-12 text-center">
                             <div class="inner-img-container">
                                 <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
@@ -491,19 +503,22 @@ include_once('function.php');
                                         if($wishlist_status)
                                         {
                                         ?>
-                                            <i class='bx bxs-heart remove-from-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                                        <?php
+                                    <i class='bx bxs-heart remove-from-wishlist'
+                                        value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                                    <?php
                                         }
                                         else
                                         {
                                         ?>
-                                            <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                                        <?php
+                                    <i class='bx bx-heart save-to-wishlist'
+                                        value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                                    <?php
                                         }
                                     }
                                     else{
                                         ?>
-                                            <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                                    <i class='bx bx-heart save-to-wishlist'
+                                        value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                     <?php
                                     }
                                     ?>
@@ -535,14 +550,15 @@ include_once('function.php');
                                     $dis_rate=checkProductDiscountRate($row['PRODUCT_ID'], $connection);
                                     if($dis_rate>0){
                                         ?>
-                                        <span class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp; 
-                                        <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
-                                        <?php
+                                <span
+                                    class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp;
+                                <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
+                                <?php
                                     }
                                     else{
                                         ?>
-                                        <span class="prod-price"><?php echo $row['PRICE']; ?></span>
-                                        <?php
+                                <span class="prod-price"><?php echo $row['PRICE']; ?></span>
+                                <?php
                                     }
                                 ?>
                             </div>
@@ -586,18 +602,19 @@ include_once('function.php');
                                     ?>
                                 </div>
                                 <div>
-                                <?php 
+                                    <?php 
                                     $dis_rate=checkProductDiscountRate($row['PRODUCT_ID'], $connection);
                                     if($dis_rate>0){
                                         ?>
-                                        <span class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp; 
-                                        <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
-                                        <?php
+                                    <span
+                                        class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp;
+                                    <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
+                                    <?php
                                     }
                                     else{
                                         ?>
-                                        <span class="prod-price"><?php echo $row['PRICE']; ?></span>
-                                        <?php
+                                    <span class="prod-price"><?php echo $row['PRICE']; ?></span>
+                                    <?php
                                     }
                                 ?>
                                 </div>
@@ -617,7 +634,7 @@ include_once('function.php');
                                             value="<?php echo $row['PRODUCT_ID'];?>"></i>
                                     </div>
                                     <div class="list-options">
-                                    <?php
+                                        <?php
                                         if(isset($_SESSION['phoenix_user']) && strtoupper($_SESSION['user_role'])=='C')
                                         {
                                             $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
@@ -625,19 +642,22 @@ include_once('function.php');
                                             if($wishlist_status)
                                             {
                                             ?>
-                                                <i class='bx bxs-heart remove-from-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                                            <?php
+                                        <i class='bx bxs-heart remove-from-wishlist'
+                                            value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                                        <?php
                                             }
                                             else
                                             {
                                             ?>
-                                                <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                                            <?php
+                                        <i class='bx bx-heart save-to-wishlist'
+                                            value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                                        <?php
                                             }
                                         }
                                         else{
                                             ?>
-                                            <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                                        <i class='bx bx-heart save-to-wishlist'
+                                            value="<?php echo $row['PRODUCT_ID'] ?>"></i>
                                         <?php
                                         }
                                     ?>
@@ -658,13 +678,13 @@ include_once('function.php');
                     <div class="row w-100">
                         <div class="col-5 mx-auto">
                             <img src="image/noresultfound.png" class="no-data-found img-fluid" />
+                        </div>
                     </div>
-                </div>
-                <?php
+                    <?php
                     }
                     ?>
-            </div>
-            <?php
+                </div>
+                <?php
                 $parse_count=oci_parse($connection, $count_query);
                 // echo $count_query;
                 oci_execute($parse_count);
@@ -676,26 +696,26 @@ include_once('function.php');
                 $limit_per_page=9;
                 $page_count=ceil($total_row/$limit_per_page);
             ?>
-            <div>
-                <ul class="pagination justify-content-end mt-2">
-                    <?php 
+                <div>
+                    <ul class="pagination justify-content-end mt-2">
+                        <?php 
                     for ($i=1; $i<=$page_count; $i++)
                     {
                         ?>
-                    <li class="page-item"><span
-                            class="page-link <?php if($page==$i){echo "active-page";} else{echo "";}?>"
-                            value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
-                    <?php
+                        <li class="page-item"><span
+                                class="page-link <?php if($page==$i){echo "active-page";} else{echo "";}?>"
+                                value="<?php echo $i; ?>"><?php echo $i; ?></span></li>
+                        <?php
                     }
                     ?>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    </div>
     <?php
         include_once('popup-modal.php');
-    ?>   
+    ?>
     <?php
         if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']) && isset($_SESSION['quantity']))
         {
@@ -745,10 +765,11 @@ include_once('function.php');
 
 <!-- custom script -->
 <script>
-    var click_count=0;
+    var click_count = 0;
 </script>
 <script src="script/script.js"></script>
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>
+
 </html>

@@ -16,7 +16,7 @@
 </head>
 <body>
 <?php include_once('header.php');?>
-    <div class="container pt-1">
+    <div class="container pt-5 mt-5">
         <div class="row w-100 mt-5 mx-auto reset-pass-container mb-5">
             <div class="col-md-6 mx-auto text-center mt-5">
                 <img src="image\resetpass.png" alt="payment success" class="no-data-found img-fluid" />

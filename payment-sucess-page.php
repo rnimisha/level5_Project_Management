@@ -76,7 +76,82 @@ include_once('function.php');
         //insert payment details
         $paymentInsert="INSERT INTO PAYMENT(PAYMENT_METHOD, ACCOUNT_ID, ORDER_ID) VALUES('PAYPAL', '$payment_id', $order_id)";
         $parsedPayment=oci_parse($connection, $paymentInsert);
-        oci_execute($parsedPayment);
+        if(oci_execute($parsedPayment))
+        {
+            $to=$email;
+            $subject="Order placed successfully";
+            $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
+
+        
+            $body="
+            <html>
+            <head>
+                <title>Order Success</title>
+                <style>
+                    th, td {
+                    padding: 10px;
+                    border-color: grey;
+                    }
+                </style>
+            </head>
+            <body>
+                <div style='background-color: #fcf7f9; width:80%; margin:10%; padding: 20px;'>
+                    <center>
+                        $image <br/>
+                        Your order has been placed successfully!
+                        Order details are provided below <br> 
+                        <br> 
+
+                        <table style='width:80%;  border-collapse: collapse;'>
+                        <tr style='border: 1px solid; background-color: #d7dfd2; '>
+                            <th style='border: 1px solid;'> Product</th>
+                            <th style='border: 1px solid;'> Price</th>
+                            <th style='border: 1px solid;'> Quantity</th>
+                            <th style='border: 1px solid;'> Discount(%)</th>
+                            <th style='border: 1px solid;'> Subtotal</th>
+                        </tr>";
+                    
+                        $subtotal=0;
+                        $product_query="SELECT  P.PRODUCT_ID AS PRODUCT_ID, PRODUCT_NAME, PRICE, ITEM_QUANTITY FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE ORDER_ID=$order_id";
+                        $parse_product=oci_parse($connection, $product_query);
+                        oci_execute($parse_product);
+                        while (($row = oci_fetch_assoc($parse_product)) != false) {
+                        $discount=0;
+                        $discount=floatval(getProductDiscount($row['PRODUCT_ID'], $order_id, $connection));
+                        $total_individual=$row['PRICE']-(($discount/100)*$row['PRICE']);
+                        $subtotal=$subtotal+$total_individual;
+                        $body.="<tr style='border: 1px solid; text-align: center;'>
+                                <td style='border: 1px solid;'>".$row['PRODUCT_NAME']."</td>
+                                <td style='border: 1px solid;'>  <span>&#163;</span>".$row['PRICE']."</td>
+                                <td style='border: 1px solid;'>".$row['ITEM_QUANTITY']." </td>
+                                <td style='border: 1px solid;'>".$discount."</td>
+                                <td style='border: 1px solid;'>  <span>&#163;</span>".$total_individual."</td>
+                        </tr>";
+                        }
+                        $body.="</table>
+                        <br>
+                        <div style='text-align:right; padding-right: 10px;width:80%'>
+                        <div>Subtotal : <span>&#163;</span>".$subtotal."</div>";
+                        $final_total=$subtotal;
+                        if(isset($coupon_id))
+                        {
+                            $final_total=calculateSubtotalAfterCoupon($coupon_id, $subtotal, $connection);
+                            $discount=$subtotal-$final_total;
+                        } 
+                        $body.="<div>Discount : <span>&#163;</span>".$discount."</div> 
+                        <div> Total : <span>&#163;</span>".$final_total."</div>  
+                        </div>
+                        <br><br><br>  
+                        <hr style='border: 0.7px solid grey; width:80%;'>
+                        <span style='color:grey';>Thank You For Supporting Us</span>
+                    </center>
+                </div>
+            </body>
+            </html>";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                mail($to, $subject, $body, $headers);
+                }
         // echo $paymentInsert;
         oci_free_statement($parsedPayment);
     unset($_SESSION['collection-id']);
@@ -125,7 +200,7 @@ include_once('function.php');
 
 <body>
     <?php include_once('header.php');?>
-    <div class="container">
+    <div class="container mt-5 pt-5">
         <div class="row w-100">
             <div class="col-7 mx-auto text-center mt-5">
                 <img src="image\payment-success.gif" alt="payment success" class="no-data-found img-fluid" />
@@ -230,82 +305,3 @@ include_once('function.php');
 <script src="script/script.js"></script>
 <script src="script/cart-action.js"></script>
 </html>
-
-
-<?php
-// email invoice
-    $to=$email;
-    $subject="Order placed successfully";
-    $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
-
-  
-    $body="
-    <html>
-    <head>
-        <title>Order Success</title>
-        <style>
-            th, td {
-            padding: 10px;
-            border-color: grey;
-            }
-        </style>
-    </head>
-    <body>
-        <div style='background-color: #fcf7f9; width:80%; margin:10%; padding: 20px;'>
-            <center>
-                $image <br/>
-                Your order has been placed successfully!
-                Order details are provided below <br> 
-                <br> 
-
-                <table style='width:80%;  border-collapse: collapse;'>
-                <tr style='border: 1px solid; background-color: #d7dfd2; '>
-                    <th style='border: 1px solid;'> Product</th>
-                    <th style='border: 1px solid;'> Price</th>
-                    <th style='border: 1px solid;'> Quantity</th>
-                    <th style='border: 1px solid;'> Discount(%)</th>
-                    <th style='border: 1px solid;'> Subtotal</th>
-                </tr>";
-            
-                $subtotal=0;
-                $product_query="SELECT  P.PRODUCT_ID AS PRODUCT_ID, PRODUCT_NAME, PRICE, ITEM_QUANTITY FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE ORDER_ID=$order_id";
-                $parse_product=oci_parse($connection, $product_query);
-                oci_execute($parse_product);
-                while (($row = oci_fetch_assoc($parse_product)) != false) {
-                $discount=0;
-                $discount=floatval(getProductDiscount($row['PRODUCT_ID'], $order_id, $connection));
-                $total_individual=$row['PRICE']-(($discount/100)*$row['PRICE']);
-                $subtotal=$subtotal+$total_individual;
-                $body.="<tr style='border: 1px solid; text-align: center;'>
-                        <td style='border: 1px solid;'>".$row['PRODUCT_NAME']."</td>
-                        <td style='border: 1px solid;'>  <span>&#163;</span>".$row['PRICE']."</td>
-                        <td style='border: 1px solid;'>".$row['ITEM_QUANTITY']." </td>
-                        <td style='border: 1px solid;'>".$discount."</td>
-                        <td style='border: 1px solid;'>  <span>&#163;</span>".$total_individual."</td>
-                </tr>";
-                }
-                $body.="</table>
-                <br>
-                <div style='text-align:right; padding-right: 10px;width:80%'>
-                   <div>Subtotal : <span>&#163;</span>".$subtotal."</div>";
-                   $final_total=$subtotal;
-                   if(isset($coupon_id))
-                   {
-                       $final_total=calculateSubtotalAfterCoupon($coupon_id, $subtotal, $connection);
-                       $discount=$subtotal-$final_total;
-                   } 
-                  $body.="<div>Discount : <span>&#163;</span>".$discount."</div> 
-                   <div> Total : <span>&#163;</span>".$final_total."</div>  
-                </div>
-                <br><br><br>  
-                <hr style='border: 0.7px solid grey; width:80%;'>
-                <span style='color:grey';>Thank You For Supporting Us</span>
-            </center>
-        </div>
-    </body>
-    </html>";
-    $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           mail($to, $subject, $body, $headers);
-            
-?>

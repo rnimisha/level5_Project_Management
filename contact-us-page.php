@@ -16,7 +16,7 @@
 </head>
 <body>
     <?php include_once('header.php');?>
-    <div class="container pt-1">
+    <div class="container mt-5 pt-5">
         <div class="row w-100 mt-5 mx-auto contact-us-container">
             <div class="row w-100 mt-5">
                 <div class="col-12">
