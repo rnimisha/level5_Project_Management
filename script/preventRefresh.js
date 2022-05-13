@@ -320,7 +320,6 @@ $(document).ready(function(){
                 form_name:'forgot-pass'
             },
             success: function(response){
-                console.log(response);
                 jQuery('#forgot-pass-btn').val('Submit');
                 jQuery('#forgot-pass-btn').attr('disabled', false);
                 var resp=jQuery.parseJSON(response);
