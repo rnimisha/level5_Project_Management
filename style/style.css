@@ -639,7 +639,7 @@ img.wishlist-prod-img.img-fluid{
     margin-left: 0;
 }
 
-#contact-us-form .form-control , #forgot-pass-form .form-control{
+#contact-us-form .form-control , #forgot-pass-form .form-control, #reset-pass-forms .form-control{
     color: #495057;
     background-color: #fff;
     border: 0px solid #ced4da;
@@ -648,11 +648,13 @@ img.wishlist-prod-img.img-fluid{
     background-color: transparent;
 }
 
-#contact-us-form .form-control:focus #forgot-pass-form .form-control{
+#contact-us-form .form-control:focus #forgot-pass-form .form-control, #reset-pass-forms .form-control{
     border-color: #78967e;
     box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }
-
+.form-control:focus {
+    outline: none;
+}
 .contact-us-container, .register-us-container, .forgot-pass-container{
     border-radius: 15px;
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
@@ -664,7 +666,7 @@ img.wishlist-prod-img.img-fluid{
     min-height: 500px;
 }
 
-.col-12.transition-effect.justify-content-center.align-items-center.contact-us-sent{
+.col-12.transition-effect.justify-content-center.align-items-center.contact-us-sent, .pass-email-sent, .reset-pass-container{
     border-radius: 15px;
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
     background: rgba(255, 255, 255, 0.1);

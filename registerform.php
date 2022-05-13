@@ -17,7 +17,7 @@
 <body>
     <div class="success"></div>
     <div class="container pt-5">
-        <div class="row w-100 mt-5 mx-auto register-us-container mb-5">
+        <div class="row w-100 mt-5 mx-auto register-us-container mb-2">
             <div class="col-md-5 transition-effect side-container">
                 <div class="leftpanel">
                     <div class="contain">
@@ -27,9 +27,9 @@
                     </div>
             </div>
             </div>
-            <div class="col-md-7 transition-effect mb-5 pr-0">
+            <div class="col-md-7 transition-effect mb-3 pr-0">
                 <div class="row w-100 d-block justify-content-center align-items-center">
-                    <h3 class="my-green-font text-center mt-5">CREATE AN ACCOUNT</h3>
+                    <h3 class="my-green-font text-center mt-5"><b>CREATE AN ACCOUNT</b></h3>
                     <div class="row w-100 my-3">
                         <div class="col-6 text-right">
                             <span class="cust-form active-form">Customer</span>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="row w-100 justify-content-center align-items-center">
                     <form action="validateCustomer.php" method="POST"  id="cust-reg-form" class="customer-register-container">
-                        <div class="form-group mt-2">
+                        <div class="form-group">
                             <i class="fa fa-user"></i>
                             <input type="text" name="fullname" class="form-control" placeholder="Full Name" id="fullname" />
                             <div id="name_error" class="invalid-feedback ml-4"></div>
@@ -59,12 +59,12 @@
 
                         <div class="form-group">
                             <i class="fa fa-calendar"></i>
-                            <input type="date" name="udob" id="dob" class="form-control" placeholder="Date of Birth"/><br/>
+                            <input type="date" name="udob" id="dob" class="form-control" placeholder="Date of Birth"/>
                             <div id="dob_error" class="invalid-feedback ml-4"></div>
                         </div>
                         <div class="form-group">
                             <i class="fa fa-map-marker"></i>
-                            <input type="text" name="uaddress" id="address" class="form-control" placeholder="Address"/><br/>
+                            <input type="text" name="uaddress" id="address" class="form-control" placeholder="Address"/>
                         <div id="address_error" class="invalid-feedback ml-4"></div>
                         </div>
                         <div class="form-group">
@@ -74,9 +74,10 @@
                         </div>
                         <div class="form-group">
                             <i class="fa fa-lock"></i>
-                            <input type="password" name="urep-pass" id="repass" class="form-control" placeholder="Confirm Password" /><br/>
+                            <input type="password" name="urep-pass" id="repass" class="form-control" placeholder="Confirm Password" />
                             <div id="repass_error" class="invalid-feedback ml-4"></div>
                         </div>
+                        <br>
                         <input type="submit" class="bttn text-center" id="reg-btn" name="registerCustomer" value="Register"/>
                         </form>
 
@@ -89,7 +90,7 @@
                                     <input type="text" name="t_fullname" class="form-control" placeholder="Full Name" id="t_fullname"  />
                                     <div class="invalid-feedback ml-4" id="t_name_error"></div>
                                 </div>
-                                <div class="form-group mt-2">
+                                <div class="form-group">
                                     <i class="fa fa-envelope"></i>
                                     <input type="text" name="uemail"class="form-control" placeholder="Email"  id="t_useremail" />
                                     <div id="t_email_error" class="invalid-feedback ml-4"></div>

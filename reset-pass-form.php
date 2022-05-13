@@ -11,34 +11,43 @@
 
     <!-- customized css -->
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <title>Forgot Password</title>
+    <title>Reset Password</title>
 </head>
 <body>
     <div class="container pt-5">
-        <div class="row w-100 mt-5 mx-auto forgot-pass-container mb-5">
+        <div class="row w-100 mt-5 mx-auto reset-pass-container mb-5">
             <div class="col-md-6 mx-auto text-center mt-5">
-                <img src="image\forgot.png" alt="payment success" class="no-data-found img-fluid" />
+                <img src="image\resetpass.png" alt="payment success" class="no-data-found img-fluid" />
             </div>
             <div class="col-md-6 transition-effect mt-5">
-                <h3 class="all-heading text-center mt-5">Forgot Password?</h3>
-                <p class="text-center text-muted">We will send a reset link to your email</p>
-                <form class="w-75 mx-auto py-4 mt-5" action="vaildate-reset-pass.php" method="POST"  id="forgot-pass-form">
+                <h3 class="all-heading text-center mt-5">Reset Password</h3>
+                <form class="w-75 mx-auto py-4 mt-5" action="vaildate-reset-pass.php" method="POST"  id="reset-pass-forms">
                     <div class="form-group mt-2">
-                            <input type="text" name="forgot-email"  class="form-control" id="forgot-email" placeholder="Enter your email"/>
-                            <span id="forgot-pass-error" class="invalid-feedback" ></span>
+                            <input type="password" name="new-pass"  class="form-control" id="new-pass" placeholder="Enter new password"/>
+                            <span id="new-pass-error" class="invalid-feedback" ></span>
                     </div>
+                    <div class="form-group">
+                            <input type="password" name="confirm-pass"  class="form-control" id="confirm-pass" placeholder="Re-enter password"/>
+                            <span id="confirm-pass-error" class="invalid-feedback" ></span>
+                    </div>
+                    <input type="hidden" value="<?php echo $_GET['token']?>" id="token"/>
+                    <input type="hidden" value="<?php echo $_GET['email']?>" id="email"/>
                     <div class="row w-100 justify-content-end">
-                        <input type="submit" class="btn py-2 px-4" id="forgot-pass-btn" name="forgotpass" value="Submit"/>
+                        <input type="submit" class="btn py-2 px-4" id="reset-pass-btn" name="forgotpass" value="Submit"/>
                     </div>
                 </form>
             </div>
         </div>
         <div class="col-12 transition-effect justify-content-center d-none align-items-center pass-email-sent">
             <div class="row w-100 mx-auto justify-content-center">
-                <img src="image\pass-mail.gif" class="contact-us-img img-fluid" />
+                <img src="image\successpic.gif" class="contact-us-img img-fluid" />
             </div>
             <div  class="row w-100 mx-auto d-block justify-content-center text-center my-3">
-                <h4>Request accepted</h4> <br>Check your email to reset password.
+                <div><h4>Success</h4> </div>
+                <div>Your Password has been updated. Login to continue.</div>
+                <a href="loginform.php" class="mt-3 py-1 pt-2 px-3 btn">
+                    <h6>Login</h6>
+                </a> &nbsp;
             </div>
         </div>
 </body>

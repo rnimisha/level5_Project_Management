@@ -325,6 +325,44 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true) {
                     inlineMsg(resp);
+                    $('.pass-email-sent').removeClass('d-none');
+                    $('.forgot-pass-container').addClass('d-none');
+                }
+                else{
+                    inlineMsg(resp);
+                }
+            }
+        });
+        //prevent page reload
+        return false;
+    });
+
+
+    $('#reset-pass-forms').submit(function(){ 
+        jQuery('#reset-pass-btn').val('Resetting...');
+        jQuery('#reset-pass-btn').attr('disabled', true);
+        var email=$('#email').val();
+        var token=$('#token').val();
+        var new_pass=$('#new-pass').val();
+        var confirm_pass=$('#confirm-pass').val();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: {
+                email:email,
+                token:token,
+                new_pass:new_pass,
+                confirm_pass:confirm_pass,
+                form_name:'reset-pass'
+            },
+            success: function(response){
+                jQuery('#reset-pass-btn').val('Reset');
+                jQuery('#reset-pass-btn').attr('disabled', false);
+                var resp=jQuery.parseJSON(response);
+                if(resp.clear == true) {
+                    inlineMsg(resp);
+                    $('.pass-email-sent').removeClass('d-none');
+                    $('.reset-pass-container').addClass('d-none');
                 }
                 else{
                     inlineMsg(resp);

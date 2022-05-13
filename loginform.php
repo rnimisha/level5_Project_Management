@@ -92,7 +92,7 @@
         background: #fff;
         height: 100%;
         border-radius: 25px;
-        box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     }
 
     .left header {
@@ -154,7 +154,7 @@
                             <br>
                             <input type="submit" style="margin-left : 10px;" id="login-btn" class="bttn"  name="loginUser" value="Login"/>
                             <br><br>
-                            <span class="forget"><a href="#">Forget Password?</a></span>
+                            <span class="forget"><a href="forgot_password.php">Forget Password?</a></span>
                         </form>
                     </div>
                 </div>
