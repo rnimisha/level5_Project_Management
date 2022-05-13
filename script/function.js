@@ -126,3 +126,17 @@ function disableOption(today_date)
 
 
 $('div').addClass('transition-effect');
+
+
+
+
+$(".search-icon").mouseover(function(){
+    $('.search-icon').addClass('d-none');
+    $('.search-bar').removeClass('d-none');
+
+});
+
+$(".search-bar").mouseleave(function(){
+    $('.search-icon').removeClass('d-none');
+    $('.search-bar').addClass('d-none');
+});

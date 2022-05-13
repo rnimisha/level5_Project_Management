@@ -1,0 +1,58 @@
+#logo-header img{
+    width: 170px;
+    height:80px;
+    padding-bottom: 5px;
+} 
+
+.nav-logo{
+    font-size: 25px;
+}
+
+.navbar-nav .form-control{
+    width: 180px;
+    border: 1px solid #78967e;
+    border-radius:8px;
+}
+    
+@media (min-width: 576px)
+{
+.navbar-nav .form-inline .form-control 
+{
+    display: inline-block;
+    width: 180px;
+    vertical-align: middle;
+}
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+    /* font-weight: 600; */
+    font-size: 18px;
+}
+.second-nav {
+  /* background-color: #e5ebe1; */
+  /* background-color: #f3f2e4; */
+/* background: #e5ebe1; */
+
+}
+
+#sticky-nav {
+    position: sticky;
+    top: 0;
+}
+
+.navbar-nav .btn {
+    background-color: #c7d5ba;
+    padding: 6px 13px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.navbar-nav .btn-outline-success {
+    color: #000;
+    border-color: transparent;
+}
+.btn:hover{
+    background-color: #d9bcb7;
+    transition: background-color 0.7s linear;
+    cursor: pointer;
+}
