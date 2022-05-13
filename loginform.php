@@ -1,3 +1,7 @@
+<?php
+include_once('connection.php');
+include_once('function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +79,17 @@
         padding-left: 30px;
         height: 100%;
     }
-
+    .login-msg{
+        width: 30%;
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        z-index: 9999999;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    .fa-triangle-exclamation{
+        color:#fca483;
+    }
     .right header {
         color:#78967e;
         font-size: 44px;
@@ -118,10 +132,50 @@
         position: relative;
         margin-top: 50px;
     }
-
-  
 </style>
-
+<?php
+if(isset($_GET['msg']))
+{
+    if($_GET['msg']=="cartaccess")
+    {
+        ?>
+        <div class="alert alert-warning login-msg" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="True">&times;</span>
+            </button>
+            <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access cart.</h5>
+        </div>
+        <?php
+    }
+    if($_GET['msg']=="wishlistaccess")
+    {
+        ?>
+        <div class="alert alert-warning login-msg" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="True">&times;</span>
+            </button>
+            <h5><strong> <i class="fa-solid fa-triangle-exclamation"></i> Alert! </strong> Login to access wishlist.</h5>
+        </div>
+        <?php
+    }
+}
+if(isset($_GET['logoutmsg']))
+{
+    if($_GET['logoutmsg']=='yes')
+    {
+        $_GET['logoutmsg']="";
+        
+        ?>
+        <div class="alert alert-success login-msg" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="True">&times;</span>
+            </button>
+            <h5> You have been successfully logged out.</h5>
+        </div>
+        <?php
+    }
+}
+?>
 <body>
 <?php include_once('header.php');?>
     <div class="container pb-5">
@@ -165,6 +219,13 @@
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
 <script src="script/preventRefresh.js"></script>
 <script src="script/function.js"></script>
 <script src="script/script.js"></script>

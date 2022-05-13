@@ -1,3 +1,7 @@
+<?php
+include_once('connection.php');
+include_once('function.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>

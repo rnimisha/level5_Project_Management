@@ -1,3 +1,7 @@
+<?php
+include_once('..\connection.php');
+include_once('..\function.php');
+?>
 <div class="container-fluid p-0 header-main" id="sticky-nav">
         <nav class="navbar py-0 navbar-expand-lg navbar-light border-bottom">
             <a class="navbar-brand pl-5" href="..\index.com" id="logo-header">
@@ -30,9 +34,29 @@
             </div>
             <div class="pr-5 nav-logo text-right">
                 <span class="mr-3 search-icon transition-effect"><ion-icon name="search-outline"></ion-icon></span>
-                <a href="cust-setting-index.php"><span class="mr-3"><ion-icon name="person-outline"></ion-icon></span></a>
+                <span class="mr-3 user-hover"><ion-icon name="person-outline"></ion-icon></span>
                 <a href="..\wishlist-page.php"><span class="mr-3"><ion-icon name="heart-outline"></ion-icon></i></span></a>
                 <a href="..\cart-page.php"><span class="mr-3"><ion-icon name="cart-outline"></ion-icon></span></a>
+                <div class="dropdownmenu text-left d-none">
+                <?php 
+                    if(isset($_SESSION['phoenix_user']) && !empty($_SESSION['phoenix_user']) && isset($_SESSION['user_role']) && $_SESSION['user_role']=='C' )
+                    {
+                ?>
+                    <div class="mt-2 ml-4 border-bottom py-2"><a href="cust-setting-index.php" ><i class="fa-regular fa-circle-user"></i> &nbsp; My Account</a></div>
+                    <div class="mt-2 ml-4 pt-2 "><a href="my-orders-page.php" >My Order</a></div>
+                    <div class="mt-2 ml-4 border-bottom pb-2"><a href="my-account-page.php" >Setting</a></div>
+                    <div class="mt-2 ml-4 border-bottom pt-2 pb-3"><a href="cust-logout.php" >LogOut</a></div>
+                    <?php 
+                    }
+                    else
+                    {
+                    ?>
+                    <div class="mt-3 ml-4 border-bottom pb-2"><a href="..\loginform.php" >Login</a></div>
+                    <div class="mt-2 ml-4 border-bottom pt-2 pb-3"><a href="..\registerform.php" >Register</a></div>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
             </div>
         </nav>

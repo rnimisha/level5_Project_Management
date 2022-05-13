@@ -449,6 +449,16 @@ $(document).ready(function(){
         $('.navbar-light .navbar-nav .nav-link').css('color', '#000000');
         $(this).css('color', '#78967e');
     })
+
+    $(".user-hover").mouseover(function(){
+        $('.dropdownmenu').removeClass('d-none');
+        $('.dropdownmenu').addClass('d-block');
+    });
+
+    $(".dropdownmenu").mouseleave(function(){
+        $('.dropdownmenu').addClass('d-none');
+        $('.dropdownmenu').removeClass('d-block');
+    });
 });
 
 //effect on first img selected

@@ -10,6 +10,7 @@
 
 .nav-logo{
     font-size: 25px;
+    position: relative;
 }
 
 .navbar-nav .form-control{
@@ -37,7 +38,7 @@
 #sticky-nav {
     position: fixed;
     top: 0;
-    z-index: 999999;
+    z-index: 99999;
 }
 
 .navbar-nav .btn {
@@ -72,3 +73,18 @@ a {
 /* .row.w-100.px-3.transition-effect {
     z-index: 1;
 } */
+
+.dropdownmenu{
+    z-index: 9999999;
+    position: absolute;
+    font-size: 16px;
+    top: 40px;
+    width: 80%;
+    background-color: #fff;;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 10px;
+}
+.dropdownmenu a:hover {
+    color: #78967e;
+    text-decoration: none;
+}

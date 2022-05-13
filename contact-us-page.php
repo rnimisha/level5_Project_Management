@@ -1,3 +1,7 @@
+<?php
+include_once('connection.php');
+include_once('function.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,12 +16,12 @@
     <!-- customized css -->
     <link rel="stylesheet" type="text/css" href="style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <title>My Wishlist</title>
+    <title>Contact</title>
 </head>
 <body>
     <?php include_once('header.php');?>
     <div class="container mt-5 pt-5">
-        <div class="row w-100 mt-5 mx-auto contact-us-container">
+        <div class="row w-100 mt-5 pt-1 mx-auto contact-us-container">
             <div class="row w-100 mt-5">
                 <div class="col-12">
                     <h1 class="all-heading text-center">Get In Touch</h1>

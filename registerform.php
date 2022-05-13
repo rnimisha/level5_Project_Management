@@ -32,7 +32,7 @@
             <div class="col-md-7 transition-effect mb-3 pr-0">
                 <div class="row w-100 d-block justify-content-center align-items-center">
                     <h3 class="my-green-font text-center mt-5"><b>CREATE AN ACCOUNT</b></h3>
-                    <div class="row w-100 my-3">
+                    <div class="row w-100 my-1">
                         <div class="col-6 text-right">
                             <span class="cust-form active-form">Customer</span>
                         </div>
