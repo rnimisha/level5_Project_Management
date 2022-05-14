@@ -750,6 +750,27 @@ a:hover {
     animation-name: bounce;
     animation-timing-function: linear;
 }
+
+.top-seller{
+    border-radius: 10px;
+    background-color: #f4f8f1;
+/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+}
+.top-seller-product{
+    background-color: #ffffff;
+    /* border: 1px solid #D9E0D2; */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px; */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
+}
+
+
 @keyframes bounce{
     0%   { transform: translateY(50); }
     50%  { transform: translateY(-20px); }
