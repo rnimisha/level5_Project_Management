@@ -459,6 +459,14 @@ $(document).ready(function(){
         $('.dropdownmenu').addClass('d-none');
         $('.dropdownmenu').removeClass('d-block');
     });
+
+    $(".text-in-banner").hover(function(){
+        $('#text-img-banner').css("transform", "scale(1.1)");
+
+    }, function(){
+        $('#text-img-banner').css("transform", "scale(1)");
+    });
+
 });
 
 //effect on first img selected

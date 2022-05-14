@@ -1,5 +1,5 @@
 <div class="container-fluid p-0 header-main" id="sticky-nav">
-        <nav class="navbar py-0 navbar-expand-lg navbar-light border-bottom">
+        <nav class="navbar py-0 navbar-expand-lg navbar-light">
             <a class="navbar-brand pl-5" href="index.php" id="logo-header">
             <img src="image\logo.png" alt="logo"/>
             </a>

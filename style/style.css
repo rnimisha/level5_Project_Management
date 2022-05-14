@@ -239,12 +239,12 @@ label{
 .banner-text h3{
     color: #78967e;
     font-weight: bolder;
-    font-size: 150%;
+    font-size: 2vw;
 }
 
 .banner-text p{
     color: #7d8460;
-    font-size: 100%;
+    font-size: 1vw;
 }
 
 .img-container {
@@ -709,7 +709,6 @@ a:hover {
 }
 
 .main-banner{
-    width: 720px;
     max-height: 395px;
 }
 
@@ -740,14 +739,12 @@ a:hover {
 
 @media (min-width: 992px) {
     .main-banner{
-        width: 720px;
         max-height: 330px;
         
     }
  }
  @media (min-width: 1200px) {
     .main-banner{
-        width: 720px;
         max-height: 390px;
     }
  }
@@ -761,3 +758,15 @@ a:hover {
         font-size: 1.3vw;
     }
  }
+
+ @media (max-width: 768px) { 
+
+    .banner-text h3{
+        font-size: 4.3vw;
+    }
+    
+    .banner-text p{
+        font-size: 2vw;
+    }
+ }
+
