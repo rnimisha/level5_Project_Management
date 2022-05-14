@@ -87,7 +87,7 @@
                         <form action="validateTrader.php" method="POST"  id="trader-reg-form" class="trader-register-container d-none">
                             <div id="reg-trader-sucess-msg" style="color: green"></div>
                                 <div id="trader-general-form">
-                                <div class="form-group mt-2">
+                                <div class="form-group">
                                     <i class="fa fa-user"></i>
                                     <input type="text" name="t_fullname" class="form-control" placeholder="Full Name" id="t_fullname"  />
                                     <div class="invalid-feedback ml-4" id="t_name_error"></div>
@@ -163,9 +163,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- custom script -->
+<script src="script/script.js"></script>
+<script>
+    $('.trad-form').click(function(){
+        $('.trad-form').addClass('active-form');
+        $('.cust-form').removeClass('active-form');
+        $('.customer-register-container').addClass('d-none');
+        $('.trader-register-container').removeClass('d-none');
+    });
 
+    $('.cust-form').click(function(){
+        $('.cust-form').addClass('active-form');
+        $('.trad-form').removeClass('active-form');
+        $('.customer-register-container').removeClass('d-none');
+        $('.trader-register-container').addClass('d-none');
+    });
+</script>
+    
 <script src="script/preventRefresh.js"></script>
 <script src="script/preventRefreshTrader.js"></script>
 <script src="script/function.js"></script>
-<script src="script/script.js"></script>
 </html>

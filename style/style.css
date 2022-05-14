@@ -708,4 +708,56 @@ a:hover {
     cursor: pointer;
 }
 
+.main-banner{
+    width: 720px;
+    max-height: 395px;
+}
 
+ .banner-img{
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.text-in-banner{
+    position: absolute;
+    top:30%;
+    right: 35px;
+    bottom: 0;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+
+.text-in-banner h2{
+    color: #78967e;
+    font-weight: bolder;
+    font-size: 3vw;
+}
+
+.text-in-banner p{
+    font-size: 1.1vw;
+}
+
+@media (min-width: 992px) {
+    .main-banner{
+        width: 720px;
+        max-height: 330px;
+        
+    }
+ }
+ @media (min-width: 1200px) {
+    .main-banner{
+        width: 720px;
+        max-height: 390px;
+    }
+ }
+
+ @media (max-width: 992px) {
+    .text-in-banner h2{
+        font-size: 4vw;
+    }
+    
+    .text-in-banner p{
+        font-size: 1.3vw;
+    }
+ }
