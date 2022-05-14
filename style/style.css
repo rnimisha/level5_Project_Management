@@ -737,6 +737,26 @@ a:hover {
     font-size: 1.1vw;
 }
 
+#over-img{
+    position: absolute;
+    top:0;
+    right: 0;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+    
+}
+.bounce {
+    animation-name: bounce;
+    animation-timing-function: linear;
+}
+@keyframes bounce{
+    0%   { transform: translateY(50); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(40); }
+}
+
+
 @media (min-width: 992px) {
     .main-banner{
         max-height: 330px;
