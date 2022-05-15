@@ -719,6 +719,7 @@ $img= getProductImage($product_id,$connection);
     </div>
     <?php
         include_once('popup-modal.php');
+        include_once('footer.php');
     ?>
 </body>
 <!-- external script -->

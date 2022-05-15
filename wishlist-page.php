@@ -28,7 +28,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 </head>
 <body>
     <?php include_once('header.php');?>
-    <div class="container mt-5 pt-5">
+    <div class="container mt-5 pt-5 cart-container">
         <div class="alert alert-success cart-success action-success" role="alert">
             
         </div>
@@ -128,6 +128,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
             <?php
             }
             ?>
+    </div>
+    <div class="container-fluid mt-5 pt-5">
+        <?php include_once('footer.php');?>
     </div>
 </body>
 <!-- external script -->

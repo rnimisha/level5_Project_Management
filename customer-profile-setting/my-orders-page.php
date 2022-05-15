@@ -35,7 +35,7 @@
     <div class="container setting-container mb-5">
         <div class="row w-100 mt-5">
             <div class="col-md-3 d-flex justify-content-start align-items-start pr-0 mt-2">
-                <div class="list-group list-group-flush setting-nav w-100 setting-nav" id="sticky-nav">
+                <div class="list-group list-group-flush setting-nav w-100 setting-nav">
                     <a href="cust-setting-index.php" class="list-group-item rounded-top">
                         <i class='bx bx-grid-alt'></i>
                         <span> &nbsp; Dashboard</span>
@@ -350,6 +350,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container-fluid mt-5 pt-5">
+    <?php include_once('footer.php');?>
     </div>
 </body>
 <!-- external script -->

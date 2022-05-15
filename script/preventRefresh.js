@@ -291,7 +291,7 @@ $(document).ready(function(){
                             window.location.href = 'category-page.php';
                         }
                         else{
-                            window.location.href = 'cust-index.php';
+                            window.location.href = 'index.php';
                         }
                     }
                     else if(resp.role == 'T')

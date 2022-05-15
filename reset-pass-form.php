@@ -56,6 +56,10 @@ include_once('function.php');
                 </a> &nbsp;
             </div>
         </div>
+    </div>
+    <div class="container-fluid mt-5 pt-5">
+        <?php include_once('footer.php');?>
+    </div>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>

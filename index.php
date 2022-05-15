@@ -53,36 +53,46 @@ include_once('function.php');
 
 
     <div class="row mt-5 mb-5 d-flex justify-content-center align-items-center main-category">
-    <!-- <div class="col-12 text-center h3 my-green-font mb-2">
+      <!-- <div class="col-12 text-center h3 my-green-font mb-2">
         Category
       </div> -->
-      <div class="col-md-2 col-4 d-block text-center">
-        <img src="image\category\fruit.png" alt="profile" class="img-fluid category-img" />
-        <div>Fruit</div>
+      <div class="col-md-2 col-4 text-center">
+        <a href="category-page.php?submit-filter=&category[]=1">
+          <img src="image\category\fruit.png" alt="profile" class="img-fluid category-img" />
+          <div class="cat-font"> Fruit</div>
+        </a>
       </div>
       <div class="col-md-2 col-4  text-center">
-        <img src="image\category\butcher.png" alt="profile" class="img-fluid category-img" />
-        <div>Meat</div>
+        <a href="category-page.php?submit-filter=&category[]=3">
+          <img src="image\category\butcher.png" alt="profile" class="img-fluid category-img" />
+          <div>Meat</div>
+        </a>
       </div>
       <div class="col-md-2 col-4  text-center">
-        <img src="image\category\bakery.png" alt="profile" class="img-fluid category-img" />
-        <div>Bakery</div>
+        <a href="category-page.php?submit-filter=&category[]=4">
+          <img src="image\category\bakery.png" alt="profile" class="img-fluid category-img" />
+          <div>Bakery</div>
+        </a>
       </div>
       <div class="col-md-2 col-4 text-center">
-        <img src="image\category\fish.png" alt="profile" class="img-fluid category-img" />
-        <div>Seafood</div>
+        <a href="category-page.php">
+          <img src="image\category\fish.png" alt="profile" class="img-fluid category-img" />
+          <div>Seafood</div>
+        </a>
       </div>
       <!-- <div class="col-md-2 col-4">
         <img src="image\category\deli.png" alt="profile" class="img-fluid category-img" />
         <div class="ml-4">Fruit</div>
       </div> -->
       <div class="col-md-2 col-4 text-center">
-        <img src="image\category\allcat.png" alt="profile" class="img-fluid category-img" />
-        <div>All</div>
+        <a href="category-page.php">
+          <img src="image\category\allcat.png" alt="profile" class="img-fluid category-img" />
+          <div>All</div>
+        </a>
       </div>
     </div>
 
-    
+
 
 
     <!-- best sellers -->
@@ -216,29 +226,29 @@ include_once('function.php');
               </div>
               <div>
                 <?php
-                            if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
-                            {
-                                $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
+                  if(isset($_SESSION['phoenix_user']) && $_SESSION['user_role'])
+                  {
+                      $wishlist_status=checkProductInWishList($row['PRODUCT_ID'], $_SESSION['phoenix_user'], $connection);
 
-                                if($wishlist_status)
-                                {
-                                ?>
-                <i class='bx bxs-heart remove-from-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                <?php
-                                }
-                                else
-                                {
-                                ?>
-                <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                <?php
-                                }
-                            }
-                            else{
-                                ?>
-                <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
-                <?php
-                            }
-                            ?>
+                      if($wishlist_status)
+                      {
+                      ?>
+                        <i class='bx bxs-heart remove-from-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                        <?php
+                      }
+                      else
+                      {
+                      ?>
+                        <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                        <?php
+                      }
+                    }
+                    else{
+                    ?>
+                      <i class='bx bx-heart save-to-wishlist' value="<?php echo $row['PRODUCT_ID'] ?>"></i>
+                    <?php
+                    }
+                  ?>
               </div>
             </div>
             <div>
@@ -287,24 +297,24 @@ include_once('function.php');
       </div>
     </div>
 
-    
+
 
     <!-- two side banner -->
     <div class="row p-0 d-flex justify-content-center align-items-center">
       <div class="img-container col-lg-6 pr-2 pl-0">
         <img src="image\banner\longbanner.jpg" class="img-fluid category-banner" alt="banner">
         <div class="banner-text col-5">
-            <h3>Healthy meat</h3>
-            <p class="text-dark">Top quality meat for you</p>
-            <a href="category-page.php?submit-filter=&category[]=3" class="btn px-3">Shop</a>
+          <h3>Healthy meat</h3>
+          <p class="text-dark">Top quality meat for you</p>
+          <a href="category-page.php?submit-filter=&category[]=3" class="btn px-3">Shop</a>
         </div>
       </div>
       <div class="img-container col-lg-6 d-lg-flex d-none pl-2 pr-0">
         <img src="image\banner1.png" class="img-fluid category-banner" alt="banner">
         <div class="banner-text col-5">
-            <h3>Rich in quality</h3>
-            <p class="text-dark">Locallly grown juciest fruits</p>
-            <a href="category-page.php?submit-filter=&category[]=1" class="btn px-3">Shop</a>
+          <h3>Rich in quality</h3>
+          <p class="text-dark">Locallly grown juciest fruits</p>
+          <a href="category-page.php?submit-filter=&category[]=1" class="btn px-3">Shop</a>
         </div>
       </div>
       <!-- <img src="image\banner\longbanner.jpg" alt="payment success" class="no-data-found img-fluid" /> -->
@@ -416,16 +426,16 @@ include_once('function.php');
   </div>
   <div class="container-fluid">
 
-  <div class="row mt-5 mb-5 p-0">
-    <div class="col-12 p-0 fullbanner-container">
-      <img src="image\banner\full_longbanner.jpg" alt="payment success" class="full-banner img-fluid" />
-      <div class="full-banner-text col-5">
-            <h2>100% Organic and Fresh!</h2>
-            <p>Beverages full of nutrition and energy</p>
-            <a href="category-page.php?submit-filter=&category[]=5" class="btn px-3">Shop</a>
+    <div class="row mt-5 mb-5 p-0">
+      <div class="col-12 p-0 fullbanner-container">
+        <img src="image\banner\full_longbanner.jpg" alt="payment success" class="full-banner img-fluid" />
+        <div class="full-banner-text col-5">
+          <h2>100% Organic and Fresh!</h2>
+          <p>Beverages full of nutrition and energy</p>
+          <a href="category-page.php?submit-filter=&category[]=5" class="btn px-3">Shop</a>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
 
     <!-- OUR TRADERS -->
     <!-- <div class="row mt-5 mb-5 d-flex justify-content-center align-items-center">
@@ -450,27 +460,94 @@ include_once('function.php');
     </div>
  -->
 
-
-      <div class="row mb-5 d-lg-flex d-none">
-        <div class="col-12 text-center h3 my-green-font">
-          Order Process
-        </div>
-        <div class="col-7 mx-auto text-center mt-0 delivery-img">
-          <img src="image\deliveryphase.gif" alt="payment success" class="no-data-found img-fluid" />
-          <div class="delivery-text-container row d-flex justify-content-around mt-1">
-            <div class="col-4">
-              <span>&nbsp;&nbsp;&nbsp; Place Order</span>
-            </div>
-            <div class="col-4">
-              <span>&nbsp;&nbsp; Payment</span>
-            </div>
-            <div class="col-4">
-              <span>Out For Collection</span>
-            </div>
+  <!-- order process  -->
+    <div class="row mb-5 d-lg-flex d-none">
+      <div class="col-12 text-center h3 my-green-font">
+        Order Process
+      </div>
+      <div class="col-7 mx-auto text-center mt-0 delivery-img">
+        <img src="image\deliveryphase.gif" alt="payment success" class="no-data-found img-fluid" />
+        <div class="delivery-text-container row d-flex justify-content-around mt-1">
+          <div class="col-4">
+            <span>&nbsp;&nbsp;&nbsp; Place Order</span>
+          </div>
+          <div class="col-4">
+            <span>&nbsp;&nbsp; Payment</span>
+          </div>
+          <div class="col-4">
+            <span>Out For Collection</span>
           </div>
         </div>
       </div>
+    </div>
   </div>
+
+  <footer class="row p-0 judtify-content-center">
+      <div class="col-12 justify-content-around mb-0 pt-5 pb-0 ">
+          <div class=" col-11 justify-content-center">
+              <div class="row justify-content-center">
+                <div class="col-md-4 col-12 col-lg-4 align-items-center mt-n2">
+                  <div class="col-lg-12 col-md-12 col-12 ">
+                    <a class="navbar-brand pl-2" href="index.php" id="logo-footer">
+                    <img src="image\logo.png" alt="logo"/>
+                    </a>
+                    <br>
+                    <br>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-12 mt-n3">
+                    <div class="row">
+                        <div class="col-auto ml-3 mt-n2 pr-3" style="font-size: 14px; color: #757575;">
+                         Quanlity that brings you back. Providing the best service with richest quality since 2022.
+                        </div>
+                        <hr style="width: 80%;" class="ml-n2 pb-0 mb-0">
+                        <a href="tel:98413032413" style="color: #757575;" class="ml-4 pt-0"><small> &nbsp;&nbsp; phoenixmart123@gmail.com</small></a></li>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 col-12 col-lg-3 ">
+                  <ul class="list-unstyled">
+                      <li style="font-size: 23px; color: black;">Quick Links</li>
+                      <li class="mt-2"><a href="index.php" style=" color: #757575;">Home</a></li>
+                      <li class="mt-1"><a href="category-page.php" style=" color: #757575;">Shop</a></li>
+                      <li class="mt-1"><a href="about-us.php" style=" color: #757575;">About us</a></li>
+                      <li class="mt-1"><a href="contact-us-page.php" style=" color: #757575;">Contact</a></li>
+                   </ul>
+                </div>
+                <div class="col-md-2 col-12  col-lg-2 ">
+                   <ul class="list-unstyled">
+                       <li style="font-size: 23px; color: black;">My Account</li>
+                       <li class="mt-2"><a href="customer-profile-setting\cust-setting-index.php" style="color: #757575;">My Profile</a></li>
+                       <li class="mt-1"><a href="customer-profile-setting\my-orders-page.php" style="color: #757575;">My Orders</a></li>
+                       <li class="mt-1"><a href="customer-profile-setting\track-order-page.php" style="color: #757575;">Track Order</a></li>
+                       <li class="mt-1"><a href="customer-profile-setting\my-review-page.php" style="color: #757575;">Reviews</a></li>
+                   </ul>
+                </div>
+                <div class="col-md-3 col-12  col-lg-3">
+                    <ul class="list-unstyled">
+                        <li><a href="contact-us-page.php" style="font-size: 23px; color: black;">Informations</a></li>
+                        <li class="mt-3"><a href="contact-us-page.php" style="color: #757575;"><i class="fa-solid fa-location-dot"></i>  CleckHuddarfax, United Kingdom</a></li>
+                        <li class="mt-2"><a href="tel:98413032413" style="color: #757575;"><i class="fa fa-phone"></i> +44 7911 123456</a></li>
+                        <li class="mt-2"><a href="faq-page.php" style="color: #757575;"><i class="fa fa-comment"></i> FAQ</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row w-100 text-center justify-content-center align-items-center mt-5">
+              <p class="col-md-4 social d-flex justify-content-around">
+                  <a href="https://www.facebook.com/" target="_blank"><span><i class="fa fa-facebook footer-icons" aria-hidden="true"></i></span></a>
+                  <a href="https://www.linkedin.com/" target="_blank"><span><i class="fa fa-linkedin footer-icons" aria-hidden="true"></i></span></a>
+                  <a href="https://twitter.com/" target="_blank"><span><i class="fa fa-twitter footer-icons" aria-hidden="true"></i></span></a>
+                  <a href="https://www.instagram.com/" target="_blank"><span><i class="fa fa-instagram footer-icons" aria-hidden="true"></i></span></a>
+              </p>
+          </div>
+          <div class="col-12 text-center mb-4 mt-n1">
+            <small class="copy-rights text-dark cursor-pointer bold">The Phonix Mart</small> <small class="text-muted">Copyright.All Rights Resered.
+            </small>
+          </div>
+        </div>
+    </footer>
+
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>

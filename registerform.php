@@ -157,6 +157,7 @@
             </div>
         </div>
     </div>
+    <?php include_once('footer.php');?>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>

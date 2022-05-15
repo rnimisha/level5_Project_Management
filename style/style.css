@@ -794,7 +794,22 @@ a:hover {
 .main-category .img-fluid{
     width: 40%;
 }
+.main-category a:hover{
+    filter: grayscale(100%);
+    filter: sepia(100%);
+    color: #000000;
+}
+footer{
+    background-color: #e8e8e8;
+}
 
+#logo-footer img{
+    width: 200px;
+    height:100px;
+} 
+.cart-container{
+    min-height: 80vh;
+}
 @keyframes bounce{
     0%   { transform: translateY(50); }
     50%  { transform: translateY(-20px); }

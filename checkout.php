@@ -28,7 +28,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 </head>
 <body>
     <?php include_once('header.php');?>
-    <div class="container mt-5 pt-5">
+    <div class="container mt-5 pt-5 cart-container">
         <div class="alert alert-success cart-success action-success" role="alert">
         </div>
         <div class="fail-container">
@@ -250,7 +250,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <?php
         include_once('popup-modal.php');
     ?>
-   
+    <div class="container-fluid mt-5 pt-5">
+    <?php include_once('footer.php');?>
+    </div>
 </body>
 <!-- external script -->
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>

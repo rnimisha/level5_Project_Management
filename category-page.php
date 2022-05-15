@@ -758,6 +758,7 @@ include_once('function.php');
             echo '<script> window.onload = function () {document.getElementById("item-saved-modal").click(); }; </script>';
         }
     ?>
+    <?php include_once('footer.php');?>
 </body>
 
 <!-- external script -->
