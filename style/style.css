@@ -772,7 +772,7 @@ a:hover {
     border:3px solid #78967e;
 }
 
-.fullbanner-container{
+.fullbanner-container, .shop-banner-container{
     position: relative;
 }
 
@@ -835,6 +835,21 @@ footer{
     font-weight: bolder; */
     font-size: 2vw;
 }
+.shop-header{
+    /* background-color: #78967e; */
+    background-color: #d7dfd2;
+    min-height: 250px;
+}
+
+
+.shop-logo-img{
+    width: 60%;
+    max-height: 130px;
+    margin: 40px 10px 5px 10px;
+    border-radius:100px;
+    border: 2px solid #ffffff;
+}
+
 
 @keyframes bounce{
     0%   { transform: translateY(50); }

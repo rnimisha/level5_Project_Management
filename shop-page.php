@@ -1,6 +1,21 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
+
+if(isset($_GET['shopno']) && !empty($_GET['shopno']))
+{
+    $shop_id=$_GET['shopno'];
+    $shopQuery="SELECT * FROM SHOP WHERE SHOP_ID=$shop_id";
+    $parsed=oci_parse($connection, $shopQuery);
+    oci_execute($parsed);
+    $row = oci_fetch_assoc($parsed);
+    $shop_name=$row['SHOP_NAME'];
+    $shop_logo=$row['SHOPLOGO'];
+    oci_free_statement($parsed);
+}
+else{
+    header('Location: index.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,31 +32,39 @@ include_once('function.php');
   <!-- customized css -->
   <link rel="stylesheet" type="text/css" href="style/style.css" />
   <link rel="stylesheet" type="text/css" href="style/header.css" />
-  <title>Offers</title>
+  <title>Shop</title>
 </head>
-
 <body>
   <?php include_once('header.php');?>
 
-  <div class="container-fluid mt-5 pt-1">
+  <div class="container-fluid mt-5">
         <!-- banner -->
-        <div class="row mt-5 mb-3 p-0 d-md-block d-none">
-            <div class="col-12 p-0 fullbanner-container">
-                <img src="image\banner\lemonbanner.jpg" alt="payment success" class="full-banner img-fluid" />
-                <div class="full-banner-text col-5">
-                    <h2 class="mt-3">Offer Products</h2>
-                    <p>Grab this chance of saving money with quality products</p>
-                </div>
+        <div class="row mt-5 mb-3 pt-4 shop-header p-0 d-flex justify-content-center align-items-center">
+            <div class="col-md-2 col-3 p-0 text-right">
+                <img src="image\shop\<?php  echo (isset($shop_logo) && !empty($shop_logo)) ? $shop_logo: 'shop-placeholder.jpg';?>"  alt="profile" class="img-fluid shop-logo-img"/>
+                <div class="mb-4"><?php  echo (isset($fullnames)) ? $fullnames : null;?> </div>
+            </div>
+            <div class="col-sm-6">
+                <h4><?php echo $shop_name;?></h4>
+                <span><?php echo  getshopProductRatingPercent($shop_id, $connection);?></span>
+            </div>
+        </div>
             </div>
         </div>
     </div>
     
-    <div class="container mt-2 py-5 mb-5">
+    <div class="container mb-5 pb-5">
+        <div class="col-12 text-center mt-5 h3 my-green-font">
+            Shop Products
+        </div>
+        <div class="d-flex flex-row-reverse">
+            <a href="category-page.php?submit-filter=&shops[]=<?php echo $shop_id?>" class="btn">Filter</a>
+        </div>
         <!-- Discount Products -->
         <div class="row mt-3 mb-5">
             <?php
 
-            $query="SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE";
+            $query="SELECT * FROM PRODUCT WHERE SHOP_ID=$shop_id";
             $parsed=oci_parse($connection, $query);
             oci_execute($parsed);
             while(($row = oci_fetch_assoc($parsed)) != false) 

@@ -75,7 +75,7 @@ include_once('function.php');
         </a>
       </div>
       <div class="col-md-2 col-4 text-center">
-        <a href="category-page.php">
+        <a href="category-page.php?submit-filter=&category[]=7">
           <img src="image\category\fish.png" alt="profile" class="img-fluid category-img" />
           <div>Seafood</div>
         </a>

@@ -556,4 +556,21 @@ function discountFormula($discount_rate, $total)
     $discount=($discount_rate/100) * $total;
     return ($total - $discount);
 }
+
+function getshopProductRatingPercent($shop_id, $connection)
+{
+    $query="SELECT SUM(STAR_RATING) AS TOTAL_RATE, COUNT(*) AS TOTAL_PEOPLE, PRODUCT_ID FROM REVIEW WHERE PRODUCT_ID IN(SELECT PRODUCT_ID FROM PRODUCT P JOIN SHOP S ON S.SHOP_ID=P.SHOP_ID WHERE S.SHOP_ID=$shop_id) GROUP BY PRODUCT_ID";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $row = oci_fetch_assoc($parsed);
+    if($row['TOTAL_PEOPLE']>0)
+    {
+        $average=(($row['TOTAL_RATE'])/($row['TOTAL_PEOPLE']*5))*100;
+        return $average."% Positive Rating";
+    }
+    else{
+        return "No ratings on product yet";
+    }
+    oci_free_statement($parsed);
+}
 ?>
