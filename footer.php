@@ -1,4 +1,4 @@
-<footer class="row p-0 judtify-content-center">
+<footer class="row w-100 mr-0 ml-0 p-0 judtify-content-center">
       <div class="col-12 justify-content-around mb-0 pt-5 pb-0 ">
           <div class=" col-11 justify-content-center">
               <div class="row justify-content-center">
