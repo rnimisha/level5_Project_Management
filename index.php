@@ -437,6 +437,57 @@ include_once('function.php');
       </div>
     </div>
 
+    <div class="row p-0 mx-0 my-5">
+      <div class="container mx-auto px-0">
+        <div class="col-12 text-center h3 my-green-font mb-2">
+          Ongoing Offers
+        </div>
+        <!-- DISCOUNT PRODUCT ROW -->
+        <div class="row w-100">
+          <div class="col-9">
+            <div class="row p-0 m-0">
+              <?php
+                $discount_query="SELECT a.* FROM(SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE)a  WHERE ROWNUM <= 4";
+                $parsed_disc=oci_parse($connection, $discount_query);
+                oci_execute($parsed_disc);
+                while (($row = oci_fetch_assoc($parsed_disc)) != false) {
+                ?>
+              <div class="col-6 mt-4">
+                <div class="row w-100 d-flex justify-content-center align-items-center">
+                  <div class="col-6 bg-light">
+                    <div class="cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
+                        <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>" class="discount-img img-fluid"/>
+                    </div>
+                  </div>
+                  <div class="col-6 d-block cat-product-container"  value="<?php echo $row['PRODUCT_ID'];?>">
+                    <div><?php echo $row['PRODUCT_NAME'];?></div>
+                    <div>
+                        <span
+                            class="prod-price"><?php echo calculatePriceWithDiscount($row['PRODUCT_ID'], $connection);?></span>&nbsp;
+                        <span class="before-discount">&#163;<?php echo $row['PRICE']; ?> </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <?php 
+                }
+              ?>
+            </div>
+          </div>
+          <!-- BANNER ROW -->
+          <div class="col-3 mt-4 discount-banner">
+              <div class="img-container">
+                <img src="image\banner\discountbanner.jpg" alt="discount banner" class="img-fluid discount-banner category-banner" />
+              </div>
+              <div class="discount-text col-5">
+                <h3>Discount Offers!</h3>
+                <a href="category-page.php?submit-filter=&category[]=5" class="btn px-3 mt-2 align-self-end">Shop</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- order process  -->
     <div class="row mb-5 d-lg-flex d-none">
       <div class="col-12 text-center h3 my-green-font">
@@ -458,21 +509,15 @@ include_once('function.php');
       </div>
     </div>
 
+    <!-- discount  -->
+    <!-- <div class="row mb-5 bg-light">
+      efje
+    </div> -->
 
-    <div class="row mt-5 mb-5 p-0">
-      <div class="col-12 p-0 fullbanner-container">
-        <img src="image\banner\strawberrybanner5.png" alt="payment success" class="full-banner img-fluid" />
-        <div class="full-banner-text col-5">
-          <!-- <h2>100% Organic and Fresh!</h2>
-          <p>Beverages full of nutrition and energy</p>
-          <a href="category-page.php?submit-filter=&category[]=5" class="btn px-3">Shop</a> -->
-        </div>
-      </div>
-    </div>
 
 
       <!-- OUR TRADERS -->
-    <div class="row mt-5 mb-5 d-flex justify-content-center align-items-center">
+    <!-- <div class="row mt-5 mb-5 d-flex justify-content-center align-items-center">
       <div class="col-12 text-center h3 my-green-font mb-2">
         Our Traders
       </div>
@@ -491,8 +536,9 @@ include_once('function.php');
       <div class="col-md-2 col-4">
         <img src="image\shop\deli.jpg" alt="profile" class="img-fluid trader-img" />
       </div>
-    </div>
+    </div> -->
   </div>
+
 
   <?php include_once('footer.php');?>
 

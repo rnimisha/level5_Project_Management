@@ -810,6 +810,32 @@ footer{
 .cart-container{
     min-height: 80vh;
 }
+
+.discount-img{
+    width: 100%;
+    height: 160px;
+}
+
+.discount-banner{
+    width: 100%;
+    max-height: 345px;
+}
+
+.discount-text{
+    position: absolute;
+    top:50px;
+    left: 30%;
+    bottom: 0;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.discount-text h3{
+    /* color: #78967e;
+    font-weight: bolder; */
+    font-size: 2vw;
+}
+
 @keyframes bounce{
     0%   { transform: translateY(50); }
     50%  { transform: translateY(-20px); }
@@ -841,7 +867,7 @@ footer{
 
  @media (max-width: 768px) { 
 
-    .banner-text h3{
+    .banner-text h3, .discount-text h3{
         font-size: 4.3vw;
     }
     
