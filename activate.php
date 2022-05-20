@@ -1,5 +1,6 @@
 <?php
     include_once('connection.php');
+    include_once('function.php');
     
     if(isset($_GET['token']) && isset($_GET['role']) && strtolower($_GET['role'])=='c')
     {
@@ -47,7 +48,11 @@
 
         if(!empty($email))
         {
-            $to='phoenixmart123@gmail.com';
+            $to= getAdminEmail($connection);
+            if(empty(trim($to)))
+            {
+                $to='phoenixmart123@gmail.com';
+            }
             $subject="New Trader Request";
             $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
 

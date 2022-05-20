@@ -573,4 +573,22 @@ function getshopProductRatingPercent($shop_id, $connection)
     }
     oci_free_statement($parsed);
 }
+
+function getProfilePicture($connection, $user_id)
+{
+    $query="SELECT PROFILE_PIC FROM MART_USER WHERE USER_ID=$user_id";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $row = oci_fetch_assoc($parsed);
+    return $row['PROFILE_PIC'];
+
+}
+function getAdminEmail($connection)
+{
+    $query="SELECT EMAIL FROM MART_USER WHERE UPPER(USER_ROLE)='A";
+    $parsed=oci_parse($connection, $query);
+    oci_execute($parsed);
+    $row = oci_fetch_assoc($parsed);
+    return $row['EMAIL'];
+}
 ?>
