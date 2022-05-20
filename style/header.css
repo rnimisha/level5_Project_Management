@@ -74,6 +74,14 @@ a {
     z-index: 1;
 } */
 
+.header-pp{
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+}
+.header-pp img{
+    vertical-align: revert;
+}
 .dropdownmenu{
     z-index: 9999999;
     position: absolute;

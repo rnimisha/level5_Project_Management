@@ -466,7 +466,7 @@ $(document).ready(function(){
     }, function(){
         $('#text-img-banner').css("transform", "scale(1)");
     });
-
+    $('.action-success').css({opacity:1});
 });
 
 //effect on first img selected

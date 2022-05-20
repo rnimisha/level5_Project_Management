@@ -30,7 +30,10 @@
     color:#000;
     font-size: 44px;
 }
-
+.form-group {
+    margin-top: 12px;
+    margin-bottom: 0;
+}
 
 .butt {
     background: transparent;

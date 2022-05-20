@@ -389,6 +389,7 @@ label{
     right: 0px;
     z-index: 9999999;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    opacity: 0;
 }
 
 .bx-error-circle
@@ -696,7 +697,7 @@ a:hover {
     text-decoration: none;
 }
 
-.report-product small:hover{
+.report-product small:hover, .hover-font:hover{
     color: #b46a6a;
     cursor: pointer;
 }
@@ -764,6 +765,7 @@ a:hover {
     background-color: #fff;
     
 }
+
 .trader-img{
     width: 80%;
     margin: 40px 10px 5px 10px;

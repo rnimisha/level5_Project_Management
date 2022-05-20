@@ -3,6 +3,7 @@ $(window).on("load",function(){
     $(".container-fluid").fadeIn(1000);
 });
 $(document).ready(function(){
+    $('.action-success').hide();
     //jquery ui function for price range
     $(function() {
         $("#price-range").slider({
@@ -36,6 +37,7 @@ $(document).ready(function(){
         $("#max-price").text(maximum);
        
     });
+
 
     // $("#price-range").mouseup(function(){
     //    $('#price-filter-form').submit();

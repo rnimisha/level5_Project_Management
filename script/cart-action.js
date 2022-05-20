@@ -25,7 +25,6 @@ $(document).ready(function(){
                 else{
                     if(resp.stocklimit == true)
                     {
-
                         $('.action-success').show().delay(3000).fadeOut();
                     }
                     else{
