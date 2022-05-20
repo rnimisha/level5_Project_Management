@@ -9,6 +9,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 {
     header('Location: loginform.php');
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -250,7 +251,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <?php
         include_once('popup-modal.php');
     ?>
-    <div class="container-fluid mt-5 pt-5">
+    <div class="container-fluid mt-5 pt-5 mx-0 px-0">
     <?php include_once('footer.php');?>
     </div>
 </body>

@@ -23,7 +23,7 @@ include_once('function.php');
 <body>
   <?php include_once('header.php');?>
 
-  <div class="container-fluid mt-5 pt-1">
+  <div class="container-fluid mt-5">
         <!-- banner -->
         <div class="row mt-5 mb-3 p-0 d-md-block d-none">
             <div class="col-12 p-0 fullbanner-container">

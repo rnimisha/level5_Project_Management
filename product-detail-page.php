@@ -176,11 +176,11 @@ $img= getProductImage($product_id,$connection);
                 </div>
                 <hr>
                 <div class="pl-4 my-n2">
-                    <span class="text-muted"><small><b>category</b> : <span class="text-lowercase"><?php echo $cat_name;?></small></span></span>
+                    <a href="category-page.php?submit-filter=&category[]=<?php echo $cat_id;?>" ><span class="text-muted"><small class="hover-font"><b>category</b> : <span class="text-lowercase"><?php echo $cat_name;?></small></span></span></a>
                 </div>
                 <hr>
                 <div class="pl-4 my-n2">
-                   <a href="shop-page.php?shopno=<?php echo $shop_id;?>"> <span class="text-muted"><small><b>sold by</b> : <span class="text-lowercase"><?php echo $shop_name;?></small></span></span></a>
+                   <a href="shop-page.php?shopno=<?php echo $shop_id;?>"> <span class="text-muted"><small class="hover-font"><b>sold by</b> : <span class="text-lowercase"><?php echo $shop_name;?></small></span></span></a>
                 </div>
                 <hr>
                 <div class="pl-4 my-n2 report-product" value="<?php echo $product_id;?>">

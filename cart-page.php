@@ -70,7 +70,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 </div>
                 <hr>
                 <?php 
-                    $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID WHERE STOCK_QUANTITY>0 AND USER_ID=".$_SESSION['phoenix_user'];
+                    $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID WHERE UPPER(DISABLED)='F' AND STOCK_QUANTITY>0 AND USER_ID=".$_SESSION['phoenix_user'];
                     $parsed=oci_parse($connection,$query);
                     oci_execute($parsed);
                     $subtotal=0;

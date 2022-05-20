@@ -34,7 +34,21 @@ include_once('..\function.php');
             </div>
             <div class="pr-5 nav-logo text-right">
                 <span class="mr-3 search-icon transition-effect"><ion-icon name="search-outline"></ion-icon></span>
-                <span class="mr-3 user-hover"><ion-icon name="person-outline"></ion-icon></span>
+                <?php 
+                    if(isset($_SESSION['phoenix_user']) && !empty($_SESSION['phoenix_user']) && isset($_SESSION['user_role']) && $_SESSION['user_role']=='C' )
+                    {
+                        $profile_pic= getProfilePicture($connection, $_SESSION['phoenix_user']);
+                ?>
+                         <span class="mr-3 user-hover header-pp"><img src="..\image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>"  alt="profile" class="header-pp"/></span>
+                <?php 
+                    }
+                    else
+                    {
+                ?>
+                        <span class="mr-3 user-hover"><ion-icon name="person-outline"></ion-icon></span>
+                <?php
+                    }
+                ?>
                 <a href="..\wishlist-page.php"><span class="mr-3"><ion-icon name="heart-outline"></ion-icon></i></span></a>
                 <a href="..\cart-page.php"><span class="mr-3"><ion-icon name="cart-outline"></ion-icon></span></a>
                 <div class="dropdownmenu text-left d-none">

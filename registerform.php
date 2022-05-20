@@ -13,13 +13,19 @@
     <link rel="stylesheet" type="text/css" href="style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <link rel="stylesheet" type="text/css" href="style/login-reg.css" />
+    <style>
+        .form-group {
+            margin-top:-12px;
+            margin-bottom: 0;
+        }
+    </style>
     <title>Register</title>
 </head>
 <body>
     <?php include_once('header.php');?>
     <div class="success"></div>
     <div class="container mb-5 mt-5 pt-5">
-        <div class="row w-100 mt-3 mx-auto register-us-container mb-2">
+        <div class="row w-100 mt-5 mx-auto register-us-container mb-2">
             <div class="col-md-5 transition-effect side-container">
                 <div class="leftpanel">
                     <div class="contain">
@@ -30,7 +36,7 @@
             </div>
             </div>
             <div class="col-md-7 transition-effect mb-3 pr-0">
-                <div class="row w-100 d-block justify-content-center align-items-center">
+                <div class="row w-100 d-block justify-content-center align-items-center mx-auto">
                     <h3 class="my-green-font text-center mt-5"><b>CREATE AN ACCOUNT</b></h3>
                     <div class="row w-100 my-1">
                         <div class="col-6 text-right">

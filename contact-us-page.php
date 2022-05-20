@@ -86,7 +86,7 @@ include_once('function.php');
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-5 pt-5">
+    <div class="container-fluid mt-5 pt-5 mx-0 px-0">
     <?php include_once('footer.php');?>
     </div>
 </body>

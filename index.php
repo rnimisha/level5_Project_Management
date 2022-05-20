@@ -103,7 +103,7 @@ include_once('function.php');
       <div class="row px-5 pb-5">
         <?php
 
-          $query="SELECT a.* FROM (SELECT COUNT(P.PRODUCT_ID) AS COUNT_ORDER, PRODUCT_NAME, PRICE, P.PRODUCT_ID AS PRODUCT_ID FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID GROUP BY P.PRODUCT_ID, PRODUCT_NAME, PRICE ORDER BY COUNT(P.PRODUCT_ID) DESC)a WHERE ROWNUM <= 6";
+          $query="SELECT a.* FROM (SELECT COUNT(P.PRODUCT_ID) AS COUNT_ORDER, PRODUCT_NAME, PRICE, P.PRODUCT_ID AS PRODUCT_ID FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE UPPER(DISABLED)='F' GROUP BY P.PRODUCT_ID, PRODUCT_NAME, PRICE ORDER BY COUNT(P.PRODUCT_ID) DESC)a WHERE ROWNUM <= 6";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -205,7 +205,7 @@ include_once('function.php');
       <div class="row mt-2">
         <?php
 
-          $query="SELECT a.* FROM(SELECT * FROM PRODUCT ORDER BY PRODUCT_ID DESC)a WHERE ROWNUM <= 4";
+          $query="SELECT a.* FROM(SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F' ORDER BY PRODUCT_ID DESC)a WHERE ROWNUM <= 4";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -330,7 +330,7 @@ include_once('function.php');
       <div class="row mt-2">
         <?php
 
-          $query="SELECT a.* FROM(SELECT PRODUCT_ID, PRICE,PRODUCT_NAME, COUNT_SUM/COUNT_TOTAL AS AVERAGE FROM (SELECT COUNT(*) AS COUNT_TOTAL,P.PRODUCT_ID,PRICE,PRODUCT_NAME ,SUM(STAR_RATING) AS COUNT_SUM FROM PRODUCT P JOIN REVIEW R ON R.PRODUCT_ID = P.PRODUCT_ID GROUP BY P.PRODUCT_ID, PRICE,PRODUCT_NAME ) ORDER BY AVERAGE DESC)a  WHERE ROWNUM <= 4";
+          $query="SELECT a.* FROM(SELECT PRODUCT_ID, PRICE,PRODUCT_NAME, COUNT_SUM/COUNT_TOTAL AS AVERAGE FROM (SELECT COUNT(*) AS COUNT_TOTAL,P.PRODUCT_ID,PRICE,PRODUCT_NAME ,SUM(STAR_RATING) AS COUNT_SUM FROM PRODUCT P JOIN REVIEW R ON R.PRODUCT_ID = P.PRODUCT_ID WHERE UPPER(DISABLED)='F' GROUP BY P.PRODUCT_ID, PRICE,PRODUCT_NAME ) ORDER BY AVERAGE DESC)a  WHERE ROWNUM <= 4";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -450,7 +450,7 @@ include_once('function.php');
           <div class="col-lg-8">
             <div class="row p-0 m-0">
               <?php
-                $discount_query="SELECT a.* FROM(SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE)a  WHERE ROWNUM <= 4";
+                $discount_query="SELECT a.* FROM(SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE AND UPPER(DISABLED)='F')a  WHERE ROWNUM <= 4";
                 $parsed_disc=oci_parse($connection, $discount_query);
                 oci_execute($parsed_disc);
                 while (($row = oci_fetch_assoc($parsed_disc)) != false) {
@@ -492,7 +492,7 @@ include_once('function.php');
     </div>
 
   <!-- order process  -->
-    <div class="row mb-5 d-lg-flex d-none">
+    <div class="row mb-5 mt-5 pt-5 d-lg-flex d-none">
       <div class="col-12 text-center h3 my-green-font">
         Order Process
       </div>

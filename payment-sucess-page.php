@@ -20,6 +20,16 @@ include_once('function.php');
     }
     
     $customer_id=$_SESSION['phoenix_user'];
+    // $order_id=22;//for now
+    // $collection_id=1;
+    //get user information for invoice
+    $getUser="SELECT * FROM MART_USER WHERE USER_ID=$customer_id";
+    $parsedUser=oci_parse($connection, $getUser);
+    oci_execute($parsedUser);
+    $row= oci_fetch_assoc($parsedUser);
+    $cust_name=$row['NAME'];
+    $address=$row['ADDRESS'];
+    $email=$row['EMAIL'];
 
     if(isset($_SESSION['collection-id']) && isset($_SESSION['buynow']))
     {
@@ -162,21 +172,9 @@ include_once('function.php');
                 }
         // echo $paymentInsert;
         oci_free_statement($parsedPayment);
-    unset($_SESSION['collection-id']);
-    unset($_SESSION['buynow']);
     }
 
 
-    // $order_id=22;//for now
-    // $collection_id=1;
-    //get user information for invoice
-    $getUser="SELECT * FROM MART_USER WHERE USER_ID=$customer_id";
-    $parsedUser=oci_parse($connection, $getUser);
-    oci_execute($parsedUser);
-    $row= oci_fetch_assoc($parsedUser);
-    $cust_name=$row['NAME'];
-    $address=$row['ADDRESS'];
-    $email=$row['EMAIL'];
 
     //get collection slot infor
     $collectQuery="SELECT * FROM SLOT WHERE SLOT_ID=$collection_id";
@@ -297,7 +295,7 @@ include_once('function.php');
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-5 pt-5">
+    <div class="container-fluid mt-5 pt-5 mx-0 px-0">
     <?php include_once('footer.php');?>
     </div>
 </body>
