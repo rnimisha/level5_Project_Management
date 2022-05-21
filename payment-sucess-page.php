@@ -173,8 +173,11 @@ include_once('function.php');
         // echo $paymentInsert;
         oci_free_statement($parsedPayment);
     }
-
-
+    else
+    {
+        header('Location: index.php');
+    }
+    
 
     //get collection slot infor
     $collectQuery="SELECT * FROM SLOT WHERE SLOT_ID=$collection_id";
@@ -184,6 +187,7 @@ include_once('function.php');
     $collect_day=$row['SLOT_DAY'];
     $collect_time=$row['TIME_RANGE'];
     oci_free_statement($parsed);
+    unset($_SESSION['collection-id']);
 
 ?>
 <!doctype html>
@@ -219,7 +223,7 @@ include_once('function.php');
                 </a> &nbsp;
             </div>
         </div>
-        <div class="invoice-container mb-5 mt-3 border rounded p-3 ">
+        <div class="invoice-container mb-5 mt-3 border rounded p-3 " id="invoice">
             <div class="col-12 text-center my-green-font">
                 <h3>ORDER #<?php echo $order_id?></h3>
             </div>
@@ -295,8 +299,8 @@ include_once('function.php');
             </div>
         </div>
     </div>
-    <div class="col-12 text-center  d-print-none"  onclick="window.print()">
-                    <button  class="mt-3 py-1 pt-2 px-3 btn"> Print Invoice</button>
+        <div class="col-12 text-center  d-print-none">
+                <button  class="mt-1 py-1 pt-2 px-3 btn"  onclick="window.print()"> Print Invoice</button>
         </div>
     <div class="container-fluid mt-2 pt-5 mx-0 px-0 d-print-none">
     <?php include_once('footer.php');?>

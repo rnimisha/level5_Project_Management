@@ -36,7 +36,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         </div>
     <?php
         $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);
-        if($item_count>0)
+        if($item_count>0 || !isset($_GET['buy_now']))
         {
         ?>
         <div class="row my-5 w-100 align-items-end">
@@ -69,13 +69,13 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                     else
                     {
                     $query="SELECT * FROM CART_ITEM CI JOIN PRODUCT P ON P.PRODUCT_ID=CI.PRODUCT_ID AND USER_ID=".$_SESSION['phoenix_user'];
-                    $buy_now='f';
+                    $buynow='f';
                     }
                     $parsed=oci_parse($connection,$query);
                     oci_execute($parsed);
                     $subtotal=0;
                     while (($row = oci_fetch_assoc($parsed)) != false) {
-                        if($buy_now == 'f')
+                        if($buynow == 'f')
                         {
                             $quantity=$row['QUANTITY'];
                         }
