@@ -207,10 +207,10 @@ include_once('function.php');
 <body>
     <?php include_once('header.php');?>
     <div class="container mt-5 pt-5">
-        <div class="row w-100">
+        <div class="row w-100 d-print-none">
             <div class="col-7 mx-auto text-center mt-5">
                 <img src="image\payment-success.gif" alt="payment success" class="no-data-found img-fluid" />
-                <div class="mt-3 my-green-font">
+                <div class="mt-1 my-green-font">
                     <h3><b>Success</b></h3>
                 </div>
                 <div>Your order has been placed successfully.</div>
@@ -219,7 +219,7 @@ include_once('function.php');
                 </a> &nbsp;
             </div>
         </div>
-        <div class="invoice-container my-5 border rounded p-3 ">
+        <div class="invoice-container mb-5 mt-3 border rounded p-3 ">
             <div class="col-12 text-center my-green-font">
                 <h3>ORDER #<?php echo $order_id?></h3>
             </div>
@@ -295,7 +295,10 @@ include_once('function.php');
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-5 pt-5 mx-0 px-0">
+    <div class="col-12 text-center  d-print-none"  onclick="window.print()">
+                    <button  class="mt-3 py-1 pt-2 px-3 btn"> Print Invoice</button>
+        </div>
+    <div class="container-fluid mt-2 pt-5 mx-0 px-0 d-print-none">
     <?php include_once('footer.php');?>
     </div>
 </body>
