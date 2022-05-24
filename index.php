@@ -24,6 +24,9 @@ include_once('function.php');
   <?php include_once('header.php');?>
   <!-- banner -->
   <div class="container mt-5 pt-5">
+    <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
     <div class="cart-msg pop-msg">
     </div>
     <div class="row mt-4">

@@ -117,3 +117,17 @@ footer{
 .cart-container{
     min-height: 80vh;
 }
+
+.transition-effect{
+    animation-duration: 2s;
+    animation-name: fadeInAnimation;
+}
+  
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

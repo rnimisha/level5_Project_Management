@@ -32,6 +32,9 @@
 <body>
     <?php include_once('header.php');?>
     <?php include_once('include-header.php');?>
+    <div class="loader">
+            <img src="../image/loader.gif" />
+    </div>
     <div class="container setting-container mb-5">
         <div class="row w-100 mt-5">
             <div class="col-md-3 d-flex justify-content-start align-items-start pr-0 mt-2">

@@ -17,10 +17,7 @@ include_once('function.php');
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style/header.css" />
-    
-    
-    
+    <link rel="stylesheet" type="text/css" href="style/header.css" /> 
 </head>
 <style>
     * {
@@ -53,7 +50,7 @@ include_once('function.php');
         border-radius: 0px;
         border-left-width: 0;
         border-right-width: 0;
-        border-top-width: 0;
+        /* border-top-width: 0; */
     }
 
     .accordion .card .card-header {
@@ -85,17 +82,19 @@ include_once('function.php');
     }
 
     .accordion .card-body {
-        color: #78967e;
+        /* color: #78967e; */
     }
     a {
-
-    text-decoration: none;
+        text-decoration: none;
     }
+    .card-body{ 
+        color:#000;
+    }    
 </style>
 
 <body>
     <?php include_once('header.php');?>
-    <div class="faq mt-5 pt-5">
+    <div class="faq mt-5 pt-5 transition-effect">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
@@ -190,6 +189,8 @@ include_once('function.php');
 </html>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/d24fa4b820.js" crossorigin="anonymous"></script>
 <script src="script/script.js"></script>
+<script src="script/function.js"></script>

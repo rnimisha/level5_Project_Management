@@ -77,14 +77,14 @@
           </div>
 
           <!-- product detail table-->
-          <div class="row" id="detail-container">
+          <div class="row" id="detail-container transition-effect">
             <div class="col-12 form-container w-100 py-3" id="product-detail-table">
               <div class="row" id="add-prod-row">
                 <div class="col-lg-2 offset-lg-10 add-product">
                   <button class="btn ml-lg-n4" id="add-prod-btn"><i class="fa-solid fa-plus"></i>Add Product</button>
                 </div>
               </div>
-              <div class="col-12 table-responsive mt-3" id="product-table">
+              <div class="col-12 table-responsive mt-3 transition-effect" id="product-table">
                 <table class="table table-hover">
                   <thead class="mygreen text-center">
                     <tr>
@@ -175,7 +175,7 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-12 d-none" id="product-detail-table">
+              <div class="col-12 d-none" id="product-detail-table transition-effect">
               </div>
             </div>
           

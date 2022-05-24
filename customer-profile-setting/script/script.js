@@ -622,3 +622,8 @@ $(document).ready(function(){
 });
 
 $('body').addClass('transition-effect');
+
+$(window).on("load",function(){
+    $(".loader").fadeOut(1000);
+    $(".container").fadeIn(1000);
+});
