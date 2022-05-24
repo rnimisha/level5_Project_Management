@@ -1232,8 +1232,17 @@ $(document).ready(function(){
     $('.confirm-logout').click(function(){
         $('#confirm-log-out').click();
     });
+    
 
     $('#sign-out-yes').click(function(){
         $(location).attr('href','../logout.php');
+    });
+
+    $('.confirm-dashboard').click(function(){
+        $('#link-to-dashboard').click();
+    });
+
+    $('#dashboard-yes').click(function(){
+        $(location).attr('href','http://localhost:8080/apex/f?p=103:LOGIN_DESKTOP:5037239981099:::::');
     });
 });
