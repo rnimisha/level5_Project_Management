@@ -25,6 +25,9 @@ include_once('..\function.php');
                 <li class="nav-item">
                 <a class="nav-link ml-3" href="..\contact-us-page.php">Contact</a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link ml-3" href="..\faq.php">FAQ</a>
+                </li>
             </ul>
             <div class="justify-content-right navbar-nav search-bar transition-effect d-none ">
                 <form class="form-inline ml-auto" id="text-filter">
