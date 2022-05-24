@@ -1,6 +1,7 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
+require('stripe_php_payment_gateway\config.php');
 
     if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
     {
@@ -13,6 +14,20 @@ include_once('function.php');
     if(isset($_GET['PayerID']))
     {
         $payment_id= $_GET['PayerID'];
+    }
+    else if(isset($_POST['stripeToken'])){
+        \Stripe\Stripe::setVerifySslCerts(false);
+    
+        $token=$_POST['stripeToken'];
+        $amount=floatval($_POST['amount']);
+    
+        $data=\Stripe\Charge::create(array(
+            "amount"=>$amount*100,
+            "currency"=>"gbp",
+            "description"=>"Phoenix Mart Purchase",
+            "source"=>$token,
+        ));
+        $payment_id=$token;
     }
     else
     {
@@ -173,10 +188,10 @@ include_once('function.php');
         // echo $paymentInsert;
         oci_free_statement($parsedPayment);
     }
-    else
-    {
-        header('Location: index.php');
-    }
+    // else
+    // {
+    //     header('Location: index.php');
+    // }
     
 
     //get collection slot infor
@@ -209,6 +224,9 @@ include_once('function.php');
 </head>
 
 <body>
+    <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
     <?php include_once('header.php');?>
     <div class="container mt-5 pt-5">
         <div class="row w-100 d-print-none">
@@ -315,7 +333,12 @@ include_once('function.php');
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
-
+<script>
+    $(window).on("load",function(){
+    $(".loader").fadeOut(1000);
+    $(".container-fluid").fadeIn(1000);
+    });
+</script>
 <!-- custom script -->
 <script src="script/function.js"></script>
 <script src="script/script.js"></script>

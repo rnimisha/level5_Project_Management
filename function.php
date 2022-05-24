@@ -559,7 +559,7 @@ function discountFormula($discount_rate, $total)
 
 function getshopProductRatingPercent($shop_id, $connection)
 {
-    $query="SELECT SUM(STAR_RATING) AS TOTAL_RATE, COUNT(*) AS TOTAL_PEOPLE, PRODUCT_ID FROM REVIEW WHERE PRODUCT_ID IN(SELECT PRODUCT_ID FROM PRODUCT P JOIN SHOP S ON S.SHOP_ID=P.SHOP_ID WHERE S.SHOP_ID=$shop_id) GROUP BY PRODUCT_ID";
+    $query="SELECT SUM(TOTAL_RATE) AS TOTAL_RATE, SUM(TOTAL_PEOPLE) AS TOTAL_PEOPLE FROM (SELECT SUM(STAR_RATING) AS TOTAL_RATE, COUNT(*) AS TOTAL_PEOPLE, PRODUCT_ID FROM REVIEW WHERE PRODUCT_ID IN(SELECT PRODUCT_ID FROM PRODUCT P JOIN SHOP S ON S.SHOP_ID=P.SHOP_ID WHERE S.SHOP_ID=$shop_id) GROUP BY PRODUCT_ID);";
     $parsed=oci_parse($connection, $query);
     oci_execute($parsed);
     $row = oci_fetch_assoc($parsed);

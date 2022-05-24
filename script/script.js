@@ -335,16 +335,18 @@ $(document).ready(function(){
         $('.collect-time-container').removeClass('d-none');
     });
 
-    $('.collection-btn').click(function(){
+    $('.check-collection').click(function(){
         var day_selected= $('#select-collection-slot').val();
         var time_selected=$("#select-collect-time").val();
         var buynow=$('#purchase-type').val();
+
         // alert(day_selected);
         // alert(time_selected);
         if(day_selected == null && time_selected == null )
         {
-            $('.fail-container').html('<div class="alert alert-warning cart-success action-success py-4" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please Select Collection Slot before payment.</div>').delay(4000).fadeOut();
+            $('.fail-container').html('<div class="alert alert-warning pop-msg py-4" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please Select Collection Slot before payment.</div>').delay(4000).fadeOut();
             $('.fail-container').show();
+
         }
         else{
             $.ajax({
@@ -357,7 +359,8 @@ $(document).ready(function(){
                     action: 'save-detail'
                 },
                 success: function(response){
-                    $('#make-payment').submit();
+                    // $('#make-payment').submit();
+                    $('.payment-container').removeClass('d-none');
                 }
             });
         }
@@ -417,7 +420,7 @@ $(document).ready(function(){
                 {
                     removeStyle(resp);
                     $('.close-report').click();
-                    $('.succ-msg').html('<div class="alert alert-success cart-success action-success py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
+                    $('.succ-msg').html('<div class="alert alert-succes py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
                     $('.succ-msg').show();
                 }
                 else{
@@ -472,7 +475,10 @@ $(document).ready(function(){
 //effect on first img selected
 $('.mini-img-container').first().addClass('active-img');
 
-
+ $(window).on("load",function(){
+    $(".loader").fadeOut(1000);
+    $(".container-fluid").fadeIn(1000);
+});
 function showRecentReviews()
 {
     

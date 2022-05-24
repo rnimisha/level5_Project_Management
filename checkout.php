@@ -25,10 +25,13 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <!-- customized css -->
     <link rel="stylesheet" type="text/css" href="style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <title>Collection Slot</title>
+    <title>Checkout</title>
 </head>
 <body>
     <?php include_once('header.php');?>
+    <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
     <div class="container mt-5 pt-5 cart-container">
         <div class="alert alert-success cart-success action-success" role="alert">
         </div>
@@ -36,7 +39,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         </div>
     <?php
         $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);
-        if($item_count>0 || !isset($_GET['buy_now']))
+        if($item_count>0 || isset($_GET['buynow']))
         {
         ?>
         <div class="row my-5 w-100 align-items-end">
@@ -128,7 +131,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         <h5>Purchase Information</h5>
                     </div>
                     <hr>
-                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST" id="make-payment" name="make-payment">
+                   
                         <div  class="row w-100 justify-content-between pt-1 pl-4">
                             <div  class="col-4">
                                 Day
@@ -214,19 +217,48 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             </div>
                         </div>
                         <hr>
-                        <input type="hidden" name="purchase-type" id="purchase-type" value="<?php echo $buynow;?>">
-                        <input type="hidden" name="business" value="sb-spqm012101291@business.example.com"/>
-                        <input type="hidden" name="cmd" value="_xclick" />
-                        <input type="hidden" name="amount" value="<?php echo $total?> " />
-                        <input type="hidden" name="currency_code" value="GBP" />
-                        <input type="hidden" name="cancel_return" value="http://localhost/project_management/level5_project_management/cart-page.php">
-                        <input type="hidden" name="return" value="http://localhost/project_management/level5_project_management/payment-sucess-page.php" />
                         <div  class="row w-100 justify-content-center px-2">
-                            <div class="btn py-1 px-3 mt-1 mb-3 collection-btn">
-                                PayPal
-                            </div>
+                            <div class="btn py-1 px-3 mt-1 mb-3 check-collection">
+                                Payment
+                            </div> 
                         </div>
-                    </form>
+                        <div  class="row w-100 justify-content-center payment-container d-none py-3">
+                            <hr>
+
+                            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST" id="make-payment" name="make-payment">
+                                <input type="hidden" name="purchase-type" id="purchase-type" value="<?php echo $buynow;?>">
+                                <input type="hidden" name="business" value="sb-spqm012101291@business.example.com"/>
+                                <input type="hidden" name="cmd" value="_xclick" />
+                                <input type="hidden" name="amount" value="<?php echo $total?> " />
+                                <input type="hidden" name="currency_code" value="GBP" />
+                                <input type="hidden" name="cancel_return" value="http://localhost/project_management/level5_project_management/cart-page.php">
+                                <input type="hidden" name="return" value="http://localhost/project_management/level5_project_management/payment-sucess-page.php" />
+                                
+                                <div class=" col-6  mt-1 mb-3 paypal-btn text-center">
+                                <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online."> 
+                                <img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1"> 
+                            </form>
+                        </div> 
+                            
+                                                        <?php
+                                require('stripe_php_payment_gateway\config.php');
+                            ?>   
+                            <form action="payment-sucess-page.php" method="post">
+                                <input type="hidden" name="purchase-type" id="purchase-type" value="<?php echo $buynow;?>">
+                                <input type="hidden" name="amount" id="amount" value="<?php echo $total;?>">
+                                    <script
+                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="ll"
+                                        data-key="<?php echo $publishableKey?>"
+                                        data-amount="<?php echo $total*100;?> "
+                                        data-name="PhoenixMart"
+                                        data-description="Phoenix Mart"
+                                        data-image="https://i.ibb.co/kBR7cPC/logo.png"
+                                        data-currency="gbp"
+                                        data-email="nimisaraut@gmail.com"
+                                    >
+                                    </script>
+                            </form>
+                        </div>
                  </div>
             </div>
         </div>
@@ -264,7 +296,6 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
-
 <!-- custom script -->
 <script src="script/function.js"></script>
 <script src="script/script.js"></script>

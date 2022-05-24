@@ -330,7 +330,7 @@ include_once('function.php');
       <div class="row mt-2">
         <?php
 
-          $query="SELECT a.* FROM(SELECT PRODUCT_ID, PRICE,PRODUCT_NAME, COUNT_SUM/COUNT_TOTAL AS AVERAGE FROM (SELECT COUNT(*) AS COUNT_TOTAL,P.PRODUCT_ID,PRICE,PRODUCT_NAME ,SUM(STAR_RATING) AS COUNT_SUM FROM PRODUCT P JOIN REVIEW R ON R.PRODUCT_ID = P.PRODUCT_ID WHERE UPPER(DISABLED)='F' GROUP BY P.PRODUCT_ID, PRICE,PRODUCT_NAME ) ORDER BY AVERAGE DESC)a  WHERE ROWNUM <= 4";
+          $query="SELECT a.* FROM(SELECT PRODUCT_ID, PRICE,PRODUCT_NAME, TO_CHAR(COUNT_SUM/COUNT_TOTAL, 'fm99D0') AS AVERAGE FROM (SELECT COUNT(*) AS COUNT_TOTAL,P.PRODUCT_ID,PRICE,PRODUCT_NAME ,SUM(STAR_RATING) AS COUNT_SUM FROM PRODUCT P JOIN REVIEW R ON R.PRODUCT_ID = P.PRODUCT_ID WHERE UPPER(DISABLED)='F' GROUP BY P.PRODUCT_ID, PRICE,PRODUCT_NAME ) ORDER BY AVERAGE DESC)a  WHERE ROWNUM <= 4";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -511,35 +511,6 @@ include_once('function.php');
         </div>
       </div>
     </div>
-
-    <!-- discount  -->
-    <!-- <div class="row mb-5 bg-light">
-      efje
-    </div> -->
-
-
-
-      <!-- OUR TRADERS -->
-    <!-- <div class="row mt-5 mb-5 d-flex justify-content-center align-items-center">
-      <div class="col-12 text-center h3 my-green-font mb-2">
-        Our Traders
-      </div>
-      <div class="col-md-2 col-4">
-        <img src="image\shop\butcher.jpg" alt="profile" class="img-fluid trader-img" />
-      </div>
-      <div class="col-md-2 col-4">
-        <img src="image\shop\fishmonger.jpg" alt="profile" class="img-fluid trader-img" />
-      </div>
-      <div class="col-md-2 col-4">
-        <img src="image\shop\baker.jpg" alt="profile" class="img-fluid trader-img" />
-      </div>
-      <div class="col-md-2 col-4">
-        <img src="image\shop\greengrocer.jpg" alt="profile" class="img-fluid trader-img" />
-      </div>
-      <div class="col-md-2 col-4">
-        <img src="image\shop\deli.jpg" alt="profile" class="img-fluid trader-img" />
-      </div>
-    </div> -->
   </div>
 
  

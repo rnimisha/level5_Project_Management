@@ -382,14 +382,13 @@ label{
     align-items: center;
 }
 
-.action-success{
+.action-success, .pop-msg{
     width: 30%;
     position: fixed;
     top:40px;
     right: 0px;
     z-index: 9999999;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    opacity: 0;
 }
 
 .bx-error-circle

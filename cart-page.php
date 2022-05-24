@@ -28,6 +28,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
 </head>
 <body>
     <?php include_once('header.php');?>
+    <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
     <div class="container mt-5 pt-5 cart-container">
         <div class="alert alert-success cart-success action-success" role="alert">
             

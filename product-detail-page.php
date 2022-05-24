@@ -55,6 +55,9 @@ $img= getProductImage($product_id,$connection);
 </head>
 
 <body>
+    <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
     <div class="alert alert-danger action-success" role="alert">
         <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
     </div>

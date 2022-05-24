@@ -23,6 +23,9 @@
 </head>
 <body>
     <?php include_once('header.php');?>
+    <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
     <div class="success"></div>
     <div class="container mb-5 mt-5 pt-5">
         <div class="row w-100 mt-5 mx-auto register-us-container mb-2">

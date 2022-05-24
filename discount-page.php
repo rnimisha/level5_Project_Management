@@ -22,7 +22,9 @@ include_once('function.php');
 
 <body>
   <?php include_once('header.php');?>
-
+  <div class="loader">
+        <img src="image/loader.gif" />
+    </div>
   <div class="container-fluid mt-5">
         <!-- banner -->
         <div class="row mt-5 mb-3 p-0 d-md-block d-none">
