@@ -478,10 +478,13 @@ $(document).ready(function(){
                 var resp=jQuery.parseJSON(response);
                 if(resp.clear == true)
                 {
+               
                     removeStyle(resp);
+                    $('.close-review').click();
+                    location.reload();
                     $('.profile-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Your Review has been submitted.</h5>');
                     $('.profile-success').show().delay(5000).fadeOut();
-                    $('.close-review').click();
+                    
                 }
                 else{
                     inlineMsg(resp);

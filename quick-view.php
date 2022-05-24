@@ -32,11 +32,13 @@ if(isset($_POST['product_id']) && isset($_POST['type']) && strtolower($_POST['ty
 }
 
 echo '<div class="row">
+    <div class="cart-msg pop-msg">
+        </div>
         <div class="col-md-6">
             <img src="image/product/'.$img.'" class="img-fluid quick-img" >
         </div>
-        <div class="col-md-5 justify-content-center align-item-center">
-            <h1 class="pb-2">'.$name.'</h1>';
+        <div class="col-md-5 justify-content-center align-item-center " >
+            <h1 class="pb-2 cat-product-container" value="'.$product_id.'">'.$name.'</h1>';
             for($i=1; $i<=$avgRating; $i++)
             {
                 echo '<i class="bx bxs-star"></i>';
@@ -109,4 +111,6 @@ echo '<div class="row">
 
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>
+<script src="script/script.js"></script>
+
 

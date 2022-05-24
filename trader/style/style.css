@@ -396,7 +396,9 @@ td .fa-solid:hover{
 .hover-edit{
     opacity: 0;
 } */
-
+.modal, .modal-content{
+    z-index: 99999;
+}
 
 .preview-sign-out{
     width: 150px;

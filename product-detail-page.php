@@ -58,9 +58,11 @@ $img= getProductImage($product_id,$connection);
     <div class="loader">
         <img src="image/loader.gif" />
     </div>
-    <div class="alert alert-danger action-success" role="alert">
+    <!-- <div class="alert alert-danger action-success" role="alert">
         <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
-    </div>
+    </div> -->
+    <div class="cart-msg pop-msg">
+        </div>
     <div class="succ-msg"></div>
     <?php include_once('header.php');?>
     <div class="container-fluid product-detail-main-container mt-4">

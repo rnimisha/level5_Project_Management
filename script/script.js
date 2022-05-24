@@ -159,7 +159,8 @@ $(document).ready(function(){
         }
         else{
 
-            alert('There are no further quantity in stock to add in cart');
+            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />No more stock available to add.</h5></div>').delay(4000).fadeOut();
+            $('.cart-msg').show();
         }
         
     })
@@ -172,7 +173,8 @@ $(document).ready(function(){
             $('.quantity').text(current_val);
         }
         else{
-            alert('Quantity cannot be less than 1');
+            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />Quantity cant be less than 1.</h5></div>').delay(4000).fadeOut();
+            $('.cart-msg').show();
         }
     })
 
@@ -203,7 +205,8 @@ $(document).ready(function(){
         }
         else{
 
-            alert('There are no further quantity in stock to add in cart');
+            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />No more stock available to add.</h5></div>').delay(4000).fadeOut();
+            $('.cart-msg').show();
         }
         
     })
@@ -233,7 +236,8 @@ $(document).ready(function(){
 
         }
         else{
-            alert('Quantity cannot be less than 1');
+            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />Item cannot be less than 1.</h5></div>').delay(4000).fadeOut();
+            $('.cart-msg').show();
         }
     })
 
@@ -420,7 +424,7 @@ $(document).ready(function(){
                 {
                     removeStyle(resp);
                     $('.close-report').click();
-                    $('.succ-msg').html('<div class="alert alert-succes py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
+                    $('.succ-msg').html('<div class="alert alert-succes pop-msg py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
                     $('.succ-msg').show();
                 }
                 else{
@@ -428,7 +432,7 @@ $(document).ready(function(){
                 }
             }
         });
-        return false;
+        // return false;
     });
 
     $(".search-icon").mouseover(function(){

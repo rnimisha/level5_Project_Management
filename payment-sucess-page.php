@@ -14,6 +14,7 @@ require('stripe_php_payment_gateway\config.php');
     if(isset($_GET['PayerID']))
     {
         $payment_id= $_GET['PayerID'];
+        $method='PAYPAL';
     }
     else if(isset($_POST['stripeToken'])){
         \Stripe\Stripe::setVerifySslCerts(false);
@@ -28,6 +29,7 @@ require('stripe_php_payment_gateway\config.php');
             "source"=>$token,
         ));
         $payment_id=$token;
+        $method='STRIPE';
     }
     else
     {
@@ -107,7 +109,7 @@ require('stripe_php_payment_gateway\config.php');
         }
         
         //insert payment details
-        $paymentInsert="INSERT INTO PAYMENT(PAYMENT_METHOD, ACCOUNT_ID, ORDER_ID) VALUES('PAYPAL', '$payment_id', $order_id)";
+        $paymentInsert="INSERT INTO PAYMENT(PAYMENT_METHOD, ACCOUNT_ID, ORDER_ID) VALUES('$method', '$payment_id', $order_id)";
         $parsedPayment=oci_parse($connection, $paymentInsert);
         if(oci_execute($parsedPayment))
         {

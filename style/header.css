@@ -38,6 +38,9 @@
 #sticky-nav {
     position: fixed;
     top: 0;
+    z-index: 99997;
+}
+.modal{
     z-index: 99999;
 }
 

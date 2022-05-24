@@ -5,7 +5,7 @@
 </button>
 
 <!-- Modal for quick view-->
-<div class="modal fade" id="popProductPreview" tabindex="-1" role="dialog" aria-labelledby="popProductPreviewTitle"
+<div class="modal fade" style="z-index:99999" id="popProductPreview" tabindex="-1" role="dialog" aria-labelledby="popProductPreviewTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

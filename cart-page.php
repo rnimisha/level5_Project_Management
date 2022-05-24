@@ -32,8 +32,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
         <img src="image/loader.gif" />
     </div>
     <div class="container mt-5 pt-5 cart-container">
-        <div class="alert alert-success cart-success action-success" role="alert">
-            
+        <div class="cart-msg pop-msg">
         </div>
     <?php
         $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);
@@ -210,7 +209,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <?php
         include_once('popup-modal.php');
     ?>
-    <div class="container-fluid mt-5 pt-5">
+    <div class="container-fluid mt-5 pt-5 px-0 mx-0">
     <?php include_once('footer.php');?>
     </div>
 </body>

@@ -35,7 +35,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <div class="container mt-5 pt-5 cart-container">
         <div class="alert alert-success cart-success action-success" role="alert">
         </div>
-        <div class="fail-container">
+        <div class="fail-container pop-msg">
         </div>
     <?php
         $item_count=checkUserGotCartItem($_SESSION['phoenix_user'], $connection);

@@ -87,8 +87,10 @@ include_once('function.php');
     <div class="loader">
         <img src="image/loader.gif" />
     </div>
-    <div class="alert alert-danger action-success" role="alert">
+    <!-- <div class="alert alert-danger action-success" role="alert">
         <h5><strong><i class='bx bx-error-circle'></i> Failure!</strong> <br />No more stock available to add.</h5>
+    </div> -->
+    <div class="cart-msg pop-msg">
     </div>
     <div class="container-fluid cat-page mt-5 pt-4">
         <div class="row w-100 p-5">
@@ -587,7 +589,7 @@ include_once('function.php');
                     if($view=='list')
                     {
                     ?>
-                    <div class="list-view-container row w-100 d-flex p-3 mx-auto">
+                    <div class="list-view-container row w-100 d-flex p-3 mx-auto cat-product-container" value="<?php echo $row['PRODUCT_ID'];?>">
                         <div class="col-md-4 list-prod-img">
                             <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
                                 class="img-fluid product-pic" alt="product-img" />
@@ -629,16 +631,16 @@ include_once('function.php');
                                         ?>
                                     <span class="prod-price"><?php echo $row['PRICE']; ?></span>
                                     <?php
-                                    }
+                                    } 
                                 ?>
                                 </div>
                                 <div class="my-1">
                                     <?php echo getDescription($row['PRODUCT_ID'], $connection); ?>
                                 </div>
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <div class="py-2 second-wrapper d-flex justify-content-center align-items-center">
+                                    <a href="checkout.php?buynow=yes&pid=<?php echo $row['PRODUCT_ID']; ?>" class="py-2 second-wrapper d-flex justify-content-center align-items-center">
                                         <span>Buy Now</span>
-                                    </div>
+                                    </a>
                                     <div class="list-options">
                                         <i class='bx bx-search-alt-2 quick-view-product'
                                             value="<?php echo $row['PRODUCT_ID'];?>"></i>

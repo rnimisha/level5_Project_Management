@@ -1,8 +1,8 @@
 $('.action-success').hide();
+
 $(document).ready(function(){
 
-   
-    //add to cart on click
+    //add to caart on click
     $('.add-to-cart').click(function(){
         var product_id=$(this).attr('value');
         $(this).removeClass('bx-cart-alt');
@@ -25,7 +25,9 @@ $(document).ready(function(){
                 else{
                     if(resp.stocklimit == true)
                     {
-                        $('.action-success').show().delay(3000).fadeOut();
+                        // $('.action-success').show().delay(3000).fadeOut();
+                        $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />No more stock available to add.</h5></div>').delay(4000).fadeOut();
+                        $('.cart-msg').show();
                     }
                     else{
                         $("#item-added-modal").click();
@@ -58,7 +60,9 @@ $(document).ready(function(){
                 else{
                     if(resp.stocklimit == true)
                     {
-                        $('.action-success').show().delay(3000).fadeOut();
+                        // $('.action-success').show().delay(3000).fadeOut();
+                        $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />No more stock available to add.</h5></div>').delay(4000).fadeOut();
+                        $('.cart-msg').show();
                     }
                     else{
                         $("#item-added-modal").click();
@@ -142,8 +146,6 @@ $(document).ready(function(){
                     current.closest('.cart-items').hide();
                     location.reload();
                 }
-                $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
-                $('.action-success').show().delay(3000).fadeOut();
             }
         });
     });
@@ -202,33 +204,36 @@ $(document).ready(function(){
     });
 
     $('.submit-coupoun').submit(function(){
-        var coupon= $('#coupon-code').val();
+        var coupon= $.trim($('#coupon-code').val());
         var subtotal_coupon=$('#subtotal_coupon').val();
-        $.ajax({
-            type: "POST",
-            url: 'check-out-valid.php',
-            data: {
-                coupon: coupon,
-                subtotal_coupon:subtotal_coupon,
-                action:'apply-coupon'
-            },
-            success: function(response){
-                // console.log(response);
-                var resp=jQuery.parseJSON(response);
-                if(resp.clear == true) {
-                    // $('#valid-coupon').val(coupon);
-                    // clearFormValidation();
-                    removeStyle(resp);
-                    var total = parseFloat(resp.total);
-                    var discount = subtotal_coupon-total;
-                    $('.total-with-disc').html("<span>&#163;</span>"+total);
-                    $('.overall-dis').html("<span>&#163;</span>"+discount.toFixed(2));
+        if(coupon !='')
+        {
+            $.ajax({
+                type: "POST",
+                url: 'check-out-valid.php',
+                data: {
+                    coupon: coupon,
+                    subtotal_coupon:subtotal_coupon,
+                    action:'apply-coupon'
+                },
+                success: function(response){
+                    // console.log(response);
+                    var resp=jQuery.parseJSON(response);
+                    if(resp.clear == true) {
+                        // $('#valid-coupon').val(coupon);
+                        // clearFormValidation();
+                        removeStyle(resp);
+                        var total = parseFloat(resp.total);
+                        var discount = subtotal_coupon-total;
+                        $('.total-with-disc').html("<span>&#163;</span>"+total);
+                        $('.overall-dis').html("<span>&#163;</span>"+discount.toFixed(2));
+                    }
+                    else{
+                        inlineMsg(resp);
+                    }
                 }
-                else{
-                    inlineMsg(resp);
-                }
-            }
-        });
+            });
+        }    
         return false;
     });
 });

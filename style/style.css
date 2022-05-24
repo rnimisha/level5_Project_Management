@@ -472,7 +472,7 @@ i.bx.bxs-heart {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     z-index: 1000;
-    background-color: #e8f2db;
+    background-color: #d7dfd2;
     
 }
 .detail-nav:hover{
@@ -482,7 +482,7 @@ i.bx.bxs-heart {
 }
 .active-detail-nav{
     background-color: #ffffff;
-    border: 1px solid #e8f2db;
+    border: 1px solid #d7dfd2;
     border-bottom: 6px solid #ffffff;
     color: #78967e;
     box-shadow: 0px -8px 8px -8px #d7e8c0, -8px 0 8px -8px #d7e8c0;
@@ -496,7 +496,7 @@ i.bx.bxs-heart {
 }
 .detail-into-container{
     margin-left: 1px;
-    border:1px solid #e8f2db;
+    border:1px solid #d7dfd2;
     border-radius: 10px;
     border-top-left-radius: 0px;
     margin-top: -1px;  

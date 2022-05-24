@@ -36,7 +36,8 @@ else{
 </head>
 <body>
   <?php include_once('header.php');?>
-
+  <div class="cart-msg pop-msg">
+    </div>
   <div class="container-fluid mt-5">
         <!-- banner -->
         <div class="row mt-5 mb-3 pt-4 shop-header p-0 d-flex justify-content-center align-items-center">
@@ -64,13 +65,13 @@ else{
         <div class="row mt-3 mb-5">
             <?php
 
-            $query="SELECT * FROM PRODUCT WHERE SHOP_ID=$shop_id";
+            $query="SELECT * FROM PRODUCT WHERE SHOP_ID=$shop_id AND STOCK_QUANTITY>0 AND UPPER(DISABLED)='F'";
             $parsed=oci_parse($connection, $query);
             oci_execute($parsed);
             while(($row = oci_fetch_assoc($parsed)) != false) 
             {
             ?>
-            <div class="col-lg-3 col-sm-6 cat-product-container mt-1" value="<?php echo $row['PRODUCT_ID'];?>">
+            <div class="col-lg-3 col-sm-6 cat-product-container mt-3" value="<?php echo $row['PRODUCT_ID'];?>">
             <div class="cat-product col-12 text-center">
                 <div class="inner-img-container">
                 <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
@@ -156,7 +157,9 @@ else{
         </div>
     </div>
 
-  <?php include_once('footer.php');?>
+  <?php 
+  include_once('popup-modal.php');
+  include_once('footer.php');?>
 
 </body>
 <!-- external script -->

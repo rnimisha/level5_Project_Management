@@ -31,9 +31,9 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
     <div class="loader">
         <img src="image/loader.gif" />
     </div>
+   
     <div class="container mt-5 pt-5 cart-container">
         <div class="alert alert-success cart-success action-success" role="alert">
-            
         </div>
         <?php
         $item_count=checkWishlistCount($_SESSION['phoenix_user'], $connection);

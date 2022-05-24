@@ -25,6 +25,8 @@ include_once('function.php');
   <div class="loader">
         <img src="image/loader.gif" />
     </div>
+    <div class="cart-msg pop-msg">
+    </div>
   <div class="container-fluid mt-5">
         <!-- banner -->
         <div class="row mt-5 mb-3 p-0 d-md-block d-none">
@@ -43,13 +45,13 @@ include_once('function.php');
         <div class="row mt-3 mb-5">
             <?php
 
-            $query="SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE";
+            $query="SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE AND STOCK_QUANTITY>0 AND UPPER(DISABLED)='F'";
             $parsed=oci_parse($connection, $query);
             oci_execute($parsed);
             while(($row = oci_fetch_assoc($parsed)) != false) 
             {
             ?>
-            <div class="col-lg-3 col-sm-6 cat-product-container mt-1" value="<?php echo $row['PRODUCT_ID'];?>">
+            <div class="col-lg-3 col-sm-6 cat-product-container mt-3" value="<?php echo $row['PRODUCT_ID'];?>">
             <div class="cat-product col-12 text-center">
                 <div class="inner-img-container">
                 <img src="image\product\<?php echo(getProductImage($row['PRODUCT_ID'],$connection)[0]); ?>"
@@ -135,7 +137,9 @@ include_once('function.php');
         </div>
     </div>
 
-  <?php include_once('footer.php');?>
+  <?php 
+  include_once('popup-modal.php');
+  include_once('footer.php');?>
 
 </body>
 <!-- external script -->

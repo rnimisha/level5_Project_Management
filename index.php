@@ -24,6 +24,8 @@ include_once('function.php');
   <?php include_once('header.php');?>
   <!-- banner -->
   <div class="container mt-5 pt-5">
+    <div class="cart-msg pop-msg">
+    </div>
     <div class="row mt-4">
       <div class="col-lg-4 d-lg-block d-none">
         <div>
@@ -103,7 +105,7 @@ include_once('function.php');
       <div class="row px-5 pb-5">
         <?php
 
-          $query="SELECT a.* FROM (SELECT COUNT(P.PRODUCT_ID) AS COUNT_ORDER, PRODUCT_NAME, PRICE, P.PRODUCT_ID AS PRODUCT_ID FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE UPPER(DISABLED)='F' GROUP BY P.PRODUCT_ID, PRODUCT_NAME, PRICE ORDER BY COUNT(P.PRODUCT_ID) DESC)a WHERE ROWNUM <= 6";
+          $query="SELECT a.* FROM (SELECT COUNT(P.PRODUCT_ID) AS COUNT_ORDER, PRODUCT_NAME, PRICE, P.PRODUCT_ID AS PRODUCT_ID FROM PRODUCT P JOIN ORDER_ITEM OI ON P.PRODUCT_ID=OI.PRODUCT_ID WHERE UPPER(DISABLED)='F'AND STOCK_QUANTITY>0 GROUP BY P.PRODUCT_ID, PRODUCT_NAME, PRICE ORDER BY COUNT(P.PRODUCT_ID) DESC)a WHERE ROWNUM <= 6";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -205,7 +207,7 @@ include_once('function.php');
       <div class="row mt-2">
         <?php
 
-          $query="SELECT a.* FROM(SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F' ORDER BY PRODUCT_ID DESC)a WHERE ROWNUM <= 4";
+          $query="SELECT a.* FROM(SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F' AND STOCK_QUANTITY>0 ORDER BY PRODUCT_ID DESC)a WHERE ROWNUM <= 4";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -330,7 +332,7 @@ include_once('function.php');
       <div class="row mt-2">
         <?php
 
-          $query="SELECT a.* FROM(SELECT PRODUCT_ID, PRICE,PRODUCT_NAME, TO_CHAR(COUNT_SUM/COUNT_TOTAL, 'fm99D0') AS AVERAGE FROM (SELECT COUNT(*) AS COUNT_TOTAL,P.PRODUCT_ID,PRICE,PRODUCT_NAME ,SUM(STAR_RATING) AS COUNT_SUM FROM PRODUCT P JOIN REVIEW R ON R.PRODUCT_ID = P.PRODUCT_ID WHERE UPPER(DISABLED)='F' GROUP BY P.PRODUCT_ID, PRICE,PRODUCT_NAME ) ORDER BY AVERAGE DESC)a  WHERE ROWNUM <= 4";
+          $query="SELECT a.* FROM(SELECT PRODUCT_ID, PRICE,PRODUCT_NAME, TO_CHAR(COUNT_SUM/COUNT_TOTAL, 'fm99D0') AS AVERAGE FROM (SELECT COUNT(*) AS COUNT_TOTAL,P.PRODUCT_ID,PRICE,PRODUCT_NAME ,SUM(STAR_RATING) AS COUNT_SUM FROM PRODUCT P JOIN REVIEW R ON R.PRODUCT_ID = P.PRODUCT_ID WHERE UPPER(DISABLED)='F' AND STOCK_QUANTITY>0 GROUP BY P.PRODUCT_ID, PRICE,PRODUCT_NAME ) ORDER BY AVERAGE DESC)a  WHERE ROWNUM <= 4";
           $parsed=oci_parse($connection, $query);
           oci_execute($parsed);
           while(($row = oci_fetch_assoc($parsed)) != false) 
@@ -450,7 +452,7 @@ include_once('function.php');
           <div class="col-lg-8">
             <div class="row p-0 m-0">
               <?php
-                $discount_query="SELECT a.* FROM(SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE AND UPPER(DISABLED)='F')a  WHERE ROWNUM <= 4";
+                $discount_query="SELECT a.* FROM(SELECT PRODUCT_NAME, PRICE, DISCOUNT_RATE, DISCOUNT_ID, P.PRODUCT_ID FROM PRODUCT P JOIN DISCOUNT D ON P.PRODUCT_ID=D.PRODUCT_ID WHERE EXPIRY_DATE>=SYSDATE AND START_DATE<=SYSDATE AND UPPER(DISABLED)='F' AND STOCK_QUANTITY>0)a  WHERE ROWNUM <= 4";
                 $parsed_disc=oci_parse($connection, $discount_query);
                 oci_execute($parsed_disc);
                 while (($row = oci_fetch_assoc($parsed_disc)) != false) {
