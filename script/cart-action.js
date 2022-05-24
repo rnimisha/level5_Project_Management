@@ -177,7 +177,7 @@ $(document).ready(function(){
     });
 
     var wishlist_count=$('#wislist-item-count').attr('value');
-    //remove from cart
+   
     $('.remove-wishlist-item').click(function(){
        
         var current=$(this);
@@ -202,6 +202,29 @@ $(document).ready(function(){
             }
         });
     });
+
+  
+    $('#remove-all-wishlist-btn').click(function(){
+        var current=$(this);
+        
+        $.ajax({
+            type: "POST",
+            url: 'cart-action.php',
+            data: {
+                action:'remove-all-wishlist-btn'
+            },
+            success: function(response){
+                var resp=jQuery.parseJSON(response);
+                // console.log(response);
+                if(resp.valid == true) {
+                    location.reload();
+                    // $('.cart-success').html('<h5><strong><i class="fa-regular fa-circle-check"></i></i> Sucess! </strong> <br />Removed from Cart.</h5>');
+                    // $('.action-success').show().delay(3000).fadeOut();
+                }
+            }
+        });
+    });
+
 
     $('.submit-coupoun').submit(function(){
         var coupon= $.trim($('#coupon-code').val());
