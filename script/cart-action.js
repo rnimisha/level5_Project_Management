@@ -230,6 +230,7 @@ $(document).ready(function(){
     $('.submit-coupoun').submit(function(){
         var coupon= $.trim($('#coupon-code').val());
         var subtotal_coupon=$('#subtotal_coupon').val();
+
         if(coupon !='')
         {
             $.ajax({

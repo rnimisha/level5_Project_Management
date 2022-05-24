@@ -113,6 +113,8 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                             <input type="hidden" value="<?php echo $row['QUANTITY'];?>" id="real-quantity" />
                             <input type="hidden" value="<?php echo $row['STOCK_QUANTITY'];?>" id="stock-amount" />
                             <input type="hidden" value="<?php echo $row['PRODUCT_ID'];?>" class="cart-product-id" />
+                            <input type="hidden" value="<?php echo $row['MIN_ORDER'];?>" class="mimimum-order" />
+                            <input type="hidden" value="<?php echo $row['MAX_ORDER'];?>" class="maximum-order" />
                         </div>
                     </div>
                     <div class="col-2 each-subtotal d-none d-md-flex ">

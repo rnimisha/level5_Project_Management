@@ -216,7 +216,6 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                 <span>&#163;</span><?php echo $total;?>
                             </div>
                         </div>
-                        <hr>
                         <div  class="row w-100 justify-content-center px-2">
                             <div class="btn py-1 px-3 mt-1 mb-3 check-collection">
                                 Payment

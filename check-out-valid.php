@@ -59,7 +59,7 @@
 
     if(isset($_POST['action']) && $_POST['action']=='save-detail')
     {
-        if(isset($_POST['day_selected']) && isset($_POST['time_selected']))
+        if(isset($_POST['day_selected']) && isset($_POST['time_selected']) && !empty(trim($_POST['time_selected'])) && !empty($_POST['day_selected']))
         {
             $day=$_POST['day_selected'];
             $time=$_POST['time_selected'];
@@ -78,6 +78,7 @@
                 $_SESSION['buynow']=$_POST['buynow'];
             }
             }
+
             echo json_encode(1);   
         }
 

@@ -182,30 +182,39 @@ $(document).ready(function(){
     var overallsubtotal= parseFloat($('.over-all-subtotal').attr('value'));
     $('.plus-cart').click(function(e){
         var stock= parseInt($(this).closest('.wrapper').find('#stock-amount').val());
+        var max_order= parseInt($(this).closest('.wrapper').find('.maximum-order').val());
         var minimum_val_cart= parseInt($(this).closest('.wrapper').find('#real-quantity').val());
         var price=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'));
         if(stock > minimum_val_cart)
         {
-            minimum_val_cart++;
-            $(this).closest('.wrapper').find('#real-quantity').val(minimum_val_cart);
-            $(this).closest('.wrapper').find('.quantity').text(minimum_val_cart);
-            subtotal = (price*minimum_val_cart).toFixed(2);
-            $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
+            if(max_order > minimum_val_cart)
+            {
+                minimum_val_cart++;
+                $(this).closest('.wrapper').find('#real-quantity').val(minimum_val_cart);
+                $(this).closest('.wrapper').find('.quantity').text(minimum_val_cart);
+                subtotal = (price*minimum_val_cart).toFixed(2);
+                $(this).closest('.cart-items').find('.each-subtotal').html("<span>&#163;</span>"+subtotal);
 
-            overallsubtotal = overallsubtotal + price;
-            $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
-            $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
-            $('#subtotal_coupon').val(overallsubtotal.toFixed(2));
-            var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
-            changeQuantity(minimum_val_cart, pid);
+                overallsubtotal = overallsubtotal + price;
+                $('.over-all-subtotal').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
+                $('.total-with-disc').html("<span>&#163;</span>"+overallsubtotal.toFixed(2));
+                $('#subtotal_coupon').val(overallsubtotal.toFixed(2));
+                var pid= parseInt($(this).closest('.wrapper').find('.cart-product-id').val());
+                changeQuantity(minimum_val_cart, pid);
 
-            total_cart_items++;
-            $('#total-item-count').html('Total items : '+total_cart_items);
-            $('#total-item-count').attr('value', total_cart_items);
+                total_cart_items++;
+                $('#total-item-count').html('Total items : '+total_cart_items);
+                $('#total-item-count').attr('value', total_cart_items);
+            }
+            else{
+
+                $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />You can buy maximum of '+max_order+'.</h5></div>').delay(4000).fadeOut();
+                $('.cart-msg').show();
+            }
         }
         else{
 
-            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />No more stock available to add.</h5></div>').delay(4000).fadeOut();
+            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />No more stock available.</h5></div>').delay(4000).fadeOut();
             $('.cart-msg').show();
         }
         
@@ -213,8 +222,9 @@ $(document).ready(function(){
 
     $('.minus-cart').click(function(){
         var current_val=  parseFloat($(this).closest('.wrapper').find('#real-quantity').val());
+        var min_order= parseInt($(this).closest('.wrapper').find('.mimimum-order').val());
         var price=parseFloat($(this).closest('.cart-items').find('.individual-price').attr('value'));
-        if(current_val > 1){
+        if(current_val > min_order){
             current_val--;
             $(this).closest('.wrapper').find('#real-quantity').val(current_val);
             $(this).closest('.wrapper').find('.quantity').text(current_val);
@@ -236,7 +246,7 @@ $(document).ready(function(){
 
         }
         else{
-            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />Item cannot be less than 1.</h5></div>').delay(4000).fadeOut();
+            $('.cart-msg').html('<div class="alert alert-danger pop-msg " role="alert"><h5><strong><i class="bx bx-error-circle"></i> Failure!</strong> <br />Item cannot be less than '+min_order+'.</h5></div>').delay(4000).fadeOut();
             $('.cart-msg').show();
         }
     })
@@ -299,6 +309,8 @@ $(document).ready(function(){
             $('#dynamic-msg').click();
         }
         else{
+
+            
             window.location.href = 'checkout.php';
         }
     });
@@ -351,7 +363,7 @@ $(document).ready(function(){
             $('.fail-container').html('<div class="alert alert-warning pop-msg py-4" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please Select Collection Slot before payment.</div>').delay(4000).fadeOut();
             $('.fail-container').show();
 
-        }
+        } 
         else{
             $.ajax({
                 type: "POST",

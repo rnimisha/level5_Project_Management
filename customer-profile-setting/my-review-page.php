@@ -79,7 +79,7 @@
             <div class="col-md-9 d-flex justify-content-center align-items-start">
                 <div class="row w-100 justify-content-center align-items-start">
                     <div class="col-12 mt-2">
-                        <div class="setting-nav align-items-center pb-4">
+                        <div class="setting-nav order-cust-container align-items-center pb-4">
                             <div class="border-bottom pt-3 pb-2 d-flex justify-content-center text-center">
                                 <div class="col-md-6 my-green-font reviewed-select"><b><i class="fa-solid fa-comment-dots"></i>&nbsp;
                                         Review History</b></div>
