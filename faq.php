@@ -103,12 +103,12 @@ include_once('function.php');
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="heading mb-0">
-                                    <a class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapsei"> What are your policys<i class="fa fa-angle-down"></i></a>
+                                    <a class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapsei"> How to sell product with Phoenix Mart?<i class="fa fa-angle-down"></i></a>
                                 </h2>
                             </div>
                             <div id="collapsei" class="collapse" data-parent="#accordion-id">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, eveniet illum aliquid dolorem laboriosam iure nam nulla reiciendis cumque officiis quidem assumenda provident consequatur commodi veniam eius reprehenderit, expedita cum?
+                                    Trader can sell products that are unique to them. First step is registration which needs approvals. After approval products can be sold.
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@ include_once('function.php');
                             </div>
                             <div id="collapseii" class="collapse" data-parent="#accordion-id">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, eveniet illum aliquid dolorem laboriosam iure nam nulla reiciendis cumque officiis quidem assumenda provident consequatur commodi veniam eius reprehenderit, expedita cum?
+                                    Firstly login is required. You can search your desired product with text or filter with options available. Then add the required product to cart which can be brought by checking out with payment. You can directly procceed to checkout by clicking buy now button.
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,11 @@ include_once('function.php');
                             </div>
                             <div id="collapseiii" class="collapse" data-parent="#accordion-id">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, eveniet illum aliquid dolorem laboriosam iure nam nulla reiciendis cumque officiis quidem assumenda provident consequatur commodi veniam eius reprehenderit, expedita cum?
+                                    We send the ordered goods at different collection location which can be picked up at mentioned time.<br>
+                                    Available Slots are:<br>
+                                    - WEDNESDAY (10AM - 1PM, 1PM - 4PM, 4PM - 7PM)<br>
+                                    - THURSDAY (10AM - 1PM, 1PM - 4PM, 4PM - 7PM)<br>
+                                    - FRIDAY (10AM - 1PM, 1PM - 4PM, 4PM - 7PM)
                                 </div>
                             </div>
                         </div>
@@ -147,7 +151,7 @@ include_once('function.php');
                             </div>
                             <div id="collapseiv" class="collapse" data-parent="#accordion-id">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, eveniet illum aliquid dolorem laboriosam iure nam nulla reiciendis cumque officiis quidem assumenda provident consequatur commodi veniam eius reprehenderit, expedita cum?
+                                    We dont feature home delievry for the time being.
                                 </div>
                             </div>
                         </div>
@@ -160,7 +164,7 @@ include_once('function.php');
                             </div>
                             <div id="collapsev" class="collapse" data-parent="#accordion-id">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, eveniet illum aliquid dolorem laboriosam iure nam nulla reiciendis cumque officiis quidem assumenda provident consequatur commodi veniam eius reprehenderit, expedita cum?
+                                    Ordered goods cannot be exchanged or returned.
                                 </div>
                             </div>
                         </div>
@@ -173,7 +177,7 @@ include_once('function.php');
                             </div>
                             <div id="collapsevi" class="collapse" data-parent="#accordion-id">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, eveniet illum aliquid dolorem laboriosam iure nam nulla reiciendis cumque officiis quidem assumenda provident consequatur commodi veniam eius reprehenderit, expedita cum?
+                                    We support two payment methods. Stripe and Paypal.
                                 </div>
                             </div>
                         </div>

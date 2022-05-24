@@ -278,10 +278,18 @@ function checkCartProduct($product_id, $user_id, $connection)
 }
 
 
-//insert into cart
+//insert into cart if not in cart at all
 function insertCartProduct($product_id, $user_id,$quantity, $connection)
 {
-    $query="INSERT INTO CART_ITEM(QUANTITY, PRODUCT_ID, USER_ID) VALUES($quantity, $product_id, $user_id)";
+    $min_quantity=$quantity;
+    $query_min_order="SELECT MIN_ORDER FROM PRODUCT WHERE PRODUCT_ID=$product_id";
+    $parsed_min=oci_parse($connection, $query_min_order);
+    $execute=oci_execute($parsed_min);
+    $row = oci_fetch_assoc($result);
+    $min_quantity=$row['MIN_ORDER'];
+    oci_free_statement($parsed_min);
+
+    $query="INSERT INTO CART_ITEM(QUANTITY, PRODUCT_ID, USER_ID) VALUES($min_quantity, $product_id, $user_id)";
     $result=oci_parse($connection, $query);
 
     oci_execute($result);

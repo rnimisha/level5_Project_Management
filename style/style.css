@@ -848,7 +848,9 @@ footer{
 }
 .shop-header{
     /* background-color: #78967e; */
-    background-color: #c4ccc5;
+    /* background-color: #c4ccc5; */
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(196,204,197,1) 45%);
     min-height: 250px;
 }
 
