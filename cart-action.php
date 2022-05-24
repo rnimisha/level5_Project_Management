@@ -84,10 +84,6 @@
             updateCartItemQuantity($_POST['product_id'],$_POST['quantity'], $_SESSION['phoenix_user'], $connection);
         }
 
-        if($_POST['action']=='remove-all-wishlist-btn')
-        {
-            removeFromCart($_POST['product_id'], $_SESSION['phoenix_user'], $connection);
-        }
         
 
         $cart_action['valid']=true;
@@ -98,6 +94,11 @@
         {
         removeAllFromCart($_SESSION['phoenix_user'], $connection);
         }
+        if($_POST['action']=='remove-all-wishlist-btn')
+        {
+            removeAllFromWishlist( $_SESSION['phoenix_user'], $connection);
+        }
+        
         $cart_action['valid']=true;
     }
     

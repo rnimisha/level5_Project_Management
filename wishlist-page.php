@@ -46,8 +46,8 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                 <div class="text-muted" id="wislist-item-count" value="<?php echo $item_count;?>">Total items : <?php echo $item_count;?></div>
             </div>
             <div class="col-6">
-                <div class="text-right text-muted">
-                    <i class="fa-solid fa-heart-crack text-muted"></i> Remove All</i> 
+                <div class="text-right text-muted remove-all-wishlist-btn">
+                    <i class="fa-solid fa-heart-crack text-muted remove-all-wishlist-btn"></i> Remove All</i> 
                 </div>
             </div>
         </div>

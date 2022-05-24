@@ -263,7 +263,7 @@ label{
     transform: scale(1.1);
 }
 /* quick view */
-.quick-view-product, .add-to-cart, #add-cart-with-quantity, #buy-now-detail{
+.quick-view-product, .add-to-cart, #add-cart-with-quantity, #buy-now-detail, .remove-all-wishlist-btn{
     cursor: pointer;
     transition: 0.5s 0s linear;
 }

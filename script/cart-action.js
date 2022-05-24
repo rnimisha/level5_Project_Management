@@ -204,8 +204,9 @@ $(document).ready(function(){
     });
 
   
-    $('#remove-all-wishlist-btn').click(function(){
+    $('.remove-all-wishlist-btn').click(function(){
         var current=$(this);
+        alert(1);
         
         $.ajax({
             type: "POST",
