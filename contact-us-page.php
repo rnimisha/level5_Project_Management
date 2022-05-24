@@ -45,16 +45,16 @@ include_once('function.php');
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <input type="text" name="uemail"  class="form-control" id="useremail" placeholder="Email"/>
-                            <span id="contact_email_error" style="color: red"></span><br/>
+                            <span id="contact_email_error" class="invalid-feedback"></span><br/>
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" name="ucontact"  class="form-control" id="contact" placeholder="Contact"/>
-                            <span id="contact_error" style="color: red"></span><br/>
+                            <div id="contact_error" class="invalid-feedback" ></div><br/>
                         </div>
                     </div>
                     <div class="form-group">
                         <textarea name="message" class="form-control" id="message" placeholder="Message"></textarea>
-                        <span id="message_error" style="color: red"></span><br/>
+                        <div id="message_error" class="invalid-feedback"></div><br/>
                     </div>
                     <div class="row w-100 justify-content-end submit-contact">
                         <input type="submit" class="btn py-2 px-4" id="contact-btn" name="contactus" value="Send"/>

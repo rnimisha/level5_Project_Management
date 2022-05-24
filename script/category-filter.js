@@ -103,6 +103,12 @@ $(document).ready(function(){
         $('#submit-filter').click();
     });
 
+
+    $('.filter-mini-btn').click(function(){
+        alert(1);
+        $('#filter-option').css({"display":'flex'});
+    });
+
     $('#list-view-product').click(function(){
 
         $('#view-type').val('list');

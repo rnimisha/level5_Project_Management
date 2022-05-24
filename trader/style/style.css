@@ -166,7 +166,7 @@ form .btn{
     margin-right: 10px;
 }
 .btn:hover{
-    background-color: #dfb7a7;
+    background-color: #f4ebc8;
     transition: background-color 0.7s linear;
     box-shadow: 0px 0px 5px rgb(144, 139, 139);
     color:#ffffff;
@@ -184,11 +184,11 @@ form .btn{
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8);
-    color: #dfb7a7;
+    color: #f4ebc8;
 }
 
 #header .bx:hover, #header .fa-solid{
-    background-color: #dfb7a7;
+    background-color: #f4ebc8;
 }
 #picture, #personal, #pass-change, #about-me-div, #setting-div, #product-photo, #product-general, .hover-cat{
     cursor: pointer;
@@ -200,7 +200,7 @@ form .btn{
 }
 
 .hover-cat:hover{
-    color: #dfb7a7;
+    color: #f4ebc8;
 }
  
 /* image profile picture */
@@ -359,7 +359,7 @@ thead th:nth-child(2),thead th:nth-child(3),thead th:nth-child(4),thead th:nth-c
 }
 
 td .fa-solid{
-    color: #dfb7a7;
+    color: #f4ebc8;
     cursor: pointer;
 }
 
@@ -380,7 +380,7 @@ td .fa-solid:hover{
 }
 
 .add-product .btn, .add-discount, .add-shop .btn{
-    background-color: #dfb7a7;
+    background-color: #f4ebc8;
 }
 
 .add-product .btn:hover, .add-discount:hover{

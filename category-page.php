@@ -45,6 +45,9 @@ include_once('function.php');
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="contact-us-page.php">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-3" href="faq.php">FAQ</a>
+                    </li>
                 </ul>
                 <div class="justify-content-right navbar-nav search-bar transition-effect d-none ">
                     <form class="form-inline ml-auto" id="text-filter">
@@ -96,7 +99,7 @@ include_once('function.php');
         <div class="row w-100 p-5">
             <div class="col-md-3">
                 <!-- category option list -->
-                <div class="row" id="filter-option">
+                <div class="row mb-2" id="filter-option">
                     <div class="col-11 mx-auto justify-content-center align-items-center" id="filter-content">
                         <!-- <form id="price-filter-form" action="category-page.php" method="GET"> -->
                         <!-- jquery ui -->
@@ -283,6 +286,7 @@ include_once('function.php');
                         </div>
                     </div>
                     <div class="col-lg-3  col-sm-4 ">
+                        
                         <select class="custom-select form-control" id="sort-product-option" name="sort-product-option">
                             <option value=""
                                 <?php if(isset($_GET['sort-product-option']) && $_GET['sort-product-option']==""){echo 'selected';}?>>
@@ -301,6 +305,9 @@ include_once('function.php');
                                 Price : High to Low</option>
                         </select>
                     </div>
+                </div>
+                <div class="row justify-content-center my-2" id="filter-mini">
+                    <div class="btn px-4 filter-mini-btn">More Filter options</div>
                 </div>
                 <input type="hidden" id="page-value" name="page-value">
                 <input type="hidden" id="view-type" name="view-type"
@@ -494,7 +501,7 @@ include_once('function.php');
                     {
 
                     ?>
-                    <div class="col-lg-4 col-sm-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container"
+                    <div class="col-lg-4 col-md-6 cat-product-container py-1 mb-4 d-flex justify-content-center align-items-center grid-view-container"
                         value="<?php echo $row['PRODUCT_ID'];?>">
                         <div class="cat-product col-12 text-center">
                             <div class="inner-img-container">
@@ -788,5 +795,4 @@ include_once('function.php');
 <script src="script/function.js"></script>
 <script src="script/category-filter.js"></script>
 <script src="script/cart-action.js"></script>
-
 </html>

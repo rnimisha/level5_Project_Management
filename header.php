@@ -1,3 +1,4 @@
+
 <div class="container-fluid p-0 header-main d-print-none" id="sticky-nav">
         <nav class="navbar py-0 navbar-expand-lg navbar-light">
             <a class="navbar-brand pl-5" href="index.php" id="logo-header">
@@ -49,7 +50,9 @@
                     }
                 ?>
                 <a href="wishlist-page.php"><span class="mr-3"><ion-icon name="heart-outline"></ion-icon></i></span></a>
-                <a href="cart-page.php"><span class="mr-3"><ion-icon name="cart-outline"></ion-icon></span></a>
+                <a href="cart-page.php" class="cart-holder"><span class="mr-3">
+                    <ion-icon name="cart-outline"></ion-icon></span>
+                </a>
                 <div class="dropdownmenu text-left d-none">
                 <?php 
                     if(isset($_SESSION['phoenix_user']) && !empty($_SESSION['phoenix_user']) && isset($_SESSION['user_role']) && $_SESSION['user_role']=='C' )

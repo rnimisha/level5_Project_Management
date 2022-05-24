@@ -8,7 +8,9 @@ body{
 
 .cust-profile-img-container{
     /* background-color: #c3d0bb; */
-    background-color: #d7dfd2;
+    /* background-color: #bacebc; */
+    background: rgb(215,223,210);
+    background: radial-gradient(circle, rgba(215,223,210,1) 24%, rgba(186,206,188,1) 54%, rgba(186,206,188,1) 59%, rgba(187,207,189,1) 60%);
     min-height: 200px;
 }
 
@@ -57,24 +59,24 @@ body{
 
 .list-group-item.active {
     color: #000000;
-    background-color: #d7dfd2;
-    border-color: #d7dfd2;;
+    background-color: #bacebc;
+    border-color: #bacebc;;
     font-weight: bold;
 }
 
 .orders-icons {
     font-size: 50px;
     color: #78967e;
-    /* color: #d9bcb7; */
+    /* color: #d0c1bb; */
     margin: 30px 10px 5px 10px;
 }
 .setting-nav .list-group-item:hover, .btn:hover{
-    background-color: #d9bcb7;
+    background-color: #d0c1bb;
     transition: background-color 0.7s linear;
     cursor: pointer;
 }
 .orders-icons:hover, .all-order-select:hover, .to-recieve-select:hover, .recieved-select:hover, .add-review:hover, .reviewed-select:hover, .to-review-select:hover{
-    color: #d9bcb7;
+    color: #d0c1bb;
     cursor: pointer;
 }
 
@@ -96,7 +98,7 @@ body{
     height: 350px;
 }
 .btn {
-    background-color: #d7dfd2;
+    background-color: #bacebc;
     box-shadow: 0px 0px 2px rgb(144, 139, 139);
 }
 
@@ -124,9 +126,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-.loader{
-    z-index: 1071;
-}
+
 .profile-success{
     width: 30%;
     position: fixed;
@@ -158,8 +158,8 @@ body{
     border-radius:2rem 2rem 0 0 ;
 }
 .modal-footer .btn-primary{
-    background-color: #d7dfd2;
-    border-color: #d7dfd2;
+    background-color: #bacebc;
+    border-color: #bacebc;
 }
 
 .modal-footer .btn-secondary{
@@ -187,18 +187,18 @@ body{
     }
 }
 .light-green{
-    background-color: #d7dfd2;
+    background-color: #bacebc;
 }
 .light-green-font{
-    color: #d7dfd2;
+    color: #bacebc;
 }
 .light-green-bg{
-    background: #d7dfd2;
+    background: #bacebc;
 }
 
 .table th {
     padding: 0.7rem;
-    border-bottom: 0.5px solid #d7dfd2;
+    border-bottom: 0.5px solid #bacebc;
 }
 
 .order-cust-container{

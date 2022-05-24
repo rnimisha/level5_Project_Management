@@ -343,6 +343,10 @@ label{
 
 .plus, .minus, .plus-cart, .minus-cart,.remove-all-cart-btn, .cat-product-container{
     cursor: pointer;
+    
+}
+.remove-all-cart-btn:hover{
+    color: #b46a6a;
 }
 
 .second-wrapper{
@@ -362,7 +366,7 @@ label{
     color: #fff;  
 }
 .page-link:hover, #add-cart-with-quantity:hover, #buy-now-detail:hover{
-    background-color: #f4ebc8;
+    background-color: #d0c1bb;
     color: #000000;
 }
 
@@ -472,7 +476,7 @@ i.bx.bxs-heart {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     z-index: 1000;
-    background-color: #d7dfd2;
+    background-color: #c4ccc5;
     
 }
 .detail-nav:hover{
@@ -482,7 +486,7 @@ i.bx.bxs-heart {
 }
 .active-detail-nav{
     background-color: #ffffff;
-    border: 1px solid #d7dfd2;
+    border: 1px solid #c4ccc5;
     border-bottom: 6px solid #ffffff;
     color: #78967e;
     box-shadow: 0px -8px 8px -8px #d7e8c0, -8px 0 8px -8px #d7e8c0;
@@ -496,7 +500,7 @@ i.bx.bxs-heart {
 }
 .detail-into-container{
     margin-left: 1px;
-    border:1px solid #d7dfd2;
+    border:1px solid #c4ccc5;
     border-radius: 10px;
     border-top-left-radius: 0px;
     margin-top: -1px;  
@@ -509,7 +513,7 @@ i.bx.bxs-heart {
 }
 
 .btn:hover{
-    background-color: #d2c18c;
+    background-color: #d0c1bb;
     transition: background-color 0.7s linear;
     box-shadow: 0px 0px 5px rgb(144, 139, 139);
     color:#ffffff;
@@ -603,6 +607,7 @@ i.bx.bx-star {
 }
 .fa-trash-can,.fa-heart-crack
 {
+    transition: all 0.3s ease-in-out;
     color: #c94e4e;
     cursor: pointer;
 }
@@ -615,6 +620,9 @@ button#remove-all-cart-items.btn.btn-primary {
     border-color: #c7d5ba;
 }
 
+button#remove-all-cart-items.btn.btn-primary:hover{
+    color: #b46a6a;
+}
 
 /* WISHLIST */
 img.wishlist-prod-img.img-fluid{
@@ -623,7 +631,9 @@ img.wishlist-prod-img.img-fluid{
 }
 
 .fa-heart-crack:hover, .fa-trash-can:hover{
-    color: #000000
+    color: #000000;
+    transform: scale(1.5);
+    transition: all 0.3s ease-in-out;
 }
 
 /* contact us */
@@ -838,7 +848,7 @@ footer{
 }
 .shop-header{
     /* background-color: #78967e; */
-    background-color: #d7dfd2;
+    background-color: #c4ccc5;
     min-height: 250px;
 }
 
@@ -850,7 +860,9 @@ footer{
     border-radius:100px;
     border: 2px solid #ffffff;
 }
-
+#filter-mini{
+    display: none;
+}
 
 @keyframes bounce{
     0%   { transform: translateY(50); }
@@ -885,6 +897,13 @@ footer{
 
     .banner-text h3, .discount-text h3{
         font-size: 4.3vw;
+    }
+    #filter-mini{
+        display: flex;
+    }
+
+    #filter-option{
+        display: none;
     }
     
     .banner-text p{

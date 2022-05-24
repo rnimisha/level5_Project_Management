@@ -55,14 +55,14 @@
     border-color: transparent;
 }
 .btn:hover{
-    background-color: #d9bcb7;
+    background-color: #d0c1bb;
     transition: background-color 0.7s linear;
     cursor: pointer;
 }
 
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover , .nav-logo span:hover{
-    color: #d9bcb7;
+    color: #d0c1bb;
     transition: background-color 0.7s linear;
     cursor: pointer;
 }
@@ -116,6 +116,17 @@ footer{
 } 
 .cart-container{
     min-height: 80vh;
+}
+a .cart-holder{
+    position: relative;
+}
+span.cart-counter{
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    background-color: red;
+    font-size: 14px;
+    border-radius: 40px;
 }
 
 .transition-effect{
