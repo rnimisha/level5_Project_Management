@@ -70,22 +70,9 @@
             {
                 $end=date("d-m-Y", strtotime($_POST['dis_end']));
                 // $add_dis_error['e']=$end;
-                if(isset($_POST['dis_start']))
-                {
-                    $start=date("d-m-Y", strtotime($_POST['dis_start']));
-                    // $add_dis_error['s']=$start;
-                    if($end >= $start)
-                    {
-                        $add_dis_error['#error-dis-end']="";
+                $add_dis_error['#error-dis-end']="";
                         $add_dis_error['#dis-end']='valid'; 
-                    }
-                    else
-                    {
-                        $add_dis_error['clear']=false;
-                        $add_dis_error['#error-dis-end']="End date can't be before start date.";
-                        $add_dis_error['#dis-end']='is-invalid';
-                    }
-                }
+                   
             }
             else{
                 $add_dis_error['clear']=false;

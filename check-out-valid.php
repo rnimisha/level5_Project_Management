@@ -36,12 +36,12 @@
                     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
                     oci_execute($result);
                     oci_fetch($result);
-                    if($number_of_rows<$no_of_use){
+                    if($number_of_rows<$no_of_use){ 
                         $_SESSION['COUPON']=$coupon_id;
                         $collection['#error-coupon']="";
                         $collection['#coupon-code']='valid';
                         if(isset($_POST['subtotal_coupon']))
-                        {
+                        { 
                             $collection['total']= calculateSubtotalAfterCoupon($coupon_id, $_POST['subtotal_coupon'], $connection);
                         }
                     

@@ -54,7 +54,7 @@
                 <a href="#" class="list-group-item text-decoration-none confirm-dashboard"  >
                   <!-- <i class="fa-solid fa-chart-column"></i> -->
                   <i class="fa-solid fa-chart-pie confirm-dashboard"></i>
-                  <span class="hide-text confirm-logout">Dashboard</span>
+                  <span class="hide-text">Dashboard</span>
                 </a>
                 <a href="#" class="list-group-item text-decoration-none confirm-logout"  >
                   <i class="fa-solid fa-arrow-right-from-bracket confirm-logout"></i>

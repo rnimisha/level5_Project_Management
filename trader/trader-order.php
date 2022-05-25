@@ -52,6 +52,11 @@
                   <i class="fa-solid fa-store"></i>
                   <span class="hide-text">Shop</span>
                 </a>
+                <a href="#" class="list-group-item text-decoration-none confirm-dashboard"  >
+                  <!-- <i class="fa-solid fa-chart-column"></i> -->
+                  <i class="fa-solid fa-chart-pie confirm-dashboard"></i>
+                  <span class="hide-text">Dashboard</span>
+                </a>
                 <a href="#" class="list-group-item text-decoration-none confirm-logout"  >
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <span class="hide-text">Sign out</span>
@@ -89,7 +94,7 @@
                       </thead>
                       <tbody>
                       <?php
-                        $getUser= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS, NAME FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE p.shop_id IN(SELECT SHOP_ID FROM SHOP WHERE USER_ID=$current_trader_id) ORDER BY ORDER_DATE DESC";
+                        $getUser= "SELECT DISTINCT CO.ORDER_ID, ORDER_DATE, ORDER_STATUS, NAME FROM mart_user mu JOIN cust_order co ON mu.user_id=co.user_id JOIN order_item ot ON co.order_id=ot.order_id JOIN PRODUCT p ON ot.product_id=p.product_id WHERE p.shop_id IN(SELECT SHOP_ID FROM SHOP WHERE USER_ID=$current_trader_id) AND (SYSDATE-ORDER_DATE)<=31 ORDER BY ORDER_DATE DESC";
                         // echo $getUser;
                         $parsedGetUser = oci_parse($connection, $getUser);
                         oci_execute($parsedGetUser);

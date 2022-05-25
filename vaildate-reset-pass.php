@@ -10,8 +10,9 @@
         {
             if(!empty(trim($_POST['email'])))
             {
-                $email=$_POST['email'];
-                $query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM MART_USER WHERE EMAIL='$email'";
+
+                $email=strtoupper($_POST['email']);
+                $query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM MART_USER WHERE UPPER(EMAIL)='$email'";
                 $result=oci_parse($connection,$query);
 
                     oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);

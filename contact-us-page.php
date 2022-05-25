@@ -62,7 +62,7 @@ include_once('function.php');
                 </form>
             </div>
         </div>
-        <div class="col-12 transition-effect justify-content-center d-none align-items-center contact-us-sent">
+        <div class="col-12 transition-effect justify-content-center mt-5 pt-2 d-none align-items-center contact-us-sent">
             <div class="row w-100 mx-auto justify-content-center">
                 <img src="image\contact-us.gif" class="contact-us-img img-fluid" />
             </div>

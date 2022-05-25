@@ -42,7 +42,7 @@ include_once('function.php');
                 </form>
             </div>
         </div>
-        <div class="col-12 transition-effect justify-content-center d-none align-items-center pass-email-sent">
+        <div class="col-12 transition-effect justify-content-center mt-5 pt-5 d-none align-items-center pass-email-sent">
             <div class="row w-100 mx-auto justify-content-center">
                 <img src="image\pass-mail.gif" class="contact-us-img img-fluid" />
             </div>

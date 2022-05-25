@@ -285,7 +285,7 @@ function insertCartProduct($product_id, $user_id,$quantity, $connection)
     $query_min_order="SELECT MIN_ORDER FROM PRODUCT WHERE PRODUCT_ID=$product_id";
     $parsed_min=oci_parse($connection, $query_min_order);
     $execute=oci_execute($parsed_min);
-    $row = oci_fetch_assoc($result);
+    $row = oci_fetch_assoc($parsed_min);
     $min_quantity=$row['MIN_ORDER'];
     oci_free_statement($parsed_min);
 
@@ -601,7 +601,7 @@ function getProfilePicture($connection, $user_id)
 }
 function getAdminEmail($connection)
 {
-    $query="SELECT EMAIL FROM MART_USER WHERE UPPER(USER_ROLE)='A";
+    $query="SELECT EMAIL FROM MART_USER WHERE UPPER(USER_ROLE)='A'";
     $parsed=oci_parse($connection, $query);
     oci_execute($parsed);
     $row = oci_fetch_assoc($parsed);

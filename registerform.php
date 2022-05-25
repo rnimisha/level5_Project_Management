@@ -141,7 +141,7 @@
                                 </div>
                                 <div id="trader-shop-form">
                                     <div class="form-group mt-2">
-                                        <i class="fa-solid fa-shop"></i>
+                                        <!-- <i class="fa-solid fa-shop"></i> -->
                                         <input type="text" name="shopname" id="shopname" class="form-control" placeholder="Shop Name"/>
                                         <div id="shopname_error" class="invalid-feedback ml-4"></div>
                                     </div>
@@ -151,7 +151,7 @@
                                         <div id="register_date_error" class="invalid-feedback ml-4"></div>
                                     </div>
                                     <div class="form-group">
-                                        <i class="fa-solid fa-id-card"></i>
+                                        <!-- <i class="fa-solid fa-id-card"></i> -->
                                         <input type="text" name="register_no" id="register_no" class="form-control" placeholder="PAN"/>
                                         <div id="register_no_error" class="invalid-feedback ml-4"></div>
                                     </div>

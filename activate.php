@@ -9,10 +9,28 @@
         $parsedQuery=oci_parse($connection,$query);
 
         if(oci_execute($parsedQuery)){
-            echo "sucess";
+            echo "<html>
+            <head>
+                <title>Success</title>
+                <style>
+                    th, td {
+                      padding: 10px;
+                      border-color: grey;
+                    }
+                </style>
+            </head>
+            <body>
+                <div style=' width:80%; margin:10%; padding: 20px;'>
+                    <center>
+                        <img src='image/successpic.gif'/>
+                        <p><b>Email Validation Successfull!</b></p>
+                    </center>
+                </div>
+            </body>
+            </html>";
         }
         else{
-            echo "lol";
+            echo "Some errors during activation";
         }
         oci_free_statement($parsedQuery);
     }

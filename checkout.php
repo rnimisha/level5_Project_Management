@@ -240,7 +240,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                         </div> 
                             
                                                         <?php
-                                require('stripe_php_payment_gateway\config.php');
+                                require('stripe\config.php');
                             ?>   
                             <form action="payment-sucess-page.php" method="post">
                                 <input type="hidden" name="purchase-type" id="purchase-type" value="<?php echo $buynow;?>">
@@ -251,7 +251,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                         data-amount="<?php echo $total*100;?> "
                                         data-name="PhoenixMart"
                                         data-description="Phoenix Mart"
-                                        data-image="https://i.ibb.co/kBR7cPC/logo.png"
+                                        data-image="https://i.ibb.co/GRzxrdD/logo.png"
                                         data-currency="gbp"
                                         data-email="nimisaraut@gmail.com"
                                     >

@@ -1,7 +1,7 @@
 <?php
 include_once('connection.php');
 include_once('function.php');
-require('stripe_php_payment_gateway\config.php');
+require('stripe\config.php');
 
     if(!isset($_SESSION['phoenix_user']) && empty($_SESSION['phoenix_user']) )
     {

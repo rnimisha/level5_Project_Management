@@ -143,7 +143,7 @@ if(isset($_SESSION['user_role']) && $_SESSION['user_role']!='C')
                                 <input type="text" class="form-control" id="coupon-code" style="width: 100%; border-radius: 5px; border: 1px solid #e8e8e8;">
                                 <div class="invalid-feedback" id="error-coupon"></div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2"> 
                                 <button type="submit" class=" btn py-1 mt-2 px-3 coupon-btn"> Apply</button>
                             </div>
                         </form>
