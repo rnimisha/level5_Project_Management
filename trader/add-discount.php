@@ -17,7 +17,7 @@
             }
             else{
                 $add_dis_error['clear']=false;
-                $add_dis_error['#error-dis-name']="Product name is required";
+                $add_dis_error['#error-dis-name']="Discount name is required";
                 $add_dis_error['#dis-name']='is-invalid';
             }
 

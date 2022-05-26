@@ -1010,47 +1010,47 @@ $(document).ready(function(){
 
     
 
-    // post for editing shop name
-    $('#discount-form').submit(function(){
-        jQuery('#add-discount-btn').text('Adding...');
-        jQuery('#add-discount-btn').attr('disabled', true);
+    
+    // $('#discount-form').submit(function(){
+    //     jQuery('#add-discount-btn').text('Adding...');
+    //     jQuery('#add-discount-btn').attr('disabled', true);
 
-        var prod_id=$('#prod-id').val();
-        var dis_name=$('#dis-name').val();
-        var dis_rate=$('#dis-rate').val();
-        var dis_start=$('#dis-start').val();
-        var dis_end=$('#dis-end').val();
-        $.ajax({
-            type: $(this).attr('method'),
-            url: $(this).attr('action'),
-            data: {
-                prod_id:prod_id,
-                dis_name:dis_name,
-                dis_start:dis_start,
-                dis_rate:dis_rate,
-                dis_end:dis_end,
-                form_name: 'discount-form'
-            },
-            success: function(response){
-                var resp=jQuery.parseJSON(response);
+    //     var prod_id=$('#prod-id').val();
+    //     var dis_name=$('#dis-name').val();
+    //     var dis_rate=$('#dis-rate').val();
+    //     var dis_start=$('#dis-start').val();
+    //     var dis_end=$('#dis-end').val();
+    //     $.ajax({
+    //         type: $(this).attr('method'),
+    //         url: $(this).attr('action'),
+    //         data: {
+    //             prod_id:prod_id,
+    //             dis_name:dis_name,
+    //             dis_start:dis_start,
+    //             dis_rate:dis_rate,
+    //             dis_end:dis_end,
+    //             form_name: 'discount-form'
+    //         },
+    //         success: function(response){
+    //             var resp=jQuery.parseJSON(response);
                
-                jQuery('#add-discount-btn').text('Add Discount');
-                jQuery('#add-discount-btn').attr('disabled', false);
-                if(resp.clear == true)
-                {
-                    $('#discount-sucess-msg').show().delay(5000).fadeOut();;
-                    resetForm('discount-form');
-                    clearFormValidation();
-                }
-                else{
-                    inlineMsg(resp);
-                }
-            }
+    //             jQuery('#add-discount-btn').text('Add Discount');
+    //             jQuery('#add-discount-btn').attr('disabled', false);
+    //             if(resp.clear == true)
+    //             {
+    //                 $('#discount-sucess-msg').show().delay(5000).fadeOut();;
+    //                 resetForm('discount-form');
+    //                 clearFormValidation();
+    //             }
+    //             else{
+    //                 inlineMsg(resp);
+    //             }
+    //         }
             
-        });
-        //prevent page reload
-        return false;
-    });
+    //     });
+    //     //prevent page reload
+    //     return false;
+    // });
 
     //-----------edit shop--------
     // post for editing shop name

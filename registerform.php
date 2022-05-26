@@ -145,17 +145,17 @@
                                         <input type="text" name="shopname" id="shopname" class="form-control" placeholder="Shop Name"/>
                                         <div id="shopname_error" class="invalid-feedback ml-4"></div>
                                     </div>
-                                    <div class="form-group">
-                                        <i class="fa-solid fa-calendar-days"></i>
+                                    <div class="form-group mt-2">
+                                        <!-- <i class="fa-solid fa-calendar-days"></i> -->
                                         <input type="date" name="register_date" id="register_date" class="form-control" placeholder="Registration Date"/>
-                                        <div id="register_date_error" class="invalid-feedback ml-4"></div>
+                                        <div id="register_date_error" class="ml-4" style="color:red;"></div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mt-2">
                                         <!-- <i class="fa-solid fa-id-card"></i> -->
                                         <input type="text" name="register_no" id="register_no" class="form-control" placeholder="PAN"/>
-                                        <div id="register_no_error" class="invalid-feedback ml-4"></div>
+                                        <div id="register_no_error" class="ml-4" style="color:red;"></div>
                                     </div>
-                                   <div class="pl-2">
+                                   <div class="pl-2 mt-3">
                                    <input type="submit" id="trader-reg-btn" name="registerTrader" value="Register" class="bttn" style="margin-left:46px;"/>
                                    </div>
                                 </div>
