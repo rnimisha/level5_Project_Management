@@ -315,7 +315,7 @@ include_once('function.php');
         </div>
       </div>
       <div class="img-container col-lg-6 d-lg-flex d-none pl-2 pr-0">
-        <img src="image\banner1.png" class="img-fluid category-banner" alt="banner">
+        <img src="image\banner\grape_banner.png" class="img-fluid category-banner" alt="banner">
         <div class="banner-text col-5">
           <h3>Rich in quality</h3>
           <p class="text-dark">Locallly grown juciest fruits</p>
