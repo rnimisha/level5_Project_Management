@@ -1,0 +1,360 @@
+/* Header */
+/* testimonial */
+/* @import url("https://fonts.gooogleapis.com/css2?family=+Roboto:wght@400;700&display=swap"); */
+@import url("https://fonts.gooogleapis.com/css2?family=Poppins&display=swap");
+
+.Header {
+  margin-top: 5vh;
+  text-align: center;
+  /* width: 60%;
+  margin-left: 47vh; */
+}
+.Header h6 {
+  font-size: 15px;
+}
+.Header p {
+  font-size: 15px;
+  margin-top: -1vh;
+}
+/*Style for Container-2*/
+.wrapper-1 {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  max-height: 400px;
+}
+.Banner-Aboutus img {
+  width: 100%;
+  height: 100%;
+}
+.container_center {
+  display: flex;
+  justify-content: center;
+}
+.row-2 {
+  background-color: white;
+  width: 50%;
+
+  /* padding-left: 20vh; */
+}
+.row-2 img {
+  width: 100%;
+  height: 100%;
+}
+
+.row-2-1 {
+  width: 80%;
+  margin-left: 20px;
+}
+.video-1 {
+  margin-top: 20px;
+  width: 100%;
+  height: 490px;
+  margin-bottom: 15px;
+}
+.row-2-1-header {
+  /* margin-top: 200px; */
+  /* margin-right: 10px; */
+}
+.row-2-1-paragraph {
+  /* margin-right: 110px; */
+}
+
+/* Start of animated counter  */
+
+.counter-header {
+  margin-top: 5vh;
+  text-align: center;
+  /* width: 60%;
+  margin-left: 47vh; */
+}
+.counter-header h1 {
+  font-size: 30px;
+}
+.counter-header h3 {
+  font-size: 40px;
+}
+.counter-header h1,
+h3 {
+  line-height: 3vh;
+}
+.counter-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: auto;
+  margin-top: 10vh;
+}
+
+.counters {
+  background: #f9f8f4;
+  color: black;
+  padding: 40px 20px;
+}
+
+.counters .counter-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  text-align: center;
+}
+
+.counters i {
+  color: lightskyblue;
+  margin-bottom: 5px;
+}
+
+.counters .counter-counter {
+  font-size: 60px;
+  margin: 10px 0;
+}
+.counter-container .counter {
+  font-size: 36px;
+  color: #ff9c28;
+}
+
+@media (max-width: 700px) {
+  .counters .counter-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .counters .counter-container > div:nth-of-type(1),
+  .counters .counter-container > div:nth-of-type(2) {
+    border-bottom: 1px lightskyblue solid;
+    padding-bottom: 20px;
+  }
+}
+
+/* WRAPPER-3 */
+.wrapper-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+  margin-top: 5vh;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  grid-gap: 5vh;
+}
+.wrapper-3 .wrapper-3-item1 {
+}
+.wrapper-3 .wraper-3-item2 {
+  margin-top: 10vh;
+}
+.wrapper-3 .wraper-3-item3 {
+  margin-top: 10vh;
+}
+.wrapper-3 img {
+  width: 100%;
+  height: 100%;
+}
+
+.testimonial-container {
+  background-color: #f9f8f4;
+  color: black;
+  margin: 20px auto;
+  padding: 50px 80px;
+  max-width: auto;
+  position: relative;
+}
+.testimonial-container .testimonial-header h2 {
+  text-align: center;
+  font-size: 30px;
+}
+.testimonial-container .testimonial-header h5 {
+  text-align: center;
+  font-size: 25px;
+}
+.fa-quote {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 28px;
+  position: absolute;
+  top: 70px;
+}
+
+.fa-quote-right {
+  left: 40px;
+}
+
+.fa-quote-left {
+  right: 40px;
+}
+
+.testimonial {
+  line-height: 28px;
+  text-align: justify;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user .user-image {
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  object-fit: cover;
+}
+
+.user .user-details {
+  margin-left: 10px;
+}
+
+.user .username {
+  margin: 0;
+}
+
+.user .role {
+  font-weight: normal;
+  margin: 8px 0;
+}
+
+.progress-bar {
+  background-color: #fff;
+  height: 6px;
+  border-radius: 50%;
+  width: 100%;
+  margin: 15px;
+  animation: grow 10s linear infinite;
+  transform-origin: left;
+}
+
+@keyframes grow {
+  0% {
+    transform: scaleX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-container {
+    padding: 20px 30px;
+  }
+  .fa-quote {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 780px) {
+  .wraper-3-item3 {
+    display: none;
+  }
+}
+@media (max-width: 748px) {
+  .wrapper-3 .wraper-3-item2 {
+    margin-top: 0vh;
+  }
+  .wrapper-1 {
+    display: flex;
+    flex-direction: column;
+    max-height: none;
+  }
+  .row-2 {
+    width: 100%;
+  }
+  .row-2-1 {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
+@media (max-width: 500px) {
+  .counter-header h1,
+  h3 {
+    line-height: 5vh;
+  }
+}
+@media (max-width: 265px) {
+  .wrapper-3 {
+    margin-left: 1vh;
+  }
+}
+/* meet the team */
+.team-wrapper {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.team-wrapper h1 {
+  font-family: "Yatra One", cursive;
+  font-size: 48px;
+  color: black;
+  margin-bottom: 25px;
+}
+
+.our_team {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.our_team .team_member {
+  width: 250px;
+  margin: 5px;
+  background: rgb(217, 214, 214);
+  padding: 20px 10px;
+}
+
+.our_team .team_member .member_img {
+  background: #e9e5fa;
+  max-width: 190px;
+  width: 100%;
+  height: 190px;
+  margin: 0 auto;
+  border-radius: 50%;
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.our_team .team_member .member_img img {
+  width: 100%;
+  height: 100%;
+}
+
+.our_team .team_member h3 {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 2px;
+  margin: 15px 0 0px;
+}
+
+.our_team .team_member span {
+  font-size: 10px;
+}
+
+.our_team .team_member p {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.our_team .team_member .member_img .social_media {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.65);
+  width: 95%;
+  height: 95%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+.our_team .team_member .member_img .social_media .item {
+  margin: 0 10px;
+}
+
+.our_team .team_member .member_img .social_media .fab {
+  color: green;
+  font-size: 20px;
+}
+
+.our_team .team_member .member_img:hover .social_media {
+  transform: scale(1);
+}
