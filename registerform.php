@@ -1,3 +1,7 @@
+<?php
+    include_once('connection.php');
+    include_once('function.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -94,6 +98,33 @@
 
 
                         <form action="validateTrader.php" method="POST"  id="trader-reg-form" class="trader-register-container d-none">
+                            <?php
+                                $quota_exist=true;
+                                $check_query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM MART_USER WHERE UPPER(USER_ROLE)='T' AND UPPER(ACTIVE_STATUS)='A'";
+                                $result=oci_parse($connection,$check_query);
+                                
+                                oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                                oci_execute($result);
+                                oci_fetch($result);
+                                // echo $number_of_rows;
+                                if($number_of_rows>=5)
+                                {
+                                    $quota_exist=false;
+                                }
+                                else
+                                {
+                                    $quota_exist=true;
+                                }
+                                oci_free_statement($result);
+                                if($quota_exist==false)
+                                {
+                            ?>
+                            <div class="alert alert-warning quota-full-msg">
+                                Sorry! Trader Quota is full.
+                            </div>
+                            <?php
+                                }
+                            ?>
                             <div id="reg-trader-sucess-msg" style="color: green"></div>
                                 <div id="trader-general-form">
                                 <div class="form-group">
@@ -137,7 +168,14 @@
                                     <div id="reason_error" class="invalid-feedback ml-4"></div>
                                 </div><br>
 
+                                <?php 
+                                if($quota_exist==true)
+                                {
+                                    ?>
                                 <button type="button" id="next-shop-btn" class="bttn">Next </button>
+                                <?php
+                                }
+                                ?>
                                 </div>
                                 <div id="trader-shop-form">
                                     <div class="form-group mt-2">
@@ -189,7 +227,6 @@
         $('.trader-register-container').addClass('d-none');
     });
 </script>
-    
 <script src="script/preventRefresh.js"></script>
 <script src="script/preventRefreshTrader.js"></script>
 <script src="script/function.js"></script>
