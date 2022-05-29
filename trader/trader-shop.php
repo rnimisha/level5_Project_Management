@@ -87,11 +87,35 @@
           <!-- shop table view container-->
           <div class="row" id="detail-container">
             <div class="col-12 form-container w-100 py-3" id="shop-detail-table">
+            <?php 
+                  $shop_quota_exist=true;
+                  $uid=$_SESSION['phoenix_user'];
+                  $check_query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE USER_ID=$uid";
+                  $result=oci_parse($connection,$check_query);
+                  
+                  oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);
+                  oci_execute($result);
+                  oci_fetch($result);
+                  if($number_of_rows>=2)
+                  {
+                      $shop_quota_exist=false;
+                  }
+                  else
+                  {
+                      $shop_quota_exist=true;
+                  }
+                  oci_free_statement($result);
+                  if($shop_quota_exist==true)
+                  {
+                ?>
               <div class="row" id="add-shop-row">
                 <div class="col-lg-2 offset-lg-10 add-shop">
                   <button class="btn ml-lg-n2" value="<?php echo checkShopExceed($current_trader_id, $connection);?>"id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
                 </div>
               </div>
+              <?php 
+                  }
+                ?>
               <div class="col-12 table-responsive mt-3" id="shop-table">
                 <table class="table table-hover">
                   <thead class="mygreen">
@@ -144,9 +168,9 @@
             <!-- add shop form container -->
             <div class="col-12 form-container w-100 py-3 d-none" id="add-shop-container">
               <div class="row ">
-                <div class="col-12 d-flex justify-content-center border-bottom">
-                  <div class="h4 font-weight-bold">Add Shop</div>
-                </div>
+                  <div class="col-12 d-flex justify-content-center border-bottom">
+                    <div class="h4 font-weight-bold">Add Shop</div>
+                  </div>
                 <div class="col-12">
                   <!-- add shop form -->
                   <form class="w-75 mx-auto py-4" id="add-shop-form" action="add-shop.php" method="POST">

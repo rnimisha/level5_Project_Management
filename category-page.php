@@ -468,7 +468,13 @@ include_once('function.php');
                         if(isset($_GET['clear-filter']) && ($_GET['clear-filter'])=='default')
                         {
     
-                            $filter_query="SELECT * FROM (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM PRODUCT WHERE UPPER(DISABLED)='F'";
+                            $filter_query="SELECT * FROM (SELECT a.*, ROWNUM rnum FROM (SELECT P.PRODUCT_ID AS PRODUCT_ID,STOCK_QUANTITY, CATEGORY_ID, SHOP_ID, PRICE, PRODUCT_NAME, SUM(ITEM_QUANTITY) AS TOTAL_PURCHASED 
+                            FROM ORDER_ITEM O
+                            RIGHT JOIN PRODUCT P
+                            ON P.PRODUCT_ID=O.PRODUCT_ID
+                            WHERE UPPER(DISABLED)='F'
+                            AND STOCK_QUANTITY>0 GROUP BY P.PRODUCT_ID, CATEGORY_ID, STOCK_QUANTITY, SHOP_ID, PRICE, PRODUCT_NAME";
+
                             if(isset($_GET['category']))
                             {
                                 $_GET['category']=[];
