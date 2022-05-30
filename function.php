@@ -109,7 +109,7 @@ function getAvgRating($product_id, $connection)
     oci_free_statement($parsed2);
     if($count_rating!=0)
     {
-        return (intval($total/$count_rating));
+        return (number_format(($total/$count_rating),2));
     }
     else{
         return 0;

@@ -22,7 +22,8 @@ while (($row = oci_fetch_assoc($parsedgetProduct)) != false) {
     $shop_id=$row['SHOP_ID'];
     $allergy=$row['ALLERGY_INFO'];
 }
-$avgRating=getAvgRating($product_id, $connection);
+$avgRating_float=getAvgRating($product_id, $connection);
+$avgRating=intval($avgRating_float);
 $totalReviews=getTotalReview($product_id, $connection);
 $cat_name=getCategory($cat_id, $connection);
 $shop_name=getShop($shop_id, $connection);
@@ -239,7 +240,7 @@ $img= getProductImage($product_id,$connection);
                     ?>
                     <div class="row w-100">
                         <div class="col-lg-6 text-center mt-n2">
-                            <div class="h1 rating-heading"><?php echo $avgRating; ?></div>
+                            <div class="h1 rating-heading"><?php echo $avgRating_float; ?></div>
                             <div>Out of 5</div>
                             <div class="d-flex d-flex justify-content-center align-items-center">
                                 <?php 
