@@ -262,7 +262,7 @@ $(document).ready(function(){
     $('.write-review').click(function(){
         var prod_id=$(this).attr('value');
 
-        $.ajax({
+        $.ajax({ 
             type: "POST",
             url: "customer-profile-setting//submit-review.php",
             data: {
@@ -395,14 +395,14 @@ $(document).ready(function(){
             data: {
                 product_id:product_id,
                 action:'report-product'
-            },
+            }, 
             success: function(response){
                 console.log(response);
                 var resp=jQuery.parseJSON(response);
                 if(resp.valid == false) {
                     if(resp.error == 'login')
                     {
-                        $('.dynamic-body').html("<b>You need to login to review a product</b>");
+                        $('.dynamic-body').html("<b>You need to login to report a product</b>");
                         $('#dynamic-msg').click();
                     }
                 }
@@ -436,7 +436,7 @@ $(document).ready(function(){
                 {
                     removeStyle(resp);
                     $('.close-report').click();
-                    $('.succ-msg').html('<div class="alert alert-succes pop-msg py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
+                    $('.succ-msg').html('<div class="alert alert-success pop-msg py-4" role="alert"><i class="fa-regular fa-circle-check"></i> Your report has been submitted.</div>').delay(4000).fadeOut();
                     $('.succ-msg').show();
                 }
                 else{
@@ -444,7 +444,7 @@ $(document).ready(function(){
                 }
             }
         });
-        // return false;
+        return false;
     });
 
     $(".search-icon").mouseover(function(){

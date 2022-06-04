@@ -48,7 +48,7 @@
             if(!empty(trim($_POST['l_pword'])))
             {
                 $encrypted=md5($_POST['l_pword']);
-                $checkQuery2="SELECT COUNT(*) AS NUMBER_OF_ROWS  FROM mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass) AND upper(USER_ROLE)<>'A' AND upper(ACTIVE_STATUS)='A'";
+                $checkQuery2="SELECT COUNT(*) AS NUMBER_OF_ROWS  FROM mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass) AND upper(ACTIVE_STATUS)='A'";
                 $result2=oci_parse($connection,$checkQuery2);
 
                 oci_bind_by_name($result2, ":email", $l_useremail);
@@ -63,7 +63,7 @@
                     oci_free_statement($result2); 
                 }
                 else{
-                    $getUserRole= "SELECT * from mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass) AND upper(USER_ROLE)<>'A'";
+                    $getUserRole= "SELECT * from mart_user WHERE upper(email)=upper(:email) AND upper(PASSWORD)=upper(:pass)";
                     $parsedGetUser = oci_parse($connection, $getUserRole);
 
                     oci_bind_by_name($parsedGetUser, ":email", $l_useremail);
@@ -109,6 +109,11 @@
         {
             $l_error['role']='T';
             $_SESSION['user_role']='T';
+        }
+        elseif (strtoupper($user_role)=='A')
+        {
+            $l_error['role']='A';
+            $_SESSION['user_role']='A';
         }
         if(isset($_POST['message']))
         {

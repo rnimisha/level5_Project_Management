@@ -96,7 +96,7 @@
                       <th> </th>
                       <th>NAME</th>
                       <th>IMAGE</th>
-                      <th>DESCRIPTION</th>
+                      <!-- <th>DESCRIPTION</th> -->
                       <th>STOCK</th>
                       <th>PRICE(<span>&#163;</span>)</th>
                       <th>DISCOUNT(%)</th>
@@ -137,8 +137,22 @@
                             ?>
                       <td><img class="prod-view-img" src="<?php echo $img;?>" alt="product-img" value="<?php echo $row['PRODUCT_ID']; ?>"/>
                       </td>
-                      <td><?php echo $row['DESCRIP']->load(); ?></td>
-                      <td><?php echo $row['STOCK_QUANTITY']; ?></td>
+                      <!-- <td><?php echo $row['DESCRIP']->load(); ?></td> -->
+                      <td>
+                          <?php 
+                            if($row['STOCK_QUANTITY']>0)
+                            {
+                            ?>
+                            <?php echo $row['STOCK_QUANTITY']; ?>
+                            <?php
+                            }
+                            else{
+                            ?>
+                                <span class="badge badge-pill badge-fail">Out of Stock</span>
+                            <?php
+                            }
+                            ?>
+                      </td>
                       <td><?php echo $row['PRICE'].'/'. $row['PRICING_UNIT'];?></td>
                       <?php
                                $query="SELECT * FROM ACTIVE_PRODUCT WHERE PRODUCT_ID=".$row['PRODUCT_ID'];

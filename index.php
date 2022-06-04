@@ -98,9 +98,6 @@ include_once('function.php');
     </div>
 
 
-
-
-    <!-- best sellers -->
     <div class="row mt-5 mb-5 top-seller">
       <div class="col-12 text-center mt-5 h3 my-green-font">
         Top Seller
@@ -155,9 +152,9 @@ include_once('function.php');
               </div>
             </div>
             <div>
-              <!-- display rating for product -->
+           
               <?php 
-                            $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                            $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                             for($i=1; $i<=$avgRating; $i++)
                             {
                                 ?>
@@ -201,8 +198,6 @@ include_once('function.php');
     </div>
 
 
-
-    <!-- New arrivals -->
     <div class="row mt-5 mb-5">
       <div class="col-12 text-center h3 my-green-font mb-2">
         New Arrival
@@ -257,9 +252,8 @@ include_once('function.php');
               </div>
             </div>
             <div>
-              <!-- display rating for product -->
               <?php 
-                            $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                            $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                             for($i=1; $i<=$avgRating; $i++)
                             {
                                 ?>
@@ -303,8 +297,6 @@ include_once('function.php');
     </div>
 
 
-
-    <!-- two side banner -->
     <div class="row p-0 d-flex justify-content-center align-items-center">
       <div class="img-container col-lg-6 pr-2 pl-0">
         <img src="image\banner\longbanner.jpg" class="img-fluid category-banner" alt="banner">
@@ -326,8 +318,6 @@ include_once('function.php');
     </div>
     <!-- </div> -->
 
-
-    <!-- Highest rated -->
     <div class="row mt-5 mb-5">
       <div class="col-12 text-center h3 my-green-font mb-2">
         Top Rated
@@ -382,9 +372,9 @@ include_once('function.php');
               </div>
             </div>
             <div>
-              <!-- display rating for product -->
+        
               <?php 
-                            $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                            $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                             for($i=1; $i<=$avgRating; $i++)
                             {
                                 ?>
@@ -450,7 +440,7 @@ include_once('function.php');
         <div class="col-12 text-center h3 my-green-font mb-2">
           Ongoing Offers
         </div>
-        <!-- DISCOUNT PRODUCT ROW -->
+
         <div class="row w-100">
           <div class="col-lg-8">
             <div class="row p-0 m-0">
@@ -482,7 +472,7 @@ include_once('function.php');
               ?>
             </div>
           </div>
-          <!-- BANNER ROW -->
+    
           <div class="col-lg-4 mt-4 discount-banner d-lg-flex d-none">
               <div class="img-container">
                 <img src="image\banner\discountbanner.jpg" alt="discount banner" class="img-fluid discount-banner category-banner" />
@@ -496,7 +486,6 @@ include_once('function.php');
       </div>
     </div>
 
-  <!-- order process  -->
     <div class="row mb-5 mt-5 pt-5 d-lg-flex d-none">
       <div class="col-12 text-center h3 my-green-font">
         Order Process
@@ -518,7 +507,35 @@ include_once('function.php');
     </div>
   </div>
 
- 
+  <?php
+        if(isset($_SESSION['phoenix_user']) && isset($_SESSION['cart-product-remaining']) && isset($_SESSION['quantity']))
+        {
+            if((checkCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection))>0)
+            {
+                $original_quantity=getCartProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $connection);
+                addProductQuantity($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'],$original_quantity, $_SESSION['quantity'] , $connection);
+            }
+            else{
+                insertCartProduct($_SESSION['cart-product-remaining'], $_SESSION['phoenix_user'], $_SESSION['quantity'] , $connection);
+            }
+            unset($_SESSION['cart-product-remaining']);
+            unset($_SESSION['quantity']);
+            echo '<script> window.onload = function () {location.reload(); }; </script>';
+            echo '<script> window.onload = function () {document.getElementById("item-added-modal").click(); }; </script>';
+        }
+
+        if(isset($_SESSION['phoenix_user']) &&  isset($_SESSION['wishlist-product-remaining']))
+        {
+            if(saveToWishlist($_SESSION['wishlist-product-remaining'], $_SESSION['phoenix_user'], $connection))
+            {
+                echo 'wishlist done';
+            }
+            unset ($_SESSION['wishlist-product-remaining']);
+            echo '<script> window.onload = function () {location.reload(); }; </script>';
+            echo '<script> window.onload = function () {document.getElementById("item-saved-modal").click(); }; </script>';
+        }
+    ?>
+    
   <?php 
   include_once('popup-modal.php');
   include_once('footer.php');

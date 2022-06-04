@@ -90,7 +90,7 @@
             <?php 
                   $shop_quota_exist=true;
                   $uid=$_SESSION['phoenix_user'];
-                  $check_query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE USER_ID=$uid";
+                  $check_query="SELECT COUNT(*) AS NUMBER_OF_ROWS FROM SHOP WHERE USER_ID=$uid AND UPPER(ACTIVE_STATUS)='A'";
                   $result=oci_parse($connection,$check_query);
                   
                   oci_define_by_name($result, 'NUMBER_OF_ROWS', $number_of_rows);

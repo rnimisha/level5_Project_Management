@@ -678,12 +678,12 @@ $img= getProductImage($product_id,$connection);
     <input type="hidden" value="<?php echo $stock;?>" id="stock-amount" />
 
     <!-- Button trigger modal -->
-    <button type="button" id="show-review-form-btn" class="btn btn-primary d-none" data-toggle="modal" data-target="#ReviewFormContainer">
+    <!-- <button type="button" id="show-review-form-btn" class="btn btn-primary d-none" data-toggle="modal" data-target="#ReviewFormContainer">
       Launch demo modal
-    </button>
+    </button> -->
 
     <!-- Modal -->
-    <div class="modal fade" id="ReviewFormContainer" tabindex="-1" role="dialog" aria-labelledby="ReviewFormContainerTitle" aria-hidden="true">
+    <!-- <div class="modal fade" id="ReviewFormContainer" tabindex="-1" role="dialog" aria-labelledby="ReviewFormContainerTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -721,7 +721,7 @@ $img= getProductImage($product_id,$connection);
             <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-review-btn">Submit</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <?php
         include_once('popup-modal.php');

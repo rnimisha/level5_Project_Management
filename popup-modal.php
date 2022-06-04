@@ -162,7 +162,7 @@
         </button>
         </div>
         <div class="modal-body d-flex justify-content-center align-item-center">
-        <form id="review-form" action="submit-review.php" method="POST" class="w-75 text-center mt-4">
+        <form id="review-form" action="report-product.php" method="POST" class="w-75 text-center mt-4">
             <input type="hidden" class="form-control" id="report_prod_id"/>
             <div class="form-group">
                 <textarea name="prod-report" class="form-control" id="prod-report" placeholder="Write your complain"></textarea>

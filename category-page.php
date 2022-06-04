@@ -66,7 +66,7 @@ include_once('function.php');
                          <span class="mr-3 user-hover header-pp"><img src="image\profile\<?php  echo (isset($profile_pic) && !empty($profile_pic)) ? $profile_pic: 'default_profile.jpg';?>"  alt="profile" class="header-pp"/></span>
                 <?php 
                     }
-                    else
+                    else 
                     {
                 ?>
                         <span class="mr-3 user-hover"><ion-icon name="person-outline"></ion-icon></span>
@@ -110,11 +110,13 @@ include_once('function.php');
     <div class="container-fluid cat-page mt-5 pt-4">
         <div class="row w-100 p-5">
             <div class="col-md-3">
-                <!-- category option list -->
+               
+
                 <div class="row mb-2" id="filter-option">
                     <div class="col-11 mx-auto justify-content-center align-items-center" id="filter-content">
                         <!-- <form id="price-filter-form" action="category-page.php" method="GET"> -->
-                        <!-- jquery ui -->
+                       
+
                         <h5 class="pb-2"><b>Price</b></h5>
                         <div class="slider-box align-items-center pb-5">
                             <div id="price-range" class="slider mb-3"></div>
@@ -135,7 +137,8 @@ include_once('function.php');
                         <!-- </form> -->
                         <br>
                         <hr>
-                        <!-- Filter by Category -->
+                       
+
                         <h5 class="py-2"><b>Category</b></h5>
                         <form id="product-filter-form" action="category-page.php" method="GET">
                             <input type="hidden" name="min-input" id="min-input" />
@@ -164,7 +167,7 @@ include_once('function.php');
                             </ul>
                             <hr>
 
-                            <!-- Filter by Shop -->
+                           
                             <h5 class="py-2"><b>Filter by Shop</b></h5>
                             <ul class="list-group list-group-flush">
                                 <?php
@@ -188,7 +191,8 @@ include_once('function.php');
                             </ul>
                             <hr>
 
-                            <!-- filter by rating -->
+                            
+
                             <h5 class="py-2"><b>Filter by Rating</b></h5>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item text-decoration-none">
@@ -250,7 +254,7 @@ include_once('function.php');
                                     <button class="btn d-none" type="submit" name="submit-filter"
                                         id="submit-filter">Submit</button>
                                 </li>
-                                <!-- clear button -->
+                             
                                 <li class="list-group-item text-decoration-none pt-2 ml-1">
                                     <button class="btn" name="clear-filter" id="clear-filter"
                                         value="default">Clear</button>
@@ -359,7 +363,7 @@ include_once('function.php');
                         WHERE UPPER(DISABLED)='F'
                         AND STOCK_QUANTITY>0";
 
-                        // ------filter by price-----
+                    
                         if(isset($_GET['min-input']) & !empty($_GET['min-input']) )
                         {
                             // echo $_GET['min-input'];
@@ -375,7 +379,7 @@ include_once('function.php');
 
                         if(isset($_GET['submit-filter']))
                         {
-                             //------filter by category-----
+                          
                             if(isset($_GET['category']) && !empty($_GET['category']))
                             {
                                 $category=implode(",", $_GET['category']);
@@ -383,7 +387,7 @@ include_once('function.php');
                                 // echo $filter_query;
                             }
 
-                            //------filter by shop-----
+            
                             if(isset($_GET['shops']) && !empty($_GET['shops']))
                             {
                                 $shop=implode(",", $_GET['shops']);
@@ -391,7 +395,7 @@ include_once('function.php');
                                 // echo $filter_query;
                             }
 
-                            //------filter by rating-----
+                    
                             if(isset($_GET['rating']) && !empty($_GET['rating']))
                             {
                                 //array to store real rating
@@ -404,7 +408,7 @@ include_once('function.php');
 
                         }
 
-                        //filter by text
+           
                         if((isset($_GET['ftext']) && !empty($_GET['ftext'])) || (isset($_GET['filter-text']) && !empty($_GET['filter-text'])))
                         {
                             if((isset($_GET['ftext']) && !empty($_GET['ftext'])) )
@@ -415,11 +419,11 @@ include_once('function.php');
                             {
                                 $text=$_GET['filter-text'];
                             }
-                            //separate words here with delimiter as space
+                           
                             $data_entered=explode(' ', $text);
 
                             $data_trimmed=array();
-                            //new array without any blank value
+                            
                             foreach($data_entered as $data)
                             {
                                 if(!empty(trim($data)))
@@ -432,21 +436,21 @@ include_once('function.php');
                             
                             if(count($data_trimmed)>0)
                             {
-                                //for each separated word
+                           
                                 foreach($data_trimmed as $search)
                                 {
-                                    //array of conditions
+                                   
                                     $search_word[]="CONCAT(UPPER(PRODUCT_NAME), UPPER(DESCRIPTION)) LIKE '%$search%'";
 
                                 }
-                                // concat array with OP delimiter
+                                
                                 $filter_query.=" AND (".implode(' OR ', $search_word)." )";
                             }
                         }
 
                         $filter_query.=" GROUP BY P.PRODUCT_ID, CATEGORY_ID, STOCK_QUANTITY, SHOP_ID, PRICE, PRODUCT_NAME";
 
-                        //------sort the products -----
+                   
                         if(isset($_GET['submit-filter'])){
                             if(isset($_GET['sort-product-option']) && !empty($_GET['sort-product-option']) && strtoupper($_GET['sort-product-option'])!="BESTSELLING")
                             {
@@ -502,8 +506,8 @@ include_once('function.php');
          
                         while(($row = oci_fetch_assoc($parsed)) != false) 
                         {
-                            $avg_rating =getAvgRating($row['PRODUCT_ID'], $connection);
-                             //skip the product if rating does not match
+                            $avg_rating =intval(getAvgRating($row['PRODUCT_ID'], $connection));
+                       
                             if(isset($_GET['rating']) && !empty($_GET['rating']) && isset($rating))
                             {
                                 if(!in_array($avg_rating, $rating))
@@ -513,7 +517,7 @@ include_once('function.php');
                             }
                     ?>
 
-                    <!-- grid view product -->
+              
                     <?php 
                     if($view=='grid')
                     {
@@ -566,9 +570,9 @@ include_once('function.php');
                                 </div>
                             </div>
                             <div>
-                                <!-- display rating for product -->
+                              
                                 <?php 
-                                    $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                                    $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                                     for($i=1; $i<=$avgRating; $i++)
                                     {
                                         ?>
@@ -609,7 +613,7 @@ include_once('function.php');
                     }
                     ?>
 
-                    <!-- list view product -->
+                  
                     <?php 
                     if($view=='list')
                     {
@@ -625,9 +629,9 @@ include_once('function.php');
                                     <h3><?php echo $row['PRODUCT_NAME']; ?></h3>
                                 </div>
                                 <div class="mt-n1">
-                                    <!-- display rating for product -->
+                               
                                     <?php 
-                                        $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                                        $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                                         for($i=1; $i<=$avgRating; $i++)
                                         {
                                             ?>

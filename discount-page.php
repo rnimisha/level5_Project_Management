@@ -94,7 +94,7 @@ include_once('function.php');
                 <div>
                 <!-- display rating for product -->
                 <?php 
-                                $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                                $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                                 for($i=1; $i<=$avgRating; $i++)
                                 {
                                     ?>

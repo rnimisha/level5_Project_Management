@@ -20,7 +20,7 @@ if(isset($_POST['product_id']) && isset($_POST['type']) && strtolower($_POST['ty
   }
   oci_free_statement($parsedgetProduct);
   $img= getProductImage($product_id,$connection)[0];
-  $avgRating=getAvgRating($product_id, $connection);
+  $avgRating=intval(getAvgRating($product_id, $connection));
   $totalReviews=getTotalReview($product_id, $connection);
   $cat_name=getCategory($cat_id, $connection);
   $shop_name=getShop($shop_id, $connection);

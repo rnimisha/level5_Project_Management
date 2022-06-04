@@ -49,17 +49,17 @@
                 $shop_date=date("d-m-Y", strtotime($_POST['shop-date']));
                 $add_shop_error['c']=$current;
                 $add_shop_error['d']=$shop_date;
-                if($current<$shop_date)
-                {
-                    $add_shop_error['clear']=false;
-                    $add_shop_error['#error-reg-date']="Registration date can't be after today";
-                    $add_shop_error['#shop-date']='is-invalid';
-                }
-                else{
+                // if($current<$shop_date)
+                // {
+                //     $add_shop_error['clear']=false;
+                //     $add_shop_error['#error-reg-date']="Registration date can't be after today";
+                //     $add_shop_error['#shop-date']='is-invalid';
+                // }
+                // else{
                     $add_shop_error['#error-reg-date']="";
                     $add_shop_error['#shop-date']='valid'; 
 
-                }
+                // }
             }
             else{
                 $add_shop_error['clear']=false;
@@ -179,9 +179,14 @@
 
             // send mail to admin for activation request
             if(oci_execute($parsedShopQuery))
-            {
-                $to='phoenixmart123@gmail.com';
-                $subject="New Trader Request";
+            { 
+                
+                $to= getAdminEmail($connection);
+                if(empty(trim($to)))
+                {
+                    $to='phoenixmart123@gmail.com';
+                }
+                $subject="Shop Addition Request";
                 $image = '<img src="https://i.ibb.co/zhFv7GH/logo.png" alt=" " style="width:100px; height:60px;"/>';
 
                 $body="

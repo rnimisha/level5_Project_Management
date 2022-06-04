@@ -61,7 +61,7 @@ else{
         <div class="d-flex flex-row-reverse">
             <a href="category-page.php?submit-filter=&shops[]=<?php echo $shop_id?>" class="btn">Filter</a>
         </div>
-        <!-- Discount Products -->
+      
         <div class="row mt-3 mb-5">
             <?php
 
@@ -114,7 +114,7 @@ else{
                 <div>
                 <!-- display rating for product -->
                 <?php 
-                                $avgRating=getAvgRating($row['PRODUCT_ID'], $connection);
+                                $avgRating=intval(getAvgRating($row['PRODUCT_ID'], $connection));
                                 for($i=1; $i<=$avgRating; $i++)
                                 {
                                     ?>

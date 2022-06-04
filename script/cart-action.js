@@ -1,7 +1,6 @@
 $('.action-success').hide();
 
 $(document).ready(function(){
-
     //add to caart on click
     $('.add-to-cart').click(function(){
         var product_id=$(this).attr('value');
@@ -206,7 +205,7 @@ $(document).ready(function(){
   
     $('.remove-all-wishlist-btn').click(function(){
         var current=$(this);
-        alert(1);
+        // alert(1);
         
         $.ajax({
             type: "POST",

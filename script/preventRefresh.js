@@ -295,8 +295,12 @@ $(document).ready(function(){
                         }
                     }
                     else if(resp.role == 'T')
-                    {
+                    { 
                         $(location).attr('href','trader/trader-index.php');
+                    }
+                    else if(resp.role == 'A')
+                    { 
+                        $(location).attr('href','http://localhost:8080/apex/f?p=103:LOGIN_DESKTOP:5037239981099:::::');
                     }
                 }
                 else{
@@ -306,7 +310,7 @@ $(document).ready(function(){
         });
         //prevent page reload
         return false;
-    });
+    }); 
 
     $('#forgot-pass-form').submit(function(){ 
         jQuery('#forgot-pass-btn').val('Submitting...');

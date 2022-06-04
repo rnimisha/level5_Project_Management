@@ -13,6 +13,14 @@ body{
     top: 0;
     z-index: 3; 
 }
+.badge{
+    height: 15px;
+}
+.badge-fail {
+    color: #c94e4e;
+    background-color: #f1d1d1 ;
+    font-size: 12px;
+}
 
 #logo-header img{
     width: 170px;

@@ -77,7 +77,7 @@
         }
     }
 
-    //activate shop added later
+  
     if(isset($_GET['regid']) && isset($_GET['userid']))
     {
         if(!empty(trim($_GET['regid'])) && !empty(trim($_GET['userid'])))

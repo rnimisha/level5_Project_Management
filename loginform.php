@@ -192,15 +192,15 @@ if(isset($_GET['logoutmsg']))
                 </div>
                 <div class="col-md-6 d-flex justify-content-center my-auto">
                     <div class="right text-center">
-                            <header>Login</header>
-                            <form action="validateLogin.php" method="POST"  id="login-form" class="forms">
-                                <input type="hidden" value="<?php if(isset($_GET['msg'])){echo $_GET['msg'];} else{echo "";}?>" id="login-message" name="login-message"/>
-                                <div class="form-group mt-1">
-                                    <i class="fa fa-user"></i>
-                                    <input type="text"  class="form-control" name="uemail" id="l_useremail" placeholder="Email"/>
-                                    <div class="invalid-feedback" id="l_email_error"></div>
-                                    
-                                </div>
+                        <header>Login</header>
+                        <form action="validateLogin.php" method="POST"  id="login-form" class="forms">
+                            <input type="hidden" value="<?php if(isset($_GET['msg'])){echo $_GET['msg'];} else{echo "";}?>" id="login-message" name="login-message"/>
+                            <div class="form-group mt-1">
+                                <i class="fa fa-user"></i>
+                                <input type="text"  class="form-control" name="uemail" id="l_useremail" placeholder="Email"/>
+                                <div class="invalid-feedback" id="l_email_error"></div>
+                                
+                            </div>
 
                             <div class="form-group">
                                 <i class="fa fa-lock"></i>

@@ -1,4 +1,4 @@
-//trader form stop refresh with ajax call
+
 $(document).ready(function(){
    $('#trader-shop-form').hide();
    $('#trader-general-form').show();
@@ -101,7 +101,7 @@ $(document).ready(function(){
       return false;
    });
 
-   //live validation
+   
    $("#t_fullname").keyup(function(){
 
       var t_fullname=$('#t_fullname').val();

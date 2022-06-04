@@ -44,7 +44,6 @@ $(document).ready(function(){
     // });
 
 
-    //click submit
     $(".filter-selection").click(function(){
         $('#submit-filter').click();
     });
@@ -105,7 +104,7 @@ $(document).ready(function(){
 
 
     $('.filter-mini-btn').click(function(){
-        alert(1);
+        // alert(1);
         $('#filter-option').css({"display":'flex'});
     });
 

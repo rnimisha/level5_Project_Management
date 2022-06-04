@@ -196,7 +196,7 @@
         if(isset($_POST['t_address'])){
             if(!empty($_POST['t_address']))
             {
-                if(strlen($_POST['t_address']) < 4)
+                if(strlen($_POST['t_address']) < 2)
                 {
                     $trader_error['#t_address_error']="Enter a valid address";
                     $trader_error['clear']=false;

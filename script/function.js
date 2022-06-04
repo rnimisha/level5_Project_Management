@@ -77,7 +77,7 @@ function clearFormValidation()
     }
 }
 
-//get all the values checked in array for filtering
+
 function getFilterValue(filter_class)
 {
     var filteredValue=[];
