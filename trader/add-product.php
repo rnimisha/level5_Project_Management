@@ -234,7 +234,7 @@
         }
        
 
-        // //if all validations pass
+        //if all validations pass
         if( $add_prod_error['clear'] && ($_POST['run_query']=='t'))
         {
             $shop=$_POST['add-product-shop'];

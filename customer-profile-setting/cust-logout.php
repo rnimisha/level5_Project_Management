@@ -28,7 +28,7 @@
     <!-- customized css -->
     <link rel="stylesheet" type="text/css" href="../style/header.css" />
     <link rel="stylesheet" type="text/css" href="style/cust-style.css" />
-    <title>Account Deactivation</title>
+    <title>Sign Out</title>
 </head>
 <body>
     <?php include_once('header.php');?>

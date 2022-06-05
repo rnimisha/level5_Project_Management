@@ -259,6 +259,7 @@ $(document).ready(function(){
         $('.close-cart-success').click();
     });
 
+    // review check
     $('.write-review').click(function(){
         var prod_id=$(this).attr('value');
 
@@ -296,7 +297,7 @@ $(document).ready(function(){
         return false;
     })
 
-    //check checkout quantity limit
+    //check before checkout
     $('.checkout-btn').click(function(){
         var total_items=$('#total-item-count').attr('value');
         if(total_items>20)

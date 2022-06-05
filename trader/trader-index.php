@@ -76,7 +76,7 @@
                     </ol>
                   </nav>
               </div>
-              <!-- profile-->
+            
               <div class="row" id="detail-container">
                 <div class="col-12 form-container w-100 py-3">
                   <div class="row border-bottom d-flex justify-content-around align-items-center my-1 pb-2">
@@ -90,7 +90,6 @@
                     </div>
                   </div>
 
-                  <!-- about me -->
                   <div class="row w-100 p-4 d-flex justify-content-center align-items-center" id="about-me">
                     <div class="col-lg-5">
                       <div class="col w-100 mb-3 d-flex justify-content-center align-items-center">
@@ -125,7 +124,8 @@
                       </ul>
                     </div>
                   </div>
-                  <!-- profile setting category -->
+               
+
                   <div class="row w-100 d-none" id="settings">
                     <div class="col-lg-2 col-md-3 border-right h-75">
                       <ul class="list-group list-group-flush my-1">
@@ -135,7 +135,7 @@
                       </ul>
                     </div>
 
-                    <!-- profile picture change -->
+              
                       <div id="picture-form"  class="col-lg-10 col-md-9 py-4  d-none">
                         <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="profile-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
@@ -175,7 +175,7 @@
                         </div>
                       </div>
                         
-                      <!-- personal information change -->
+                   
                       <form class=" w-75 mx-auto py-4 d-none" id="personal-form" action="form-valid.php" method="POST">
                         <div class="alert alert-success mt-4 mb-n2 w-75 mx-auto" id="personal-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.
@@ -219,7 +219,7 @@
                           <button type="submit" class="btn" id="personal-button">Save Changes</button>
                         </div>  
                       </form>
-                      <!-- password updation  -->
+                 
                       <form class=" w-75 mx-auto py-4 d-none" novalidate id="password-form" action="form-valid.php" method="POST">
                         <div class="alert alert-success mt-4 mb-n1 w-100 mx-auto" id="pass-sucess-msg">
                           <strong>Success!</strong>Changes has been saved.

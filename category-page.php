@@ -285,7 +285,7 @@ include_once('function.php');
                     </div>
                 </div>
 
-                <!-- sorting option for product -->
+             
                 <!-- <form id="sort-product" action="category-page.php" method="GET"> -->
                 <div class="row py-3">
                     <div

@@ -464,7 +464,7 @@ $(document).ready(function(){
         $('#trad-breadcrumb').html('<li class="breadcrumb-item"><a href="trader-index.php" ><b><i class="fa-solid fa-house-chimney"></i></b></a></li><li class="breadcrumb-item"><a href="trader-product.php" ><b>Product</b></a></li><li class="breadcrumb-item active"><a href="#">Edit Photo</a></li>');
     });
 
-    //data to php to delete product 
+
     $('.delete-product').click(function(){
         var product_id=$(this).attr('value');
         if (confirm('Do you want to delete the product?')) 
@@ -484,7 +484,7 @@ $(document).ready(function(){
         }
     });
 
-    //view details of clicked product in new div
+
     $('.view-product-detail').click(function(){
         
         var product_id=$(this).attr('value');

@@ -81,7 +81,7 @@
             </nav>
           </div>
 
-          <!-- product detail table-->
+         
           <div class="row" id="detail-container transition-effect">
             <div class="col-12 form-container w-100 py-3" id="product-detail-table">
               <div class="row" id="add-prod-row">
@@ -198,7 +198,7 @@
               </div>
             </div>
           
-            <!-- add discount container -->
+      
             <div class="col-12 form-container w-100 py-3 d-none" id="add-discount-form">
               <div class="row">
                 <div class="col-12 d-flex justify-content-center border-bottom">
@@ -206,7 +206,7 @@
                 </div>
                 <div class="col-12">
 
-                  <!--add discount form -->
+       
                   <form class="w-75 mx-auto py-4" id="discount-form" action="add-discount.php" method="POST">
                     <input type="hidden" class="form-control" id="prod-id" value="" />
                     <div class="form-group">
@@ -236,14 +236,14 @@
                 </div>
               </div>
             </div>
-            <!-- add product container -->
+        
             <div class="col-12 form-container w-100 py-3 d-none" id="product-detail-form">
               <div class="row">
                 <div class="col-12 d-flex justify-content-center border-bottom">
                   <div class="h4 font-weight-bold">Add Product</div>
                 </div>
                 <div class="col-12">
-                  <!-- add product form -->
+
                   <form class="w-75 mx-auto py-4" id="add-product-form" action="add-product.php" method="POST">
                   <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="add-prod-sucess-msg">
                       <strong>Success! </strong>Changes has been saved.
@@ -355,7 +355,7 @@
               </div>
             </div>
 
-            <!-- product edit category -->
+     
             <div class="col-12 form-container w-100 py-3 d-none" id="product-edit-form">
               <div class="row w-100" id="settings">
                 <div class="col-lg-2 col-md-3 border-right h-75">
@@ -365,7 +365,7 @@
                   </ul>
                 </div>
 
-                <!-- edit product form -->
+            
                 <form class=" w-75 mx-auto py-4" id="edit-product-form" action="edit-product.php" method="POST">
                   <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="product-edit-sucess-msg">
                       <strong>Success!</strong>Changes has been saved.
@@ -440,7 +440,6 @@
                   </div>
                 </form>
 
-                <!-- product picture change -->
                 <div id="prod-pic-form"  class="col-lg-10 col-md-9 py-4 d-none">
                   <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="product-img-sucess-msg">
                     <strong>Success!</strong>Changes has been saved.

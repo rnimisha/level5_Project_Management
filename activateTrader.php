@@ -44,7 +44,7 @@
                 {
                     echo "<html>
                     <head>
-                        <title>Customer query</title>
+                        <title>Success</title>
                         <style>
                             th, td {
                               padding: 10px;

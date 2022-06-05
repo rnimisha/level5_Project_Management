@@ -162,15 +162,15 @@
                   <div class="col-12 d-none" id="order-detail-table">
                   </div>
                 </div>
-                
-                <!-- Change order status -->
+     
+
                 <div class="col-12 form-container w-100 py-3 d-none" id="edit-status-container">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center border-bottom">
                       <div class="h4 font-weight-bold">Edit Order Status</div>
                     </div>
                     <div class="col-12">
-                      <!-- Change order status form-->
+                   
                       <form class="w-75 mx-auto py-4" id="edit-status-form" action="edit-order-status.php" method="POST">
                         <div class="alert alert-success mt-4 mb-2 w-75 mx-auto" id="status-change-sucess-msg">
                             <strong>Success! </strong>Changes has been saved.
