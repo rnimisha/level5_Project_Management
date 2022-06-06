@@ -110,7 +110,7 @@
                 ?>
               <div class="row" id="add-shop-row">
                 <div class="col-lg-2 offset-lg-10 add-shop">
-                  <button class="btn ml-lg-n2" value="<?php echo checkShopExceed($current_trader_id, $connection);?>"id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
+                  <button class="btn ml-lg-n2" value="<?php echo checkShopExceed($current_trader_id, $connection);?>" id="add-shop-btn"><i class="fa-solid fa-plus"></i>Add Shop</button>
                 </div>
               </div>
               <?php 
